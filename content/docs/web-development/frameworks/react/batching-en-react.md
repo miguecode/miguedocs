@@ -1,0 +1,4 @@
+---
+title: "Batching en React"
+---
+

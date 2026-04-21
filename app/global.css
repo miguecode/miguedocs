@@ -1,0 +1,52 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+@theme {
+  /* Latte Light Mode */
+  --color-fd-background: hsl(220 23% 95%);
+  --color-fd-foreground: hsl(234 16% 35%);
+  --color-fd-muted: hsl(220 22% 92%);
+  --color-fd-muted-foreground: hsl(233 11% 47%);
+  --color-fd-popover: hsl(220 23% 95%);
+  --color-fd-popover-foreground: hsl(234 16% 35%);
+  --color-fd-card: hsl(220 21% 89%);
+  --color-fd-card-foreground: hsl(234 16% 35%);
+  --color-fd-border: hsla(234, 16%, 35%, 0.2);
+  --color-fd-primary: hsl(266 85% 58%);
+  --color-fd-primary-foreground: hsl(0 0% 100%);
+  --color-fd-secondary: hsl(220 22% 92%);
+  --color-fd-secondary-foreground: hsl(234 16% 35%);
+  --color-fd-accent: hsl(220 22% 92%);
+  --color-fd-accent-foreground: hsl(266 85% 58%);
+  --color-fd-ring: hsl(266 85% 58%);
+}
+
+.dark {
+  /* Mocha Dark Mode */
+  --color-fd-background: hsl(240 21% 15%);
+  --color-fd-foreground: hsl(226 64% 88%);
+  --color-fd-muted: hsl(240 21% 12%);
+  --color-fd-muted-foreground: hsl(228 24% 72%);
+  --color-fd-popover: hsl(240 21% 15%);
+  --color-fd-popover-foreground: hsl(226 64% 88%);
+  --color-fd-card: hsl(240 23% 9%);
+  --color-fd-card-foreground: hsl(226 64% 88%);
+  --color-fd-border: hsla(226, 64%, 88%, 0.15);
+  --color-fd-primary: hsl(267 84% 81%);
+  --color-fd-primary-foreground: hsl(240 21% 15%);
+  --color-fd-secondary: hsl(240 21% 12%);
+  --color-fd-secondary-foreground: hsl(226 64% 88%);
+  --color-fd-accent: hsl(240 21% 12%);
+  --color-fd-accent-foreground: hsl(267 84% 81%);
+  --color-fd-ring: hsl(267 84% 81%);
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+html > body[data-scroll-locked] {
+  margin-right: 0px !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}
