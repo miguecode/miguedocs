@@ -1,8 +1,10 @@
 ---
 title: "Estilos y CSS"
+description: "Los estilos se pueden aplicar de distintas maneras:"
 ---
 
-> CSS en Astro
+
+## CSS en Astro
 
 Los estilos se pueden aplicar de distintas maneras:
 
@@ -12,12 +14,12 @@ Los estilos se pueden aplicar de distintas maneras:
 - Frameworks de CSS (Tailwind, Bootstrap...)
 
 
->> Estilos locales
+### Estilos locales
 
-Son estilos que se aplican sólo a una sección de nuestro código, como un componente. Y no a toda la aplicación. Por ejemplo, cuando usamos la etiqueta <style> en nuestro componente Button.
+Son estilos que se aplican sólo a una sección de nuestro código, como un componente. Y no a toda la aplicación. Por ejemplo, cuando usamos la etiqueta `<style>` en nuestro componente Button.
 
 
->> Estilos globales
+### Estilos globales
 
 - Dentro de 'src', vamos a crear una carpeta llamada styles. En ella, vamos a poner un archivo llamado global.css. 
 

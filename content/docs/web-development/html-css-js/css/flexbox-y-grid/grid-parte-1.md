@@ -1,8 +1,10 @@
 ---
 title: "Grid - Parte 1"
+description: "La diferencia clave de Grid con Flexbox, es que Grid no trabaja sobre un contenedor en modo fila o columna como lo hace flex, sino que trabaja sobre un contened..."
 ---
 
-> Grid CSS
+
+## Grid CSS
 
 - La diferencia clave de Grid con Flexbox, es que Grid no trabaja sobre un contenedor en modo fila o columna como lo hace flex, sino que trabaja sobre un contenedor con filas y columnas. Las dos a la vez. O sea que, se podría decir que flex es unidimensional y grid bidimensional.
 
@@ -13,27 +15,33 @@ title: "Grid - Parte 1"
 - Recordemos que grid significa grilla o cuadrícula en español.
 
 
-> Ejemplo
+## Ejemplo
 
 <section class="container">
-	<div>1</div>
-	<div>2</div>
-	<div>3</div>
-	<div>4</div>
-	<div>5</div>
-	<div>6</div>
-	<div>7</div>
-</ section>
+```html
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+<div>6</div>
+<div>7</div>
+```
+`</ section>`
 
 .container {
-	background: lightsalmon;
-	border: 3px solid black;
-	display: grid;
+```typescript
+background: lightsalmon;
+border: 3px solid black;
+display: grid;
+```
 }
 
 .container div {
-	background: lightblue;
-	border: 2px solid blue;
+```typescript
+background: lightblue;
+border: 2px solid blue;
+```
 }
 
 
@@ -42,10 +50,12 @@ title: "Grid - Parte 1"
 - Lo primero, es indicar cuántas columnas queremos que tenga nuestra grid, indicando el ANCHO de cada una. Lo hacemos con la propiedad "grid-template-columns".
 
 .container {
-	background: lightsalmon;
-	border: 3px solid black;
-	display: grid;
-	grid-template-columns: 100px 100px 100px;   // 3 columnas de 100 pixeles
+```typescript
+background: lightsalmon;
+border: 3px solid black;
+display: grid;
+grid-template-columns: 100px 100px 100px;   // 3 columnas de 100 pixeles
+```
 }
 
 - Si a una columna le ponemos "auto", el navegador es el que va a decidir cuál es el espacio que tiene que utilizar, y lo va a hacer dependiendo del espacio que tenga disponible, y del contenido del texto. O sea, no siempre va a ser el mismo tamaño. Depende de esos dos factores. 
@@ -57,7 +67,7 @@ grid-template-columns: 50% 100px auto 10vw; // 4 columnas
 - Podemos usar distintas medidas para las columnas. Obviamente, esto no es lo recomendable.
 
 
->> Medida fraction (fr)
+### Medida fraction (fr)
 
 - Para grid, existe una medida especial llamada "fraction", y se abrevia fr. Nos permite indicar el tamaño de las columnas y de las filas de forma proporcional. Esta es la medida ideal, y la que hay que usar. 
 
@@ -81,7 +91,7 @@ grid-template-columns: 2fr 4fr 1fr; // Al ser tres columnas, 2fr = 28% & 4fr = 5
 
 - A fraction NO le importa el contenido de los elementos. Eso sólo pasa con el tamaño en "auto". Con fr, el contenido no importa y el tamaño del elemento es fijo según lo que coloquemos. A diferencia de "auto", fraction va a distribuir el espacio disponible, mientras que auto va a intentar usar sólo el espacio del contenido de cada elemento.
 
-- Otro ejemplo:
+- **Otro ejemplo**: 
 
 grid-template-columns: 1fr 100px;
 
@@ -91,10 +101,10 @@ grid-template-columns: 1fr 100px;
 
 500px - 100px = 400px    =>    1fr = 400px
 
-- La fórmula es: 1fr = (  (X-Y) / X  ) x 100
+- **La fórmula es**: 1fr = (  (X-Y) / X  ) x 100
 
 
->> grid-template-rows
+### grid-template-rows
 
 - Con esta propiedad, vamos a indicar cuántas filas queremos que tenga nuestra grid, y las ALTURAS de cada una. Todo funciona igual que grid-template-columns. Se pueden usar fractions.
 
@@ -107,7 +117,7 @@ grid-template-rows: 100px 50px 30px 100px; // 4 Filas, con esos tamaños
 - Ese comportamiento se da por la propiedad "grid-auto-flow", la cual viene por defecto con el valor "row". Eso significa que, cuando se va a desbordar, se crea una nueva row. Si se lo cambiamos a "column", entonces, cuando va a desbordar, empieza a crear nuevas columnas para que entre. También existe el valor "dense", pero lo vamos a ver más adelante.
 
 
->> Filas automáticas
+### Filas automáticas
 
 - Como dijimos antes, cuando el contenido no entra en una fila, empieza en otra de forma automática. O sea, que se generan filas automáticamente. Nosotros podemos determinar el alto de esas filas, usando la propiedad "grid-auto-rows".
 

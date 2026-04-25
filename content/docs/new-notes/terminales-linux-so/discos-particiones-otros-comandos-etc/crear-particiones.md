@@ -1,6 +1,8 @@
 ---
 title: "Crear particiones"
+description: "Estamos viendo un mini repaso de lo que vimos en la clase 3 (de la teoría)"
 ---
+
 
 Estamos viendo un mini repaso de lo que vimos en la clase 3 (de la teoría)
 Esta hablando de cosas copadas (la ram) pero que tendría que volver a ver...

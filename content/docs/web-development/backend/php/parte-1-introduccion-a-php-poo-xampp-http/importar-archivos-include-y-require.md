@@ -1,6 +1,8 @@
 ---
 title: "Importar archivos (Include y Require)"
+description: "Inclusión de archivos en PHP"
 ---
+
 
 Inclusión de archivos en PHP
 Include y Require son declaraciones que copian todo el código existente del archivo especificado dentro del archivo que posee dicha declaración. Sería como el import de JS.

@@ -1,6 +1,8 @@
 ---
 title: "Planificación previa a un proyecto"
+description: "Me encanta todo lo que contás, porque estás tocando algo clave en cualquier desarrollo serio: la planificación, documentación y diseño conceptual del sistema. V..."
 ---
+
 
 Me encanta todo lo que contás, porque estás tocando algo clave en cualquier desarrollo serio: la planificación, documentación y diseño conceptual del sistema. Vamos por partes y te respondo cada una de tus dudas y reflexiones con todo el detalle que merecen. 🚀
 
@@ -77,8 +79,9 @@ Lo que estás haciendo está perfecto. No estás improvisando: estás documentan
 
 Pero si querés subir de nivel y hacerlo más pro, te propongo una estrategia combinada:
 
-Objetivo	Herramienta recomendada
-Guardar ideas y decisiones	Markdown (.md) o Notion
-Esquematizar flujos y entidades	Draw.io o UML con PlantUML
-Organizar tareas y progreso	Trello o Notion
-Documentación final para portfolio	README en GitHub (Markdown)
+| Objetivo	| Herramienta recomendada |
+| --- | --- |
+| Guardar ideas y decisiones |	Markdown (.md) o Notion |
+| Esquematizar flujos y entidades | Draw.io o UML con PlantUML |
+| Organizar tareas y progreso | Trello o Notion |
+| Documentación final para portfolio |	README en GitHub (Markdown)

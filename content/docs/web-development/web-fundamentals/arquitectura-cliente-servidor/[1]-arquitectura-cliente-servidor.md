@@ -1,12 +1,14 @@
 ---
-title: "Arquitectura Cliente-Servidor 1"
+title: "[1] Arquitectura Cliente-Servidor"
+description: "La primera parte de los apuntes de Arquitectura Cliente-Servidor"
 ---
 
-> Arquitectura Cliente-Servidor
+
+## Arquitectura Cliente-Servidor
 
 - Un Cliente es una computadora o un dispositivo que, en principio, tiene un navegador. Y un navegador puede realizar peticiones a un Servidor. El cliente va a ser un dispositivo de Hardware (PC, Notebooks, Tablets, SmartPhones, SmartWatch, etc), el cual corre un Software que se encarga de realizar peticiones.
 
-- Y ojo: un navegador web PUEDE ser el Cliente. Pero no obligatoriamente debe serlo. También puede ser una aplicación movil o de escritorio, una terminal de comandos, o incluso otro servidor actuando como cliente. 
+- **Y ojo**: un navegador web PUEDE ser el Cliente. Pero no obligatoriamente debe serlo. También puede ser una aplicación movil o de escritorio, una terminal de comandos, o incluso otro servidor actuando como cliente. 
 
 - Un Servidor es una PC que está en la nube, en una empresa o en una red local. Dicha PC debe estar encendida las 24hs del día los 365 días del año, y conectada a internet.
 
@@ -16,28 +18,34 @@ title: "Arquitectura Cliente-Servidor 1"
 
 
 
->> IP y Dominio
+### IP y Dominio
 
 - Un Servidor tiene lo que se conoce como una IP (Internet Protocol). Una IP es una dirección numérica.
 
-	Ejemplo de IP:   86.028.045.152
+```
+Ejemplo de IP:   86.028.045.152
+```
 
 - La dirección IP es una dirección que utilizan los dispositivos conectados a una red para ser identificados.
 Como a los humanos nos cuesta recordar esos números de memoria tan largos, las IP se traducen en un DOMINIO, es decir, un nombre de fantasía que es fácilmente recordable para un ser humano. Por ejemplo, "google", "youtube", "twitter" son DOMINIOS. O sea, son IP's traducidas a lenguaje humano para que las personas lo entiendan. Pero en realidad, siguen funcionando como si fuesen lo mismo:
 
 - Supongamos que la IP de YouTube es 86.021.486.199. Si esto es así, nosotros podríamos ingresar a:
 
-	https://86.021.486.199/
-	https://youtube.com/
+```
+https://86.021.486.199/
+https://youtube.com/
+```
 
 - Y sería lo mismo. Es decir, ingresaríamos al mismo lugar. Sólo que en el primer ejemplo pusimos la IP y en el segundo el dominio, que es el nombre de fantasía que recubre la IP.
 
 
->> URL y sus partes
+### URL y sus partes
 
-- Las URL NO son lo mismo que los dominios. Veamos:
+- **Las URL NO son lo mismo que los dominios. Veamos**: 
 
-	URL = Uniform Resource Locator
+```
+URL = Uniform Resource Locator
+```
 
 - La URL es una dirección web que especifica la ubicación de un recurso en un Servidor conectado a Internet, la cual es una red de computadoras. 
 
@@ -58,11 +66,13 @@ Como a los humanos nos cuesta recordar esos números de memoria tan largos, las 
 - ¿Qué es un protocolo? ¿Qué es un puerto? Lo vamos a ver más adelante en este apunte.
 
 
->> Ejemplos de URL's
+### Ejemplos de URL's
 
-	https://www.youtube.com/feed/history
-	
-- "https://www.youtube.com/feed/history" es la URL.
+```
+https://www.youtube.com/feed/history
+```
+
+- **"https**: //www.youtube.com/feed/history" es la URL.
 - "https" es el protocolo.
 - "www" es el subdominio (no siempre es necesario escribirlo).
 - "youtube" es el DOMINIO, es decir, la traducción de la IP para que el humano la entienda.
@@ -70,26 +80,32 @@ Como a los humanos nos cuesta recordar esos números de memoria tan largos, las 
 - "/feed/history" es la ruta del recurso al que queremos acceder. Son los archivos del Servidor.
 
 
-	http://127.0.0.1:5500/index.html
+```
+http://127.0.0.1:5500/index.html
+```
 
-- "http://127.0.0.1:5500/index.html" es la URL.
+- **"http**: //127.0.0.1:5500/index.html" es la URL.
 - "http" es el protocolo.
 - "127.0.0.1" es la dirección IP.
 - "5500" es el puerto. Esto es opcional.
 - "index.html" es el recurso al que queremos acceder. Es un archivo del Servidor.
 
-	https://www.ejemplo.com/productos?categoria=ropa&talla=M
+```
+https://www.ejemplo.com/productos?categoria=ropa&talla=M
+```
 
 - Ese sería un ejemplo con parámetros. Los parámetros siempre van después de un " ? ", se separan con " & " y son keys values [key = value].
 
-- Entonces, la estructura de una URL sería:
+- **Entonces, la estructura de una URL sería**: 
 
-	[Protocolo] [:] [//] [Subdominio] [Dominio/IP] [:] [TLD] [Puerto] [/] [Ruta al Recurso] [? Parámetros]
+```
+[Protocolo] [:] [//] [Subdominio] [Dominio/IP] [:] [TLD] [Puerto] [/] [Ruta al Recurso] [? Parámetros]
+```
 
 - Como dijimos, el puerto, recurso y los parámetros son opcionales. El subdominio (www) a veces es necesario escribirlo y a veces no.
 
 
->> IP fija y variable
+### IP fija y variable
 
 - Una máquina que quiere ser encontrada, tiene lo que se conoce como una IP fija. Entonces, tiene siempre la misma dirección IP. Los clientes también, al pertenecer a la red, tienen su dirección IP. Pero normalmente, éstos tienen una IP variable (no fija).
 
@@ -105,19 +121,21 @@ Como a los humanos nos cuesta recordar esos números de memoria tan largos, las 
 - Entonces, ¿Cómo hace el Cliente para encontrar ese Servidor al que queremos solicitarle algo? Bueno, lo hace con la URL de la que hablamos antes.
 
 
-> Protocolo
+## Protocolo
 
 - Un protocolo es un conjunto de reglas que indican cómo se realiza una comunicación. Es como el idioma en el que se van a comunicar el Cliente y el Servidor. En el caso de la transferencia de datos, Internet utiliza HTTP para transmitir páginas Web.
 
 - Como dijimos, cuando desarrollamos (y usamos Live Server o un derivado) estamos siendo el Servidor y el Cliente a la vez. Por lo tanto, nos queremos comunicar con nosotros mismos. Cuando una máquina quiere hacer esto, lo hace siempre a la dirección IP 127.0.0.1, esa IP sería como decir "Yo mismo". Localhost es el Dominio de esa Dirección IP. Por lo tanto, es su nombre de fantasía. Nosotros podemos escribir "localhost" o podemos escribir "127.0.0.1" y nos estamos refiriendo a lo mismo.
 
-	IP de nuestra máquina: 127.0.0.1
-	Dominio de esa IP: localhost
+```
+IP de nuestra máquina: 127.0.0.1
+Dominio de esa IP: localhost
+```
 
 - El protocolo por excelencia es HTTP, el cual tiene su variación HTTPS, que es exactamente lo mismo, pero con la S de Security, es decir, que es un protocolo más seguro. Por eso siempre lo mejor es HTTPS. De esto se va a hablar en otro apunte.
 
 
-> Puertos y Live Server como ejemplo
+## Puertos y Live Server como ejemplo
 
 - En una computadora hay 2 elevado a la 16 puertos. O sea, 65.536 puertos. Los programas que están corriendo dentro de una computadora, se comunican con otros programas a través de esos puertos. Sería como que nuestra máquina es un edificio, con 65.536 departamentos o ventanitas, que serían los puertos. 
 

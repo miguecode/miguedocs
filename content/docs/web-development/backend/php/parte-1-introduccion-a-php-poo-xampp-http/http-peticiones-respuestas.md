@@ -1,6 +1,8 @@
 ---
 title: "HTTP, peticiones, respuestas"
+description: "Un protocolo es un conjunto de reglas que indican cómo se realiza una comunicación. Es como el idioma en el que se van a comunicar el Cliente y el Servidor. En ..."
 ---
+
 
 Protocolo
 Un protocolo es un conjunto de reglas que indican cómo se realiza una comunicación. Es como el idioma en el que se van a comunicar el Cliente y el Servidor. En el caso de la transferencia de datos, Internet utiliza HTTP para transmitir páginas Web.

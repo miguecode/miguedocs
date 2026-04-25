@@ -1,6 +1,8 @@
 ---
 title: "NPM, Json Server, versiones"
+description: "Es un paquete de JS que nos permite, sin utilizar DB, levantar un servidor que guarda un archivo JSON como fuente de datos, es decir, la data. Y a esta data, le..."
 ---
+
 
 JSON Server
 Es un paquete de JS que nos permite, sin utilizar DB, levantar un servidor que guarda un archivo JSON como fuente de datos, es decir, la data. Y a esta data, le podemos hacer peticiones con verbos HTML: GET, POST, PUT, DELETE.
@@ -37,15 +39,15 @@ npm init
 //Transformamos la carpeta 'server' en un proyecto administrado por npm, sería como cuando hacemos que una carpeta funcione como repositorio GIT.
 
 Una vez que hicimos npm init, nos hace preguntas que debemos completar:
-- El nombre: por default tendrá el mismo nombre de la carpeta, y debe ser todo en minúsculas y sin espacios. Se pueden separar las palabras usando '-', como:  json-server.
-- La versión: por default es la 1.0.0, pero podríamos especificar la que queramos.
-- La descripción: la descripción de la aplicación.
-- El punto de entrada (entry point): es el archivo por el cual inicia la ejecución de la aplicación (por default es 'index.js').
-- Comandos para testing (test command): lo completamos si queremos.
-- Repositorio GIT: completamos con la URL del repositorio GIT, si es que tenemos alguno.
-- Palabras clave (keywords): son palabras clave que tengan que ver con la aplicación, así la gente la puede encontrar al buscar esas palabras.
-- El autor: literalmente el autor de la aplicación.
-- La licencia: por defecto es 'ISC'.
+- **El nombre**: por default tendrá el mismo nombre de la carpeta, y debe ser todo en minúsculas y sin espacios. Se pueden separar las palabras usando '-', como:  json-server.
+- **La versión**: por default es la 1.0.0, pero podríamos especificar la que queramos.
+- **La descripción**: la descripción de la aplicación.
+- **El punto de entrada (entry point)**: es el archivo por el cual inicia la ejecución de la aplicación (por default es 'index.js').
+- **Comandos para testing (test command)**: lo completamos si queremos.
+- **Repositorio GIT**: completamos con la URL del repositorio GIT, si es que tenemos alguno.
+- **Palabras clave (keywords)**: son palabras clave que tengan que ver con la aplicación, así la gente la puede encontrar al buscar esas palabras.
+- **El autor**: literalmente el autor de la aplicación.
+- **La licencia**: por defecto es 'ISC'.
 
 Después de cargar todo, respondemos con 'y' para confirmar.
 Ahora se crea un 'package.json', este archivo es como si fuera el archivo .git invisible de una carpeta que funciona como repositorio GIT. En package.json, figura toda la información que especificamos a la hora de crear el repositorio npm. El nombre, la versión, descripción, etc.
@@ -73,7 +75,9 @@ Siempre que instalamos algo, se crea una carpeta 'node_modules'. Ahí va a estar
 Por defecto, siempre se va a instalar la última versión. Quedaría así:
 
 "dependencies": {
-	"json-server": "^0.17.3"
+```typescript
+"json-server": "^0.17.3"
+```
 }
 //Ese ' ^ ' significa que si el día de mañana hacemos un npm install, y hay una versión con un 'minor' o un 'patch' superior, lo va a actualizar. Si yo quisiera que instale exactamente la misma sin actualizarse, le saco el ^.
 

@@ -1,12 +1,14 @@
 ---
 title: "Qué es Astro"
+description: "Astro es un framework de desarrollo web que no depende de bibliotecas externas. Soporta distintos frameworks como React, Vue, Preact, Svelte o Solid. Pero no es..."
 ---
 
->> ¿Qué es Astro?
+
+### ¿Qué es Astro?
 
 Astro es un framework de desarrollo web que no depende de bibliotecas externas. Soporta distintos frameworks como React, Vue, Preact, Svelte o Solid. Pero no es obligatorio usar alguno.
 
->> Características Principales
+### Características Principales
 
 - Es ideal y está pensado para crear sitios web estáticos como: Blogs, Docs, Landing pages, Portfolios, E-Commerce.
 

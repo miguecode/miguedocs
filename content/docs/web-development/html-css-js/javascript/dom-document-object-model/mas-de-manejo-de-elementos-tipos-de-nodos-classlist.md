@@ -1,36 +1,40 @@
 ---
 title: "Más de manejo de elementos. Tipos de Nodos. Classlist"
+description: "Siguiendo con el manejo de Elementos del DOM"
 ---
 
-> Siguiendo con el manejo de Elementos del DOM
 
-- Imaginando que tenemos un código HTML, analicemos:
+## Siguiendo con el manejo de Elementos del DOM
 
-	<div id="textos">
-	  <p>Primer párrafo</p>
-	  <p>Segundo párrafo</p>
-	  <p>Tercer párrafo</p>
-	</div>
+- **Imaginando que tenemos un código HTML, analicemos**: 
 
-	const $divParrafos = document.getElementById("textos");
-	console.log($divParrafos.childNodes);  // Muestra la NodeList de los hijos de $divParrafos
-	
-- childNodes devuelve una NodeList con TODOS LOS NODOS HIJOS de divParrafos. Es decir, contiene a los <p> que están en el <div id="textos">, pero también a los textNode como el " \n", que son los saltos de línea del código HTML o de los "p". Esto nos demuestra que la NodeList muestra TODOS los tipos de nodos, ya sean elementos HTML o no. 
+```html
+<div id="textos">
+  <p>Primer párrafo</p>
+  <p>Segundo párrafo</p>
+  <p>Tercer párrafo</p>
+</div>
 
-	console.log($divParrafos.children); // Muestra la HTMLCollection
+const $divParrafos = document.getElementById("textos");
+console.log($divParrafos.childNodes);  // Muestra la NodeList de los hijos de $divParrafos
+```
+- childNodes devuelve una NodeList con TODOS LOS NODOS HIJOS de divParrafos. Es decir, contiene a los `<p>` que están en el <div id="textos">, pero también a los textNode como el " \n", que son los saltos de línea del código HTML o de los "p". Esto nos demuestra que la NodeList muestra TODOS los tipos de nodos, ya sean elementos HTML o no. 
 
+```typescript
+console.log($divParrafos.children); // Muestra la HTMLCollection
+```
 - children, a diferencia de childNodes, no nos devuelve una NodeList con todos los nodos. Lo que devuelve  es una HTMLCollection, la cual contiene únicamente a los nodos que sean elementos HTML, es decir, no incluye a los demás tipos de nodos.
 
-- La diferencia clara se vería así:
+- **La diferencia clara se vería así**: 
 
-	$elemento.childNodes	// NodeList (Todos los nodos hijos, sean del tipo que sean)
-	$elemento.children		// HTMLCollection (Todos los nodos hijos que sean elementos HTML)
+```typescript
+$elemento.childNodes	// NodeList (Todos los nodos hijos, sean del tipo que sean)
+$elemento.children		// HTMLCollection (Todos los nodos hijos que sean elementos HTML)
+```
+- Como vemos que los elementos son tres `<p>`, la lista de nodos elemento (HTMLCollection) va a tener solamente 3 elementos, y justamente son esos 3 `<p>`. Sin embargo, en la lista que contiene a todos los nodos (NodeList), vamos a ver que cada `<p>` viene con un nodo de texto al inicio y al final. Ambos nodos de texto con un value: (\n). Obviamente, son los saltos de línea.
 
 
-- Como vemos que los elementos son tres <p>, la lista de nodos elemento (HTMLCollection) va a tener solamente 3 elementos, y justamente son esos 3 <p>. Sin embargo, en la lista que contiene a todos los nodos (NodeList), vamos a ver que cada <p> viene con un nodo de texto al inicio y al final. Ambos nodos de texto con un value: (\n). Obviamente, son los saltos de línea.
-
-
-- Veamos más objetos:
+- **Veamos más objetos**: 
 
 $divParrafos.firstChild // Devuelve el primer elemento de la NodeList, es decir, de "childNodes"
 $divParrafos.lastChild // Devuelve el último elemento de la NodeList, es decir, de "childNodes"
@@ -39,22 +43,22 @@ $divParrafos.firstElementChild // Devuelve el primer elemento de la HTMLCollecti
 $divParrafos.lastElementChild // Devuelve el último elemento de la HTMLCollection, es decir, de 'children'
 
 
-> Diferencia entre Child y ElementChild
+## Diferencia entre Child y ElementChild
 
 - "Child", por si mismo, puede ser cualquier nodo hijo de un elemento. Ya sea un NodeText, un nodo elemento, lo que sea. Todos los tipos de nodo que existen.
 "ElementChild", en cambio, son los nodo hijo elementos. Es decir, sólo los nodos hijos que son elementos HTML (etiquetas). Por eso son "ELEMENT child". Porque son elementos HTML.
 
 - En el DOM, existen varios tipos de nodos que representan diferentes elementos y contenido dentro de un documento HTML. Los principales son:
 
-1. Nodo Elemento (Element Node): Representa una etiqueta HTML. <p>, <a>, <img>, etc.
-2. Nodo Atributo (Attribute Node): Representa un atributo de un elemento HTML. <src>, <href> 
+1. Nodo Elemento (Element Node): Representa una etiqueta HTML. `<p>`, `<a>`, `<img>`, etc.
+2. Nodo Atributo (Attribute Node): Representa un atributo de un elemento HTML. `<src>`, `<href>` 
 3. Nodo Texto (Text Node): Representa el contenido de texto dentro de un elemento HTML.
 4. Nodo Comentario (Comment Node): Representa un comentario dentro del código HTML.
 5. Nodo Documento (Document Node): Representa todo el documento HTML, es el nodo raíz del árbol DOM.
 6. Nodo DocumentFragment: Representa un nodo falso que se puede utilizar como contenedor temporal para manipular un grupo de nodos antes de agregarlos al árbol del DOM.
 
 
-> Más métodos para manejar elementos en el DOM
+## Más métodos para manejar elementos en el DOM
 
 $divParrafos.appendChild(); 	 // Agrega un nodo hijo al final de los hijos de un elemento
 $divParrafos.prepend(); 		 // Agrega un nodo hijo al inicio de los hijos de un elemento
@@ -67,50 +71,55 @@ $divParrafos.hasChildNodes();	 // Devuelve true o false dependiendo de si el ele
 - También hay unos nuevos métodos que sirven para insertar los elementos exactamente donde queremos, como insertAdjacentElement. Este método recibe 2 parámetros: la posición, y el elemento.
 
 
->> Vamos a ver ejemplos 
+### Vamos a ver ejemplos 
 
-	$divParrafos.insertBefore($imagen2, $divParrafos.children[1]);
-
+```typescript
+$divParrafos.insertBefore($imagen2, $divParrafos.children[1]);
+```
 - Le insertamos el elemento $imagen justo una línea antes (before) del elemento [1] de la lista de nodos hijo elemento de $divParrafos. Es decir, justo antes del segundo párrafo.
 
-	$divParrafos.replaceChild($imagen, $divParrafos.firstElementChild);
-	
+```typescript
+$divParrafos.replaceChild($imagen, $divParrafos.firstElementChild);
+```
 - Reemplazamos elementos. El primer parámetro va a ser el elemento que tome el lugar del segundo parámetro, el cual se elimina del DOM.
 
-	console.log($divParrafos.hasChildNodes());  // Devuelve True o False (si el elemento tiene o no hijos)
+```typescript
+console.log($divParrafos.hasChildNodes());  // Devuelve True o False (si el elemento tiene o no hijos)
 
-	while($divParrafos.hasChildNodes()) { 
-		$divParrafos.removeChild($divParrafos.firstChild);
-	}
+while($divParrafos.hasChildNodes()) { 
+	$divParrafos.removeChild($divParrafos.firstChild);
+}
+```
+- Con este while, eliminamos todos los hijos nodo de un elemento de forma correcta. En este caso, los elementos del `<div>`.
 
-- Con este while, eliminamos todos los hijos nodo de un elemento de forma correcta. En este caso, los elementos del <div>.
 
+### Más ejemplos con otro métodos
 
->> Más ejemplos con otro métodos
+```typescript
+let elemento = $divParrafos.firstElementChild;
+while(elemento) {
+	console.log(elemento);
+	elemento = elemento.nextElementSibling;  // nextElementSibling retorna el elemento que le sigue
+}
 
-	let elemento = $divParrafos.firstElementChild;
-	while(elemento) {
-		console.log(elemento);
-		elemento = elemento.nextElementSibling;  // nextElementSibling retorna el elemento que le sigue
-	}
-	
-	console.log($pRojo.nextSibling);         	  // Devuelve el siguiente nodo (sea elemento HTML o no)
-	console.log($pRojo.nextElementSibling);  // Devuelve siempre el siguiente elemento HTML
-
-	
+console.log($pRojo.nextSibling);         	  // Devuelve el siguiente nodo (sea elemento HTML o no)
+console.log($pRojo.nextElementSibling);  // Devuelve siempre el siguiente elemento HTML
+```
 - Con este método, mostramos elemento por elemento.
 
-	const $pRojo = document.querySelector("p.rojo");
-	console.log($pRojo.closest("section"));
+```typescript
+const $pRojo = document.querySelector("p.rojo");
+console.log($pRojo.closest("section"));
+```
+- Closest() devuelve el elemento más cercano que se pida. En este caso, le estamos pidiendo que nos devuelva la `<section>` más cercana a $pRojo. Recordemos que el padre de pRojo (un párrafo con clase "rojo") es el `<div>` que contiene a los 3 párrafos. Y el padre de este div, es una section (que si bien no la escribimos, imaginemos que es así). 
 
-- Closest() devuelve el elemento más cercano que se pida. En este caso, le estamos pidiendo que nos devuelva la <section> más cercana a $pRojo. Recordemos que el padre de pRojo (un párrafo con clase "rojo") es el <div> que contiene a los 3 párrafos. Y el padre de este div, es una section (que si bien no la escribimos, imaginemos que es así). 
-
-	console.log($pRojo.closest("section.introduccion"));
-	
+```typescript
+console.log($pRojo.closest("section.introduccion"));
+```
 - Esto nos devuelve la <section class="introduccion"> más cercana que encuentre.
 
 
-> Las clases en el DOM
+## Las clases en el DOM
 
 - El objeto classList es, justamente, la lista de clases del elemento. Como sabemos, un elemento puede tener una o más de una clase (o ninguna). En este objeto se almacenan todas. Y con sus métodos las podemos manipular de la siguiente manera:
 
@@ -120,50 +129,52 @@ $pRojo.classList.toggle();     // Cambia el estado de presencia de la clase que 
 $pRojo.classList.contains();  // Devuelve True o False dependiendo de si contiene o no la clase
 $pRojo.classList.replace();    // Reemplaza una clase por otra
 
-	console.log($pRojo.classList); 	     // Muestra un DOMTokenList con todas las clases de $pRojo
-	console.log($pRojo.className);   // Muestra "rojo" (si tuviera más clases, muestra todas)
-
+```typescript
+console.log($pRojo.classList); 	     // Muestra un DOMTokenList con todas las clases de $pRojo
+console.log($pRojo.className);   // Muestra "rojo" (si tuviera más clases, muestra todas)
+```
 - classList devuelve una DOMTokenList, que es una colección que contiene a todas las clases de pRojo.
 - className devuelve un string, que va a ser el nombre de todas las clases que tenga.
 
-- Sobre toggle:
+- **Sobre toggle**: 
 
-	$pRojo.classList.toggle("negrita");  // Si ya tenía la clase "negrita", se la saca. Y sino, se la agrega
-	$pRojo.classList.toggle("negrita", true);  // Así, se asegura que la clase esté presente
-	$pRojo.classList.toggle("negrita", false); // Así, se asegura que la clase esté ausente
+```typescript
+$pRojo.classList.toggle("negrita");  // Si ya tenía la clase "negrita", se la saca. Y sino, se la agrega
+$pRojo.classList.toggle("negrita", true);  // Así, se asegura que la clase esté presente
+$pRojo.classList.toggle("negrita", false); // Así, se asegura que la clase esté ausente
+```
+### Los estilos en los elementos
 
-
-
->> Los estilos en los elementos
-
-- Con el objeto "style" podemos acceder a todas las propiedades de estilos en línea aplicados a los elementos. OJO: eso quiere decir que realmente no tenemos acceso a todos los estilos. El objeto style únicamente contiene a los estilos inline declarados en el HTML, y a los que declaramos dinámicamente con JavaScript. No incluye ni a los archivos .css externos ni a la etiqueta <style>. Para poder ver todos los estilos posibles tenemos que usar el método getComputedStyle():
+- Con el objeto "style" podemos acceder a todas las propiedades de estilos en línea aplicados a los elementos. OJO: eso quiere decir que realmente no tenemos acceso a todos los estilos. El objeto style únicamente contiene a los estilos inline declarados en el HTML, y a los que declaramos dinámicamente con JavaScript. No incluye ni a los archivos .css externos ni a la etiqueta `<style>`. Para poder ver todos los estilos posibles tenemos que usar el método getComputedStyle():
 
 - Imaginando que a <p class="rojo"> le sacamos la clase y le ponemos un estilo en línea así:
 
-	<p style="background-color: darkgreen;">
+```typescript
+<p style="background-color: darkgreen;">
 
-	console.log($pRojo.style);
-
+console.log($pRojo.style);
+```
 - Style muestra una CSSStyleDeclaration, que contiene todos los estilos CSS aplicados.
 
-	console.log($pRojo.style.backgroundColor);  // Muestra el valor del background-color (darkgreen)
-
+```typescript
+console.log($pRojo.style.backgroundColor);  // Muestra el valor del background-color (darkgreen)
+```
 - El objeto style contiene propiedades cuyos nombres son los mismos nombres de las propiedades CSS. Por ejemplo, ese caso con el style.backgroundColor. Se puede acceder con el operador " . ".
 
 - Style también tiene los métodos "getPropertyValue" o "setProperty".
 
 console.log($pRojo.style.getPropertyValue("background-color"));  // Muestra el valor del background-color
-	
 - En este caso, pRojo NO tiene el atributo "style" en su línea de declaración en el archivo HTML. Por lo tanto, cuando mostremos su "style", nos va a mostrar que todos sus valores están sin modificar (""). Así que cuando quiero que me muestre el background, si hago el getPropertyValue, no me va a mostrar nada.
 
-	$pRojo.style.setProperty("color", "red");  // Le establece una propiedad "color" con valor "red"
-	
+```typescript
+$pRojo.style.setProperty("color", "red");  // Le establece una propiedad "color" con valor "red"
+```
 - El setProperty funciona lo que hace es agregarle CSS embebido. Así que le agrega un: style="color: yellow;" al elemento.
 
 
->> Usando el método getcomputedStyle
+### Usando el método getcomputedStyle
 
-console.log(getComputedStyle($p).color);  // "rgb(0, 0, 255)" (azul, del <style>)
+console.log(getComputedStyle($p).color);  // "rgb(0, 0, 255)" (azul, del `<style>`)
 console.log(getComputedStyle($p).fontSize);  // "20px" (del archivo CSS)
 console.log(getComputedStyle($p).backgroundColor);  // "rgb(255, 255, 0)" (amarillo, del archivo CSS)
 

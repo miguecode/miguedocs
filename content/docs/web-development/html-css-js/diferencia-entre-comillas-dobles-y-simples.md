@@ -1,8 +1,10 @@
 ---
 title: "Diferencia entre comillas dobles y simples"
+description: "Diferencia entre comillas dobles ' ' y simples ' '"
 ---
 
-> Diferencia entre comillas dobles " " y simples ' '
+
+## Diferencia entre comillas dobles " " y simples ' '
 
 - En JavaScript y TypeScript podemos usar comillas dobles " ", simples ' ' y backticks `  ` .
 
@@ -12,12 +14,13 @@ title: "Diferencia entre comillas dobles y simples"
 
 - Eso sí, hay veces donde capaz tengamos que cambiar, ya que si queremos un string que tenga dentro comillas dobles, entonces el string va a tener que estar entre comillas simples. Y al revés igual: si queremos que un string tenga dentro comillas simples, entonces el string va a tener que estar entre comillas dobles.
 
-- Eso sí: en HTML y en CSS, la preferencia es usar comillas dobles, por más que las simples funcionan igual. Entonces, basado en esto, uno puede concluir en que, quizá sea más práctico usar comillas dobles en JS y TS también, como para mantener siempre un mismo estilo. Pero bueno, eso va a depender del equipo de trabajo o del gusto del programador. 
+- **Eso sí**: en HTML y en CSS, la preferencia es usar comillas dobles, por más que las simples funcionan igual. Entonces, basado en esto, uno puede concluir en que, quizá sea más práctico usar comillas dobles en JS y TS también, como para mantener siempre un mismo estilo. Pero bueno, eso va a depender del equipo de trabajo o del gusto del programador. 
 
-- En resumen:
+- **En resumen**: 
 
 Lenguaje		' ' vs " "						`  `  (backticks)
 ______________________________________________________________________________________________________________
-JS / TS		Son lo mismo. Se elige por estilo.	Usar cuando necesitamos variables o multilínea
-HTML		Preferentemente, comillas dobles	No existen los backticks
-CSS			Preferentemente, comillas dobles	No existen los backticks
+| JS / TS | Son lo mismo. Se elige por estilo. | Usar cuando necesitamos variables o multilínea |
+| --- | --- | --- |
+| HTML | Preferentemente, comillas dobles | No existen los backticks |
+| CSS | Preferentemente, comillas dobles | No existen los backticks |

@@ -1,6 +1,8 @@
 ---
 title: "Las 5 Reglas de Integridad (Constraints)"
+description: "Reglas de Integridad (Constraints)"
 ---
+
 
 Reglas de Integridad (Constraints)
 
@@ -60,23 +62,28 @@ Esta es otra de las nuevas. Esta es la regla de integridad más variable de toda
 Ejemplos:
 
 CREATE TABLE empleado(
-	Edad_emp INT CONSTRAINT ck_edad_emp
-	CHECK (edad_emp > 17 and edad_emp < 65));
-
+```typescript
+Edad_emp INT CONSTRAINT ck_edad_emp
+CHECK (edad_emp > 17 and edad_emp < 65));
+```
 CONSTRAINT ck_est_civil CHECK
 ((est_civil in ('CASADO', 'PAREJA') AND
-	dni_conyuge IS NOT NULL) OR
+```typescript
+dni_conyuge IS NOT NULL) OR
+```
 (est_civil in ('SOLTERO', 'SEPARADO', 'VIUDO') AND
-	dni_conyuge IS NULL));
-
-
+```typescript
+dni_conyuge IS NULL));
+```
 4) Primary Key Constraint
 Esta ya la conocemos. Lo que ahora vamos a variar es que la vamos a nombrar.
 
 CREATE TABLE gerentes(
-	id_sucursal INT NOT NULL,
-	id_gerente INT NOT NULL,
-	...
+```typescript
+id_sucursal INT NOT NULL,
+id_gerente INT NOT NULL,
+...
+```
 CONSTRAINT pk_gerentes PRIMARY KEY (id_sucursal, id_gerente);
 
 
@@ -103,8 +110,9 @@ Hasta ahora, todas las constraints que agregamos fueron al momento de crear la t
 
 ALTER TABLE s_emp
 ADD (CONSTRAINT s_emp_pk_id PRIMARY KEY (id),
-	CONSTRAINT s_emp_ck_salario CHECK (salario > 500);
-
+```typescript
+CONSTRAINT s_emp_ck_salario CHECK (salario > 500);
+```
 OJO: Como estas constraints las estamos agregando una vez ya creada la tabla, podría ocurrir que la tabla ya tenía registros. Por lo tanto, quizá alguno no cumple con alguna constraint. Por ejemplo, si ya tengo un registro de un salario, y no es mayor a 500. Eso daría error y no va a permitir agregar la constraint. Se tiene que cumplir todo correctamente o no se crea la constraint.
 
 
@@ -119,6 +127,6 @@ Cuando se la vuelve a habilitar una constraint, primero se va a analizar que tod
 
 ALTER TABLE tabla ENABLE CONSTRAINT nombre_constraint;
 
-- Para eliminar una constrain:
+- **Para eliminar una constrain**: 
 
 ALTER TABLE tabla DROP CONSTRAINT nombre_constraint;

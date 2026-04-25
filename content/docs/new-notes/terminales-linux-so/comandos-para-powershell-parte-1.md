@@ -1,6 +1,8 @@
 ---
 title: "Comandos para PowerShell parte 1"
+description: "Windows PowerShell es una interfaz de línea de comandos (CLI) y un lenguaje de scripts diseñado principalmente para la administración de sistemas y la automatiz..."
 ---
+
 
 ⚡ PowerShell ⚡
 
@@ -103,14 +105,14 @@ La diferencia entre more y less es que more tiene un puntero de lectura, consumi
 
 🌟 Ejemplos adicionales 🌟
 
-- 'echo' también sirve para algo así:
+- **'echo' también sirve para algo así**: 
 echo "Hola Mundo!" > saludar.txt
 Esto crea un archivo (si es que no existe) llamado saludar.txt con el contenido "Hola Mundo!".
 
 Y para verlo:
 more saludar.txt   // Esto mostrará: "Hola Mundo!"
 
-- Crear archivo con listado de ls:
+- **Crear archivo con listado de ls**: 
 
 ls padre > clase5/hermano/joven/hola.txt
 Esto crea un archivo hola.txt con el listado de archivos dentro de la carpeta padre.

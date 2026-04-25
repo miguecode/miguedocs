@@ -1,13 +1,15 @@
 ---
 title: "Protocolo HTTP y Peticiones - Respuestas"
+description: "Un protocolo es un conjunto de reglas que indican cómo se realiza una comunicación. Es como el idioma en el que se van a comunicar el Cliente y el Servidor."
 ---
 
-> Protocolo
+
+## Protocolo
 
 - Un protocolo es un conjunto de reglas que indican cómo se realiza una comunicación. Es como el idioma en el que se van a comunicar el Cliente y el Servidor. En el caso de la transferencia de datos, Internet utiliza HTTP para transmitir páginas Web.
 
 
-> HTTP (Hypertext Transfer Protocol) (Protocolo de Transferencia de Hipertexto)
+## HTTP (Hypertext Transfer Protocol) (Protocolo de Transferencia de Hipertexto)
  
 - HTTP es un protocolo el cual está diseñado para permitir comunicaciones entre Clientes y Servidores. Hace que las solicitudes (Requests) y respuestas (Responses) tengan un determinado formato a seguir y respetar, con el fin de que la comunicación sea efectiva. Es el más utilizado de todos, y tiene su variación "HTTPS", que es exactamente lo mismo, pero con más seguridad, gracias a usar TLS (Transport Layer Security) para encriptar los datos y evitar que puedan ser interceptados por atacantes.
 
@@ -18,7 +20,7 @@ title: "Protocolo HTTP y Peticiones - Respuestas"
 - Entonces, HTTP establece la FORMA que debe tener una Request y una Response. 
 
 
-> Formato de las Requests y Responses
+## Formato de las Requests y Responses
 
 - En la informática, las comunicaciones se hacen mediante PAQUETES. En el caso de HTTP, cada Request se hace mediante un paquete que va a tener una estructura determinada, cuyas partes más importantes son: Method, URL, Header y Body:
 
@@ -34,11 +36,13 @@ title: "Protocolo HTTP y Peticiones - Respuestas"
 3. Body: Lo mismo que en la Request.
 
 
-> Ver la información de las Requests y Responses en una página
+## Ver la información de las Requests y Responses en una página
 
 - Si abrimos las herramientas del desarrollador en algún sitio web, podemos ir a:
 
-	DevTools > Network
+```
+DevTools > Network
+```
 
 - En esta pestaña vamos a ver distinta información, y la lista de Requests (peticiones HTTP). Estas peticiones son las que nosotros (Cliente) le estamos enviando al Servidor, mediante el navegador.
 
@@ -57,7 +61,7 @@ title: "Protocolo HTTP y Peticiones - Respuestas"
 - Gran parte de los Response Headers y los Request Headers los hace el propio navegador. Los Headers (cabeceras) es toda la metadata. Tiene información útil.
 
 
-> Métodos o Verbos HTTP (Explicados en otro apunte)
+## Métodos o Verbos HTTP (Explicados en otro apunte)
 
 - GET. Solicita información de un recurso.
 - POST. Agregamos nueva información al servidor.

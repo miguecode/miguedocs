@@ -1,6 +1,8 @@
 ---
 title: "Formatear y Montar"
+description: "Bueno, es increíble como entendí todo. Aprendí a formatear y a montar, y más cosas:"
 ---
+
 
 Bueno, es increíble como entendí todo. Aprendí a formatear y a montar, y más cosas:
 

@@ -1,6 +1,8 @@
 ---
 title: "JSON Web Tokens 2"
+description: "Ejemplo de Código -"
 ---
+
 
 - Ejemplo de Código -
 
@@ -13,7 +15,9 @@ $ahora = time();
 
 Ahora, un payload
 $payload = array(
-	...
+```typescript
+...
+```
 );
 
 $token = JWT::encode($payload, "miClaveSecreta", "HS256");

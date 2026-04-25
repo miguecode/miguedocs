@@ -1,8 +1,10 @@
 ---
 title: "Arquitectura de Componentes"
+description: "Cómo organizar los componentes"
 ---
 
-> Cómo organizar los componentes
+
+## Cómo organizar los componentes
 
 - La organización de nuestros componentes en nuestra aplicación es importante: hay que seguir buenas prácticas y seguir un principio clave: un componente es una unidad lógica mínima. Mientras más pequeño y reutilizable sea, mejor. 
 
@@ -12,7 +14,7 @@ title: "Arquitectura de Componentes"
 - Single Source of Truth Architecture
 
 
-> Container/Presentational Pattern
+## Container/Presentational Pattern
 
 - Es el patrón de diseño más básico de todos. Define cómo crear interfaces de usuario separando a los componentes en dos tipos: Contenedores y Presentaciones (o Vistas). Vamos a diferenciar cada uno.
 
@@ -21,31 +23,33 @@ title: "Arquitectura de Componentes"
 2. Presentational: También conocidos como "Componentes tontos" o "de interfaz", se usan simplemente para mostrar y manejar datos en la UI. Estos datos los va a recibir de parte de algún componente Contenedor.
 
 
->> Ejemplo de componente Contenedor
+### Ejemplo de componente Contenedor
 
-	@Component({
-		standalone: true,
-		selector: 'app-user',
-		template: ``<app-user-container [userName]="userNameSignal()"/>`,
-		imports: [UserProfileComponent],
-	})
-	export class UserComponent {
-		userService = inject(UserService);
-		userNameSignal = this.userService.userNameSignal;
-	}
-
+```typescript
+@Component({
+	standalone: true,
+	selector: 'app-user',
+	template: ``<app-user-container [userName]="userNameSignal()"/>`,
+	imports: [UserProfileComponent],
+})
+export class UserComponent {
+	userService = inject(UserService);
+	userNameSignal = this.userService.userNameSignal;
+}
+```
 - En este caso, UserComponent es un componente Contenedor. ¿Por qué? Porque está inyectando un servicio, es decir, se está comunicando con una entidad externa. Además, en sus imports podemos ver que está importando a un componente llamado UserProfileComponent, que va a ser un componente Presentación.
 
 
->> Ejemplo de componente Presentación
+### Ejemplo de componente Presentación
 
-	@Component({
-		standalone: true,
-		selector: 'app-user-profile',
-		template: ``<div>{{ userName }}</div>`,
-	})
-	export class UserProfileComponent {
-		userName: string = "Miguel";
-	}
-
+```html
+@Component({
+	standalone: true,
+	selector: 'app-user-profile',
+	template: ``<div>{{ userName }}</div>`,
+})
+export class UserProfileComponent {
+	userName: string = "Miguel";
+}
+```
 - Este es un componente Presentación, ya que realmente no hace nada más que obtener un dato y mostrarlo en pantalla. Por eso se dice que es un "componente tonto". Se encarga de darle vista (presentar) a los datos.

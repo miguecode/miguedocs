@@ -1,168 +1,173 @@
 ---
 title: "Formularios anidados con Signals"
+description: "Formularios anidados y con Signals"
 ---
 
-> Formularios anidados y con Signals
 
-	export interface ItemForm {
-		id: FormControl<number>,
-		name: FormControl<string>,
-		value: FormControl<number>,
-	}
+## Formularios anidados y con Signals
 
-	export type CustomFormGroup = FormGroup<ItemForm>;
+```typescript
+export interface ItemForm {
+	id: FormControl<number>,
+	name: FormControl<string>,
+	value: FormControl<number>,
+}
 
-	export class FormParentComponent {
-		fb = inject(NonNullableFormBuilder);
-		
-		form: FormGroup<{ items: FormArray<CustomFormGroup> }> = this.fb.group({
-			items: this.fb.array<CustomFormGroup>([]),
-		});
-	}
+export type CustomFormGroup = FormGroup<ItemForm>;
 
+export class FormParentComponent {
+	fb = inject(NonNullableFormBuilder);
 
+	form: FormGroup<{ items: FormArray<CustomFormGroup> }> = this.fb.group({
+		items: this.fb.array<CustomFormGroup>([]),
+	});
+}
+```
 - Nuestro formulario principal (el llamado "form"), va a ser un contenedor de formularios. Es decir, su array de items va a ser un formulario por cada item. Cada formulario tiene un ID, un nombre y un valor.
 
-	
-	get items() {
-		return this.form.controls.items;
+```typescript
+get items() {
+	return this.form.controls.items;
+}
+
+itemsChanges = toSignal(this.form.valueChanges);
+
+
+addItem() {
+	const id = this.items.length + 1;
+	const itemForm = this.fb.group<itemForm>({
+		id: this.gb.control(id),
+		name: this.fb.control("", { validators: [Validators.required] }),
+		value: this.fb.control(0, { validators: [Validators.required] }),
+	})
+}
+```
+- **Y en HTML**: 
+
+```html
+<div>
+	<button (click)="addItem()">Agregar Item</button>
+
+	@for (formGroup of items(); track formGroup.controls.id.value) {
+
 	}
-
-	itemsChanges = toSignal(this.form.valueChanges);
-
-
-	addItem() {
-		const id = this.items.length + 1;
-		const itemForm = this.fb.group<itemForm>({
-			id: this.gb.control(id),
-			name: this.fb.control("", { validators: [Validators.required] }),
-			value: this.fb.control(0, { validators: [Validators.required] }),
-		})
-	}
-	
-- Y en HTML:
-
-	<div>
-		<button (click)="addItem()">Agregar Item</button>
-		
-		@for (formGroup of items(); track formGroup.controls.id.value) {
-			
-		}
-	</div>
-
-
-
-> FormChild
+</div>
+```
+## FormChild
 
 - Ahora, vamos a crear un componente llamado formChild. La idea es que ahora, por cada item, es decir, por cada formulario, ESTE va a ser nuestro formulario. El formChild se va a ocupar de ser cada uno de esos FormGroup.
 
-	export class FormChildComponent {
-		formGroup = input.required<FormGroup<ItemForm>>();
-	}
+```typescript
+export class FormChildComponent {
+	formGroup = input.required<FormGroup<ItemForm>>();
+}
+```
+- **Y en HTML**: 
 
-- Y en HTML:
+```html
+<div [formGroup]="formGroup()">
+	<!-- Ahora sí, aca trabajamos con cada input -->
 
-	<div [formGroup]="formGroup()">
-		<!-- Ahora sí, aca trabajamos con cada input -->
-		
-	</div>
-
+</div>
+```
 - Vamos a crear un nuevo componente, llamado CustomInput:
 
-	@Component({
-		...
-		providers: [{
-			provide: NG_VALUE_ACCESOR,
-			useExisting: forwardRef(() => CustomInputComponent),
-			multi: true,
-		}]
-	})
-	export class CustomInputComponent implements ControlValueAccesor {
-		control = input.required<FormControl<any>>();
-		
-		onTouched = () => {};
-		onChange = (_value: any) => {};
+```typescript
+@Component({
+	...
+	providers: [{
+		provide: NG_VALUE_ACCESOR,
+		useExisting: forwardRef(() => CustomInputComponent),
+		multi: true,
+	}]
+})
+export class CustomInputComponent implements ControlValueAccesor {
+	control = input.required<FormControl<any>>();
 
-		writeValue(value: any): void {
-			if (value !== this.control().value) {
-				this.control().setValue(value, { emitEvent: false });
-			}
-		}
-		
-		registerOnChange(fn: any): void {
-			this.onChange = fn;
-		}
-		
-		setDisabledState(isDisabled: boolean): void {
-			isDisabled ? this.control().disable() : this.control().enable();
+	onTouched = () => {};
+	onChange = (_value: any) => {};
+
+	writeValue(value: any): void {
+		if (value !== this.control().value) {
+			this.control().setValue(value, { emitEvent: false });
 		}
 	}
 
-	
-
-- Y en el HTML, hacemos:
-
-	@let localControl = control();
-	
-	<input [formControl]="localControl" (blur)="onTouched()" />
-	
-	@if (localControl.invalid && (localControl.dirty || localControl.touched)) {
-		<div class="error-messages">
-			@if (localControl.errors?.['required']) {
-				<span>Este campo es obligatorio</ span>
-			}
-		</ div>
+	registerOnChange(fn: any): void {
+		this.onChange = fn;
 	}
 
+	setDisabledState(isDisabled: boolean): void {
+		isDisabled ? this.control().disable() : this.control().enable();
+	}
+}
+```
+- **Y en el HTML, hacemos**: 
 
-- Ahora, en el FormChild, hacemos:
+```html
+@let localControl = control();
 
-	import: [CustomInputComponent]
+<input [formControl]="localControl" (blur)="onTouched()" />
 
-- Y en su HTML: 
-
-	<div [formGroup]="formGroup()">
-		<app-custom-input
-		[control]="formGroup().controls.name"
-		formControlName="name"
-		/>
-		
-		<app-custom-input
-		[control]="formGroup().controls.value"
-		formControlName="value"
-		/>
+@if (localControl.invalid && (localControl.dirty || localControl.touched)) {
+	<div class="error-messages">
+		@if (localControl.errors?.['required']) {
+			<span>Este campo es obligatorio</ span>
+		}
 	</ div>
+}
+```
+- **Ahora, en el FormChild, hacemos**: 
 
+```typescript
+import: [CustomInputComponent]
+```
+- **Y en su HTML**: 
 
+```html
+<div [formGroup]="formGroup()">
+	<app-custom-input
+	[control]="formGroup().controls.name"
+	formControlName="name"
+	/>
+
+	<app-custom-input
+	[control]="formGroup().controls.value"
+	formControlName="value"
+	/>
+</ div>
+```
 - Y si volvemos al HTML del primer formulario que hacíamos (en FormParentComponent) lo podemos dejar así:
 
-	<div>
-		<button (click)="addItem()">Agregar Item</button>
-		
-		@for (formGroup of form.controls.items.controls; track formGroup.controls.id.value) {
-			<app-form-child [formGroup]="formGroup" />
-		}
-	</div>
+```html
+<div>
+	<button (click)="addItem()">Agregar Item</button>
 
-- Y en su TS, hay que hacer unos retoques más:
+	@for (formGroup of form.controls.items.controls; track formGroup.controls.id.value) {
+		<app-form-child [formGroup]="formGroup" />
+	}
+</div>
+```
+- **Y en su TS, hay que hacer unos retoques más**: 
 
-	totalValue = computed(() => {
-		const value = this.itemChanges()?.items?.reduce((total, item) => total + (Number(item?.value) || 0), 0);
-		return value;
-	});
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	///// Charla con CHATGPT
-	
-	¡Perfecto! 🔥 Gracias por compartir todo eso, está buenísimo lo que estás viendo. A ver, vamos paso por paso para entender la idea general y después vamos a ir bajando a tierra cada parte de lo que escribiste 💡.
+```typescript
+totalValue = computed(() => {
+	const value = this.itemChanges()?.items?.reduce((total, item) => total + (Number(item?.value) || 0), 0);
+	return value;
+});
 
+
+
+
+
+
+
+
+
+///// Charla con CHATGPT
+
+¡Perfecto! 🔥 Gracias por compartir todo eso, está buenísimo lo que estás viendo. A ver, vamos paso por paso para entender la idea general y después vamos a ir bajando a tierra cada parte de lo que escribiste 💡.
+```
 🧠 ¿Qué son formularios anidados y por qué usarlos?
 Imaginá este caso real:
 Estás creando un formulario para cargar una factura. La factura tiene:
@@ -189,9 +194,9 @@ ts
 Copiar
 Editar
 export interface ItemForm {
-  id: FormControl<number>;
-  name: FormControl<string>;
-  value: FormControl<number>;
+  id: FormControl`<number>`;
+  name: FormControl`<string>`;
+  value: FormControl`<number>`;
 }
 Representa un solo ítem/producto del formulario.
 
@@ -199,10 +204,10 @@ Representa un solo ítem/producto del formulario.
 ts
 Copiar
 Editar
-form: FormGroup<{ items: FormArray<CustomFormGroup> }> = this.fb.group({
-  items: this.fb.array<CustomFormGroup>([]),
+form: FormGroup<{ items: FormArray`<CustomFormGroup>` }> = this.fb.group({
+  items: this.fb.array`<CustomFormGroup>`([]),
 });
-Ese form tiene una única propiedad items, que es un FormArray. Cada elemento del array es un FormGroup<ItemForm>, o sea, un formulario completo para un ítem.
+Ese form tiene una única propiedad items, que es un FormArray. Cada elemento del array es un FormGroup`<ItemForm>`, o sea, un formulario completo para un ítem.
 
 📌 3. Agregar ítems dinámicamente
 ts
@@ -210,10 +215,12 @@ Copiar
 Editar
 addItem() {
   const id = this.items.length + 1;
-  const itemForm = this.fb.group<ItemForm>({
-    id: this.fb.control(id),
-    name: this.fb.control("", { validators: [Validators.required] }),
-    value: this.fb.control(0, { validators: [Validators.required] }),
+  const itemForm = this.fb.group`<ItemForm>`({
+```typescript
+id: this.fb.control(id),
+name: this.fb.control("", { validators: [Validators.required] }),
+value: this.fb.control(0, { validators: [Validators.required] }),
+```
   });
   this.items.push(itemForm);
 }
@@ -247,9 +254,11 @@ Copiar
 Editar
 form = {
   items: [
-    { id: 1, name: 'Mouse', value: 5000 },
-    { id: 2, name: 'Teclado', value: 7000 },
-    ...
+```typescript
+{ id: 1, name: 'Mouse', value: 5000 },
+{ id: 2, name: 'Teclado', value: 7000 },
+...
+```
   ]
 }
 Cada item de items es un FormGroup con sus controles. Y en la vista, iterás sobre esos items y para cada uno, pintás un FormChild que renderiza los inputs.
@@ -274,14 +283,14 @@ Cada vez que ves algo como:
 ts
 Copiar
 Editar
-form: FormGroup<{ items: FormArray<CustomFormGroup> }>
+form: FormGroup<{ items: FormArray`<CustomFormGroup>` }>
 ...podés leerlo mentalmente como:
 
 ts
 Copiar
 Editar
 // formulario con una lista de productos
-form: FormGroup<{ productos: FormArray<FormularioDeProducto> }>
+form: FormGroup<{ productos: FormArray`<FormularioDeProducto>` }>
 Y todo lo demás también cobra más sentido:
 
 addItem() 👉 sería agregarProducto()
@@ -308,12 +317,12 @@ ts
 Copiar
 Editar
 export interface ProductoForm {
-  id: FormControl<number>;
-  nombre: FormControl<string>;
-  precio: FormControl<number>;
+  id: FormControl`<number>`;
+  nombre: FormControl`<string>`;
+  precio: FormControl`<number>`;
 }
 
-export type ProductoFormGroup = FormGroup<ProductoForm>;
+export type ProductoFormGroup = FormGroup`<ProductoForm>`;
 ✅ Componente padre: FacturaComponent
 ts
 Copiar
@@ -327,45 +336,55 @@ export class FacturaComponent {
   fb = inject(NonNullableFormBuilder);
 
   form = this.fb.group({
-    productos: this.fb.array<ProductoFormGroup>([]),
+```typescript
+productos: this.fb.array<ProductoFormGroup>([]),
+```
   });
 
   get productos() {
-    return this.form.controls.productos;
+```typescript
+return this.form.controls.productos;
+```
   }
 
   productosChanges = toSignal(this.form.valueChanges);
 
   addProducto() {
-    const id = this.productos.length + 1;
-    const productoForm = this.fb.group<ProductoForm>({
-      id: this.fb.control(id),
-      nombre: this.fb.control('', { validators: [Validators.required] }),
-      precio: this.fb.control(0, { validators: [Validators.required] }),
-    });
+```typescript
+const id = this.productos.length + 1;
+const productoForm = this.fb.group<ProductoForm>({
+  id: this.fb.control(id),
+  nombre: this.fb.control('', { validators: [Validators.required] }),
+  precio: this.fb.control(0, { validators: [Validators.required] }),
+});
 
-    this.productos.push(productoForm);
+this.productos.push(productoForm);
+```
   }
 
   total = computed(() => {
-    const data = this.productosChanges();
-    return data?.productos?.reduce((acc, prod) => acc + (prod?.precio ?? 0), 0) || 0;
+```typescript
+const data = this.productosChanges();
+return data?.productos?.reduce((acc, prod) => acc + (prod?.precio ?? 0), 0) || 0;
+```
   });
 }
 ✅ HTML de FacturaComponent
 html
 Copiar
 Editar
-<div>
-  <h2>Factura</h2>
-  <button (click)="addProducto()">Agregar producto</button>
+`<div>`
+  `<h2>`Factura`</h2>`
+  <button (click)="addProducto()">Agregar producto`</button>`
 
   @for (formGroup of productos(); track formGroup.controls.id.value) {
-    <app-producto-form [formGroup]="formGroup" />
+```typescript
+<app-producto-form [formGroup]="formGroup" />
+```
   }
 
-  <h3>Total: {{ total() }}</h3>
-</div>
+  `<h3>`Total: {{ total() }}`</h3>`
+`</div>`
 ✅ Componente hijo: ProductoFormComponent (antes FormChild)
 ts
 Copiar
@@ -376,7 +395,7 @@ Editar
   imports: [CustomInputComponent, ReactiveFormsModule],
 })
 export class ProductoFormComponent {
-  formGroup = input.required<FormGroup<ProductoForm>>();
+  formGroup = input.required<FormGroup`<ProductoForm>`>();
 }
 HTML:
 html
@@ -384,14 +403,18 @@ Copiar
 Editar
 <div [formGroup]="formGroup()">
   <app-custom-input
-    [control]="formGroup().controls.nombre"
-    formControlName="nombre"
+```typescript
+[control]="formGroup().controls.nombre"
+formControlName="nombre"
+```
   />
   <app-custom-input
-    [control]="formGroup().controls.precio"
-    formControlName="precio"
+```typescript
+[control]="formGroup().controls.precio"
+formControlName="precio"
+```
   />
-</div>
+`</div>`
 ✅ Componente CustomInputComponent (sin cambios, solo cambia el contexto)
 Este es el mismo, pero ahora lo estás usando para los campos nombre y precio.
 
@@ -402,29 +425,37 @@ Editar
   selector: 'app-custom-input',
   standalone: true,
   providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => CustomInputComponent),
-    multi: true,
+```typescript
+provide: NG_VALUE_ACCESSOR,
+useExisting: forwardRef(() => CustomInputComponent),
+multi: true,
+```
   }],
 })
 export class CustomInputComponent implements ControlValueAccessor {
-  control = input.required<FormControl<any>>();
+  control = input.required<FormControl`<any>`>();
 
   onTouched = () => {};
   onChange = (_value: any) => {};
 
   writeValue(value: any): void {
-    if (value !== this.control().value) {
-      this.control().setValue(value, { emitEvent: false });
-    }
+```typescript
+if (value !== this.control().value) {
+  this.control().setValue(value, { emitEvent: false });
+}
+```
   }
 
   registerOnChange(fn: any): void {
-    this.onChange = fn;
+```typescript
+this.onChange = fn;
+```
   }
 
   setDisabledState(isDisabled: boolean): void {
-    isDisabled ? this.control().disable() : this.control().enable();
+```typescript
+isDisabled ? this.control().disable() : this.control().enable();
+```
   }
 }
 HTML:
@@ -437,10 +468,12 @@ Editar
 
 @if (localControl.invalid && (localControl.dirty || localControl.touched)) {
   <div class="error-messages">
-    @if (localControl.errors?.['required']) {
-      <span>Este campo es obligatorio</span>
-    }
-  </div>
+```typescript
+@if (localControl.errors?.['required']) {
+  <span>Este campo es obligatorio</span>
+}
+```
+  `</div>`
 }
 🎯 Ahora todo tiene mucho más sentido:
 Estás creando una Factura que tiene una lista de productos.

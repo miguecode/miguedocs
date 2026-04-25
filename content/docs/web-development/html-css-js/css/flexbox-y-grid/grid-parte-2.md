@@ -1,8 +1,10 @@
 ---
 title: "Grid - Parte 2"
+description: "Propiedad repeat()"
 ---
 
->> Propiedad repeat()
+
+### Propiedad repeat()
 
 -  Repeat es una propiedad especial de grid y sirve para escribir más rápido la cantidad de columnas o filas que queremos crear en nuestra grid. Le podemos pasar cualquier medida o cantidad.
 
@@ -13,14 +15,14 @@ grid-template-rows: repeat(3, 100px);    // 100px 100px 100px
 
 grid-template-columns: 25px repeat(3, 1fr) 2fr;  // Se lee: 25px 1fr 1fr 1fr 2fr
 
-- También podemos crear patrones, por ejemplo:
+- **También podemos crear patrones, por ejemplo**: 
 
 grid-template-columns: repeat(3, 1fr 2fr)  // 1fr 2fr 1fr 2fr 1fr 2fr
 
 grid-template-rows: 20px repeat(2 10px 3fr) 5px repeat(3 7fr) // 20px 10px 3fr 10px 3fr 5px 7fr 7fr 7fr
 
 
->> Propiedad minmax()
+### Propiedad minmax()
 
 - Minmax es una propiedad especial de grid y sirve para que una columna o fila tenga siempre un mínimo/máximo de ancho/alto. Esta es la manera óptima de hacer grillas de forma responsive, ya que nos ahorramos de usar media queries.
 
@@ -29,54 +31,64 @@ grid-template-columns: minmax(100px, 1fr) 1fr 1fr;
 - Esto hace que la primera columna, como mínimo, tenga 100px de ancho. Y como máximo, va a tener 1fr. Entonces, esto se va a comportar según el tamaño de la resolución. En este caso, se leería: "Mientras la primer columna tenga la posibilidad, va a ocupar 1fr. Pero si ya no puede, va a ir ocupando cada vez menos hasta llegar a 100px. Y de ninguna forma va a bajar de los 100px.
 
 
->> Propiedades column-gap y row-gap
+### Propiedades column-gap y row-gap
 
 - Estas propiedades determinan la separación que hay entre las columnas y filas de nuestra grid.
 
 div {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-columns-gap: 5px;
-	grid-rows-gap: 5px;
-	// grid-gap: 16px; // Así, se le aplica el mismo valor a columns y rows
+```typescript
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+grid-columns-gap: 5px;
+grid-rows-gap: 5px;
+// grid-gap: 16px; // Así, se le aplica el mismo valor a columns y rows
+```
 }
 
 - En el ejemplo agregamos "grid-" al principio de cada propiedad. Esto no es necesario. Si ponemos directamente columns-gap, rows-gap, o gap, va a funcionar también. Pero antes era obligatorio ponerle el grid- adelante. Y de hecho, de forma automática se le pone el grid- adelante. Así que, por retrocompatibilidad, puede ser mejor práctica escribirle el nombre completo.
 
 
->> Hacer una grid responsive gracias a minmax()
+### Hacer una grid responsive gracias a minmax()
 
 - Supongamos que tenemos una grid de imágenes, y la hacemos responsive. Si el ancho de la pantalla es mayor a 600px, la grid se va a dividir en 3 columnas. Si no es mayor a 600 pero es mayor a 300px, serán 2 columnas. Y si tampoco es mayor a 300px, será de una sola columna.
 
 - Lo primero que haría alguien sería usar media queries, así:
 
 div {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: 16px;
+```typescript
+display: grid;
+grid-template-columns: 1fr;
+gap: 16px;
+```
 }
 
 @media (width > 300px) {
-	div {
-		grid-template-columns: 1fr 1fr;
-	}
+```typescript
+div {
+	grid-template-columns: 1fr 1fr;
+}
+```
 }
 
 @media (width > 600px) {
-	div {
-		grid-template-columns: 1fr 1fr 1fr;
-	}
+```typescript
+div {
+	grid-template-columns: 1fr 1fr 1fr;
+}
+```
 }
 
 - De esta forma, conseguimos que sea responisve. PERO, como dijimos antes, esto no es lo ideal en Grid. Ya que para esto, lo mejor es usar la propiedad maxmin(), de esta forma:
 
 div {
-	display: grid;
-	grid-template-columns: repeat(
-		auto-fill,
-		maxmin(200px, 1fr)
-	);
-	gap: 16px;
+```typescript
+display: grid;
+grid-template-columns: repeat(
+	auto-fill,
+	maxmin(200px, 1fr)
+);
+gap: 16px;
+```
 }
 
 - ¿Qué hace esto? Como vemos, estamos usando un repeat() y dentro de él, un maxmin(). Esto es funcional. Pero antes del maxmin(), a la propiedad repeat() le estamos pasando otro valor y es auto-fill. Ese primer valor que le pasamos a repeat(), que en este caso es auto-fill, es la CANTIDAD de veces que queremos que se haga el repeat(). Y "auto-fill" es un valor especial.
@@ -89,7 +101,7 @@ O sea que, si tenemos 400px de ancho, va a colocar 2 columnas. Pero si tenemos 5
 - Esto último que mostramos, puede hacerse en Tailwind, pero hay que hacerlo de forma manual. Entonces, no estaríamos ahorrándonos nada. No hay clases utilitarias que permitan esa complejidad. Tendríamos que usar CSS puro y que Tailwind lo tome.
 
 
->> Líneas de la grid
+### Líneas de la grid
 
 - Si abrimos las herramientas del desarrollador y vemos una grid, en el código vamos a ver un botoncito que dice "grid". Ese botoncito va a aparecer en la línea que sea un contenedor grid. Si la pulsamos, vamos a ver que en la pantalla se van a marcar las líneas de la grid. Que sería algo así:
 
@@ -112,16 +124,18 @@ O sea que, si tenemos 400px de ancho, va a colocar 2 columnas. Pero si tenemos 5
 
 
 
->> Hacer que los elementos ocupen más de una columna o fila - Bento Grids 
+### Hacer que los elementos ocupen más de una columna o fila - Bento Grids 
 
 - Los bento grids son una forma de hacer grids vistosas, donde algunos elementos ocupan más de una columna o fila, haciendo ver que algunas columnas o filas son más grandes que otras. En bentogrids.com hay ejemplos.
 
 - Para hacerlo, hay que usar las propidades "grid-column/row-start" y "grid-column/row-end".
 
 .container div:first-child {
-	background: yellow;
-	grid-column-start: 1;
-	grid-column-end: 3;
+```typescript
+background: yellow;
+grid-column-start: 1;
+grid-column-end: 3;
+```
 }
 
 - Esto hace que el elemento div de color amarillo ocupe 2 columnas de la grid, en vez de sólo una. Esto es así porque va desde la línea 1 hasta la línea 3 (cuando originalmente iba de la 1 a la 2). Si lo ponemos entre la 2 y la 4, va a ocupar el espacio de la columna 2 y la 3. Y los demás elementos son empujados por este primer elemento amarillo.
@@ -132,23 +146,26 @@ grid-column-end: 3;
 grid-row-start: 1;
 grid-row-end: 3;
 
-- Para escribirlo más resumido:
+- **Para escribirlo más resumido**: 
 
-grid-column: 1 / 3;   // Start 1 End 3
-grid-row: 1 / 3;	        // Start 1 End 3
+| grid-column: 1 / 3; | // Start 1 End 3 |
+| --- | --- |
+| grid-row: 1 / 3; | // Start 1 End 3 |
 
-grid-column: -4 / -2  // Equivaldría a lo mismo que: 1 / 3
-grid-column: 1 / -1  // Esto sería que vaya de inicio a fin
+| grid-column: -4 / -2 | // Equivaldría a lo mismo que: 1 / 3 |
+| --- | --- |
+| grid-column: 1 / -1 | // Esto sería que vaya de inicio a fin |
 
 
-- Otra forma podría ser:
+- **Otra forma podría ser**: 
 
-grid-column-start: span 2;   // Significa que ocupa 2 columnas
-grid-row-start: span 2;	    // Significa que ocupa 2 filas
+| grid-column-start: span 2; | // Significa que ocupa 2 columnas |
+| --- | --- |
+| grid-row-start: span 2; | // Significa que ocupa 2 filas |
 
 - Esto es muy poderoso ya que, independientemente de la posición del elemento en el HTML, nosotros lo podemos colocar en cualquier parte de la grilla. O sea, podemos hacer que el último elemento de todos, aparezca en la primer columna/fila, poniéndole el grid-column-start 1/2;
 
 
->> Poner un elemento arriba del otro
+### Poner un elemento arriba del otro
 
 - Si al hacer nuestra grid, ponemos que dos elementos distintos estén ubicados en el mismo lugar de la grilla, va a pasar eso. O sea, no se impide. Los dos elementos van a estar exactamente en el mismo lugar. Y sólo se va a ver el que tenga mayor z-index. 

@@ -1,6 +1,8 @@
 ---
 title: "Charla con Gemini sobre proceso de optimización de imágenes"
+description: "Muy bien. Ahora tengo una duda, en qué resolución me recomendás que cree las imagenes mobile? Yo las desktop ya las tengo, y son 1920x1080px"
 ---
+
 
 Muy bien. Ahora tengo una duda, en qué resolución me recomendás que cree las imagenes mobile? Yo las desktop ya las tengo, y son 1920x1080px
 

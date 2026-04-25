@@ -1,6 +1,8 @@
 ---
 title: "La metodología BEM"
+description: "La Metodología BEM (Block, Element, Modifier)"
 ---
+
 
 - La Metodología BEM (Block, Element, Modifier)
 
@@ -18,7 +20,7 @@ title: "La metodología BEM"
 🔻 Modificador: Una variación de un bloque o de un elemento, que cambia su apariencia o comportamiento para diferenciarse de los demás (.destacado, .success, .warning).
 
 
-> La sintaxis de BEM
+## La sintaxis de BEM
 
 - Toda clase CSS definida y usada debe seguir las siguientes reglas:
 

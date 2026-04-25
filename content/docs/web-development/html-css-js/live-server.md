@@ -1,12 +1,13 @@
 ---
 title: "Live Server"
+description: "Live Server es una extensión de Visual Studio Code que permite cargar contenido dinámico en tiempo real. Es una herramienta útil para desarrolladores que les pe..."
 ---
 
-> Live Server
+
 
 - Live Server es una extensión de Visual Studio Code que permite cargar contenido dinámico en tiempo real. Es una herramienta útil para desarrolladores que les permite abrir su proyecto en un navegador con un solo clic. 
 
-- Permite: 
+- **Permite**: 
 
 - Recargar automáticamente los cambios realizados en páginas HTML, CSS o JS 
 - Iniciar y detener el servidor con un solo clic 

@@ -1,6 +1,8 @@
 ---
 title: "JSON y StdClass"
+description: "Función json_encode(); transforma un objeto o un array de objetos en un string formato JSON."
 ---
+
 
 JSON
 

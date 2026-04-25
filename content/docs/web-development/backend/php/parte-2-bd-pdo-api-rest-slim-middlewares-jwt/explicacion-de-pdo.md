@@ -1,6 +1,8 @@
 ---
 title: "Explicación de PDO"
+description: "PDO (PHP Data Object)"
 ---
+
 
 PDO (PHP Data Object)
 
@@ -26,11 +28,15 @@ Entonces, este es nuestro Connection String. Empieza con un Driver/motor (en nue
 Ejemplo
 
 try {
-	$conStr = "mysql:host=localhost;dbname=pruebaDB";
-	$pdo = new PDO($conStr, $user, $pass);
+```typescript
+$conStr = "mysql:host=localhost;dbname=pruebaDB";
+$pdo = new PDO($conStr, $user, $pass);
+```
 }
 catch(PDOException $e) {
-	echo "Error: " . $e->getMessage();
+```typescript
+echo "Error: " . $e->getMessage();
+```
 }
 
 Si ocurre un error, lo catcheamos y lo hacemos un echo mostrando el error.
@@ -122,4 +128,4 @@ fetchAll($fetch_style?); es lo mismo pero devuelve todas las filas.
 
 El fetch_style es el formato con el que va a retornar la información.
 
-- Otras funciones PDO:: [FETCH]
+- **Otras funciones PDO**: : [FETCH]

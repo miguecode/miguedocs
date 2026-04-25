@@ -1,6 +1,8 @@
 ---
 title: "JSON Web Tokens 1"
+description: "Consiste en una firma digital la cual va a certificar que la persona que está tratando de acceder tiene acceso y que ya ingresó. Sirve para no estar pasando cad..."
 ---
+
 
 Uso de Tokens
 Consiste en una firma digital la cual va a certificar que la persona que está tratando de acceder tiene acceso y que ya ingresó. Sirve para no estar pasando cada 2 x 3 el usuario y la clave, sino que una vez que ya ingresó, le otorgo una Token al usuario. Y una vez que tiene el Token, lo usa para ingresar.
@@ -34,8 +36,10 @@ header.payload.signature
 El encabezado va a definir el tipo de Token, en este caso JWT y la codificación utilizada. Comúnmente se usa HS256:
 
 {
-	"typ": "JWT",
-	"alg": "HS256
+```typescript
+"typ": "JWT",
+"alg": "HS256
+```
 }
 Esto codificado queda: eyJhbGci0iJIUzI1NiIsInr5cCI6IkpXVCJ9
 
@@ -47,11 +51,13 @@ iat = Identifica la fecha de creación del Token (formato de tiempo UNIX)
 exp = Identifica la fecha de expiración del Token (formato de tiempo UNIX)
 
 {
-	"sub":  "afsab3rb4sb",
-	"iat": "2492849aisa9",
-	"exp": "5254356sda",
-	"admin": true,
-	"rol": 1
+```typescript
+"sub":  "afsab3rb4sb",
+"iat": "2492849aisa9",
+"exp": "5254356sda",
+"admin": true,
+"rol": 1
+```
 }
 Esto codificado quedaría: [letras y numeros...]
 
@@ -61,7 +67,9 @@ Está formada por los anteriores componentes (Header y Payload) cifrados, y con 
 Sirve de Hash para comprobar que todo esté bien.
 
 HMACSHA256(
-	base64UrlEncode(header) + "." + base64UrlEncode(payload), miClaveSecreta
+```typescript
+base64UrlEncode(header) + "." + base64UrlEncode(payload), miClaveSecreta
+```
 )
 Esto codificado quedaría: [letras y numeros...]
 

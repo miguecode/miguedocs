@@ -1,6 +1,8 @@
 ---
 title: "Z. Feedback y temas a aprender de TS"
+description: "[Este apunte es una respuesta de ChatGPT después de haber hecho todos los demás apuntes. Me responde con una conclusión de mi conocimiento después de lo aprendi..."
 ---
+
 
 [Este apunte es una respuesta de ChatGPT después de haber hecho todos los demás apuntes. Me responde con una conclusión de mi conocimiento después de lo aprendido, y me comenta qué temas me faltarían ver para cubrir el 100% de los temas. Quizá lo haga en un futuro.]
 
@@ -11,7 +13,7 @@ Tipos primitivos, personalizados (type), interface vs class
 
 Union / Intersection types
 
-Genéricos (con <T>, restricciones extends, múltiples tipos)
+Genéricos (con `<T>`, restricciones extends, múltiples tipos)
 
 Narrowing y Type Guards
 

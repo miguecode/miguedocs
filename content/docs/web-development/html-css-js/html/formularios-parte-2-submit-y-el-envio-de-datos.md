@@ -1,8 +1,10 @@
 ---
 title: "Formularios Parte 2. Submit y el Envío de Datos"
+description: "Como sabemos, nosotros usamos la etiqueta Form para contener a los controles de formulario (Inputs, Labels, Selects, Input de tipo Submit...). El fin de esto es..."
 ---
 
-> Envío de datos
+
+## Envío de datos
 
 - Como sabemos, nosotros usamos la etiqueta Form para contener a los controles de formulario (Inputs, Labels, Selects, Input de tipo Submit...). El fin de esto es obtener DATOS, los cuales nos va a brindar el usuario. Y con esos datos, nosotros vamos a hacer cierta acción (o sólo guardarlos, no importa). 
 
@@ -13,25 +15,29 @@ title: "Formularios Parte 2. Submit y el Envío de Datos"
 - Como nosotros estamos viendo HTML, vamos a ver la manera nativa de HTML de hacerlo, pero también vamos a ver la forma de de hacerlo JavaScript, que en realidad es la vía ideal para hacer todo esto.
 
 
-> Etiqueta <input> de tipo <submit> (La forma de HTML nativo)
+## Etiqueta `<input>` de tipo `<submit>` (La forma de HTML nativo)
 
-- Esta es la forma de enviar datos usando HTML. Si nosotros ponemos una input de tipo submit, lo que vamos a ver es un BOTÓN, el cual va a tener la funcionalidad de enviar datos. Este botón está directamente relacionado con la etiqueta <form>, de la que es parte. Es decir que, si nosotros ponemos una input de tipo submit fuera de un contenedor <form>, vamos a ver el botón, pero no va a tener ninguna funcionalidad.
+- Esta es la forma de enviar datos usando HTML. Si nosotros ponemos una input de tipo submit, lo que vamos a ver es un BOTÓN, el cual va a tener la funcionalidad de enviar datos. Este botón está directamente relacionado con la etiqueta `<form>`, de la que es parte. Es decir que, si nosotros ponemos una input de tipo submit fuera de un contenedor `<form>`, vamos a ver el botón, pero no va a tener ninguna funcionalidad.
 
-	<input type="submit">
-
+```typescript
+<input type="submit">
+```
 - Por defecto -en español- el botón va a decir "Enviar". Nosotros podemos cambiar esa palabra, cambiando el "value" del input. 
 
-	<input type="submit" value="Finalizar formulario">
-
-- Ahora vamos a lo importante: Por defecto, el input de tipo submit va a realizar la acción de "disparar" el envío del formulario. Y esto tiene relación directa con JavaScript, ya que esta "acción de disparar", hace referencia a un EVENTO. Y como sabemos, en JavaScript manejamos eventos. Bueno, en este caso, nuestro elemento <form> va a tener un evento de tipo "submit", el cual se dispara cuando nosotros pulsamos la input de tipo submit.
+```typescript
+<input type="submit" value="Finalizar formulario">
+```
+- **Ahora vamos a lo importante**: Por defecto, el input de tipo submit va a realizar la acción de "disparar" el envío del formulario. Y esto tiene relación directa con JavaScript, ya que esta "acción de disparar", hace referencia a un EVENTO. Y como sabemos, en JavaScript manejamos eventos. Bueno, en este caso, nuestro elemento `<form>` va a tener un evento de tipo "submit", el cual se dispara cuando nosotros pulsamos la input de tipo submit.
 
 - Veamos un ejemplo de lo que pasa al hacer clic en la input de tipo submit:
 
-<form>
-	<input type="text" name="nombre">
-	<input type="email" name="correo">
-	<input type="submit" value="Esta es la input de tipo submit">
-</form>
+`<form>`
+```typescript
+<input type="text" name="nombre">
+<input type="email" name="correo">
+<input type="submit" value="Esta es la input de tipo submit">
+```
+`</form>`
 
 - Si ponemos "Juan" en el el primer input, "juancito@gmail.com" en el segundo, y después hacemos clic en el submit, vamos a ver que la URL nos queda así:
 
@@ -45,28 +51,30 @@ title: "Formularios Parte 2. Submit y el Envío de Datos"
 - En vez de una "@" vamos a ver que aparece "%40". Esto es por un tema de caracteres de la URL.
 
 
->> Usar la etiqueta button en vez de input
+### Usar la etiqueta button en vez de input
 
-- Sí, esto es posible y también es una buena práctica. Por defecto, si nosotros ponemos una etiqueta <button> dentro de un <form>, ese botón va a tener el atributo type="submit". Y sí, cumple exactamente la misma funcionalidad que tener una input de type="submit". Es exactamente lo mismo. De hecho, hasta puede ser mejor semánticamente que el elemento sea un button y no una input. Y si quisiéramos que el botón no sea submit, simplemente ponemos button type="button".
+- Sí, esto es posible y también es una buena práctica. Por defecto, si nosotros ponemos una etiqueta `<button>` dentro de un `<form>`, ese botón va a tener el atributo type="submit". Y sí, cumple exactamente la misma funcionalidad que tener una input de type="submit". Es exactamente lo mismo. De hecho, hasta puede ser mejor semánticamente que el elemento sea un button y no una input. Y si quisiéramos que el botón no sea submit, simplemente ponemos button type="button".
 
 
-> Envío de datos mediante JavaScript (Y no HTML de forma nativa)
+## Envío de datos mediante JavaScript (Y no HTML de forma nativa)
 
 - Ese comportamiento de apretar la input de tipo submit y que se dispare el evento es algo que ocurría y era común antes, cuando todavía no se usaba JS. Es una función nativa de HTML, y nosotros no vamos a trabajar con esto ya que no es lo ideal. Lo ideal es usar JavaScript.
 
 - Vamos a ver cómo podemos hacer el envío y recepción de datos mediante JavaScript:
 
-- Primero, nos creamos nuestro archivo script.js y tomamos algún elemento <form>
+- Primero, nos creamos nuestro archivo script.js y tomamos algún elemento `<form>`
 
 const formulario = document.forms[0]; 
 
-- En este caso, "document.forms[]" es un array de elementos <form> existentes en el HTML. Al poner [0], nos estamos refiriendo al primer elemento de ese array, es decir, al primer form (y en este caso, el único).
+- En este caso, "document.forms[]" es un array de elementos `<form>` existentes en el HTML. Al poner [0], nos estamos refiriendo al primer elemento de ese array, es decir, al primer form (y en este caso, el único).
 
-- Y una vez que ya tenemos la dirección de memoria del elemento guardada dentro de nuestra variable constante llamada "formulario", vamos a agregar un escuchador al evento submit del que hablamos antes. Para recordarlo, habíamos dicho que los elementos <form> tienen un evento llamado "submit". Veamos:
+- Y una vez que ya tenemos la dirección de memoria del elemento guardada dentro de nuestra variable constante llamada "formulario", vamos a agregar un escuchador al evento submit del que hablamos antes. Para recordarlo, habíamos dicho que los elementos `<form>` tienen un evento llamado "submit". Veamos:
 
 formulario.addEventListener('submit', (e) => {
-	e.preventDefault();
-	console.log("Hola, funcionó el envío de información");
+```typescript
+e.preventDefault();
+console.log("Hola, funcionó el envío de información");
+```
 });
 
 - En esta función, como dijimos antes, "submit" es el nombre del evento. Y esa variable "e" es el evento recibido (el evento submit que vamos a recibir). Podríamos ponerle cualquier otro nombre a "e". Pero la tendencia es sólo usar la e.
@@ -78,39 +86,41 @@ formulario.addEventListener('submit', (e) => {
 - Esto quiere decir que nosotros pudimos haberlo también hecho así:
 
 function FrenarEventoYConfirmarEnvio(evento) {
-	evento.preventDefault();
-	console.log("Hola, funcionó el envío de información");
+```typescript
+evento.preventDefault();
+console.log("Hola, funcionó el envío de información");
+```
 }
 
 formulario.addEventListener('submit', FrenarEventoYConfirmarEnvio(evento));
 
 
-> Atributo "method" de la etiqueta <form>
+## Atributo "method" de la etiqueta `<form>`
 
 - El atributo "method" hace referencia al verbo que va a realizar la petición del formulario. Por defecto, es GET. Así que si no especificamos el atributo, su valor va a ser GET. Pero también podría ser POST, que es necesario de colocar para cuando los datos a ingresar son sensibles o modifican algo en el servidor. Esto es así ya que, cuando usamos GET, como vimos antes, los "name" y "value" de las input se ponen en la URL. Y eso es cero seguro. Si usamos POST, los datos se envían en el cuerpo de la petición, y no en la URL.
 
-	<form method="POST">
-		...
-	</form>
-
-
->> ¿Cuándo cambiar GET por POST?
+```typescript
+<form method="POST">
+	...
+</form>
+```
+### ¿Cuándo cambiar GET por POST?
 
 - Si los datos NO son sensibles y se pueden compartir fácilmente → GET está bien.
-- Ejemplo: Formularios de búsqueda (?q=palabra).
+- **Ejemplo**: Formularios de búsqueda (?q=palabra).
 
 - Si los datos SON sensibles o modifican algo en el servidor → POST es obligatorio.
-- Ejemplo: Registro de usuarios, envío de contraseñas, pagos.
+- **Ejemplo**: Registro de usuarios, envío de contraseñas, pagos.
 
 
-> Atributo "action" de la etiqueta <form>
+## Atributo "action" de la etiqueta `<form>`
 
-- El atributo "action" de la etiqueta <form> lo que hace es que, cuando se hace el submit, nos manda una página que le indiquemos, con los datos que contenga el formulario. Por defecto, el valor de action es la misma URL en la que estamos. Por eso, por lo general, no especificamos este atributo.
+- El atributo "action" de la etiqueta `<form>` lo que hace es que, cuando se hace el submit, nos manda una página que le indiquemos, con los datos que contenga el formulario. Por defecto, el valor de action es la misma URL en la que estamos. Por eso, por lo general, no especificamos este atributo.
 
-	<form action="https://ejemplo.com/procesar">
-
-
->> Otros atributos de la etiqueta <form>
+```typescript
+<form action="https://ejemplo.com/procesar">
+```
+### Otros atributos de la etiqueta `<form>`
 
 name - Sirve para identificar al formulario en el DOM
 enctype - Define cómo se codifican los datos. Sirve para cuando vamos a enviar archivos
@@ -120,14 +130,15 @@ target - Define dónde se abre la respuesta del formulario (puede ser _self, _bl
 
 - Ejemplo básico de "name"
 
-	<form name="registro">
-
+```typescript
+<form name="registro">
+```
 - Con eso, nosotros podríamos estar en JS y acceder al formulario así:
 
-	const form = document.forms["registro"];
-
-
-> Relación con el Backend
+```typescript
+const form = document.forms["registro"];
+```
+## Relación con el Backend
 
 - Con lo que vimos, nosotros podemos ejecutar de forma nativa una petición de tipo POST o GET. Esas peticiones se las hace el Frontend al Backend.
 

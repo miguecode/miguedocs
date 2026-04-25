@@ -1,10 +1,12 @@
 ---
 title: "Propiedades de control de texto"
+description: "Text-wrap: balance"
 ---
 
-> Text-wrap: balance
 
-- El text-wrap: balance está pensado para TÍTULOS (h1, h2, h3...), y su función es evitar que queden palabras colgadas en una última línea. Por ejemplo:
+## Text-wrap: balance
+
+- **El text-wrap**: balance está pensado para TÍTULOS (h1, h2, h3...), y su función es evitar que queden palabras colgadas en una última línea. Por ejemplo:
 
 Este es el título que estoy
 escribiendo
@@ -17,20 +19,20 @@ estoy escribiendo
 - Esta propiedad también podemos usarla en párrafos, pero no es lo ideal. Ya que para los párrafos, vamos a usar text-wrap: pretty.
 
 
-> Text-wrap: pretty
+## Text-wrap: pretty
 
-- Su función es la misma que text-wrap: balance, pero está pensada para párrafos, por ende, es menos brusca. El balance es más ajustador, y es capaz de achicar bastante el ancho del texto con tal de que quede bien. El pretty es un poco más imperceptible. 
+- **Su función es la misma que text-wrap**: balance, pero está pensada para párrafos, por ende, es menos brusca. El balance es más ajustador, y es capaz de achicar bastante el ancho del texto con tal de que quede bien. El pretty es un poco más imperceptible. 
 
 
-> Text-align: justify
+## Text-align: justify
 
 - Justificar un texto va a hacer que siempre quede lo mejor simétrico posible. Literalmente todas las líneas van a usar el mismo espacio (salvo la última si no está completa). Esto es común en libros de la vida real o en otros artículos escritos. Pero la verdad es que es una mala práctica. No hay que hacerlo. ¿Por qué? Porque si bien puede parecer que queda mejor visualmente, la realidad es que crea unos espacios muy inadecuados entre cada palabra, todo con el fin de quedar perfectamente simétrico.
 
 
-> Si bien existen otras propiedades que cumplen funciones similares, como word-break, hyphens u overflow-wrap, no las vamos a explicar acá, ya que no son tan comunes de usar (pero pueden ser útiles dependiendo del contexto del texto a escribir).
+## Si bien existen otras propiedades que cumplen funciones similares, como word-break, hyphens u overflow-wrap, no las vamos a explicar acá, ya que no son tan comunes de usar (pero pueden ser útiles dependiendo del contexto del texto a escribir).
 
 
-> Line-height (altura de línea)
+## Line-height (altura de línea)
 
 - Controla la separación entre las líneas de texto. Muy útil para mejorar la legibilidad de párrafos largos. Por defecto, el valor de line-height es 1.
 
@@ -41,7 +43,7 @@ p {
 - Para párrafos largos, se recomienda poner el line-height en 1.5 o 1. Y para títulos, un valor más bajo como 1.2 puede ser más adecuado.
 
 
-> Letter-spacing y word-spacing (espaciado entre letras y palabras)
+## Letter-spacing y word-spacing (espaciado entre letras y palabras)
 
 p {
   word-spacing: 0.1em;
@@ -51,7 +53,7 @@ p {
 - Se puede usar para ocupar más espacio en títulos o botones (usando cualquiera de esas dos propiedades). O también, para ajustar la separación en textos justificados (también usando cualquiera).
 
 
-> White-space (manejo de espacios y saltos de línea)
+## White-space (manejo de espacios y saltos de línea)
 
 p {
   white-space: nowrap; /* Evita saltos de línea */

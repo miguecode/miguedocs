@@ -1,6 +1,8 @@
 ---
 title: "Bases de datos NoSQL"
+description: "Base de Datos no relacional"
 ---
+
 
 Base de Datos no relacional
 

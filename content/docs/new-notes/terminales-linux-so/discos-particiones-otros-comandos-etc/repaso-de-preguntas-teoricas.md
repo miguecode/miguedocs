@@ -1,6 +1,8 @@
 ---
 title: "Repaso de preguntas teóricas"
+description: "Empezamos a hacer un ejercicio del classroom, y después hicimos un formulario de toda la teoría. Nadie sabia nada, esto fue un repaso. Justo cuando el profe iba..."
 ---
+
 
 Empezamos a hacer un ejercicio del classroom, y después hicimos un formulario de toda la teoría. Nadie sabia nada, esto fue un repaso. Justo cuando el profe iba a analizar las respuestas se me cayó el internet asi que no pude grabarlo. Igual no fue la gran cosa, explicó un poquito las primeras 2, 3 preguntas y después nada. Nos mandó a que durante la semana las contestemos buscando en los apuntes o en internet, el punto es que aprendamos, la clase que viene vamos a ver el formulario devuelta y la siguiente a esa clase ya es el parcial. En whatsapp algunos grabaron o pasaron apuntes o las mismas preguntas.
 

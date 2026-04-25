@@ -1,6 +1,8 @@
 ---
 title: "Ejemplo usando PDO"
+description: "Vamos a ver un ejemplo de uso de PDO en PHP con un ABM con de una entidad, en este caso, de CD's."
 ---
+
 
 Vamos a ver un ejemplo de uso de PDO en PHP con un ABM con de una entidad, en este caso, de CD's.
 
@@ -34,7 +36,9 @@ El execute() devuelve false si su ejecución dio error.
 $retorno = Cd::TraerUnCd($id);
 El retorno podría ser 'false' así que podría quedar mejor:
 if ($retorno ===false) {
-	$retorno = -- el error -
+```typescript
+$retorno = -- el error -
+```
 }
 return $retorno;
 

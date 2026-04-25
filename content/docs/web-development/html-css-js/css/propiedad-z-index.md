@@ -1,8 +1,10 @@
 ---
 title: "Propiedad Z-Index"
+description: "El Z-Index hace referencia al concepto de apilamiento. Cuando nosotros vemos una página, podemos pensar que es todo plano, un papel en el que dibujamos encima. ..."
 ---
 
-> Z-Index
+
+## Z-Index
 
 - El Z-Index hace referencia al concepto de apilamiento. Cuando nosotros vemos una página, podemos pensar que es todo plano, un papel en el que dibujamos encima. Pero la verdad es que no es exactamente así. 
 

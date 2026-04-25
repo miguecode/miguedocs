@@ -1,6 +1,8 @@
 ---
 title: "Extracto de conversación con ChatGPT"
+description: "viste como se de prototipos eh? yo también se que valores como un simple string crudo let palabra = 'arbol'; lo que hace JS en realidad es, momentaneamente, con..."
 ---
+
 
 viste como se de prototipos eh? yo también se que valores como un simple string crudo let palabra = "arbol"; lo que hace JS en realidad es, momentaneamente, convertirlos a en una instancia de la función constructora String. String, que es una función constructora que hereda de Object, contiene dentro un objeto llamado prototype. Ese prototype hereda del prototype que contiene Object, y tiene todos los métodos y propiedades, en este caoscaso, de los strings. 
 

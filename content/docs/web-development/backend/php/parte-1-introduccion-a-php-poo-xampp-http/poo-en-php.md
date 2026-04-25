@@ -1,6 +1,8 @@
 ---
 title: "POO en PHP"
+description: "Programación Orientada a Objetos en PHP"
 ---
+
 
 Programación Orientada a Objetos en PHP
 Esto lo hace un poco más parecido a C#. Aún así, se sigue pareciendo más a JS. Es decir, el lenguaje originalmente no tenía estas funcionalidades, pero como con el tiempo existían muchos programadores acostumbrados a la POO, se agregaron todos estos conceptos al lenguaje. En JavaScript pasó lo mismo con la aparición de las clases y demás, y más adelante con el superset de JS llamado TypeScript, el cual explota mucho más el concepto de la POO.
@@ -11,26 +13,30 @@ Ejemplos de clases en PHP:
 
 class NombreClase
 {
-	// Atributos (private - protected- public/var - static)
-	[Modificadores] $nombreAtributo;
-	
-	// Métodos (private - protected- public/var - static)
-	{ ... }
+```typescript
+// Atributos (private - protected- public/var - static)
+[Modificadores] $nombreAtributo;
+
+// Métodos (private - protected- public/var - static)
+{ ... }
+```
 }
 
 class NombreClase
 {
-	// Atributos
-	private $_attr1;
-	protected $_attr2;
-	
-	// Constructor
-	public function __construct() { ... }
-	
-	// Métodos
-	private function Func1($param) { ... }
-	protected function Func2() { ... }
-	public function Func3() { ... }
+```typescript
+// Atributos
+private $_attr1;
+protected $_attr2;
+
+// Constructor
+public function __construct() { ... }
+
+// Métodos
+private function Func1($param) { ... }
+protected function Func2() { ... }
+public function Func3() { ... }
+```
 }
 
 Aclaración con el constructor
@@ -65,24 +71,28 @@ Herencia
 Usamos 'extends' para indicar a la clase padre de una clase. Obviamente, esta clase derivada (hija) va a tener su propio constructor, y además, tiene que hacer uso del constructor de la clase base (padre). Asi que hay que pasarle los parámetros necesarios para el constructor del padre, y del hijo.
 
 class ClaseBase {
-	public function __construct($id, $nombre) {
-		// Inicializar variables acá
-		if ($this->validar($id)){
-			$this->id = $id;
-			$this->nombre = $nombre;
-		}
+```typescript
+public function __construct($id, $nombre) {
+	// Inicializar variables acá
+	if ($this->validar($id)){
+		$this->id = $id;
+		$this->nombre = $nombre;
 	}
-	public function validar($id){
-		// Reliza una validación
-	}
+}
+public function validar($id){
+	// Reliza una validación
+}
+```
 }
 
 class ClaseDerivada extends ClaseBase{
-    public function __construct(){
-        parent::__construct(); //Llamamos al constructor de la clase padre
+```typescript
+public function __construct(){
+    parent::__construct(); //Llamamos al constructor de la clase padre
 
-        //Inicializamos las variables propias de esta clase
-    }
+    //Inicializamos las variables propias de esta clase
+}
+```
 }
 
 // Parent sería el base de C#. Se refiere a la clase padre. Siempre se accede a él con ' :: ', como si fuera estático. 
@@ -94,13 +104,17 @@ En PHP cualquier método puede ser modificado en sus clases derivadas.
 Supongamos que en la clase base tenemos una función Saludar(). Bueno, nosotros en la clase derivada a esa clase base podemos hacer:
 
 public function Saludar(){
-	return parent::Saludar(). " " . "mundo";
+```typescript
+return parent::Saludar(). " " . "mundo";
+```
 }
 
 Interfaces
 Se crean con la palabra reservada 'interface'. Se implementan con la palabra reservada 'implements'. Sólo pueden contener declaraciones de métodos. Se pueden hacer múltiples implementaciones de interfaces. 
 interface IInterfaz{
-	function Metodo();
+```typescript
+function Metodo();
+```
 }
 
 Clases Abstractas

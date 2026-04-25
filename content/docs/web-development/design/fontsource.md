@@ -1,8 +1,10 @@
 ---
 title: "Fontsource"
+description: "Fuentes en Fontsource"
 ---
 
-> Fuentes en Fontsource
+
+## Fuentes en Fontsource
 
 https://fontsource.org/
 
@@ -14,6 +16,6 @@ npm install @fontsource-variable/onest
 
 - Lo bueno de esto es que la fuente se instala únicamente en la carpeta node_modules del proyecto en el que hicimos el npm install. Es decir que no se instala en otros proyectos ni en el sistema operativo.
 
-- La ruta entera para encontrar estos archivos es:
+- **La ruta entera para encontrar estos archivos es**: 
 
 node_modules/@fontsource-variable/onest/

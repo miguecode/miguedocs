@@ -1,12 +1,14 @@
 ---
 title: "Comunicación entre Componentes"
+description: "Comunicación de componentes"
 ---
 
-> Comunicación de componentes
+
+## Comunicación de componentes
 
 - Esto es muy similar a la herencia de layouts. La comunicación entre componentes básicamente es que un componente importe a otro. Y en ese movimiento, uno podría pasarle valores al otro.
 
-- Existen 2 formas para realizar esta comunicación:
+- **Existen 2 formas para realizar esta comunicación**: 
 
 1. Con las propiedades
 
@@ -22,12 +24,12 @@ Esto es útil cuando el componente hijo necesita un mayor nivel de flexibilidad 
 --- // Padre.astro
 import Hijo from './Hijo.astro';
 ---
-<Hijo>
-  <p>Contenido dinámico desde el padre</p>
-</Hijo>
+`<Hijo>`
+  `<p>`Contenido dinámico desde el padre`</p>`
+`</Hijo>`
 
 --- // Hijo.astro
 ---
-<div>
-  <slot></slot> <!-- Aca se inserta el contenido pasado desde el padre -->
-</div>
+`<div>`
+  `<slot>``</slot>` <!-- Aca se inserta el contenido pasado desde el padre -->
+`</div>`

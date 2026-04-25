@@ -1,8 +1,10 @@
 ---
 title: "Librería o Biblioteca. Cómo se dice"
+description: "Ambas. En el mundo de la programación, ambos términos son correctos. Se puede decir librería o biblioteca."
 ---
 
-- Respuesta rápida: Ambas. En el mundo de la programación, ambos términos son correctos. Se puede decir librería o biblioteca.
+
+- **Respuesta rápida**: Ambas. En el mundo de la programación, ambos términos son correctos. Se puede decir librería o biblioteca.
 
 - Aunque muchos se enojen, el término librería, hoy en día, es completamente válido.
 

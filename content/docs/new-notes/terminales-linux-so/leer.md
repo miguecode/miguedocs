@@ -1,6 +1,8 @@
 ---
 title: "Leer"
+description: "💡 Información sobre el contenido de esta carpeta"
 ---
+
 
 💡 Información sobre el contenido de esta carpeta
 

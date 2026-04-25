@@ -1,8 +1,10 @@
 ---
 title: "Instalar y crear un proyecto"
+description: "Instalar y crear proyecto"
 ---
 
->> Instalar y crear proyecto
+
+### Instalar y crear proyecto
 
 Astro no necesariamente se instala, directamente se usa el comando para crear un proyecto, y se encarga de instalar las dependencias necesarias para que funcione.
 

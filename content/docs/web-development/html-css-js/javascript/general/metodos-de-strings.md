@@ -1,8 +1,10 @@
 ---
 title: "Métodos de Strings"
+description: "Métodos de los strings en JavaScript"
 ---
 
-> Métodos de los strings en JavaScript
+
+## Métodos de los strings en JavaScript
 
 - toString() → En realidad este no es un método propio de los strings, pero lo vamos a ver acá. Se usa en otro tipo de datos, y sirve para pasarlos a string. Devuele un string en valores como números, booleanos, fechas, arrays, y demás, a string. Por ejemplo, pasamos un 125 a un "125" o un true en un "true". Y así con todos.
 

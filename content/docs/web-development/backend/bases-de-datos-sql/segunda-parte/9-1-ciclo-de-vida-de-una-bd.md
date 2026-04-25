@@ -1,6 +1,8 @@
 ---
 title: "9-1. Ciclo de Vida de una BD"
+description: "CICLO DE VIDA DE UNA BASE DE DATOS"
 ---
+
 
 CICLO DE VIDA DE UNA BASE DE DATOS
 

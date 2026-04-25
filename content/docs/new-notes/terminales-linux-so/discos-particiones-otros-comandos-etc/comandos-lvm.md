@@ -1,12 +1,15 @@
 ---
 title: "Comandos LVM"
+description: "lsblk   // ver los discos y sus particiones"
 ---
+
 
 lsblk   // ver los discos y sus particiones
 
 *** Particionar discos ***
-sudo fdisk /dev/sdb   >  'n'  >  etc    'w' para guardar
-sudo fdisk /dev/sdc    >  'n'  >  etc    'w' para guardar
+| sudo fdisk /dev/sdb | > | 'n' | > | etc | 'w' para guardar |
+| --- | --- | --- | --- | --- | --- |
+| sudo fdisk /dev/sdc | > | 'n' | > | etc | 'w' para guardar |
 
 *** Cambiar tipo de partición ***
 sudo fdisk /dev/sdb    >  't'  >  8e   (En todas las particiones)  'w' para guardar

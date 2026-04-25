@@ -1,8 +1,10 @@
 ---
 title: "Rutas y navegación"
+description: "En Astro, las rutas se definen a través de la estructura de archivos del proyecto, específicamente en en la carpeta 'pages', la cual está en 'src'."
 ---
 
-> Rutas
+
+## Rutas
 
 - En Astro, las rutas se definen a través de la estructura de archivos del proyecto, específicamente en en la carpeta "pages", la cual está en "src".
 
@@ -12,15 +14,15 @@ title: "Rutas y navegación"
 
 src
 |---> pages
-	|---> blog
-	|	|---> index.astro
-	|	|---> otra-pagina-de-blog.astro
-	|---> chat
-		|---> index.astro
-		|---> otra-pagina-de-chat.astro
-	
-
-- En la URL, se vería así:
+```typescript
+|---> blog
+|	|---> index.astro
+|	|---> otra-pagina-de-blog.astro
+|---> chat
+	|---> index.astro
+	|---> otra-pagina-de-chat.astro
+```
+- **En la URL, se vería así**: 
 
 src/pages/index.astro = /
 src/pages/about.astro = /about
@@ -28,18 +30,20 @@ src/pages/blog/index.astro = /blog/
 src/pages/blog/otra-pagina-de-blog.astro = /blog/otra-pagina-de-blog
 
 
-> Navegación entre páginas (rutas)
+## Navegación entre páginas (rutas)
 
-- En Astro, esto se puede resolver con la etiqueta <a> de HTML.
+- En Astro, esto se puede resolver con la etiqueta `<a>` de HTML.
 
-<nav>
-	<a href="/">Inicio</a>
-	<a href="my-page">Mi Página</a>
-	<a href="second-page">Mi Segunda Página</a>
-</nav>    
+`<nav>`
+```typescript
+<a href="/">Inicio</a>
+<a href="my-page">Mi Página</a>
+<a href="second-page">Mi Segunda Página</a>
+```
+`</nav>`    
 
 
->> Rutas dinámicas
+### Rutas dinámicas
 
 - Las rutas dinámicas son otra forma de realizar la navegación en Astro. Se hacen mediante scripts.
 

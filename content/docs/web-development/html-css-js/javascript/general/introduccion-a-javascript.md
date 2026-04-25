@@ -1,12 +1,13 @@
 ---
 title: "Introducción a JavaScript"
+description: "JavaScript es un lenguaje de programación interpretado, dinámico, de alto nivel y de tipado débil. Se utiliza principalmente para crear interactividad en las pá..."
 ---
 
-> Introducción a JavaScript
+
 
 - JavaScript es un lenguaje de programación interpretado, dinámico, de alto nivel y de tipado débil. Se utiliza principalmente para crear interactividad en las páginas web, ya que permite modificar dinámicamente el contenido, reaccionar a eventos del usuario y realizar operaciones complejas en el navegador.
 
-- Desglosemos sus características:
+- **Desglosemos sus características**: 
 
 1) Es interpretado. 
 
@@ -17,10 +18,11 @@ title: "Introducción a JavaScript"
 
 - Que sea un lenguaje dinámico (o sea, no estático) significa que podemos cambiar los tipos de las variables en tiempo de ejecución. 
 
-	let string = "Hola Mundo";
-	string = 2;
-	typeof string; // Muestra "number"
-
+```typescript
+let string = "Hola Mundo";
+string = 2;
+typeof string; // Muestra "number"
+```
 - Esto demuestra que JavaScript es un lenguaje de programación dinámico. Le cambiamos el tipo a la variable "string", ya que pasó de ser un string a ser un number. Esto, en un lenguaje estático, no es posible (como por ejemplo TypeScript o C#).
 
 
@@ -28,10 +30,11 @@ title: "Introducción a JavaScript"
 
 - Va de la mano con el punto anterior, pero no es exactamente lo mismo. Que el lenguaje sea de tipado débil significa que no es obligatorio indicar el tipo de dato de las variables a la hora de declararlas, ya que JavaScript lleva a cabo la coerción de tipos. Es decir, convierte automáticamente los tipos de datos cuando lo considera necesario, aunque a veces lo haga de formas inesperadas. Veamos:
 
-	console.log("5" + 2);   // "52" → convierte el number 2 en string, y concatena: "5" + "2" = "52"
-	console.log("5" - 2);   // 3 → convierte el string a a number, realizando 5 - 2 = 3
-	console.log(true + 1);  // 2 → true se convierte en 1, y realiza "1 + 1". Es decir, queda en number
-
+```typescript
+console.log("5" + 2);   // "52" → convierte el number 2 en string, y concatena: "5" + "2" = "52"
+console.log("5" - 2);   // 3 → convierte el string a a number, realizando 5 - 2 = 3
+console.log(true + 1);  // 2 → true se convierte en 1, y realiza "1 + 1". Es decir, queda en number
+```
 - Esto nos demuestra que el lenguaje deduce de qué tipo tiene que ser cada cosa, sin que nosotros necesariamente lo especifiquemos. Esto en lenguajes de tipado fuerte no es posible.
 
 
@@ -54,7 +57,7 @@ title: "Introducción a JavaScript"
 - Esto es sencillo, significa que no es lo mismo una variabe llamada "MiVariable" que una llamada "Mivariable". Lo mismo con las funciones, clases, y demás.
 
 
-> Otras Características importantes:
+## Otras Características importantes:
 
 - A diferencia de lenguajes como Java, JavaScript está basado en prototipos, es decir, utiliza prototipos en lugar de clases tradicionales para la herencia y reutilización de código.
 
@@ -67,7 +70,7 @@ title: "Introducción a JavaScript"
 - Es uno de los lenguajes más populares y utilizados en desarrollo web, con una vasta cantidad de librerías y frameworks disponibles.
 
 
-> Usos más comunes
+## Usos más comunes
 
 - Creación de páginas web interactivas.
 - Desarrollo de aplicaciones web mediante frameworks como React, Angular, y Vue.js.
@@ -76,19 +79,21 @@ title: "Introducción a JavaScript"
 - JavaScript es el pilar del desarrollo web moderno, permitiendo experiencias de usuario más interactivas y ricas. Su capacidad para ejecutarse en prácticamente cualquier entorno, junto con su naturaleza dinámica y potente, lo convierte en una herramienta esencial para desarrolladores web.
 
 
-> Detalles adicionales
+## Detalles adicionales
 
 - JavaScript fue inicialmente conocido como Mocha y luego como LiveScript antes de recibir su nombre actual.
 - A pesar de las similitudes de nombre, Java y JavaScript no están relacionados.
 - Desde su creación, ha evolucionado constantemente, con nuevas versiones (ECMAScript) que han mejorado el lenguaje.
 
 
-> ¿Cuándo y por qué fue creado?
+## ¿Cuándo y por qué fue creado?
 
 - JavaScript fue creado en 1995 por Brendan Eich mientras trabajaba en Netscape Communications. Fue diseñado para hacer que las páginas web fueran interactivas y ofrecer dinamismo a las páginas estáticas que se usaban en esa época. Inicialmente, su desarrollo fue rápido, tomando solo 10 días, con el objetivo de complementar las funcionalidades de HTML.
 
 
-> Hola Mundo
+## Hola Mundo
 
-	console.log("Hola Mundo!");
-	alert("Hola Mundo!");
+```typescript
+console.log("Hola Mundo!");
+alert("Hola Mundo!");
+```

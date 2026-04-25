@@ -1,6 +1,8 @@
 ---
 title: "Modo Estricto (Use Strict)"
+description: "&gt; Modo Estricto (Use Strict o Strict Mode)"
 ---
+
 
  > Modo Estricto (Use Strict o Strict Mode)
 
@@ -11,7 +13,7 @@ title: "Modo Estricto (Use Strict)"
 - Evita ciertas malas prácticas y sintaxis propensas a errores, no permitidas en versiones modernas del lenguaje (ES5+). Esto hace un código más seguro y predecible.
 
 
-> Entonces... ¿Por qué no viene activado por defecto?
+## Entonces... ¿Por qué no viene activado por defecto?
 
 - No viene por defecto simple y llanamente porque rompería compatibilidad con millones de sitios web antiguos. No es más que eso. Cuando se introdujo el Use Strict en ES5 (año 2009-2010), ya había un montón de código viejo escrito sin preocuparse por estas reglas. Entonces, el activarlo por defecto haría que muchos scripts dejen de funcionar de un día para el otro.
 
@@ -24,28 +26,29 @@ title: "Modo Estricto (Use Strict)"
 - En código moderno o profesional, se estila y se espera usarlo. En especial en librerías y proyectos grandes. De hecho, muchos linters como ESLint lo recomiendan o incluso lo exigen.
 
 
-> Ejemplo de su funcionalidad
+## Ejemplo de su funcionalidad
 
 - Por ejemplo, en las variables hay que indicar si son var, let o const, SIEMPRE:
 
-	nombre = "Juan" // Sin el use strict, nombre va a ser "var" por defecto
-	
-	nombre = "Juan" // Con el use strict, esto provoca una EXCEPCIÓN, no podemos omitir el tipo de variable
+```typescript
+nombre = "Juan" // Sin el use strict, nombre va a ser "var" por defecto
 
-
-> Cómo activar el modo estricto
+nombre = "Juan" // Con el use strict, esto provoca una EXCEPCIÓN, no podemos omitir el tipo de variable
+```
+## Cómo activar el modo estricto
 
 - Para hacerlo, tenemos que ir a nuestro scope global (window) del archivo JavaScript, y en la primera línea escribir "use strict", así:
 
-	"use strict";  // Con esta simple línea, activamos el modo estricto
-	
-	nombre = "Juan"; // Lanza una excepción, nombre is not defined
+```typescript
+"use strict";  // Con esta simple línea, activamos el modo estricto
 
+nombre = "Juan"; // Lanza una excepción, nombre is not defined
+```
 - Ojo, en realidad podemos colocar el "use strict" otras partes de nuestro código, pero siempre tiene que ser en la primer línea de un scope. Y a partir de él es cuando se activa el modo estricto.
 
 
 
-> Entonces, ¿Qué hace el Use Strict técnicamente?
+## Entonces, ¿Qué hace el Use Strict técnicamente?
 
 👀 Si usamos el Modo Estricto, JavaScript va a lanzar una excepción si...
 

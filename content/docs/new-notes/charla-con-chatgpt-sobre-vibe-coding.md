@@ -1,6 +1,8 @@
 ---
 title: "Charla con ChatGPT sobre Vibe Coding"
+description: "hablemos del vibe coding y de la ia en la programación..."
 ---
+
 
 hablemos del vibe coding y de la ia en la programación...
 
@@ -116,18 +118,20 @@ Si la dominás, podés crecer más rápido que nunca.
 
 
 🧩 1. Conceptos clave que tenés que entender
-Concepto	¿Qué significa?
-IA asistida	Usar IA para ayudarte a escribir, entender, refactorizar o probar código.
+| Concepto | ¿Qué significa? |
+| --- | --- |
+| IA asistida | Usar IA para ayudarte a escribir, entender, refactorizar o probar código. |
 Prompt	La instrucción o pedido que le hacés a la IA (como hablarle a un asistente).
 Boilerplate	Código repetitivo y estructural (como configurar rutas, formularios, etc).
 Refactor	Reescribir código para que esté más limpio o eficiente, sin cambiar su lógica.
 
 ⚙️ 2. Herramientas recomendadas para empezar
 Opción A: Para usar en tu editor (recomendado)
-Herramienta	¿Qué hace?	Link / Info
-GitHub Copilot	Te autocompleta código, tests, y mucho más.	copilot.github.com
-Codeium	Similar a Copilot, pero gratuito.	codeium.com
-Cursor	Un editor como VSCode pero con IA incorporada.	cursor.sh
+| Herramienta | ¿Qué hace? | Link / Info |
+| --- | --- | --- |
+| GitHub Copilot | Te autocompleta código, tests, y mucho más. | copilot.github.com |
+| Codeium | Similar a Copilot, pero gratuito. | codeium.com |
+| Cursor | Un editor como VSCode pero con IA incorporada. | cursor.sh |
 
 Opción B: Chat externo (como ChatGPT)
 ChatGPT (Plus): muy útil si le das código, pedís ejemplos, o debugueás.

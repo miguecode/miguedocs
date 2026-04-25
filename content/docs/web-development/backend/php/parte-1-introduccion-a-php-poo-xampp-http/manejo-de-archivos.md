@@ -1,6 +1,8 @@
 ---
 title: "Manejo de archivos"
+description: "Todo el manejo de archivos en PHP es muy parecido a C."
 ---
+
 
 Archivos
 Todo el manejo de archivos en PHP es muy parecido a C.
@@ -27,7 +29,9 @@ $archivo = fopen("archivo.txt", "r");
 
 while (!feof($archivo))
 {
-	echo fgets($archivo) . "</br>";
+```typescript
+echo fgets($archivo) . "</br>";
+```
 }
 
 fclose($archivo);

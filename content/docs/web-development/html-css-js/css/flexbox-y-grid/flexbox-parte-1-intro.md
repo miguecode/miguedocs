@@ -1,8 +1,10 @@
 ---
 title: "Flexbox - Parte 1 (Intro)"
+description: "Flex es un posible valor en la propidad display. (display: flex). Sirve para posicionar a los elementos de forma mucho más sencilla y coherente."
 ---
 
-> Flexbox
+
+## Flexbox
 
 - Flex es un posible valor en la propidad display. (display: flex). Sirve para posicionar a los elementos de forma mucho más sencilla y coherente. 
 
@@ -22,11 +24,11 @@ flex-direction: row-reverse; // Hace que la dirección sea en filas (orden inver
 flex-direction: column; // Hace que la dirección sea en columnas
 flex-direction: column-reverse; // Hace que la dirección sea en columnas (orden invertido)
 
->> Flex-wrap
+### Flex-wrap
 
 - En flex, hay una propiedad llamada flex-wrap. Por defecto, su valor es "nowrap". Eso hace que los elementos siempre se mantengan en una sola fila/columna, aunque no tenga más espacio en el eje principal (ya sea fila o columna). Es decir, los amontona a todos.
 
-- En cambio, si cambiamos el flex-wrap a "wrap":
+- **En cambio, si cambiamos el flex-wrap a "wrap"**: 
 
 flex-wrap: wrap;
 
@@ -44,7 +46,7 @@ flex-flow: no-wrap column;
 (Y todas sus variaciones)
 
 
->> Flex-grow, flex-shrink, flex-basis, flex: initial, flex: auto, flex: 1
+### Flex-grow, flex-shrink, flex-basis, flex: initial, flex: auto, flex: 1
 
 - Estas propiedades no van en los contenedores flex. Sino que van en los hijos del contenedor flex. Podríamos tener una clase "item", y que cada elemento dentro del contenedor flex tenga esa clase. Así, cada elemento se ve afectado de igual forma.
 
@@ -68,13 +70,14 @@ flex-basis: auto;
 
 flex: initial; // Significa grow 0, shrink 1 y basis auto. (Y todos los demás valores por defecto)
 
-- Pero también podemos ponerlo en "flex: auto;" Y es lo mismo, pero cambiando el valor de grow de "0" a "1". Y si ponemos "flex:1;", va a ser lo mismo pero con el grow en 1 y el basis en 0%.
+- **Pero también podemos ponerlo en "flex**: auto;" Y es lo mismo, pero cambiando el valor de grow de "0" a "1". Y si ponemos "flex:1;", va a ser lo mismo pero con el grow en 1 y el basis en 0%.
 
-- Entonces, las abreviaciones quedarían así:
+- **Entonces, las abreviaciones quedarían así**: 
 
-flex: initial;   // grow: 0 - shrink: 1 - basis: auto
-flex: auto;    // grow: 1 - shrink: 1 - basis: auto
-flex: 1;         // grow: 1 - shrink: 1 - basis: 0%
+| flex: initial; | // grow: 0 - shrink: 1 - basis: auto |
+| --- | --- |
+| flex: auto; | // grow: 1 - shrink: 1 - basis: auto |
+| flex: 1; | // grow: 1 - shrink: 1 - basis: 0% |
 
 - Si ponemos el valor de flex-basis en 0%, (flex-basis: 0%), lo que hacemos es que el tamaño de cada elemento del contenedor tenga el mismo tamaño, independientemente de su contenido.
 
@@ -83,43 +86,55 @@ flex: 1;         // grow: 1 - shrink: 1 - basis: 0%
 - Pero ahora, consideremos que vamos a aplicarle estilos a sólo un elemento del contenedor. Por ejemplo, con un selector .item:first-child.
 
 .item:first-child {
-	background: yellow;
-	flex: 2;
+```typescript
+background: yellow;
+flex: 2;
+```
 }
 
-- De esta forma, con el "flex: 2", el elemento al que apunte ese selector, va a tener EL DOBLE de tamaño que los demás elementos hermanos que tenga.
+- **De esta forma, con el "flex**: 2", el elemento al que apunte ese selector, va a tener EL DOBLE de tamaño que los demás elementos hermanos que tenga.
 
 - Entonces, podemos ajustar cada elemento como queramos:
 
 .item {
-	flex: 1;
+```typescript
+flex: 1;
+```
 }
 
 .item:first-child {
-	background: yellow;
-	flex: 2;
+```typescript
+background: yellow;
+flex: 2;
+```
 }
 
 .item:nth-child(2) {
-	background: blue;
-	flex: 4;
+```typescript
+background: blue;
+flex: 4;
+```
 }
 
 .item:last-child {
-	background: red;
+```typescript
+background: red;
+```
 }
 
 - En este ejemplo, al "last-child" no le escribimos flex. Pero como tiene la clase .item, su flex va a ser 1. En cambio, en el first-child, le estamos pisando su flex: 1 a flex: 2. O sea que, el first child va a ser el doble de grande que el last-child. Y el segundo hijo, va a ser 4 veces mas grande que el last child. 
 
 
->> Order
+### Order
 
 - Con la propiedad "order", podemos ordenar los elementos de un contenedor flex. Es una propiedad de los elementos.
 
 .item:nth-child(2) {
-	background: blue;
-	flex: 4;
-	order: 0;
+```typescript
+background: blue;
+flex: 4;
+order: 0;
+```
 }
 
 - Cuanto más chico es el valor de order, más pronto va a aparecer en el orden de elementos. El order también puede ir en negativo para forzar atrasarlo.

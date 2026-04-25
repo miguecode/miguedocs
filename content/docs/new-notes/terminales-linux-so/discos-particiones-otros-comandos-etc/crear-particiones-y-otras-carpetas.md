@@ -1,6 +1,8 @@
 ---
 title: "Crear particiones y otras carpetas"
+description: "Más y más teoría. Esta vez un poco más 'digerible' ya que tocó temas de archivos y discos."
 ---
+
 
 Más y más teoría. Esta vez un poco más 'digerible' ya que tocó temas de archivos y discos.
 

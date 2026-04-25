@@ -1,8 +1,10 @@
 ---
 title: "Qué es Bootstrap"
+description: "Bootstrap es un framework de CSS. Su función principal es la de proporcionar componentes prediseñados. Como botones, inputs, o conjuntos enteros de componentes,..."
 ---
 
-> Bootstrap
+
+## Bootstrap
 
 - Bootstrap es un framework de CSS. Su función principal es la de proporcionar componentes prediseñados. Como botones, inputs, o conjuntos enteros de componentes, como templates.
 

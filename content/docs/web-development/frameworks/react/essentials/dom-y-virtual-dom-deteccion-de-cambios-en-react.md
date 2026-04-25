@@ -1,20 +1,22 @@
 ---
 title: "DOM y Virtual DOM. Detección de cambios en React"
+description: "Detección de cambios en React"
 ---
 
-> Detección de cambios en React
+
+## Detección de cambios en React
 
 - La detección de cambios en React está basada en Triggers.
 
 - Un Trigger es cualquier tipo de evento, el cual va a iniciar un proceso de render. Es decir, algo que inicie una acción de render. Ejemplos de render podrían ser un botón, el estado interno de algún componente, o una llamada a una API.
 
-- Existen dos tipos de trigger:
+- **Existen dos tipos de trigger**: 
 
 1. Trigger Inicial. Cuando el componente se monta, es decir, se carga, ahí mismo se renderiza.
 2. Re-Render. Esto es cuando el componente se vuelve a renderizar.
 
 
-> DOM y Virtual DOM
+## DOM y Virtual DOM
 
 - En React, existe el DOM y el DOM virtual. El primero, es el mismo de siempre. El DOM que ya conocemos, el que podríamos decir que es "el real", o "el original". Y el Virtual DOM (o DOM virtual) es una copia de ese mismo DOM, pero con los cambios efectuados por algún trigger. Es decir, si cambia alguno de nuestros componentes, ese cambio específico que haya ocurrido se va a ver primero en el Virtual DOM. 
 
@@ -23,7 +25,7 @@ title: "DOM y Virtual DOM. Detección de cambios en React"
 - Esos "cambios" que hace el DOM basado en el Virtual DOM, son los llamados "Commits".
 
 
-> ¿Qué es un commit en React?
+## ¿Qué es un commit en React?
 
 - Un commit en React es la confirmación de un cambio en el DOM, después de haber hecho el proceso de comparación entre dicho DOM y el Virtual DOM. Es decir:
 
@@ -35,13 +37,16 @@ title: "DOM y Virtual DOM. Detección de cambios en React"
 6. El DOM realiza los cambios que tenga que hacer para quedar igualito al Virtual DOM. 
 7. Esos cambios que hace, se llaman commits.
 
-- El proceso en 3 pasos:
+- **El proceso en 3 pasos**: 
 
-1. Primer momento		DOM - Virtual DOM
-   					   0	   =	   0
+| 1. Primer momento | DOM - Virtual DOM |  |
+| --- | --- | --- |
+| 0 | = | 0 |
    
-2. Segundo momento	DOM - Virtual DOM
-   					   0	  !=	   1
+| 2. Segundo momento | DOM - Virtual DOM |  |
+| --- | --- | --- |
+| 0 | != | 1 |
 
-3. Tercer momento		DOM - Virtual DOM
-   					   1	   =	   1
+| 3. Tercer momento | DOM - Virtual DOM |  |
+| --- | --- | --- |
+| 1 | = | 1 |

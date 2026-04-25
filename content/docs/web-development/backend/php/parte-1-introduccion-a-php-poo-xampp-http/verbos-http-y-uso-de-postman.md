@@ -1,6 +1,8 @@
 ---
 title: "Verbos HTTP y uso de Postman"
+description: "HTTP - Método GET"
 ---
+
 
 HTTP - Método GET
 El GET es un verbo que, en el navegador, sólo funciona en la barra de búsqueda al armar el URL. De hecho, en la barra de búsqueda del navegador SÓLO puedo hacer GET. Para hacer ejecutar otro tipo de métodos HTTP en el navegador, lo tenemos que hacer programáticamente, mediante HTML o JS. 

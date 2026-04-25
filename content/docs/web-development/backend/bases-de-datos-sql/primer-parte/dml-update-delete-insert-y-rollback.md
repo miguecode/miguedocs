@@ -1,6 +1,8 @@
 ---
 title: "DML (UPDATE, DELETE, INSERT) y ROLLBACK"
+description: "SET CAMPO = valor"
 ---
+
 
 DML - UPDATE
 

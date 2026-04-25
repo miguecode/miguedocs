@@ -1,6 +1,8 @@
 ---
 title: "Aclaración sobre mi terminal"
+description: "Yo instalé la aplicación 'Terminal de Windows', y la uso con PowerShell. Para personalizarla, usé oh-my-posh. En mi perfil JUNIOR tengo la configuración con su ..."
 ---
+
 
 Yo instalé la aplicación "Terminal de Windows", y la uso con PowerShell. Para personalizarla, usé oh-my-posh. En mi perfil JUNIOR tengo la configuración con su tema. Pero de momento, decidí sacarla. Entonces lo uso sin ese tema. Pero el archivo sigue existiendo.
 

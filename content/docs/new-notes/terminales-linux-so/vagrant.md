@@ -1,6 +1,8 @@
 ---
 title: "Vagrant"
+description: "Vagrant es una aplicación que permite levantar máquinas virtuales en VirtualBox a través de código. Para usar Vagrant, hay que instalarlo y después ejecutar un ..."
 ---
+
 
 🚀 Vagrant
 

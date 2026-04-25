@@ -1,6 +1,8 @@
 ---
 title: "Evento Click y capturar ID"
+description: "Ahora, en el archivo 'tabla.js' vamos a crear otras funciones."
 ---
+
 
 Ahora, en el archivo 'tabla.js' vamos a crear otras funciones.
 
@@ -9,7 +11,9 @@ Primero, en la función de crearCuerpo, cuando vamos a recorrer cada 'key' de ca
 td.addEventListener("click", handlerClick); 
 
 function handlerClick(){
-	console.log("Click");
+```typescript
+console.log("Click");
+```
 }
 
 Basicamente estamos haciendo esto: le agregamos a cada 'td' un evento escuchador. Por primer parámetro, le pasamos el evento "click". Es decir que, ese evento se va a disparar cada vez que hagamos 'click' en algún 'td'. Y cada vez que se dispare el evento, se va a ejecutar la función que va a recibir por segundo parámetro. Esa función se va a llamar 'handlerClick'. Es decir, manejador de click. Y es una función que nosotros mismos vamos a codear. En este caso, cada vez que se ejecuta, muestra por consola la palabra "Click".
@@ -19,8 +23,10 @@ Ahora, queremos hacer que cada vez que hacemos click en un 'td', capturemos su i
 'e' es por 'event' y es un parámetro que tienen todos los escuchadores de eventos. Sirve para ver la información sobre ese evento. A nosotros lo que nos importa es su 'target', el cual nos muestra quién es el emisor del evento. En este caso, el 'td'.
 
 function handlerClick(e){
-    console.log(e); //Muestra toda la info sobre el evento
-    console.log(e.target); //Muestra al emisor del evento
+```typescript
+console.log(e); //Muestra toda la info sobre el evento
+console.log(e.target); //Muestra al emisor del evento
+```
 }
 
 Lógicamente, nosotros no queremos apuntar al 'td', sino a la 'tr' de cada elemento. Pero esto no es tan simple como sólo ponerle el addEventListener al 'tr' en vez de al 'td'. Porque nos va a seguir mostrando que el target es el td.
@@ -56,25 +62,31 @@ Para esto, vamos a sacar el addEventListener del forEach de los 'td'. Ya que ah�
 Entonces, fuera de crearTabla, tiro esta función:
 
 window.addEventListener("click", e =>{
-	console.log("Hiciste Click");
+```typescript
+console.log("Hiciste Click");
+```
 });
 
 Con esto, cada vez que hago click en cualquier parte de la pantalla, se va a disparar el evento.
 
 window.addEventListener("click", e =>{
-	if(e.target.matches("td")){
-		console.log("Hiciste Click");
-	}
+```typescript
+if(e.target.matches("td")){
+	console.log("Hiciste Click");
+}
+```
 });
-Ahora, el evento 'click' sólo se dispara cuando hago click en una <td>.
+Ahora, el evento 'click' sólo se dispara cuando hago click en una `<td>`.
 'Matches' funciona así: devuelve un booleano true o false, dependiendo de si 'matchea' (encuentra) una ocurrencia del elemento que le pasemos.
 
 window.addEventListener("click", e =>{
-	if(e.target.matches("td")){
-		console.log("Hiciste Click en un td.");
-	}else{
-        console.log("Hiciste Click fuera de un td.");
-    }
+```typescript
+if(e.target.matches("td")){
+	console.log("Hiciste Click en un td.");
+}else{
+    console.log("Hiciste Click fuera de un td.");
+}
+```
 });
 
 De esta forma, estamos usando un sólo manejador de click. Es directamente el manejador de eventos de window. Demos click donde demos, se dispara el evento. Y dependiendo de lo que 'matchee', vamos a hacer algo o no.

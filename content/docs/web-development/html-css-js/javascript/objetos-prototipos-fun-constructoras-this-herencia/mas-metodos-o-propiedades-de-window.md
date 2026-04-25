@@ -1,15 +1,17 @@
 ---
 title: "Más métodos o propiedades de Window"
+description: "Como dijimos antes, window es el scope global en JavaScript, y también es un objeto. Y es el objeto contenedor de todo en JavaScript. Por ejemplo, window contie..."
 ---
 
-> Objeto Window
+
+## Objeto Window
 
 - Como dijimos antes, window es el scope global en JavaScript, y también es un objeto. Y es el objeto contenedor de todo en JavaScript. Por ejemplo, window contiene al objeto console.
 
 - En este apunte, vamos a ver más métodos o utilidades de window:
 
 
->> Ventanas, popups y diálogos
+### Ventanas, popups y diálogos
  
 - open(url, name, specs) → Abre una nueva ventana o pestaña.
 - close() → Cierra la ventana del navegador que fue abierta mediante JavaScript (por ejemplo, con window.open()).
@@ -20,7 +22,7 @@ title: "Más métodos o propiedades de Window"
 - print() → Abre el cuadro de diálogo Imprimir para imprimir el documento actual.
 
 
->> Navegador / Pantalla
+### Navegador / Pantalla
 
 - window.navigator → Info. del navegador (userAgent, plataforma, etc.).
 - window.screen → Info. de la pantalla (ancho, alto, etc.).
@@ -28,14 +30,14 @@ title: "Más métodos o propiedades de Window"
 - window.document → El DOM del sitio web.
 
 
->> Tamaño de la ventana
+### Tamaño de la ventana
 
 - window.innerWidth / window.innerHeight → Tamaño interno (sin barra de herramientas).
 - window.outerWidth / window.outerHeight → Tamaño total de la ventana.
 - window.scrollX / window.scrollY → Posición del scroll en el eje X e Y.
 - minimize() → Minimiza la ventana.
 
->> Navegación y redirección
+### Navegación y redirección
 
 - window.location.href → Ver o cambiar la URL.
 - window.location.assign(url) → Ir a otra URL.
@@ -43,19 +45,19 @@ title: "Más métodos o propiedades de Window"
 - window.history.back() / .forward() / .go(n) → Navegación en el historial.
 
 
->> Scroll y posición
+### Scroll y posición
 
 - window.scrollTo(x, y) / scrollBy(dx, dy) → Mueve el scroll.
-- window.scroll({ top: 0, behavior: "smooth" }) → Scroll suave al top.
+- **window.scroll({ top**: 0, behavior: "smooth" }) → Scroll suave al top.
 
 
->> Eventos y ejecución
+### Eventos y ejecución
 
 - window.addEventListener(event, handler) → Escucha eventos en la ventana.
 - window.removeEventListener(...) → Deja de escuchar.
 
 
->> Locación
+### Locación
 
 - window.location.href → Devuelve el href (URL) de la página actual.
 - window.location.hostname → Devuelve el nombre de dominio del servidor web.

@@ -1,8 +1,10 @@
 ---
 title: "Resumen de las novedades de Angular 20"
+description: "Llegó Angular 20"
 ---
 
-> Llegó Angular 20
+
+## Llegó Angular 20
 
 - El 29 de mayo de 2025, Angular lanzó su versión 20. Vamos a ver sus novedades:
 
@@ -19,16 +21,16 @@ title: "Resumen de las novedades de Angular 20"
 - Mejoras en el renderizado del lado del servidor con la estabilización de la hidratación incremental, permitiendo que los componentes se hidraten según sea necesario, mejorando los tiempos de carga y la experiencia del usuario. Esto también ya lo veníamos viendo desde antes, ahora es estable.
 
 5. Cambios en Angular CLI y Guía de Estilos
-- Nombres de Archivos Simplificados: Por defecto, los archivos generados ya no incluyen sufijos como .component.ts, adoptando nombres más concisos como user.ts.
+- **Nombres de Archivos Simplificados**: Por defecto, los archivos generados ya no incluyen sufijos como .component.ts, adoptando nombres más concisos como user.ts.
 
-- Configuración Simplificada: angular.json y tsconfig.json fueron simplificados para reflejar prácticas modernas de desarrollo.
+- **Configuración Simplificada**: angular.json y tsconfig.json fueron simplificados para reflejar prácticas modernas de desarrollo.
 
-- Compatibilidad con Browserslist: Se actualiza la configuración para apuntar a navegadores lanzados en los últimos 30 meses, alineándose con el estándar "Baseline".
+- **Compatibilidad con Browserslist**: Se actualiza la configuración para apuntar a navegadores lanzados en los últimos 30 meses, alineándose con el estándar "Baseline".
 
 6. Mejoras en Testing
-- Compilación Ahead-of-Time (AOT) para Tests: Ahora es posible ejecutar pruebas utilizando AOT, lo que mejora la consistencia y el rendimiento de las pruebas.
+- **Compilación Ahead-of-Time (AOT) para Tests**: Ahora es posible ejecutar pruebas utilizando AOT, lo que mejora la consistencia y el rendimiento de las pruebas.
 
-- Deprecación de Karma: Se introduce un nuevo runner de pruebas más rápido, reemplazando a Karma como la opción predeterminada.
+- **Deprecación de Karma**: Se introduce un nuevo runner de pruebas más rápido, reemplazando a Karma como la opción predeterminada.
 
 7. Deprecación de directivas
 - Las directivas @NgIf, @NgSwitch y @NgFor, van en camino a deprecarse para ser reemplazadas por Control Flow Syntax.

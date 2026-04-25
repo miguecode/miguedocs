@@ -1,6 +1,8 @@
 ---
 title: "Comandos de usuarios (Linux)"
+description: "Pasando en limpio, cuando llegamos a la parte de crear usuarios y grupos, tenemos que codear lo siguiente:"
 ---
+
 
 Pasando en limpio, cuando llegamos a la parte de crear usuarios y grupos, tenemos que codear lo siguiente:
 
@@ -23,7 +25,7 @@ sudo passwd NombreDeUser123
 
 *** DARLE PERMISOS SUDO A LOS USUARIOS ***
 sudo visudo
-- Editar el User privilege specification:
+- **Editar el User privilege specification**: 
 root ALL=(ALL:ALL) ALL
 NombreDeUser123ALL=(ALL:ALL) ALL   //Agregar esto con cada usuario
 
@@ -41,12 +43,14 @@ Leé bien la consigna. Generalmente te pide montar un lvm con un usuario y otro 
 
 Acá para saber bien la primer ruta es lo mismo que antes, tirá un sudo lvs para ver a cual lvm le corresponde cada grupo y listo. Tirás el grupo con el lvm que pide el ejercicio.
 
-sudo mount /dev/vg10G/lvm1   /home/NombreUsuario123/Disco01
-sudo mount /dev/vg6G/lvm2   /home/NombreUsuario123/Disco02
+| sudo mount /dev/vg10G/lvm1 | /home/NombreUsuario123/Disco01 |
+| --- | --- |
+| sudo mount /dev/vg6G/lvm2 | /home/NombreUsuario123/Disco02 |
 
 -- Aclaración --
-ls -l  //Ver los permisos
-ls -l archivo.txt  //Ver los permisos del archivo
+| ls -l | //Ver los permisos |
+| --- | --- |
+| ls -l archivo.txt | //Ver los permisos del archivo |
 
 Ya en el home (cd), creamos un archivo:
 echo ''hola!'' > saludar.txt

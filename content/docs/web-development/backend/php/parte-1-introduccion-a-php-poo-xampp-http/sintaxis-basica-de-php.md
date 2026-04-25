@@ -1,6 +1,8 @@
 ---
 title: "Sintaxis básica de PHP"
+description: "Sintaxis básica del lenguaje PHP"
 ---
+
 
 Sintaxis básica del lenguaje PHP
 La extensión del archivo fuente debe ser .php, es decir, vamos a trabajar con archivos .php.
@@ -10,7 +12,9 @@ Todo código va entre etiquetas de apertura y cierre. Todo lo que esté fuera de
 ?>        Etiqueta de cierre (no es obligatoria)
 
 <?php
-	echo "Hola Mundo";
+```typescript
+echo "Hola Mundo";
+```
 ?>
 
 'echo' devuelve el string que le pasemos. 
@@ -61,14 +65,16 @@ echo $nombre . " " . $apellido;
 
 - No hay que hacer operaciones aritméticas en los echo. Es decir: echo 2+4;
 - El \n sólo sirve en la consola. No en la página web del navegador.
-- Para que funcione el breakline en el navegador, hay que usar " <br/> "
+- Para que funcione el breakline en el navegador, hay que usar " `<br/>` "
 
 
 Funciones n PHP
 Los nombres no son case-sensitive. Las funciones pueden recibir parámetros, retornar valores, y los parámetros pueden tener valores por default. Obviamente se leen de izquierda a derecha.
 
 function NombreFuncion() {    
-	// Código
+```typescript
+// Código
+```
 }
 
 Arrays en PHP

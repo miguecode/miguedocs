@@ -1,6 +1,8 @@
 ---
 title: "API REST, Framework Slim"
+description: "REST: Representational State Transfer"
 ---
+
 
 API REST
 

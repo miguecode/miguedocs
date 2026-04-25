@@ -1,6 +1,8 @@
 ---
 title: "Normalización y sus 3 formas"
+description: "En toda esta segunda parte vamos a ver el DISEÑO de una Base de Datos."
 ---
+
 
 En toda esta segunda parte vamos a ver el DISEÑO de una Base de Datos.
 

@@ -1,6 +1,8 @@
 ---
 title: "Todo sobre XAMPP"
+description: "La 'X' significa que es multiplataforma (es decir, para cualquier SO)."
 ---
+
 
 - XAMPP -
 La 'X' significa que es multiplataforma (es decir, para cualquier SO).
@@ -26,7 +28,9 @@ Dentro de htdocs vamos a hacer una carpeta llamada Clase01. Y dentro de ella, un
 Dentro del index.php, vamos a escribir:
 
 <?php
-	echo "Hola Mundo";
+```typescript
+echo "Hola Mundo";
+```
 ?>
 
 Para ver esto reflejado en el navegador tenemos que escribir esto en la URL:

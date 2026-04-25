@@ -1,11 +1,15 @@
 ---
 title: "Colores, Fuentes y Herencia"
+description: "'green' es una palabra clave. Existen más, para usar colores estándar. Esta es la forma más rápida e intuitiva de indicar colores, pero también es la más limita..."
 ---
 
-> Colores 
+
+## Colores 
 
 h1 {
-	color: green;
+```typescript
+color: green;
+```
 }
 
 - "green" es una palabra clave. Existen más, para usar colores estándar. Esta es la forma más rápida e intuitiva de indicar colores, pero también es la más limitada.
@@ -16,7 +20,7 @@ h1 {
 
 - Hoy en día, rgba sigue funcionando perfectamente, pero no es la recomendable, ya que ahora hay una nueva sintaxis para rgb, que hace innecesario usar rgba.
 
-- Esa nueva sintaxis es: rgb(255 255 255 / 0.5).  (red green blue / alpha).
+- **Esa nueva sintaxis es**: rgb(255 255 255 / 0.5).  (red green blue / alpha).
 
 - Otra opción, y muy usada, es la de los hexadecimales (#ff34ab). 
 
@@ -25,14 +29,14 @@ h1 {
 - Los hexadecimales se pueden escribir con 3, 6 u 8 dígitos: Lo más común es con 6. Si lo hacemos con 8, esos dos dígitos extra se van a referir a la opacidad. Si usamos sólo 3 dígitos, es como si estuviesemos usando 6 pero resumido: #f3a sería: #ff33aa. #1e2 sería: #11ee22.
 
 
->> Otras opciones
+### Otras opciones
 
 - Otra opción es hsl(60, 0.5, 0.3). Modifica la luminosidad y brillo.
 
 - Una opción todavía más moderna y potente es oklch(348 0.8 0.4 / 0.5). Es un modelo de color avanzado que representa colores con más presición en pantallas modernas. Es la medida de colores con la gama más grande de todas. Por ende, la que más variedad tiene. Pero eso no necesariamente significa que sea la mejor o que haya que usarla obligatoriamente. Pero es bueno conocerla.
 
 
->> Current Color
+### Current Color
 
 - El current color (color actual en español) es un valor de CSS.
 
@@ -42,28 +46,30 @@ h1 {
 
 
 
-> Fuentes
+## Fuentes
 
-- La propiedad para las fuentes es: "font-family".
+- **La propiedad para las fuentes es**: "font-family".
 
 body {
-	font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, 'Open Sans', 'Helvetica Neue',
+```typescript
+font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, 'Open Sans', 'Helvetica Neue',
+```
 }
 
 - Hay un concepto importante que se llama "fallback", significa que cuando ponemos una fuente, y después con ',' le ponemos otra, sería como su 'Plan B'. Es decir que, si no encuentra la primera, busca la segunda y la usa. Y si tampoco la encuentra, buscará una tercera y así consecutivamente. Eso es un fallback. Y sirve para tener más seguridad de que, si algo que queremos aplicar no funciona, apliquemos otra cosa en su reemplazo.
 
-- Varias de estas fuentes comunes tienen un por qué:
+- **Varias de estas fuentes comunes tienen un por qué**: 
 
-- system-ui: Usa la fuente del sistema operativo.
-- -apple-system: Específico para macOS/iOS.
-- 'Segoe UI': Windows.
-- Roboto: Android, etc.
+- **system-ui**: Usa la fuente del sistema operativo.
+- **-apple-system**: Específico para macOS/iOS.
+- **'Segoe UI'**: Windows.
+- **Roboto**: Android, etc.
 
 
 - 'Font-family' es una propiedad que SE HEREDA. Esto quiere decir que todos los elementos hijo van a tener ese valor en la propiedad font-family, que tenga su elemento padre. Por eso, lo lógico siempre es ponerle "font-family" a nuestra etiqueta body. Entonces, todos los elementos dentro de body van a heredar la misma fuente que tiene body. Pero ojo, si no lo hacemos, tenemos que entender que "body" ya tiene su propio valor de font-family por defecto.
 
 
->> La forma óptima de usar Fuentes
+### La forma óptima de usar Fuentes
 
 - Google Fonts es una página para descargar fuentes gratis. Para usarlas, podemos directamente descargarlas eincluirlass de forma local en nuestro proyecto, en una carpeta llamada por ejemplo 'fonts'. Esto es una buena práctica porque tenemos la fuente de forma directa en nuestro proyecto, y no hay que andar haciendo lecturas extra. Aunque puede ser tedioso el proceso de hacerlo.
 
@@ -75,7 +81,7 @@ npm install @fontsource/inter
 
 - Esto descargará la fuente en node_modules/@fontsource/inter.
 
-- Y para usarla, la importamos:
+- **Y para usarla, la importamos**: 
 
 @import '@fontsource/inter';
 
@@ -83,29 +89,33 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-- Eso sería todo. Pero ojo: esto no es algo obligatorio. Descargar la fuente de forma manual puede servir para tener una fuente más autónoma también.
+- **Eso sería todo. Pero ojo**: esto no es algo obligatorio. Descargar la fuente de forma manual puede servir para tener una fuente más autónoma también.
 
 
->> @font-face
+### @font-face
 
 - Con @font-face estamos definiendo una fuente personalizada dentro de nuestro proyecto. En lugar de depender de fuentes del sistema o de Google Fonts mediante una CDN, podemos almacenar los archivos de fuente (.ttf, .otf, .woff, .woff2) (siendo .woff2 la más recomendada hoy en día) de manera local en nuestra carpeta:
 
 @font-face {
-	font-family: 'New Rocker';  /* Nombre que le damos a la fuente */
-	src: url('./fonts/NewRocker-Regular.woff2') format('woff2'),
-	      url('./fonts/NewRocker-Regular.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
+```typescript
+font-family: 'New Rocker';  /* Nombre que le damos a la fuente */
+src: url('./fonts/NewRocker-Regular.woff2') format('woff2'),
+      url('./fonts/NewRocker-Regular.woff') format('woff');
+font-weight: normal;
+font-style: normal;
+```
   }
 
 - Escribiendo eso adentro del CSS, tenemos una nueva fuente 'New Rocker' disponible, para usarla así:
 
 body {
-	font-family: 'New Rocker', sans-serif;
+```typescript
+font-family: 'New Rocker', sans-serif;
+```
 }
 
 
->> Herencia
+### Herencia
 
 - Vamos a repetir lo que dijimos antes con font-family:
 
@@ -113,23 +123,29 @@ body {
 
 - No todas las propiedades se heredan. Por ejemplo, "border" es una propiedad que NO se hereda.
 
-- Ahora, supongamos que tenemos esto:
+- **Ahora, supongamos que tenemos esto**: 
 
 <div class="container">
-	Este es el contenedor.
-	<div class="child">
-		Hola Mundo
-	</div>
+```html
+Este es el contenedor.
+<div class="child">
+	Hola Mundo
 </div>
+```
+`</div>`
 
 .container {
-	color: #09f;
-	font-size: 32px;
-	border: 3px solid #09f;
+```typescript
+color: #09f;
+font-size: 32px;
+border: 3px solid #09f;
+```
 }
 
 .child {
-	border: inherit;
+```typescript
+border: inherit;
+```
 }
 
 - Por defecto, la propiedad "border" tiene un valor "initial" respecto a la herencia. Esto hace que NO herede el valor de su elemento padre. O sea, div con clase child no va a heredar los estilos de borde que tiene el div de clase container.

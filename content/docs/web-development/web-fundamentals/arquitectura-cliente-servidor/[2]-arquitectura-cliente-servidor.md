@@ -1,8 +1,9 @@
 ---
-title: "Arquitectura Cliente-Servidor 2"
+title: "[2] Arquitectura Cliente-Servidor"
+description: "Por todo Internet, hay estratégicamente colocados distintos servidores DNS (Domain Name Server)."
 ---
 
-> DNS
+## DNS
 
 - Por todo Internet, hay estratégicamente colocados distintos servidores DNS (Domain Name Server).
 
@@ -17,7 +18,7 @@ title: "Arquitectura Cliente-Servidor 2"
 - En líneas generales, todo esto es la arquitectura Cliente-Servidor.
 
 
->> Ejemplo práctico de resolución de un dominio
+### Ejemplo práctico de resolución de un dominio
 
 - Este es el paso a paso de lo que pasa cuando escribimos google.com en la barra del navegador:
 
@@ -27,26 +28,25 @@ title: "Arquitectura Cliente-Servidor 2"
 - Una vez obtenida, la guarda en caché para futuras solicitudes.
 
 
->> Explicación del mozo en el restaurante
+### Explicación del mozo en el restaurante
 
 - Un Servidor sería como el mozo de un restaurante, el mozo generalmente viene y nos entrega un menú. Ese menú seria la interface entre el restaurante (Servidor) y nosotros (Cliente). Nosotros, a partir de ese menú, vamos a elegir lo que queremos y se lo vamos a solicitar al mozo.
 
 - Entonces, sin mediar palabra, el Servidor nos entrega un menú. Que en este caso, va a ser un index.html. Es lo que nos da de forma predeterminada aunque todavía no le hayamos pedido nada en específico. Index.html es el archivo que por defecto nos entrega un Servidor. En ese index (índice) vamos a ver las opciones que podemos elegir.
  
- - Aclaración: el index.html no siempre es obligatorio, depende de la configuración del servidor.
+ - **Aclaración**: el index.html no siempre es obligatorio, depende de la configuración del servidor.
  
 - En el caso del navegador, el cual es un programa, tiene un montón de módulos dentro. Así como el IDE tiene un editor de código, un compilador, un procesador, es como que es un programa el cual dentro de él, tiene corriendo otros varios programitas. Uno de ellos es un Intérprete de HTML, el cual, se encarga de interpretar el HTML.
 
 - Un módulo es código escrito en un archivo aparte, que va a ser usado por el programa principal para poder aprovecharse de sus funciones, utilidades, etc. Es como si fuera una pequeña biblioteca de algo específico que vamos a querer usar para reutilizar código, organizar mejor las carpetas, etc.
 
-- Los navegadores modernos tienen módulos como:
+- **Los navegadores modernos tienen módulos como**: 
 
-	- Motor de renderizado (Ej: Blink en Chrome, Gecko en Firefox).
-	- Motor de JavaScript (Ej: V8 en Chrome, SpiderMonkey en Firefox).
-	- Gestor de red (Para manejar las peticiones HTTP).
+- **Motor de renderizado (Ej**: Blink en Chrome, Gecko en Firefox).
+- **Motor de JavaScript (Ej**: V8 en Chrome, SpiderMonkey en Firefox).
+- Gestor de red (Para manejar las peticiones HTTP).
 
-
->> Lo que pasa cuando desarrollamos y levantamos un servidor
+### Lo que pasa cuando desarrollamos y levantamos un servidor
 
 - Nosotros normalmente para publicar una página web, alquilamos un espacio que tiene una IP fija siempre conectada a internet, y es ahí a donde vamos a subir los archivos que desarrollemos. Estos archivos van a estar hosteados en esa máquina.
 

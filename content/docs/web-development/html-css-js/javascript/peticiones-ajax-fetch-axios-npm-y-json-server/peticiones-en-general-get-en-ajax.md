@@ -1,8 +1,10 @@
 ---
 title: "Peticiones en general. GET en AJAX"
+description: "Para el ejemplo de todo esto, vamos a crearnos un proyecto con 2 carpetas: client y server. En server, vamos a levantar un JSON server usando un archivo 'db.jso..."
 ---
 
-> Peticiones
+
+## Peticiones
 
 - Para el ejemplo de todo esto, vamos a crearnos un proyecto con 2 carpetas: client y server. En server, vamos a levantar un JSON server usando un archivo "db.json" como fuente de datos. Este archivo va dentro de la carpeta server. Y en client, vamos a hacer un HTML plano sin más, y con distintos botones para hacer pruebas de peticiones.
 
@@ -11,7 +13,7 @@ title: "Peticiones en general. GET en AJAX"
 - Para ello, vamos a ver peticiones por AJAX, que es la tecnología nativa para hacer peticiones (usa callbacks). También vamos a ver el API FETCH, que también es nativo de los navegadores y también sirve para hacer peticiones asíncronas (usa promesas). Y también vamos a utilizar una biblioteca de terceros llamada AXIOS, la cual utiliza callbacks y devuelve promesas.
 
 
-> Ajax
+## Ajax
 
 - Ajax es un acrónimo que significa JavaScrpt asíncrono y XML. Ajax es una tecnología de programación que se utiliza para crear páginas web más interactivas. Con Ajax, podemos crear páginas que actualicen su contenido comunicándose directamente con el servidor, todo sin necesidad de que la página se vuelva a cargar. Esto hace referencia a lo que es SPA.
 
@@ -26,12 +28,14 @@ title: "Peticiones en general. GET en AJAX"
 
 - Entonces, así se inventó Ajax y el "prevent default" para suprimir el comportamiento por default del submit del formulario. Esa persona usó "xhr". Es una variable de tipo XMLHttpRequest. Es un objeto petición.
 
-	const xhr = new XMLHttpRequest();
-
+```typescript
+const xhr = new XMLHttpRequest();
+```
 - Este objeto "xhr" de tipo XMLHttpRequest es el que vamos a utilizar para realizar la petición. Vamos a usar callbacks para manejar la asincronía. 
 
-	console.log(xhr.readyState);
-	
+```typescript
+console.log(xhr.readyState);
+```
 - Así, podemos ver el estado de la petición, la cual puede tener distintos estados:
 
 - Cuando se envía una petición, el readyState cambia 5 veces, del 0 al 4:
@@ -45,65 +49,70 @@ title: "Peticiones en general. GET en AJAX"
 
 - Cada vez que cambie el readyState, nosotros queremos hacer algo. Y ese readyState, nos importa cuando está en el paso 4 (Done). Lo vamos a hacer así:
 
-	xhr.addEventListener("readystatechange", () => {
-		if (xhr.readyState == 4) {
-			// Si está en DONE, hago algo
-		} else {
-			// Si no está en DONE, hago algo
-		}
-	});
-
+```typescript
+xhr.addEventListener("readystatechange", () => {
+	if (xhr.readyState == 4) {
+		// Si está en DONE, hago algo
+	} else {
+		// Si no está en DONE, hago algo
+	}
+});
+```
 - El evento "readystatechange" escucha a la petición "xhr". El evento se dispara cada vez que cambia de estado de la petición, es decir, su readyState. Recordemos que "DONE" no necesariamente significa que la petición tuvo un estado exitoso. Significa que la petición ya tiene respuesta, sea positiva o negativa. Por eso, es ese el momento en el que tenemos que actuar.
 
 - Para comprobar que funciona el evento, podemos hacer esto:
 
-	xhr.onreadystatechange.onclick = () => { console.log("Cambió el estado"); }
-	
+```typescript
+xhr.onreadystatechange.onclick = () => { console.log("Cambió el estado"); }
+```
+## Las peticiones tienen distintos códigos de respuesta numéricos, donde cada uno tiene su significado. Una página para aprenderlos con gatitos es http.cat. Pero en resumen, los podemos agrupar así:
 
-> Las peticiones tienen distintos códigos de respuesta numéricos, donde cada uno tiene su significado. Una página para aprenderlos con gatitos es http.cat. Pero en resumen, los podemos agrupar así:
-
-	100-199: estados informativos
-	200-299: estados exitosos
-	300-399: estados de redirecciones
-	400-499: estados de errores del lado del cliente
-	500-599: estados de errores del lado del servidor
-
+```typescript
+100-199: estados informativos
+200-299: estados exitosos
+300-399: estados de redirecciones
+400-499: estados de errores del lado del cliente
+500-599: estados de errores del lado del servidor
+```
 - El "200" es el más común, es el OK. Si hacemos un POST nos debería devolver un "201", si hacemos un DELETE debería devolver un "204", etc. Una redirección sería que, por ejemplo, nosotros entremos a www.google.com, y en el proceso, nos mande a www.google.com.ar porque se da cuenta de que estamos en Argentina. El "400" es una petición mal armada, "401" que no tenemos acceso, el "404" (el más famoso) es cuando estamos solicitando un recurso que no existe en el servidor.
 
 - Obviamente, a nosotros nos interesa que nuestra API nos responda siempre desde el 200 al 299.
 
-- Por eso, vamos a mejorar más la lógica del evento:
+- **Por eso, vamos a mejorar más la lógica del evento**: 
 
-	xhr.addEventListener("readystatechange", () => {
-		if (xhr.readyState == 4) {
-			if (xhr.status >= 200 && xhr.status <= 299) {
-				// Si el resultado es exitoso, hago algo
-				
-				const data = JSON.parse(xhr.responseText);
-				console.log(data);
-				// Si me manda la respuesta en tipo JSON, hay que usar "responseText".
-			} else {
-				// Si el resultado no es exitoso, hago algo
-				console.error("Error: ${xhr.status} - ${xhr.statusText}");
-			}
+```typescript
+xhr.addEventListener("readystatechange", () => {
+	if (xhr.readyState == 4) {
+		if (xhr.status >= 200 && xhr.status <= 299) {
+			// Si el resultado es exitoso, hago algo
+
+			const data = JSON.parse(xhr.responseText);
+			console.log(data);
+			// Si me manda la respuesta en tipo JSON, hay que usar "responseText".
 		} else {
-			// Si no llegó a DONE, hago algo
+			// Si el resultado no es exitoso, hago algo
+			console.error("Error: ${xhr.status} - ${xhr.statusText}");
 		}
-	});
-	
+	} else {
+		// Si no llegó a DONE, hago algo
+	}
+});
+```
 - En este caso, hacemos lo mismo que antes, pero le agregamos una condición más. Si el readyState de la petición es 4, es decir que está en DONE, a partir de ahí lo que hacemos es actuar en base a la respuesta de la petición. Si es un estado entre el 200 y el 299, sabemos que es una respuesta exitosa. Entonces, obtenemos el contenido de la respuesta accediendo a xhr.responseText (ya que la respuesta es en tipo JSON). Si no está entre el 200 y el 299, significa que falló la petición, y por ende, mostramos el mensaje del error.
 
 
 
-> Métodos open y send
+## Métodos open y send
 
-	xhr.open([método de envío], [destino]);
-	xhr.open("GET", URL); 
-
+```typescript
+xhr.open([método de envío], [destino]);
+xhr.open("GET", URL); 
+```
 - Con el método "open", abrimos la petición. Esto sirve para indicar el verbo con el que la vamos a realizar, y su destino (la URL http://localhost:3000/personas). 
 
-	xhr.send();
-	
+```typescript
+xhr.send();
+```
 - Finalmente, con el método "send" enviamos la petición. Recordemos que "xhr" es nuestro objeto petición.
 
 - Y eso es todo. Para hacer la prueba de todo esto, está el archivo en esta carpeta. Aún así, la explicación sería crear un botón con HTML, y ponerle un evento clic. Cuando le hacemos clic, tenemos que ejecutar una función que nosotros creemos, llamada -en este caso- getPersonas. Y esa función lo que tiene que hacer es crear la petición, enviarla, y manejar su respuesta. Es decir, lo que vimos recién. 
@@ -111,16 +120,17 @@ title: "Peticiones en general. GET en AJAX"
 - Además, podemos agregar lógica DOM para manejar la imagen "loader" que habíamos dicho al principio que ibamos a agregar. Entonces, lo que tenemos que hacer es que la imagen (un gif de carga), se MUESTRE durante el tiempo que tarda en ejecutarse la petición (es decir, los 2.5 segundos de latencia con el que levantamos el servidor). Y que cuando ya haya respuesta, el gif desaparezca.
 
 
->> GET específico
+### GET específico
 
 - Así como con GET podemos traernos todas las personas, también podemos traernos una sola. Para esto, vamos a crear un nuevo botón, y una nueva función llamada getPersona(id). Lógicamente, la persona específica que vamos a traer va a ser la del ID que le pasamos a la función.
 
 - La lógica de la función es la misma que getPersonas(), pero cambiando lo que le pasamos al método open:
 
-	xhr.open("GET", URL + "/" + id);
-	
+```typescript
+xhr.open("GET", URL + "/" + id);
+```
 - El open se hace así, pasando la URL a la que queremos apuntar. Eso que escribimos ahí, se traduciría como:
-	
-	http://localhost:3000/personas/id
-	
+```typescript
+http://localhost:3000/personas/id
+```
 - Después, todo se hace igual, con el xhr.send(), y el evento escuchador.

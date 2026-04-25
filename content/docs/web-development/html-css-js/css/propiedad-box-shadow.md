@@ -1,14 +1,16 @@
 ---
 title: "Propiedad Box-Shadow"
+description: "La propiedad box-shadow se creó para añadir efectos de sombra a nuestra caja/elemento. En esencia, lo que hace es crear un clon de de la caja respetando su box-..."
 ---
 
-> Box Shadow
+
+## Box Shadow
 
 - La propiedad box-shadow se creó para añadir efectos de sombra a nuestra caja/elemento. En esencia, lo que hace es crear un clon de de la caja respetando su box-model (height, width y border-radius).
 
 - La sintaxis de box-shadow se puede escribir de distintas formas, ya que acepta distintos valores. Pero hay dos valores que son obligatorios el desplazamiento en el eje x y en eje y. 
 
-- Los valores posibles son:
+- **Los valores posibles son**: 
 
 inset - Determina que la sombra será interior. Por defecto, inset está desactivado
 offset-x - Desplazamiento en el eje x (obligatorio)
@@ -37,19 +39,21 @@ box-shadow: offset-x offset-y [blur-radius] [spread-radius] [color] [inset];
 - El inset también podría ir al principio de todo.
 
 
->> Simular borde
+### Simular borde
 
 - Como el valor por defecto de blur-radius es 0, la sombra (el clon) se va a ver sólido. Por ende, se podría ver como un borde. Esto es usado para tener un borde extra, o para tener múltiples bordes.
 
 
->> Más de una sombra
+### Más de una sombra
 
 - Nosotros podemos poner más de una sombra, usando la misma propiedad. Simplemente, lo separamos con comas , así:
 
 div {
-    box-shadow: 5px 5px 0 red,
-                10px 10px 5px blue,
-                15px 15px 10px yellow;
+```typescript
+box-shadow: 5px 5px 0 red,
+            10px 10px 5px blue,
+            15px 15px 10px yellow;
+```
 }
 
 - La primera sombra es sólida (0px de blur).

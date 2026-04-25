@@ -1,16 +1,18 @@
 ---
 title: "Metatags (Etiquetas Meta)"
+description: "**Ahora sí, veamos ejemplos de metatags**:"
 ---
 
-> Metatags
 
-- Como dijimos antes, dentro de la etiqueta <head>, nosotros vamos a colocar, entre otras cosas, metadatos. Es decir, información de nuestro sitio. Todo lo que va en head es lo que el usuario no ve: Metadatos, configuraciones y llamadas a otros archivos o recursos (como archivos CSS o JS). 
+## Metatags
 
-- Estos metadatos describen ciertos aspectos de nuestro sitio, y se escriben con la etiqueta <meta>. Son una pieza principal para tener un buen SEO en nuestra página. Como dijimos antes, el SEO (Search Engine Optimization) hace referencia al posicionamiento de nuestro sitio en los motores de búsqueda. Si tenemos un buen posicionamiento, cuando alguien haga una búsqueda en un explorador, nuestro sitio va a aparecerle más arriba, y por ende, vamos a tener más visitas.
+- Como dijimos antes, dentro de la etiqueta `<head>`, nosotros vamos a colocar, entre otras cosas, metadatos. Es decir, información de nuestro sitio. Todo lo que va en head es lo que el usuario no ve: Metadatos, configuraciones y llamadas a otros archivos o recursos (como archivos CSS o JS). 
+
+- Estos metadatos describen ciertos aspectos de nuestro sitio, y se escriben con la etiqueta `<meta>`. Son una pieza principal para tener un buen SEO en nuestra página. Como dijimos antes, el SEO (Search Engine Optimization) hace referencia al posicionamiento de nuestro sitio en los motores de búsqueda. Si tenemos un buen posicionamiento, cuando alguien haga una búsqueda en un explorador, nuestro sitio va a aparecerle más arriba, y por ende, vamos a tener más visitas.
 
 - Antes de empezar hay que decir que <html lang="es">, ese atributo "lang", si bien no es una metatag, también influye en el SEO y la accesibilidad.
 
-- Ahora sí, veamos ejemplos de metatags:
+- **Ahora sí, veamos ejemplos de metatags**: 
 
 1.	<meta charset="UTF-8">
 
@@ -21,27 +23,27 @@ title: "Metatags (Etiquetas Meta)"
 
 - Hace referencia al tamaño de la pantalla. Al indicarle "width=device-width", estamos diciéndole que el ancho de nuestra página sea igual al ancho del dispositivo. Es importante ponerlo siempre. Y lo de "initial-scale=1.0" hace referencia al zoom de la página. Es necesario para que, cada vez que ingresemos a la página, el zoom esté adaptado a 100%, independientemente del dispositivo que estemos usando.
 
-3.	<title>Document</title>
+3.	`<title>`Document`</title>`
 
 - Indica cuál va a ser el título que veamos, por ejemplo, en la pestaña del navegador. 
 
 
->> Esas son las 3 metatags propias de la estructura básica de una página. A partir de ahora, vamos a ver que todas las demás etiquetas meta van a usarse con el atributo "name" (para indicar a qué metatag nos referimos) y el atributo "content" (su contenido), nada más.
+### Esas son las 3 metatags propias de la estructura básica de una página. A partir de ahora, vamos a ver que todas las demás etiquetas meta van a usarse con el atributo "name" (para indicar a qué metatag nos referimos) y el atributo "content" (su contenido), nada más.
 
 
-> Description
+## Description
 
 <meta name="description" content="Esta es la descripción de la página. Se recomienda que tenga aproximadamente 100 caracteres.">
 
-> Keywords
+## Keywords
 
 <meta name="keywords" content="palabras,clave,para,cuando,alguien,busque,en,internet">
 
-> Autor
+## Autor
 
 <meta name="author" content="Miguel Ángel Gil">
 
-> Robots (no se suelen usar)
+## Robots (no se suelen usar)
 
 <meta name="robots" content="noindex">
 <meta name="robots" content="nofollow">
@@ -57,14 +59,14 @@ title: "Metatags (Etiquetas Meta)"
 - Con noarchive le decimos a los motores de búsqueda que no puedan almacenar información de la página en la memoria caché.
 - Con noimageindex le decimos los motores de búsqueda no muestren imágenes de la página en los resultados de búsqueda. 
 
-- Podemos combinarlas como nosotros queramos, así: 
+- **Podemos combinarlas como nosotros queramos, así**: 
 
 <meta name="robots" content="noindex, nofollow, noimageindex">
 
 - Obviamente, estas etiquetas meta van totalmente en contra del SEO. Pero bueno, son cosas que podemos poner para que el navegador sepa qué hacer con nuestro sitio.
 
 
-> Open Graph metatags
+## Open Graph metatags
 
 - Estos metatags, cuyos name empiezan con el prefijo "OG:", hacen referencia a lo que se muestra cuando compartimos la URL de nuestra página. Por ejemplo, cuando pasamos el link de una página por mensaje de WhatsApp, o cuando twitteamos el link de una página, o cuando la publicamos por Facebook, o por LinkedIn, básicamente, cuando compartimos el enlace al sitio. 
 
@@ -80,21 +82,24 @@ title: "Metatags (Etiquetas Meta)"
 
 - Para ver una previsualización de esto, y así poder probar su funcionamiento, podemos ponernos a compartir la URL escribiéndolo en un tweet, o mejor, usar alguna de estas páginas:
 
-	https://www.opengraph.xyz/
-	https://www.metatags.io/
-
+```typescript
+https://www.opengraph.xyz/
+https://www.metatags.io/
+```
 - Esto va a mostrar cómo se va a ver nuestro enlace compartido en las redes sociales más comunes.
 
 
-> Theme color
+## Theme color
 
-	<meta name="theme-color" content="#ff6600">
-
+```typescript
+<meta name="theme-color" content="#ff6600">
+```
 - Algunos navegadores en dispositivos móviles permiten personalizar el color de la barra de búsqueda o de información. Con theme color, podemos elegir ese color.
 
 
-> Format-detection
+## Format-detection
 
-	<meta name="format-detection" content="telephone=no">
-
+```typescript
+<meta name="format-detection" content="telephone=no">
+```
 - Algunos navegadores como Safari convierten números en enlaces de teléfono automáticamente. Para evitarlo, usamos esa metatag.

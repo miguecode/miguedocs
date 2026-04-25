@@ -1,12 +1,16 @@
 ---
 title: "Archivos Multimedia (Video, Audio y Iframe)"
+description: "¡Tu navegador no soporta el video!"
 ---
 
-> Etiqueta <video>
+
+## Etiqueta `<video>`
 
 <video controls autoplay muted src="mivideo.mp4" poster="miniatura.jpg" alt="Video muy lindo">
-	¡Tu navegador no soporta el video!
-</video>
+```typescript
+¡Tu navegador no soporta el video!
+```
+`</video>`
 
 - El atributo "src" sirve para indicar qué video vamos a mostrar.
 
@@ -20,27 +24,29 @@ title: "Archivos Multimedia (Video, Audio y Iframe)"
 
 - El atributo "alt" (alternative), cumple la misma funcionalidad que en las imágenes. Se trata de dar una breve descripción de lo que es el elemento. Es importante para la accesibilidad.
 
-	<video src="videocorto.mp4" loop></video>
-
+```typescript
+<video src="videocorto.mp4" loop></video>
+```
 - El atributo "loop" hace que el video vuelva a reproducirse infinitamente cada vez que termina.
 
->> Etiqueta <track>
+### Etiqueta `<track>`
 
-	<video src="videocorto.mp4" loop>
-		<track src="captions.vtt" default kind="captions"
-		srclang="es" label="Español (Lationamérica)">
-	</video>
-
-- La etiqueta <track> nos permite poner subtítulos en el video. Tiene distintos atributos como "src" para indicar el archivo de subtítulos, "default", "kind", "srclang", "label", entre otros.
-
-
-> Etiqueta <audio>
-
-- Si bien podemos reproducir videos en modo de audio usando <audio>, no es lo ideal para nada. Si vamos a usar <audio>, hay que pasarle realmente un audio. Maneja atributos similares a <video>. No hay mucho más para analizar.
+```typescript
+<video src="videocorto.mp4" loop>
+	<track src="captions.vtt" default kind="captions"
+	srclang="es" label="Español (Lationamérica)">
+</video>
+```
+- La etiqueta `<track>` nos permite poner subtítulos en el video. Tiene distintos atributos como "src" para indicar el archivo de subtítulos, "default", "kind", "srclang", "label", entre otros.
 
 
-> Etiqueta <iframe>
+## Etiqueta `<audio>`
 
-- La etiqueta <iframe> sirve para insertar elementos de otro sitio web en el nuestro. Por ejemplo, un visor del mapa de Google Maps o un reproductor de un video en YouTube.
+- Si bien podemos reproducir videos en modo de audio usando `<audio>`, no es lo ideal para nada. Si vamos a usar `<audio>`, hay que pasarle realmente un audio. Maneja atributos similares a `<video>`. No hay mucho más para analizar.
+
+
+## Etiqueta `<iframe>`
+
+- La etiqueta `<iframe>` sirve para insertar elementos de otro sitio web en el nuestro. Por ejemplo, un visor del mapa de Google Maps o un reproductor de un video en YouTube.
  
-- ¿Cómo la usamos? Necesitamos el código que ofrece esa misma página web externa. Generalmente, la opción se muestra como "Insertar", dentro de las opciones de "Compartir". Cuando nosotros le damos a Compartir a algún elemento que encontremos en la web, cuando nos muestre las opciones del medio que queremos usar, podemos ver que -a veces- aparece la opción de "Insertar" o "Incorporar", o algún sinónimo. Esa es la opción que nos va a brindar el bloque de código que nosotros tenemos que copiar, y después pegar en nuestro propio archivo HTML. Es una etiqueta <iframe> con algunos atributos que nosotros mismos podemos configurar a nuestro gusto.
+- ¿Cómo la usamos? Necesitamos el código que ofrece esa misma página web externa. Generalmente, la opción se muestra como "Insertar", dentro de las opciones de "Compartir". Cuando nosotros le damos a Compartir a algún elemento que encontremos en la web, cuando nos muestre las opciones del medio que queremos usar, podemos ver que -a veces- aparece la opción de "Insertar" o "Incorporar", o algún sinónimo. Esa es la opción que nos va a brindar el bloque de código que nosotros tenemos que copiar, y después pegar en nuestro propio archivo HTML. Es una etiqueta `<iframe>` con algunos atributos que nosotros mismos podemos configurar a nuestro gusto.

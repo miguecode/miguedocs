@@ -1,6 +1,8 @@
 ---
 title: "Álgebra Relacional"
+description: "Álgebra Relacional"
 ---
+
 
 Álgebra Relacional
 
@@ -46,50 +48,60 @@ Esto es como el alias.
 
 Aclaraciones (Considerando primer tabla = X y la segunda tabla = Z).
 1) En la Unión el operador se llama UNION. Los repetidos se muestran una sola vez. Es conmutativa.
-	Expresión Algebraica:   X UNION Z
-
+```typescript
+Expresión Algebraica:   X UNION Z
+```
 2) En la intersección el operador se llama INTERSECT.
-	Expresión Algebraica:   X INTERSECT Z
-
+```typescript
+Expresión Algebraica:   X INTERSECT Z
+```
 3) En la diferencia el operador se llama MINUS. No es conmutativa: si la invierto, cambia el resultado. Esto se lee: "Lo que esté en X y que no esté en Z"
-	Expresión Algebraica:   X MINUS Z         (Que no sería lo mismo que Z MINUS X)
-
+```typescript
+Expresión Algebraica:   X MINUS Z         (Que no sería lo mismo que Z MINUS X)
+```
 4) En el producto cartesiano, el operador se llama TIMES.
-	Expresión Algebraica: X TIMES Z
-
-Aca se hace una tercer tabla que va a ser más larga obviamente, ya que se hace como si fuera una propiedad distributiva. Es decir, el primero de aca < con todos los de aca >, después, el segundo de aca < con todos los de aca >. Después, el tercero de aca < con todos los de aca >. Y así con todos.
+```typescript
+Expresión Algebraica: X TIMES Z
+```
+Aca se hace una tercer tabla que va a ser más larga obviamente, ya que se hace como si fuera una propiedad distributiva. Es decir, el primero de aca `< con todos los de aca >`, después, el segundo de aca `< con todos los de aca >`. Después, el tercero de aca `< con todos los de aca >`. Y así con todos.
 
 En esta operación, cuando lo pasamos a SQL no usamos TIMES. Hacemos esto:
 FROM TABLA1, TABLA2. Aca no usamos ninguna palabra reservada. Esto mismo es el producto car.
 
 5) En la restricción (o selección), el operador es WHERE, igual que cuando bajamos al motor.
-	Expresión Algebraica: PROVEEDORES WHERE LOCALIDAD = 'Capital';
-
+```typescript
+Expresión Algebraica: PROVEEDORES WHERE LOCALIDAD = 'Capital';
+```
 6) En la proyección pasa como en la restricción, no tiene un operador específico.
-	Expresión Algebraica: PROVEEDORES ¨[LOCALIDAD]
-					   o...  PROVEEDORES [LOCALIDAD, CLIENTES, ETC...]
+```typescript
+Expresión Algebraica: PROVEEDORES ¨[LOCALIDAD]
+				   o...  PROVEEDORES [LOCALIDAD, CLIENTES, ETC...]
+```
 Los [ ] indican proyección. Si hago PROVEEDORES [] o PROVEEDORES [*], proyecto TODO.
 
 DATO:
 Restricción y Proyección se pueden combinar.
 Ejemplo: Obtener los números de proveedores (proyección) que viven en Avellaneda (restricción).
 
-	Expresión Algebraica:
-	(PROVEEDORES WHERE LOCALIDAD = 'Avellaneda') [NUMERO];
-
-
+```typescript
+Expresión Algebraica:
+(PROVEEDORES WHERE LOCALIDAD = 'Avellaneda') [NUMERO];
+```
 7) 1. En la reunión natural (o JOIN) el operador es el JOIN. Es conmutativo. Es natural porque la condición es una igualdad ( = ).
 
-	Expresión Algebraica:
+```typescript
+Expresión Algebraica:
+```
 PROVEEDORES JOIN PRODUCTOS (que es lo mismo que: PRODUCTOS JOIN PROVEEDORES)
 
 2. En la reunión theta es como la natural, pero cuando la condición es DISTINTA de igualdad. O sea, no es un =, sino que es un > <, etc.
 
-	Expresión Algebraica:
-	PROVEEDORES RENAME LOCALIDAD AS PLOCALIDAD
-	
-	PROVEEDORES TIMES PRODUCTOS WHERE...
-	
+```typescript
+Expresión Algebraica:
+PROVEEDORES RENAME LOCALIDAD AS PLOCALIDAD
+
+PROVEEDORES TIMES PRODUCTOS WHERE...
+```
 Ahí lo que hicimos es hacer una expresión algebraica previa, y después la definitiva. Esto es válido.
 Se usó el RENAME, y en otra sentencia se usó el TIMES y el WHERE
 

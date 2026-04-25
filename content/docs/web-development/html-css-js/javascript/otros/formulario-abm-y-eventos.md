@@ -1,10 +1,12 @@
 ---
 title: "Formulario ABM y eventos"
+description: "Bien. Ahora vamos a hacer un formulario para una Alta Baja y Modificación de personas."
 ---
+
 
 Bien. Ahora vamos a hacer un formulario para una Alta Baja y Modificación de personas.
 
-Creamos un <form> con algunas entradas. Todo muy, muy básico.
+Creamos un `<form>` con algunas entradas. Todo muy, muy básico.
 A la tabla la movimos a un 'div' la cual va a estar en una sección. Y en otra sección, va a estar el formulario.
 
 Al formulario le vamos a agregar un escuchador de evento 'submit' así:
@@ -12,8 +14,10 @@ Al formulario le vamos a agregar un escuchador de evento 'submit' así:
 const $formulario = document.forms[0];  // document.forms es un array que contiene a todos los formularios existentes en el HTML
 
 $formulario.addEventListener("submit", (e)=>{
-    e.preventDefault();   //Elimino el comportamiento por defecto del evento
-    console.log("Enviando...");
+```typescript
+e.preventDefault();   //Elimino el comportamiento por defecto del evento
+console.log("Enviando...");
+```
 });
 
 // 'submit' es el nombre del evento y 'e' es el evento recibido
@@ -38,12 +42,14 @@ Ahora limpiamos el LocalStorage para que quede vacío.
 
 Vamos a crear un archivo 'persona.js' el cual va a tener la función constructora de Persona.
 export function Persona(id, nombre, apellido, email, genero, edad){
-    this.id = id;
-    this.nombre = nombre;
-    this.apellido = apellido;
-    this.email = email;
-    this.genero = genero;
-    this.edad = edad;
+```typescript
+this.id = id;
+this.nombre = nombre;
+this.apellido = apellido;
+this.email = email;
+this.genero = genero;
+this.edad = edad;
+```
 }
 
 Esta hecha de forma muy básica. Baus nos dice que debería tener getter, setter, propiedades, lo que sea. Podría haber herencia, etc. Pero esto es para hacerlo rápido.
@@ -52,35 +58,45 @@ Importamos a la función constructora:
 import { Persona } from "./persona.js";
 
 $formulario.addEventListener("submit", (e)=>{
-	...
-    const {txtId, txtNombre, txtApellido, txtEmail, txtGenero, txtEdad} = $formulario;
-    //$formulario contiene los 'names' de las inputs
-    //Desestructuramos a $formulario, guardando sus atributos 'txtId', 'txtNombre', etc. en cada constante que creamos. (Deben llamarse igual)
+```typescript
+...
+const {txtId, txtNombre, txtApellido, txtEmail, txtGenero, txtEdad} = $formulario;
+//$formulario contiene los 'names' de las inputs
+//Desestructuramos a $formulario, guardando sus atributos 'txtId', 'txtNombre', etc. en cada constante que creamos. (Deben llamarse igual)
+```
 Aca lo que hice fue tomar los elementos de los controles del formulario, y guardarlos en esas variables const 'txtId', 'txtNombre', 'txtApellid', etc...
 Aca podría validar txtNombre, txtApellido, etc...
 
-    if(txtId.value === ""){
-        //Persona nueva (ya que no tiene ID)
-        const personaNueva = new Persona(Date.now(), txtNombre.value, txtApellido.value,
-         txtEmail.value, txtGenero.value, parseInt(txtEdad.value))
-
+```typescript
+if(txtId.value === ""){
+    //Persona nueva (ya que no tiene ID)
+    const personaNueva = new Persona(Date.now(), txtNombre.value, txtApellido.value,
+     txtEmail.value, txtGenero.value, parseInt(txtEdad.value))
+```
 Analizamos el valor de txtId. Si es "", significa que esa persona todavía no fue cargada en el array. Ya que no tiene ID todavía. Por lo tanto, se trata de una persona nueva que debemos hacerle el alta. Para eso, simplemente creamos una const personaNueva y le asignamos lo que devuelva la función constructora Persona, la cual importamos anteriormente.
 
-         handlerCreate(personaNueva);
+```typescript
+     handlerCreate(personaNueva);
+```
 Llamamos al manejador de creación de personas. Es el que se invoca en estos casos.
 
-    }else{
-        //Modificar persona (ya que tiene ID)
+```typescript
+}else{
+    //Modificar persona (ya que tiene ID)
+```
 Si la ID tiene algún valor, significa que estamos tomando un elemento ya cargado. 
-        
-    } 
+```typescript
+} 
+```
 });
 
 
 Creamos 3 funciones para el ABM
 function handlerCreate(nuevaPersona){
-    personas.push(nuevaPersona);
-    //Agregamos al elemento recibido al array
+```typescript
+personas.push(nuevaPersona);
+//Agregamos al elemento recibido al array
+```
 }
 
 function handlerUpdate(modificarPersona){

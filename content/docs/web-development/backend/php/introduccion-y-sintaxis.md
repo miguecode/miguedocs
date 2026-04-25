@@ -1,15 +1,17 @@
 ---
 title: "Introducción y sintaxis"
+description: "💻 PHP (Hypertext Pre Processor)"
 ---
+
 
 💻 PHP (Hypertext Pre Processor)
 
 PHP es un lenguaje de código abierto muy popular en el ámbito del desarrollo web el cual se puede incrustar fácilmente en código HTML. Es muy popular, el 77% de los sitios web incluyen PHP.
 
 📌 Características principales
-- Multiplataforma: Puede correr en más de un sistema operativo (Windows, Linux, Mac).
-- Código invisible: El código PHP es 'invisible' para el navegador.
-- Conexión a bases de datos: Tiene capacidad para conectarse a bases de datos y puede expandir su potencial con plugins.
+- **Multiplataforma**: Puede correr en más de un sistema operativo (Windows, Linux, Mac).
+- **Código invisible**: El código PHP es 'invisible' para el navegador.
+- **Conexión a bases de datos**: Tiene capacidad para conectarse a bases de datos y puede expandir su potencial con plugins.
 
 PHP, a diferencia de otros lenguajes, necesita un intérprete el cual devuelva en tiempo de ejecución una 'salida' (una respuesta).
 
@@ -23,7 +25,9 @@ Ejemplos:
 ?>        // Etiqueta de cierre (no es obligatoria)
 
 <?php
-	echo "Hola Mundo";
+```typescript
+echo "Hola Mundo";
+```
 ?>
 
 - 'echo' devuelve el string que le pasemos. 
@@ -83,7 +87,7 @@ echo $nombre . " " . $apellido;
 
 - No hay que hacer operaciones aritméticas en los echo. Es decir: echo 2+4;
 - El \n sólo sirve en la consola. No en la página web del navegador.
-- Para que funcione el breakline en el navegador, hay que usar " <br/> "
+- Para que funcione el breakline en el navegador, hay que usar " `<br/>` "
 
 📚 Funciones en PHP
 PHP tiene similitudes con C puesto que hereda de él, o implementa muchas funciones de él.
@@ -92,7 +96,9 @@ Funciones de cadenas: strlen(), strcmp(), strtolower(), strtoupper(), substr(), 
 Los nombres no son case-sensitive. Las funciones pueden recibir parámetros, retornar valores, y los parámetros pueden tener valores por default. Obviamente se leen de izquierda a derecha.
 
 function NombreFuncion() {    
-	// Código
+```typescript
+// Código
+```
 }
 
 - 'var_dump' es una función MUY ÚTIL de PHP, ya que muestra el contenido detallado de cualquier elemento que le pasemos, sea del tipo que sea.

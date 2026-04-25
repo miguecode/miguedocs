@@ -1,8 +1,10 @@
 ---
 title: "Template String (String interpolado)"
+description: "String interpolado"
 ---
 
-> String interpolado
+
+## String interpolado
 
 - Cuando hacemos un console.log( ) y escribimos una cadena de texto entre ` `  (alt+96), estamos haciendo un string interpolado. Esas ` `   son comillas invertidas (backticks). 
 

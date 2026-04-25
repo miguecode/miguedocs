@@ -1,8 +1,10 @@
 ---
 title: "Pipes (Para mostrar datos modificados)"
+description: "'Pipe' significa tubería. La idea de los pipes en Angular es tomar un dato desde la lógica (TypeScript), y antes de mostrarlo en pantalla (en el HTML), modifica..."
 ---
 
-> Pipes ( símbolo | )
+
+## Pipes ( símbolo | )
 
 - "Pipe" significa tubería. La idea de los pipes en Angular es tomar un dato desde la lógica (TypeScript), y antes de mostrarlo en pantalla (en el HTML), modificarlo. Es decir, hacerlo pasar por un tubo que lo va am odificar. 
 
@@ -14,104 +16,114 @@ title: "Pipes (Para mostrar datos modificados)"
 
 - Los Pipes, entonces, son visuales. Cuando yo pase mi DNI por un Pipe, antes de mostrarlo visualmente, el Pipe se va a encargar de agregarle esos puntitos.
 
-	43596276     // El DNI guardado en la BD
-	... Pasa por un Pipe ...
-	43.596.276   // El DNI que le muestro al usuario
+```typescript
+43596276     // El DNI guardado en la BD
+... Pasa por un Pipe ...
+43.596.276   // El DNI que le muestro al usuario
 
-	Jueves 6 de Junio
-	Date -> pipe -> Día Día de Mes (por ejemplo)
-	Date -> pipe -> 06/06/2024 (por ejemplo)
-
+Jueves 6 de Junio
+Date -> pipe -> Día Día de Mes (por ejemplo)
+Date -> pipe -> 06/06/2024 (por ejemplo)
+```
 - También podemos tener un pipe que reciba un string, y que si es muy largo, lo corte y le ponga unos '...' al final. O uno que estilice el valor de un precio según su moneda...
 
 
-> Pipes de Angular
+## Pipes de Angular
 
 - Angular ya tiene sus propios Pipes incorporados. Vamos a ver algunos:
 
->> UpperCasePipe: Transforma el string a mayúsculas (como dijimos, sólo visualmente)
+### UpperCasePipe: Transforma el string a mayúsculas (como dijimos, sólo visualmente)
 
-	<h1>{{ title | uppercase }}</h1>
+```typescript
+<h1>{{ title | uppercase }}</h1>
+```
+### CurrencyPipe: Sirve para mostrar valores de dinero.
 
-
->> CurrencyPipe: Sirve para mostrar valores de dinero.
-
-	<h1>Dinero: {{ dinero | currency }}</h1>
-
+```typescript
+<h1>Dinero: {{ dinero | currency }}</h1>
+```
 - "dinero" es una de mis variables creadas en código TypeScript. Supongamos que el valor de esta variable es 1000, en ese caso, visualmente se va a mostrar:
-	
-	Dinero: $1000.00
-
+```typescript
+Dinero: $1000.00
+```
 - A currency le podemos pasar distintos parámetros, para configurarlo a nuestro gusto, por ejemplo:
 
-	<h1>Dinero: {{ dinero | currency: "EUR" }}</h1>
-
+```typescript
+<h1>Dinero: {{ dinero | currency: "EUR" }}</h1>
+```
 - Así, lo mostramos en tipo EURO
 
 
->> JsonPipe: Sirve para mostrar la información de un JSON.
+### JsonPipe: Sirve para mostrar la información de un JSON.
 
-	<p>{{ myJson | json }}</p>
-
-
+```typescript
+<p>{{ myJson | json }}</p>
+```
 - Así como ponemos un pipe, podríamos poner todos los que queramos:
 
-		<h1>{{ miValor | unPipe | otroPipe | tercerPipe | cuartoPipe }}</h1>
-
-
-> Crear nuestro propio Pipe
+```typescript
+	<h1>{{ miValor | unPipe | otroPipe | tercerPipe | cuartoPipe }}</h1>
+```
+## Crear nuestro propio Pipe
 
 - Ahora, nosotros vamos a crear Pipes. Para esto, podemos usar el comando de Angular CLI:
 
-	ng g pipe pipes/textoLargo
+```typescript
+ng g pipe pipes/textoLargo
+```
+- **En nuestro texto-largo.pipe.ts vamos a tener esto**: 
 
-- En nuestro texto-largo.pipe.ts vamos a tener esto:
+```typescript
+@Pipe({
+	name: 'textoLargo',
+	standalone: true,
+})
 
-	@Pipe({
-		name: 'textoLargo',
-		standalone: true,
-	})
-	
-	transform(value: unknow,    ..) {
-		return null;
-	}
-
+transform(value: unknow,    ..) {
+	return null;
+}
+```
 - En "value" vamos a obtener el valor del dato que vamos a transformar, y el return va a ser el dato transformado que vamos a devolver. En este caso, lo vamos a hacer así:
 
-	transform(value: string, ...args: any[]): string {
-		if (value.length > 10) {
-			let newValue = value.slice(0, 10);
-			return newValue + '...';
-		}
-		
-		return value;
+```typescript
+transform(value: string, ...args: any[]): string {
+	if (value.length > 10) {
+		let newValue = value.slice(0, 10);
+		return newValue + '...';
 	}
 
-- Vamos, entonces, a combinar pipes así:
+	return value;
+}
+```
+- **Vamos, entonces, a combinar pipes así**: 
 
-	<h1> {{ title | textoLargo | uppercase }}  </h1>
+```typescript
+<h1> {{ title | textoLargo | uppercase }}  </h1>
+```
+- **Ahora vamos a cambiarlo un poco**: 
 
+```typescript
+transform(value: string, puntos: boolean): string {
+	if (value.length > 10) {
+		let newValue = value.slice(0, 10);
 
-- Ahora vamos a cambiarlo un poco:
-
-	transform(value: string, puntos: boolean): string {
-		if (value.length > 10) {
-			let newValue = value.slice(0, 10);
-			
-			if (puntos) {
-				newValue += '...';
-			}
-			
-			return newValue;
+		if (puntos) {
+			newValue += '...';
 		}
-		
-		return value;
+
+		return newValue;
 	}
 
-- Entonces lo llamamos así:
+	return value;
+}
+```
+- **Entonces lo llamamos así**: 
 
-	<h1> {{ title | textoLargo : true | uppercase }}  </h1>
-
+```typescript
+<h1> {{ title | textoLargo : true | uppercase }}  </h1>
+```
 - Otra cosa que podemos hacer es pasarle un 'max', para establecer el máximo de caracteres para que se convierta en textoLargo... o pasarle un string que sea el valor del texto agregado, por ejemplo pasarle un 'Ver Más'... etc. Por cierto, nosotros podemos hacer que estos argumentos sean opcionales, poniendo un ? en cada variable que creo en la declaración de la función transform o dandoles un valor por defecto, así:
 
-	transform(value: string, puntos: boolean = true, max: number = 10): string {}
+```typescript
+transform(value: string, puntos: boolean = true, max: number = 10): string {}
+```

@@ -1,6 +1,8 @@
 ---
 title: "Introducción a PHP"
+description: "PHP (Hypertext Pre Processor)"
 ---
+
 
 PHP (Hypertext Pre Processor)
 Es un lenguaje de código abierto muy popular en el ámbito del desarrollo web el cual se puede incrustar fácilmente en código HTML. 

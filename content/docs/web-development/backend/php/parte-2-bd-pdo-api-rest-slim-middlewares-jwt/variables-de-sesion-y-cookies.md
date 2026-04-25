@@ -1,6 +1,8 @@
 ---
 title: "Variables de Sesión y Cookies"
+description: "Variables de Sesión"
 ---
+
 
 Variables de Sesión
 De acá nace el término "Iniciar Sesión".

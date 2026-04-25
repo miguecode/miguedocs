@@ -1,6 +1,8 @@
 ---
 title: "Foreign Key, Sintaxis de DDL e Índices"
+description: "Una foreign key, o clave ajena, o clave foránea, es para relacionar tablas. La FK actua sobre una columna de la tabla. La FK va en la tabla hijo. La tabla que v..."
 ---
+
 
 FOREIGN KEY
 Una foreign key, o clave ajena, o clave foránea, es para relacionar tablas. La FK actua sobre una columna de la tabla. La FK va en la tabla hijo. La tabla que va a utilizar información de la tabla padre.
@@ -12,12 +14,13 @@ ACLARACIÓN FK
 - Si ambas entidades tienen una relación de uno a muchos entre sí, entonces necesito hacer una tercer tabla. La tabla interrelacional o también llamada intermedia. (El ejemplo de los pacientes y los medicamentos o el de los proveedores y los productos).
 
 PRODUCTOS          PROVEEDORES
-      (uno) ------------->(muchos)
-
+```typescript
+  (uno) ------------->(muchos)
+```
 PROVEEDORES		PRODUCTOS
-      (uno) ------------->(muchos)
-
-
+```typescript
+  (uno) ------------->(muchos)
+```
 Recordemos que, si yo quiero BORRAR una tupla de la tabla padre la cual le está dando información a otra tabla, no voy a poder hacerlo. Va a saltar la FK y me va a devolver error. Primero tengo que borrarla de la tabla que está usando el dato, para después borrarla de la otra tabla.
 Esto es por mantener la consistencia de los datos. 
 

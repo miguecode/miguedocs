@@ -1,27 +1,29 @@
 ---
 title: "Qué es un SO y VirtualBox"
+description: "📜 ¿Qué es un SO (Sistema Operativo)? 📜"
 ---
+
 
 📜 ¿Qué es un SO (Sistema Operativo)? 📜
 
 Un sistema operativo (SO) es un software que actúa como intermediario entre los usuarios y el hardware de una computadora. Sus funciones principales incluyen:
 
-- 🖥️ Gestión de Procesos: Controla la ejecución de programas, incluyendo la asignación de recursos de CPU.
+- **🖥️ Gestión de Procesos**: Controla la ejecución de programas, incluyendo la asignación de recursos de CPU.
 Ejemplo: Asignar tiempo de CPU a diferentes aplicaciones abiertas.
 
-- 🧠 Gestión de Memoria: Administra la memoria principal, incluyendo la asignación y liberación de espacio de memoria para aplicaciones y procesos.
+- **🧠 Gestión de Memoria**: Administra la memoria principal, incluyendo la asignación y liberación de espacio de memoria para aplicaciones y procesos.
 Ejemplo: Mantener activos en memoria los programas que estás utilizando.
 
-- 💾 Gestión de Almacenamiento: Controla el acceso a los sistemas de archivos y dispositivos de almacenamiento.
+- **💾 Gestión de Almacenamiento**: Controla el acceso a los sistemas de archivos y dispositivos de almacenamiento.
 Ejemplo: Organizar y gestionar archivos en tu disco duro.
 
-- 🖱️ Interfaz de Usuario: Proporciona una interfaz para que los usuarios interactúen con el sistema, ya sea gráfica (GUI) o de línea de comandos (CLI).
+- **🖱️ Interfaz de Usuario**: Proporciona una interfaz para que los usuarios interactúen con el sistema, ya sea gráfica (GUI) o de línea de comandos (CLI).
 Ejemplo: Usar el escritorio de Windows o la terminal de Linux.
 
-- 🔒 Seguridad y Protección: Protege los recursos del sistema y los datos de acceso no autorizado y amenazas externas.
+- **🔒 Seguridad y Protección**: Protege los recursos del sistema y los datos de acceso no autorizado y amenazas externas.
 Ejemplo: Bloquear el acceso a archivos sensibles para usuarios no autorizados.
 
-- ⚙️ Control de Hardware: Administra y coordina el uso de dispositivos periféricos como impresoras, discos duros, y otros dispositivos de entrada/salida.
+- **⚙️ Control de Hardware**: Administra y coordina el uso de dispositivos periféricos como impresoras, discos duros, y otros dispositivos de entrada/salida.
 Ejemplo: Manejar la comunicación entre tu computadora y una impresora.
 
 Los sistemas operativos más comunes incluyen Windows, macOS, Linux y variantes de Unix.

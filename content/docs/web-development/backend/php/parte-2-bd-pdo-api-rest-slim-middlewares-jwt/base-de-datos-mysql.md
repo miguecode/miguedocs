@@ -1,6 +1,8 @@
 ---
 title: "Base de datos MySQL"
+description: "Base de datos MySQL"
 ---
+
 
 Base de datos MySQL
 Persistencia de datos de nuestras APIS.

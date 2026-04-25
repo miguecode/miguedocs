@@ -1,6 +1,8 @@
 ---
 title: "Aclaración sobre Angular en Astro"
+description: "[Respuesta generada por ChatGPT, ante mi duda de ¿Por qué Angular se nombra menos a la hora de integrar bibliotecas externas en Astro?]"
 ---
+
 
 [Respuesta generada por ChatGPT, ante mi duda de ¿Por qué Angular se nombra menos a la hora de integrar bibliotecas externas en Astro?]
 
@@ -27,7 +29,7 @@ title: "Aclaración sobre Angular en Astro"
 - En general, quienes usan Astro tienden a buscar soluciones ligeras y modulares. Angular es más popular en aplicaciones empresariales, donde un framework integral con herramientas avanzadas para manejar estados, servicios y rutas es necesario.
 
 
-> ¿Significa esto que no se puede usar Angular con Astro?
+## ¿Significa esto que no se puede usar Angular con Astro?
 
 No, Angular se puede usar con Astro, pero no es común ni tan conveniente. Si quisieras hacerlo, tendrías que:
 
@@ -35,7 +37,7 @@ No, Angular se puede usar con Astro, pero no es común ni tan conveniente. Si qu
 2. Configurar el proyecto Angular para trabajar en conjunto con Astro.
 3. Aceptar que el tamaño y la complejidad de Angular podrían no alinearse bien con el propósito de Astro.
 
-> Entonces, ¿vale la pena aprender ambos?
+## Entonces, ¿vale la pena aprender ambos?
 
 ¡Sí! Aprender Angular como tu "main framework" y Astro como herramienta complementaria tiene sentido. Puedes usar Angular para proyectos más grandes y dinámicos, mientras usas Astro para sitios estáticos o híbridos con un enfoque en velocidad.
 

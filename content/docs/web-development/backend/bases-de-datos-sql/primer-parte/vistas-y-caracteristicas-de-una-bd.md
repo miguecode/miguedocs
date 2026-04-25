@@ -1,8 +1,10 @@
 ---
 title: "Vistas y características de una BD"
+description: "Objeto Vista y Cortes de Vista"
 ---
 
-> Objeto Vista y Cortes de Vista
+
+## Objeto Vista y Cortes de Vista
 Imaginando que yo como admin quiero darle al usuario Pepito el permiso de ver la tabla Clientes, yo haría un GRANT SELECT ON Clientes TO Pepito. De esta forma, Pepito puede hacer un SELECT * FROM Clientes. Es decir, puede seleccionar todos los registros y campos de la tabla Clientes para verlos. Eso funciona así, pero...
 Supongamos que yo quiero hacer un corte de vista, o sea, que Pepito pueda hacer SELECT de Clientes, pero que SÓLO pueda ver clientes de Avellaneda. Lo que sería un SELECT * FROM CLIENTES WHERE LOCALIDAD = 'AVELLANEDA'... yo eso no puedo hacerlo con GRANT. Tengo que crear un objeto Vista.
 

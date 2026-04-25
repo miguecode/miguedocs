@@ -1,27 +1,31 @@
 ---
 title: "Emojis en los Strings y qué es Unicode"
+description: "Usar Emojis en Strings"
 ---
 
-> Usar Emojis en Strings
 
-- Un string puede tener emojis: "Hola, este es mi texto 🔥".
+## Usar Emojis en Strings
+
+- **Un string puede tener emojis**: "Hola, este es mi texto 🔥".
 
 - Esto es posible ya que JavaScript usa Unicode como sistema de codificación de caracteres, y los emojis forman parte de Unicode. Entonces, "🔥" es simplemente un carácter Unicode, y JavaScript lo trata como cualquier otro carácter válido en una cadena de texto.
 
-	const emoji = "🔥";
-	console.log(emoji); // Muestra "🔥"
-	console.log(emoji.length); // Muestra 2
-
+```typescript
+const emoji = "🔥";
+console.log(emoji); // Muestra "🔥"
+console.log(emoji.length); // Muestra 2
+```
 - ¿Por qué el length es 2? Esto es porque algunos emojis están codificados con lo que se llama "surrogate pairs". Unicode tiene más de 1 millón de caracteres posibles, pero los primeros sistemas como UTF-16, solo podían representar 65,536 (2^16).
 
 - Entonces, para los caracteres fuera de ese rango, como muchos emojis, se usan 2 valores de 16 bits en lugar de uno. Y a eso se lo llama un surrogate pair (par sustituto).
 
-	"🔥" === "\uD83D\uDD25" // Esto es true
-
+```typescript
+"🔥" === "\uD83D\uDD25" // Esto es true
+```
 - Ese emoji se representa como DOS unidades de código UTF-16. Y por eso el length es 2.
 
 
-> Unicode
+## Unicode
 
 - Unicode fue creado en 1987 y es un sistema de codificación de caracteres muy grande y moderno. Tiene espacio para todos los idiomas, símbolos, emojis y más. Su primer versión fue lanzada en 1991 y fue creado para -unificar- todo bajo un solo estándar de caracteres para todos los lenguajes humanos, y también símbolos matemáticos, emojis, etc. 
 
@@ -29,25 +33,27 @@ title: "Emojis en los Strings y qué es Unicode"
 
 - Cada carácter Unicode tiene un punto de código único:
 
-	console.log("🔥".codePointAt(0).toString(16)); // Muestra 1f525
-
+```typescript
+console.log("🔥".codePointAt(0).toString(16)); // Muestra 1f525
+```
 - Esto nos quiere decir que el emoji "🔥" tiene el código Unicode U+1F525.
 
 
-> Explicación en JavaScript
+## Explicación en JavaScript
 
 Concepto		¿Qué es?										Ejemplo con 🔥
 ________________________________________________________________________________________________
-Unicode		Un número universal para representar caracteres		U+1F525
-UTF-16		Cómo se codifica ese número en memoria			0xD83D + 0xDD25
-JavaScript		Usa UTF-16 internamente						"🔥".length === 2
+| Unicode | Un número universal para representar caracteres | U+1F525 |
+| --- | --- | --- |
+| UTF-16 | Cómo se codifica ese número en memoria | 0xD83D + 0xDD25 |
+| JavaScript | Usa UTF-16 internamente | "🔥".length === 2 |
 
 
-> Lenguajes con Unicode
+## Lenguajes con Unicode
 
 - Hoy en día, casi todos los lenguajes modernos soportan Unicode, al menos en algún nivel. Algunos ejemplos son JavaScript, Python, Java, C#, Go, Ruby, Swift, PHP.
 
 
-> ¿ASCII puede representar emojis?
+## ¿ASCII puede representar emojis?
 
-- No, el ASCII original es un sistema MUY limitado: solo soporta 128 caracteres (del 0 al 127), incluyendo letras, números, símbolos básicos y control characters.
+- **No, el ASCII original es un sistema MUY limitado**: solo soporta 128 caracteres (del 0 al 127), incluyendo letras, números, símbolos básicos y control characters.

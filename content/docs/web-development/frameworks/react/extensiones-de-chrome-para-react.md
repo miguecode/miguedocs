@@ -1,6 +1,8 @@
 ---
 title: "Extensiones de Chrome para React"
+description: "Chrome tiene milliones de extensiones disponibles, pero estas son las 3 extensiones que no me pueden faltar a la hora de usar React."
 ---
+
 
 Chrome tiene milliones de extensiones disponibles, pero estas son las 3 extensiones que no me pueden faltar a la hora de usar React.
 

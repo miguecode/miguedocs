@@ -1,6 +1,8 @@
 ---
 title: "Animaciones"
+description: "Animaciones en Angular"
 ---
+
 
 Animaciones en Angular
 
@@ -13,40 +15,45 @@ El HTML del componente tiene un botón Mostrar/Ocultar.
 Dentro del componente, en el decorador @Component, tenemos que declarar un array llamado 'animations'.
 
 const mostrarOcultar = trigger('mostrarOcultarTrigger', [
-	state (
-		'abierto',
-		style([ opacity: 1 ])
-	),
-	state (
-		'cerrado',
-		style([ opacity: 0 ])
-	),
-	transition('abierto' => cerrado', [animate('1s')])
-	transition('cerrado' => abierto', [animate('0.5s')])
+```typescript
+state (
+	'abierto',
+	style([ opacity: 1 ])
+),
+state (
+	'cerrado',
+	style([ opacity: 0 ])
+),
+transition('abierto' => cerrado', [animate('1s')])
+transition('cerrado' => abierto', [animate('0.5s')])
 
-	// En vez de 'abierto' yo podría poner un *. Y eso significa, ''de cualquier cosa'', pasa a cerrado
+// En vez de 'abierto' yo podría poner un *. Y eso significa, ''de cualquier cosa'', pasa a cerrado
 
 
-	// state (el estado) recibe parámetros de animación, el nombre, el estilo...
-	// transition establece la transicion entre 2 estados
+// state (el estado) recibe parámetros de animación, el nombre, el estilo...
+// transition establece la transicion entre 2 estados
+```
 ])
 
 Trigger espera el nombre y un array.
 
 @Component({
-	...
-	animations:[mostrarOcultar]
+```typescript
+...
+animations:[mostrarOcultar]
+```
 })
 
 Bien. Ahora vamos a aplicar esto en el template para que se vea.
 
 <div [mostrarOcultarTrigger]="mostrarContenido ? 'abierto' : 'cerrado'">
-	<h1>Título con Animación</h1>
-	
-	p
-	p
+```typescript
+<h1>Título con Animación</h1>
 
-</div>
+p
+p
+```
+`</div>`
 
 
 
@@ -55,14 +62,16 @@ Esta forma de hacerlo es MALÍSIMA. Ya que NO saca a los elementos del DOM, solo
 Y listo. Ahora, otra forma de hacerlo: mostrarOcultar2:
 
 const mostrarOcultar2 = [
-	transition(mostrarOcultarTrigger', [
-		transition(':enter', [
-		
-		]),
-		transition(':leave', [
-			
-		])
-	]
+```typescript
+transition(mostrarOcultarTrigger', [
+	transition(':enter', [
+
+	]),
+	transition(':leave', [
+
+	])
+]
+```
 ]
 
 Con este método 2, ya no estamos usando 'abierto' y 'cerrado'.

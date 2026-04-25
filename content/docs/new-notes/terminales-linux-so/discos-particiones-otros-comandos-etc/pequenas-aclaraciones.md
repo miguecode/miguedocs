@@ -1,6 +1,8 @@
 ---
 title: "Pequeñas aclaraciones"
+description: "Aclaraciones sobre crear particiones...:"
 ---
+
 
 Aclaraciones sobre crear particiones...:
 

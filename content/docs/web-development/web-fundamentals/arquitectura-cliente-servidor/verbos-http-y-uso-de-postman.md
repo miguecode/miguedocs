@@ -1,8 +1,10 @@
 ---
 title: "Verbos HTTP y uso de Postman"
+description: "Métodos o Verbos HTTP"
 ---
 
-> Métodos o Verbos HTTP
+
+## Métodos o Verbos HTTP
 
 1. GET. Solicita información de un recurso.
 2. POST. Agregamos nueva información al servidor.
@@ -35,23 +37,24 @@ Las peticiones GET se pueden almacenar en el caché, permanecen en el historial 
 
 - El par de keys-values es enviado en el cuerpo del mensaje HTTP, es decir que POST a diferencia de GET, sí tiene Body. Que estos parámetros Key-Value estén dentro del Body, hace que la información no esté en la URL de lo que estamos solicitando. Están más seguros, como si estuvieran dentro de un sobre (aunque sigue siendo necesario usar HTTPS en vez de HTTP para garantizar seguridad). 
 
-- Las peticiones POST, a diferencia de GET: No se almacenan en caché, no permanecen en el navegador, no pueden ser marcadas como favoritas ni tienen restricciones de longitud de datos.
+- **Las peticiones POST, a diferencia de GET**: No se almacenan en caché, no permanecen en el navegador, no pueden ser marcadas como favoritas ni tienen restricciones de longitud de datos.
 
 
 3. HTTP - Método PUT
 
 - El método PUT se usa para actualizar un recurso en el servidor. Es decir, modificar algo ya existente.
 
-- Es similar a PATCH, pero con una diferencia clave: PUT reemplaza el recurso ENTERO. Lo que hace es ir a algún dato del Servidor, y pisarlo por completo.
+- **Es similar a PATCH, pero con una diferencia clave**: PUT reemplaza el recurso ENTERO. Lo que hace es ir a algún dato del Servidor, y pisarlo por completo.
 
 - Además, si el recurso a sobreescribir no existe, puede crearlo (dependiendo del Servidor).
 
-	 PUT /usuarios/123
-	{
-	    "nombre": "Juan Pérez",
-	    "email": "juan@example.com"
-	}
-
+```typescript
+ PUT /usuarios/123
+{
+  "nombre": "Juan Pérez",
+  "email": "juan@example.com"
+}
+```
 -  Esto sobreescribirá completamente el usuario 123. Si tenía más datos, se van a perder si es que no los volvemos a enviar.
 
 
@@ -61,11 +64,12 @@ Las peticiones GET se pueden almacenar en el caché, permanecen en el historial 
 
 - Su diferencia con el método PUT es que PATCH no sobreescribe un elemento totalmente, sino que modificar sólo la parte que nosotros realmente queremos sobreescribir. 
 
-	PATCH /usuarios/123
-	{
-    		"email": "nuevo@example.com"
-	}
-
+```typescript
+PATCH /usuarios/123
+{
+  "email": "nuevo@example.com"
+}
+```
 - Así, solo estamos modificando el email. Y el nombre, que no lo especificamos, sigue quedando igual que como estaba. Si esto fuese con PUT, el "nombre" se perdería, ya que lo tendríamos que agregar.
 
 
@@ -75,10 +79,10 @@ Las peticiones GET se pueden almacenar en el caché, permanecen en el historial 
 
 - Generalmente no tiene Body, sino que solo tiene la URL del recurso a eliminar.
 
-- Ojo: Algunos servidores no eliminan realmente el recurso, sino que lo marcan como "inactivo".
+- **Ojo**: Algunos servidores no eliminan realmente el recurso, sino que lo marcan como "inactivo".
 
 
-> Postman
+## Postman
 
 - Postman es una aplicación que sirve para probar el envío de peticiones a un Servidor, y la recepción de respuestas del mismo. Podemos ver toda la información de las Requests y Responses. 
 
@@ -86,7 +90,7 @@ Las peticiones GET se pueden almacenar en el caché, permanecen en el historial 
 
 - Vemos que tenemos un Workspace creado por defecto llamado "My Workspace". Vamos a trabajar ahí. Sin crear colecciones, hicimos una nueva Request llamada "HTTP". Es una Request HTTP que por defecto viene con el verbo GET. Nosotros podemos cambiar al verbo que queramos. Tenemos al lado una barra para escribir la URL en la que queramos trabajar.
 
-- Cuando escribimos la URL (que podría ser https://www.google.com/) o la URL de algún ejercicio nuestro, le damos a Send para enviar la petición. Automáticamente Postman nos va a devolver la respuesta del servidor. 
+- **Cuando escribimos la URL (que podría ser https**: //www.google.com/) o la URL de algún ejercicio nuestro, le damos a Send para enviar la petición. Automáticamente Postman nos va a devolver la respuesta del servidor. 
 
 - En la respuesta podemos ver el Status de la petición, el tiempo que tardó en llegar la respuesta, y el tamaño de la respuesta.
 
@@ -94,9 +98,11 @@ Las peticiones GET se pueden almacenar en el caché, permanecen en el historial 
 
 - En "Body" podemos ver distintas formas de visualizar la respuesta. El que importa es Pretty.
 
-- Como sabemos existe la página: https://http.cat/ la cual nos sirve para aprendernos los códigos de respuesta (Status Code) con fotos de gatitos. Vamos a poner esto en el Postman:
+- **Como sabemos existe la página**: https://http.cat/ la cual nos sirve para aprendernos los códigos de respuesta (Status Code) con fotos de gatitos. Vamos a poner esto en el Postman:
 
-	https://http.cat/200
+```
+https://http.cat/200
+```
 
 - Si hacemos una petición GET a esa URL, nos va a devolver la imágen del gatito correspondiente al código 200. (Esto es así porque así funciona http.cat). 
 

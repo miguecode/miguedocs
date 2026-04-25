@@ -1,6 +1,8 @@
 ---
 title: "9-2. DER"
+description: "Repitamos algo del .txt anterior:"
 ---
+
 
 Repitamos algo del .txt anterior:
 
@@ -49,10 +51,13 @@ EMPLEADO es cualquier persona que trabaja en la compañía. PROGRAMADOR, especif
 
 O sea, que todos los programadores pasan a ser un subtipo o subclase de empleado.
 
-                    -> PROGRAMADOR
+```typescript
+                -> PROGRAMADOR
+```
  EMPLEADO -> ADMINISTRATIVO
-                    -> ANALISTA
-
+```typescript
+                -> ANALISTA
+```
 Empleado va a ser una SUPERCLASE y PROGRAMADOR, ADMINISTRATIVO y ANALISTA son subclases.
 
 

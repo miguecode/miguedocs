@@ -1,8 +1,10 @@
 ---
 title: "APIs. Qué son y qué es API REST"
+description: "API (Application Programming Intercae)"
 ---
 
-> API (Application Programming Intercae)
+
+## API (Application Programming Intercae)
 
 - Una API es un conjunto de funciones y procedimientos (métodos) que se usan para diseñar e integrar el software de diferentes aplicaciones. 
 
@@ -15,7 +17,7 @@ title: "APIs. Qué son y qué es API REST"
 - Cada una de las APIs que se desarrollan, suelen tener un Endpoint, es decir, una URL, mediante las cuales los Frontend van a conseguir comunicarse con la información que obtener o manipular. 
 
 
-> ¿Qué significa REST? 
+## ¿Qué significa REST? 
 
 - REST = Representational State Transfert. Estado de transferencia representacional.
 

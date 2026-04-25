@@ -1,6 +1,8 @@
 ---
 title: "Comandos para PowerShell parte 2"
+description: "📜 Comandos de la Terminal PowerShell, parte 2 📜"
 ---
+
 
 📜 Comandos de la Terminal PowerShell, parte 2 📜
 
