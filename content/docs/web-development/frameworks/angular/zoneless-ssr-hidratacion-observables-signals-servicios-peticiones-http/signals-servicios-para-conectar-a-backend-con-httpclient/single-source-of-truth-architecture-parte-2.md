@@ -57,7 +57,7 @@ characters: Signal<Character[] | undefined> = computed(() =>
 
 - Este método lógicamente sirve para modificar un personaje en específico. Entonces, se lo tenemos que pasar ya modificado por parámetro. OJO: El enfoque de este método va a ser como si nosotros tuviésemos que hacer una petición HTTP para, obviamente, realizar la modificación en el backend. Entonces, como ya sabemos, vamos a usar el método of() para crear un Observable. Porque ahora estamos haciéndolo SIN base de datos, entonces no necesitamos hacer ninguna petición http. Pero en caso de que sí lo hiciéramos, trabajaríamos con el Observable que devuelva http.put():
 
-```typescript
+```sql
 updateCharacter(character: Character): void {
 	const updatedCharacter = { ...character };
 
@@ -81,7 +81,7 @@ updateCharacter(character: Character): void {
 
 - Entonces, en este caso recibimos un id por parámetro, y usamos el método delete() de los Map, que busca por KEYS. Y como todas las keys son las ID's de nuestros personajes, usamos eso para encontrarlo. Después, retornamos el Map actualizado, sin el personaje eliminado.
 
-```typescript
+```sql
 deleteCharacter(id: number): void {
 	of({ status: 200 }).subscribe(() => {
 		state.characters.delete(id);

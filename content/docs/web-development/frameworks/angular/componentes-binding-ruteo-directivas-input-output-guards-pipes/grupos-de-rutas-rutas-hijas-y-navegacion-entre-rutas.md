@@ -24,7 +24,7 @@ description: "Grupos de rutas (rutas hijas)"
 
 - Vamos a crear un simple botón, y le vamos a agregar la propiedad routerLink, la cual, para usarla, tenemos que importar el componente RouterLink en el componente donde queramos usarlo:
 
-```typescript
+```text
 <button routerLink="bienvenido">Bienvenido</button>
 ```
 - En este caso, "routerLink" nos va a redirigir a la ruta que le indiquemos.
@@ -36,7 +36,7 @@ routerLink="bienvenido": ruta relativa → se concatena a la ruta actual (vamos 
 
 ### Vamos a hacer un ruteo básico:
 
-```typescript
+```html
 <h1>Ruteo</h1> <br>
 
 <button routerLink="/bienvenido">Bienvenido</button>
@@ -61,7 +61,7 @@ volver() {
 
 - Pero también existe el método navigate, el cual es más versatil ya que acepta arrays y parámetros:
 
-```typescript
+```text
 this.router.navigate(['/usuario', id]);
 ```
 - Si la id de usuario fuese 123, esta línea nos llevaría a /usuario/123. Además, con navigate podríamos pasar opciones como queryParams.

@@ -17,7 +17,7 @@ description: "La recursividad es una técnica de programación en la que una fun
 
 - Esto es un ejercicio clásico de la programación, y se trata de recrear la Sucesión de Fibonacci, y ¿Qué es eso? Es una serie de números, en la cual cada número es la suma de los 2 números anteriores, es decir:
 
-```typescript
+```text
 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, etc.
 ```
 - Empieza con 0, 1, y a partir de ahí empieza el patrón. El tercer número es un 1 ya que se suman los 2 anteriores: 0 + 1. Y así constantemente hasta el infinito.

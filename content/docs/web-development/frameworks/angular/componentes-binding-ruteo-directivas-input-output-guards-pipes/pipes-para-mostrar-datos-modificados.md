@@ -16,7 +16,7 @@ description: "'Pipe' significa tubería. La idea de los pipes en Angular es toma
 
 - Los Pipes, entonces, son visuales. Cuando yo pase mi DNI por un Pipe, antes de mostrarlo visualmente, el Pipe se va a encargar de agregarle esos puntitos.
 
-```typescript
+```text
 43596276     // El DNI guardado en la BD
 ... Pasa por un Pipe ...
 43.596.276   // El DNI que le muestro al usuario
@@ -34,21 +34,21 @@ Date -> pipe -> 06/06/2024 (por ejemplo)
 
 ### UpperCasePipe: Transforma el string a mayúsculas (como dijimos, sólo visualmente)
 
-```typescript
+```html
 <h1>{{ title | uppercase }}</h1>
 ```
 ### CurrencyPipe: Sirve para mostrar valores de dinero.
 
-```typescript
+```html
 <h1>Dinero: {{ dinero | currency }}</h1>
 ```
 - "dinero" es una de mis variables creadas en código TypeScript. Supongamos que el valor de esta variable es 1000, en ese caso, visualmente se va a mostrar:
-```typescript
+```text
 Dinero: $1000.00
 ```
 - A currency le podemos pasar distintos parámetros, para configurarlo a nuestro gusto, por ejemplo:
 
-```typescript
+```html
 <h1>Dinero: {{ dinero | currency: "EUR" }}</h1>
 ```
 - Así, lo mostramos en tipo EURO
@@ -61,14 +61,14 @@ Dinero: $1000.00
 ```
 - Así como ponemos un pipe, podríamos poner todos los que queramos:
 
-```typescript
+```html
 	<h1>{{ miValor | unPipe | otroPipe | tercerPipe | cuartoPipe }}</h1>
 ```
 ## Crear nuestro propio Pipe
 
 - Ahora, nosotros vamos a crear Pipes. Para esto, podemos usar el comando de Angular CLI:
 
-```typescript
+```text
 ng g pipe pipes/textoLargo
 ```
 - **En nuestro texto-largo.pipe.ts vamos a tener esto**: 
@@ -97,7 +97,7 @@ transform(value: string, ...args: any[]): string {
 ```
 - **Vamos, entonces, a combinar pipes así**: 
 
-```typescript
+```html
 <h1> {{ title | textoLargo | uppercase }}  </h1>
 ```
 - **Ahora vamos a cambiarlo un poco**: 
@@ -119,7 +119,7 @@ transform(value: string, puntos: boolean): string {
 ```
 - **Entonces lo llamamos así**: 
 
-```typescript
+```html
 <h1> {{ title | textoLargo : true | uppercase }}  </h1>
 ```
 - Otra cosa que podemos hacer es pasarle un 'max', para establecer el máximo de caracteres para que se convierta en textoLargo... o pasarle un string que sea el valor del texto agregado, por ejemplo pasarle un 'Ver Más'... etc. Por cierto, nosotros podemos hacer que estos argumentos sean opcionales, poniendo un ? en cada variable que creo en la declaración de la función transform o dandoles un valor por defecto, así:

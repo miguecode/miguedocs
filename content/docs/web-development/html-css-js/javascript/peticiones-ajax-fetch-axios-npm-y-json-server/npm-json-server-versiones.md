@@ -8,7 +8,7 @@ description: "JSON Server es un paquete de JavaScript que nos permite, sin utili
 
 - JSON Server es un paquete de JavaScript que nos permite, sin utilizar una base de datos, levantar un servidor que guarda un archivo JSON como fuente de datos, es decir, la data. Y a esta data, le podemos hacer peticiones con verbos HTML: GET, POST, PUT, DELETE.
 
-```typescript
+```text
 npm -v
 // Muestra la versión de npm
 
@@ -19,7 +19,7 @@ node -v
 
 - Buscamos "json-server". Allí, podemos ver toda la información del Json Server. Recordemos que lo vamos a usar para el desarrollo. Una vez que instalemos JSON Server en nuestro proyecto, pasaría a ser una dependencia de nuestra aplicación. Y a su vez, JSON Server va a tener sus propias dependencias, que son otras aplicaciones o paquetes que JSON Server necesita para funcionar.
 
-```typescript
+```text
 npm install json-server
 ```
 - Con ese comando, ya tenemos instalado el paquete en nuestro proyecto.
@@ -29,7 +29,7 @@ npm install json-server
 
 - Semantic Versioning (Versionado semántico)
 
-```typescript
+```text
 18.14.0 [18 = major] [14 = minor] [0 = patch]
 ```
 - **Major**: Cambios -muy- radicales en la aplicación.  
@@ -45,13 +45,13 @@ npm install json-server
 
 - **Las instalaciones se pueden hacer a 3 niveles**: global, usuario y proyecto. A nosotros, en este caso, nos interesa hacerlo a invel de proyecto.
 
-```typescript
+```text
 npm init 
 npm install json-server
 ```
 - De esa forma, transformamos a nuestro proyecto en un proyecto administrado por npm, que sería como cuando hacemos que una carpeta funcione como repositorio GIT.
 
-```typescript
+```text
 npm install -g json-server
 Lo instala globalmente, permitiendo usar el comando json-server en cualquier proyecto.
 
@@ -75,7 +75,7 @@ Lo instala solo en el proyecto actual, lo cual es más recomendable.
 
 - Si voy a dejar todo cargado por defecto, entonces lo podría hacer de forma automática así:
 
-```typescript
+```text
 npm init -y 
 ```
 - El '-y' hace que el repositorio se cree con todos los valores por default.
@@ -84,7 +84,7 @@ npm init -y
 
 - Ahora, todo lo que nosotros instalemos se va a instalar únicamente dentro de este proyecto en particular, que funciona como un paquete npm. De esta forma hacemos el control de versiones. Ya que, yo podría en esta carpeta instalarme un paquete X en su versión 18, y en otra carpeta que también sea un repositorio npm, me podría instalar el mismo paquete X pero en otra versión. Y ambas carpetas van a seguir funcionando sin errores de compatibilidad.
 
-```typescript
+```text
 npm install json-server @[version]
 Con el '@' adelante, podemos especificar qué versión queremos instalar de un paquete.
 ```
@@ -107,14 +107,14 @@ Por defecto, siempre se va a instalar la última versión. Quedaría así:
 
 - Cada cosa que no queramos subir a git (como archivos de configuración, contraseñas, etc), lo ponemos en el .gitignore. Por ejemplo:
 
-```typescript
+```text
 /node_modules
 ```
 - Si escribimos eso dentro de nuestro ".gitignore", cada vez que hagamos un pusheo al repositorio con GIT, la carpeta "node_modules" NO se incluye. Es decir, se ignora y no se sube. 
 
 - Ahora si nosotros nos descargamos o clonamos el repositorio de nuestro proyecto, lo que tenemos que hacer siempre es abrir la terminal (en nuestra carpeta), y hacer:
 
-```typescript
+```text
 npm install
 ```
 - Y así, automaticamente nos creamos la carpeta node_modules con todo lo que necesita nuestro proyecto. 

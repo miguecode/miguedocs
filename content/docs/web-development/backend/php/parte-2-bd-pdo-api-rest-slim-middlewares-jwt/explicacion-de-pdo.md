@@ -28,13 +28,13 @@ Entonces, este es nuestro Connection String. Empieza con un Driver/motor (en nue
 Ejemplo
 
 try {
-```typescript
+```php
 $conStr = "mysql:host=localhost;dbname=pruebaDB";
 $pdo = new PDO($conStr, $user, $pass);
 ```
 }
 catch(PDOException $e) {
-```typescript
+```php
 echo "Error: " . $e->getMessage();
 ```
 }

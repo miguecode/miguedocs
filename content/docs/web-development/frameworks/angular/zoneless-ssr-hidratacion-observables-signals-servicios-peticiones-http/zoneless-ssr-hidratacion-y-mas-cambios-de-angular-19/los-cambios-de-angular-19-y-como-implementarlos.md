@@ -69,7 +69,7 @@ export const appConfig: ApplicationConfig = {
 
 - **Entonces, la modificación es este cambio**: 
 
-```typescript
+```text
 provideExperimentalZoneChangeDetection()  ---> provideZonelessChangeDetection()
 ```
 - [!!!] En Angular 20, ahora ya no es "provideExperimentalZonelessChangeDetection". Ahora es lo mismo pero sin el "Experimental". Esto tiene sentido ya que se avanzó en este tema. La explicación es toda la misma.
@@ -231,19 +231,19 @@ getData(): Observable<any> {
 
 - En caso de que no esté activado por defecto, podemos levantar el servidor activándolo, así:
 
-```typescript
+```text
 ng serve --hmr
 ```
 ## Scripts migratorios a la nueva reactividad de Angular
 
 - Estos comandos de Angular CLI nos sirven para pasar nuestro proyecto al uso de signals.
 
-```typescript
+```text
 ng generate @angular/core:signal-input-migration
 ng generate @angular/core:signal-queries-migration
 ng generate @angular/core:signal-output-migration
 ```
 - **Todas a la vez**: 
-```typescript
+```text
 ng generate @angular/core:signals
 ```

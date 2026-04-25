@@ -91,7 +91,7 @@ return {
 ```
 - Ahora que tenemos "matematicas" como un objeto que retorna 4 direcciones de memoria (restar, sumar, multiplicar y dividir), podemos literalmente usarla como si fuera una clase estática de C#. O más facil, como si fuese un objeto que contiene funciones. Eso es un closure.
 
-```typescript
+```text
 console.log(matematicas.sumar(4, 5));
 console.log(matematicas.dividir(20, 4));
 ```

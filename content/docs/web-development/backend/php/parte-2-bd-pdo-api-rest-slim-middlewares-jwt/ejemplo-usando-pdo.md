@@ -36,7 +36,7 @@ El execute() devuelve false si su ejecución dio error.
 $retorno = Cd::TraerUnCd($id);
 El retorno podría ser 'false' así que podría quedar mejor:
 if ($retorno ===false) {
-```typescript
+```php
 $retorno = -- el error -
 ```
 }

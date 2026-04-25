@@ -47,7 +47,7 @@ export class UserComponent {
 
 - Gracias a Angular CLI, podemos usar el comando "generate", que es el que podemos usar cada vez que queremos crear un elemento nuevo en Angular, ya sea un componente, servicio, directiva, pipe, entre otros.
 
-```typescript
+```text
 ng generate component components/MiComponente
 ```
 - **Eso se puede abreviar así**: "ng g c components/MiComponente". Lo que va a hacer esto es crearnos toda la estructura del componente, como vienen por defecto. 
@@ -64,7 +64,7 @@ ng generate component components/MiComponente
 ## Separación física de archivos
 
 - Una práctica mega común es separar las partes de un componente en archivos. La lógica, la estructura y los estilos:
-```typescript
+```text
 - MiComponente.component.ts
 - MiComponente.component.html
 - MiComponente.component.css
@@ -91,7 +91,7 @@ ng generate component components/MiComponente
 
 ### Comando de consola para migrar un proyecto de módulos a standalone:
 
-```typescript
+```text
 ng generate @angular/core:standalone
 ```
 - Recorre todo el proyecto, y convierte todos los componentes que encuentre a componentes Standalone.

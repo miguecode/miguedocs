@@ -21,10 +21,10 @@ description: "UX: User Experience. O también, 'Diseño de Experiencia de Usuari
 
 ## UX & UI: La combinación de UX y UI se trata de diseñar interfaces que nos permitan crear la mejor experiencia de usuario.
 
-******************************************************
+```text
 UX: Cómo se siente usar una página o aplicación.
 UI: Cómo se ve esa página o aplicación.
-******************************************************
+```
 
 ## Extra: La Usabilidad Web
 

@@ -59,7 +59,7 @@ this.miServicio.miObservable$
 
 - **Visualmente lo podemos analizar así**: 
 
-```typescript
+```text
 Observable:     "hola"  →  "chau" (primero manda un "hola", y 2 segundos después un "chau")
 filter:         	"hola"  →  "chau" (pasan ambos porque cumplen la condición)
 map:            	"HOLA"  →  "CHAU" (los dos se transforman)

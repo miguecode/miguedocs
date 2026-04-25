@@ -22,7 +22,7 @@ description: "¿Qué pasa cuando dos estilos apuntan al mismo elemento? ¿Cuál 
 - Por ende, nosotros tenemos que "resguardar" esta posibilidad, usando un fallback así:
 
 p {
-```typescript
+```css
 color: blue;
 color: oklch(0.7 0.148 238.24);
 ```
@@ -38,19 +38,19 @@ color: oklch(0.7 0.148 238.24);
 - **Veamos un ejemplo para entenderlo**: 
 
 <p class="text">
-```typescript
+```text
 Hola mundo
 ```
 `</p>`
 
 p {
-```typescript
+```css
 color: red;
 ```
 }
 
 p {
-```typescript
+```css
 color: blue;
 ```
 }
@@ -60,13 +60,13 @@ color: blue;
 - Pero si hacemos esto...
 
 .text {
-```typescript
+```css
 color: red;
 ```
 }
 
 p {
-```typescript
+```css
 color: blue;
 ```
 }
@@ -119,7 +119,7 @@ https://specificity.keegan.st/
 ### La palabra clave !important
 
 p {
-```typescript
+```css
 color: red !important;
 ```
 }

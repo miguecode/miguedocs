@@ -31,7 +31,7 @@ description: "Flujo de creación de una página"
 
 - En cualquier esquema de árbol hay NODOS. Un nodo no es ni más ni menos que los elementos de la estructura. El padre es un nodo, sus hijos son nodos, el padre del padre un nodo, todo son nodos.
 
-```typescript
+```text
 	 [Nodo]
 	      |
      ______|_______      [Estructura de árbol]

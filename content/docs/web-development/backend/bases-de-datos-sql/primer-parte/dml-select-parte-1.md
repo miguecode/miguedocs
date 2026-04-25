@@ -41,7 +41,9 @@ ORDER BY 3 DESC;
 
 Ese '3' significa: la tercer columna de la tabla. El motor la va a identificar según esté estructurado.
 
+```sql
 SELECT por Reunión (Un SELECT pero de 2 tablas o más)
+```
 
 ```sql
 SELECT PROVEEDORES.*, PRODUCTOS.*

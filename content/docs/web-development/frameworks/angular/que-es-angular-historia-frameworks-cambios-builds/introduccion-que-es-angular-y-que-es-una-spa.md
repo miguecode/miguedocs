@@ -16,7 +16,7 @@ description: "Angular es un framework de desarrollo de aplicaciones web, de cód
 1. Componentes: Son las unidades básicas de construcción de la interfaz.
 
 - **Cada componente se conforma de**: 
-```typescript
+```text
 1. Lógica y datos (Usando TypeScript)
 2. Una estructura visual/plantilla (Usando HTML)
 3. Estilos (Usando CSS u otros)

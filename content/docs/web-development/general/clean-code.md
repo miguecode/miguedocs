@@ -4,10 +4,11 @@ description: "El Clean Code no es solo una metodología; es una filosofía de tr
 ---
 
 
+## Clean Code
 
-- El Clean Code no es solo una metodología; es una filosofía de trabajo. Adoptar estos principios ayuda a escribir código que no solo funcione, sino que sea fácil de mantener, escalar y entender por otros desarrolladores (y por uno mismo en el futuro). Manténer el código limpio, organizado y optimizado es crucial y hace a un buen programador. Es algo que mi yo del futuro va a agradecer.
+El Clean Code no es solo una metodología; es una filosofía de trabajo. Adoptar estos principios ayuda a escribir código que no solo funcione, sino que sea fácil de mantener, escalar y entender por otros desarrolladores (y por uno mismo en el futuro). Manténer el código limpio, organizado y optimizado es crucial y hace a un buen programador. Es algo que mi yo del futuro va a agradecer.
 
-- **Un Clean Code sigue estas reglas**: 
+### Un Clean Code sigue estas reglas: 
 
 - **Los nombres importan**: "Deben ser precisos, coherentes y centrales." Elegir nombres claros y descriptivos para variables, funciones y clases es crucial. Un buen nombre elimina la necesidad de comentarios y facilita la comprensión del código.
 
@@ -28,9 +29,9 @@ description: "El Clean Code no es solo una metodología; es una filosofía de tr
 
 ## Documentación XML
 
-- La documentación se encarga de explicar las intenciones y las formas de funcionar de las distintas porciones de código o elementos de nuestros proyectos. Por ejemplo, qué recibe, qué retorna, qué hace, cómo lo hace, y por qué existe una función.
+La documentación se encarga de explicar las intenciones y las formas de funcionar de las distintas porciones de código o elementos de nuestros proyectos. Por ejemplo, qué recibe, qué retorna, qué hace, cómo lo hace, y por qué existe una función.
 
-- **Aclaraciones**: 
+### Aclaraciones: 
 
 - **Hay que documentar con criterio**: No es necesario documentar todo. Hay que hacerlo solo cuando un método no es claro. Un buen código se explica por sí mismo. Los constructores y las propiedades generalmente no necesitan documentación, a menos que hagan algo complejo o inesperado.
 
@@ -39,39 +40,40 @@ description: "El Clean Code no es solo una metodología; es una filosofía de tr
 
 ## Atomización
 
-- Atomizar significa descomponer el código en partes más pequeñas y manejables. Esto se aplica cuando una función puede dividirse en subfunciones más específicas, cada una con una única responsabilidad. Sin embargo, es importante encontrar un balance: si atomizamos demasiado, podríamos complicar innecesariamente la estructura del código.
+Atomizar significa descomponer el código en partes más pequeñas y manejables. Esto se aplica cuando una función puede dividirse en subfunciones más específicas, cada una con una única responsabilidad. Sin embargo, es importante encontrar un balance: si atomizamos demasiado, podríamos complicar innecesariamente la estructura del código.
 
 - **Veamos un ejemplo**: 
 
 ```typescript
 ValidarNumerico(string datoIngresado, int valorMin, int valorMax)
 {
-    // Para validar, necesito comprobar que el dato ingresado esté dentro del rango.
+  // Para validar, necesito comprobar que el dato ingresado esté dentro del rango.
 
-    if (datoIngresado > valorMin && datoIngresado < valorMax)
+  if (datoIngresado > valorMin && datoIngresado < valorMax)
 
-    // Pero para atomizar, creo otro método llamado ComprobarRangoValido.
+  // Pero para atomizar, creo otro método llamado ComprobarRangoValido.
 
-    if (ComprobarRangoValido(datoIngresado, valorMin, valorMax))
-    {   ...   }
+  if (ComprobarRangoValido(datoIngresado, valorMin, valorMax))
+  {   ...   }
 }
 
 ComprobarRangoValido(string dato, int min, int max)
 {
-    return dato > min && dato < max;
+  return dato > min && dato < max;
 }
 ```
-- **Simplicidad ante todo**: El objetivo es que el código sea fácil de leer. No hay que atomizar de más, ya que podría hacer que el código sea más difícil de seguir.
+
+**Simplicidad ante todo**: El objetivo es que el código sea fácil de leer. No hay que atomizar de más, ya que podría hacer que el código sea más difícil de seguir.
 
 
 ## Getters y Setters en las clases 
 
-- El uso de Getters y Setters en las clases ayuda a mantener un código limpio y organizado. Además, encapsulan la lógica de acceso a las propiedades de un objeto, lo que permite mantener un control sobre cómo se accede y modifica el estado interno de un objeto. Esto contribuye a la coherencia y robustez del código.
+El uso de Getters y Setters en las clases ayuda a mantener un código limpio y organizado. Además, encapsulan la lógica de acceso a las propiedades de un objeto, lo que permite mantener un control sobre cómo se accede y modifica el estado interno de un objeto. Esto contribuye a la coherencia y robustez del código.
 
 
 ## Early return (retorno temprano)
 
-- El early return hace referencia a poner un "return" al inicio de la función, para descartar situaciones donde no queremos que se ejecute nada. Entonces, ponemos los puntos de salida de la función al principio, evitando posibles errores. Si pasa de estos retornos, se ejecuta correctamente la función.
+El early return hace referencia a poner un "return" al inicio de la función, para descartar situaciones donde no queremos que se ejecute nada. Entonces, ponemos los puntos de salida de la función al principio, evitando posibles errores. Si pasa de estos retornos, se ejecuta correctamente la función.
 
 ```typescript
 function procesarPago(monto) {
@@ -82,6 +84,7 @@ function procesarPago(monto) {
   return "Pago procesado";
 }
 ```
+
 ## ¿Cuántos return poner en una función?
 
 | Estilo | ¿Cuándo usarlo? |
@@ -89,4 +92,4 @@ function procesarPago(monto) {
 | Varios return | Funciones cortas, condiciones claras, early exit |
 | Un solo return | Funciones largas, debug centralizado, estilo FP |
 
-- Cuando la función es muy clara y sencilla, no queda mal usar más de un return, porque se puede entender fácil. El problema es cuando la función es un poco más larga o compleja y el retorno puede variar más. En ese caso, puede ser mejor que el punto de salida sea uno solo y esté al final.
+Cuando la función es muy clara y sencilla, no queda mal usar más de un return, porque se puede entender fácil. El problema es cuando la función es un poco más larga o compleja y el retorno puede variar más. En ese caso, puede ser mejor que el punto de salida sea uno solo y esté al final.

@@ -91,7 +91,7 @@ console.log(numeros.__proto__); // Muestra métodos como map(), filter(), etc.
 
 - Y esto pasa con todos los los demás. Todos heredan de Object, y le agregan sus propios métodos y propiedades a la propiedad "prototype". 
 
-```typescript
+```text
 console.log(Object.prototype); // Es el prototipo raíz
 console.log(Array.prototype); // Contiene los métodos y propiedades de arrays
 console.log(Function.prototype); // Contiene propiedades y métodos como call(), apply(), bind()
@@ -99,11 +99,11 @@ console.log(Function.prototype); // Contiene propiedades y métodos como call(),
 ## Para verlo más claro:
 
 Object.prototype → (Object es la "clase" padre de todos, y contiene al prototipo raíz)
-```typescript
+```text
 ↑
 ```
 Array.prototype (Hereda de Object y agrega métodos como map(), filter(), reduce())
-```typescript
+```text
 ↑
 ```
 [1,2,3] (Una instancia de Array, la cual tiene una propiedad __proto__ que apunta a Array.prototype)
@@ -135,7 +135,7 @@ console.log(Persona.prototype.saludar === juan.__proto__.saludar); // Muestra tr
 
 - Y pasa exactamente lo mismo con todos los demás Wrapper Objects, como Function:
 
-```typescript
+```text
 console.log(Function.prototype.__proto__ === Object.prototype); // true
 ```
 ## El método Object.getPrototypeOf()

@@ -44,7 +44,7 @@ description: "Crear una 'base de datos' con JSON Server"
 
 Para levantarlo, usamos el comando -w así:
 
-```typescript
+```text
 json-server -w db.json -d 2500
 ```
 "json-server" es el nombre de lo que queremos levantar. Cuando estamos en la terminal y queremos levantar un programa, lo primero que escribimos es su nombre. El "w" viene de watch, y "db.json" (la data que creamos con Mockaroo) es el archivo al que queremos que "watchee" el servidor. El "d" significa delay, entonces le estamos diciendo que cada vez que hagamos una petición, tenga un delay de 2500 milisegundos (2 segundos y medio).
@@ -52,14 +52,14 @@ json-server -w db.json -d 2500
 - Entonces, con el comando "json-server -w db.json -d 2500" lo que hacemos es levantar el servidor. Pero no está bueno que cada vez que lo queramos levantar, tengamos que escribir todo eso en la terminal. Para evitarlo, podemos usar un atajo:
 
 - En el package.json hay una key llamada "scripts". Le vamos a agregar un script nuevo:
-```typescript
+```text
 "start": "json-server -w db.json -d 2500"
 ```
 - A la "key" la llamamos "start" y en el "value" le ponemos el string: "json-server -w db.json -d 2500".
 
 - Ahora, cada vez que ejecutemos el siguiente comando:
 
-```typescript
+```text
 npm start
 ```
 - **Es como si escribieramos**: json-server -w db.json -d 2500
@@ -68,7 +68,7 @@ npm start
 
 - Cuando lo levantamos, vamos a ver que en la terminal nos sale todo un mensajito, y además una URL "Home" a la cual podemos acceder haciéndole CTRL + clic. Nos abre el navegador. También vamos a tener un recurso (Resource) por cada endpoint existente. Si tenemos la data solo con "personas", va a estar ese endpoint únicamente. Si también tenemos "mascotas", van a estar ambas URL's:
 
-```typescript
+```text
 localhost:3000/personas
 localhost:3000/mascotas
 ```
@@ -79,7 +79,7 @@ localhost:3000/mascotas
 
 ## Ejemplos de consultas
 
-```typescript
+```text
 GET http://localhost:3000/personas?nombre=Juan
 GET http://localhost:3000/personas?_sort=nombre&_order=asc
 GET http://localhost:3000/personas?_page=1&_limit=5

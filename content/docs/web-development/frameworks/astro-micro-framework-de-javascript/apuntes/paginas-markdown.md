@@ -20,7 +20,7 @@ pubDate: 2024-04-05
 descripcion: "Este es el primer post de mi nuevo blog."
 author: "Yo, Miguel"
 image:
-```typescript
+```text
 url: 'https://docs.astro.build/assets/full-logo-light.png'
 alt: "La imagen del post"
 ```
@@ -35,7 +35,7 @@ Lorem ipsum (Varios párrafos).
 - Ahora, en blog.astro vamos a poner nuestra lista de post's:
 
 `<ul>`
-```typescript
+```text
 <li><a href="/posts/post-1">Post 1</a></li>
 ```
 `</ul>`

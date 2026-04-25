@@ -12,7 +12,7 @@ description: "La idea de los Route Guards es manejar cuándo podemos o no accede
 
 - **Así se crea un guard con el Angular CLI**: 
 
-```typescript
+```text
 ng g guard guards/logeado
 ```
 - Después, nos da 4 opciones para elegir qué tipo de Guard vamos a crear.
@@ -27,14 +27,14 @@ ng g guard guards/logeado
 
 - Antes de codear la función, vamos al archivo de ruteo. En el, nos tenemos que enfocar en el path al que queremos resguardar. O sea, el path que tendrá que tener un guardia previo, que va a definir si podemos acceder a la ruta o no, que generalmente es a un componente 'home', 'bienvenida', etc.
 
-```typescript
+```text
 [lógica del path con su componente], canActivate: [logeadoGuard]
 ```
 - Esta es la sintaxis. Primero, toda la declaración de nuestro path, y después, seguido de una coma " , ", la nuestro Guard. El cual, primero ponemos su tipo (en este caso canActivate), seguido de " : " y el nombre dle Guard puesto entre corchetes []. Y si quisiéramos poner más Guards en este path, lo hacemos separándolos por " , ".
 
 - **Ahora vamos a hacer uno de admin**: 
 
-```typescript
+```text
 ng g guard guards/admin
 ```
 - Se mantiene la misma lógica. Se invoca en las rutas, y la función devuelve un bool.

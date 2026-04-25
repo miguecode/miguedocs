@@ -28,7 +28,7 @@ description: "Set es una colección de valores únicos, sin claves. Es como un a
 
 ## Ejemplo básico
 
-```typescript
+```sql
 const conjunto = new Set();
 
 conjunto.add("🍎");

@@ -13,7 +13,7 @@ description: "Directivas en Angular"
 
 - El comando de Angular CLI para crear una directiva es:
 
-```typescript
+```text
 ng generate directive directives/miPrimeraDirectiva
 ```
 ## Directivas de Estructura (estructurales)
@@ -135,7 +135,7 @@ export class appShowOnScreenSizeDirective implements OnInit{
 ### Crear nuestra propia directiva de atributo
 
 @Directive({
-```typescript
+```sql
 standalone: true,
 select: "[appHighlight]"
 ```
@@ -161,7 +161,7 @@ onMouseLeave() {
 
 - Esta directiva es de atributo ya que no altera a la estructura de nuestro DOM, sino que simplemente actúa en cómo se ve el elemento. En este caso, le cambia el background-color. Para invocar esta directiva, tendríamos que hacer lo siguiente en nuestro código HTML:
 
-```typescript
+```text
 <p [appHighlight]="green">Pasa el mouse sobre este elemento para resaltar su contenido</p>
 ```
 - Como vemos, las directivas (tanto estructurales como de atributos) pueden recibir valores por fuera. En este caso, appHighlight va a recibir un color que le pasemos nosotros, y es el color que va a usar para resaltar el elemento. Esto podría servirnos para crear warnings, errores, etc. en formularios. Así, nos evitaríamos usar If o Elses en el HTML.

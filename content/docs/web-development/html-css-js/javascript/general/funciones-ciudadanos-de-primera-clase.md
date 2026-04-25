@@ -59,7 +59,7 @@ var pepe  = miFuncion;
 
 - Este sería el primer punto del por qué una función es un ciudadano de primer clase. Porque se pueden asignar a variables.
 
-```typescript
+```text
 miFuncion();  	// Muestra "Hola, estoy funcionando"
 pepe(); 		// Muestra "Hola, estoy funcionando"
 ```
@@ -112,14 +112,14 @@ contenedorFuncion();    // Va a ejecutar: console.log("Hola");
 - Y después, al hacer uso de " () ", invocamos la función a la cual está apuntando/referenciando. Ya que como dijimos al principio, el uso de " () " significa invocación. 
 
 
-```typescript
+```text
 retornadorDeFuncion(funcioncita)();  // Muestra "Hola"
 ```
 - Y si encima hacemos esto, nos ahorramos un paso. Porque estamos literalmente invocando a la función que está retornando retornadorDeFunción.
 
 - **Quizá es confuso, pero es fácil de ver**: 
 
-```typescript
+```text
 retornadorDeFuncion(funcioncita) = funcioncita;
 ```
 - Entonces, eso significa que cada vez que leemos retornadorDeFuncion(funcioncita), estamos leyendo "funcioncita". Por eso, si le agregamos el () al final, estaríamos literalmenta haciendo funcioncita();

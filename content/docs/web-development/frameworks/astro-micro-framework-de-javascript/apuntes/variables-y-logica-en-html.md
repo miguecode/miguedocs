@@ -17,7 +17,7 @@ description: "Uso de variables en el HTML"
 const pageTitle = "About Me";
 
 const identity = {
-```typescript
+```text
 firstName: "Miguel",
 country: "Argentina",
 occupation: "Web Developer",

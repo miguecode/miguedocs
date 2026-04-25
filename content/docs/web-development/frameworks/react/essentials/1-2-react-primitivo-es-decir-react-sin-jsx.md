@@ -34,7 +34,7 @@ const root = ReactDOM.createRoot(appDomElement);
 
 - Podríamos renderizar cosas en nuestra página. Y para eso, podemos simplemente mostrar un Hola Mundo! usando el método "render()" de nuestro root, así:
 
-```typescript
+```text
 root.render('Hola Mundo!');
 ```
 - Ya podemos ver como nuestra página muestra lo que generamos en nuestro React DOM, de forma dinámica en JavaScript. Obviamente que esto es muy pobre y sin sentido, pero podemos hacerlo para comprobar que funciona. Esto es el corazón de React: crear una interfaz de usuario (elementos) manipulando el DOM. Ahora imaginemos que no queremos mostrar un texto que diga Hola Mundo, sino elementos HTML reales.

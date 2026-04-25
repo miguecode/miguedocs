@@ -16,7 +16,7 @@ description: "No son lo mismo que las pseudoclases (como por ejemplo, hover). La
 ### Pseudoelemento Selection
 
 .dialogo::selection {
-```typescript
+```css
 background: red;
 color: green;
 ```
@@ -28,7 +28,7 @@ color: green;
 ### Pseudoelemento After (o Before, da igual)
 
 .dialogo::after {
-```typescript
+```text
 content: "Hola!";
 ```
 }
@@ -38,13 +38,13 @@ content: "Hola!";
 - De esta forma, en nuestro párrafo de clase "dialogo", va a aparecer un "Hola!" al final. Si el pseudoelemento fuera ::before, aparecería al principio de todo. 
 
 .dialogo {
-```typescript
+```text
 position: relative;
 ```
 }
 
 .dialogo::after {
-```typescript
+```css
 content: "";
 display: block;
 position: absolute;
@@ -64,7 +64,7 @@ width: 30px;
 ::placeholder → Permite cambiar el estilo del texto de marcador de posición en inputs (<input placeholder="Escribe aquí">).
 
 .input::placeholder {
-```typescript
+```css
 color: red;
 ```
 }

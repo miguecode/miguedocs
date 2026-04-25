@@ -25,7 +25,7 @@ const data = {
 
 - La lógica de la función varía en cómo manejamos el objeto xhr:
 
-```typescript
+```text
 xhr.open("POST", URL);
 xhr.setRequestHeader("Content-Type", "application/json;charset=utf-8");
 ```
@@ -33,7 +33,7 @@ xhr.setRequestHeader("Content-Type", "application/json;charset=utf-8");
 
 - Y el otro cambio respecto a los GET, es que tenemos que pasar la data por parámetro al send, así:
 
-```typescript
+```text
 xhr.send(JSON.stringify(data));
 ```
 - Lo que hacemos es enviarle un string JSON con la "data" de la persona que queremos crear y guardar en el servidor. Ese "data" es lo que hardcodeamos al principio, la persona Juan Perez.
@@ -50,7 +50,7 @@ xhr.send(JSON.stringify(data));
 - Como vamos a modificar una persona existente, cuando hardcodeamos la data tenemos que especificarle el ID (existente también). O sea, pasamos el objeto como con POST, pero ahora incluyendo el ID.
 
 const data = {
-```typescript
+```text
 id: 1,
 nombre: "Pepito",
 apellido: "Flores"
@@ -59,7 +59,7 @@ apellido: "Flores"
 
 - Así, vamos a modificar a la persona con id = 1. La forma de usar el "open" es la siguiente:
 
-```typescript
+```text
 xhr.open("PUT", URL + "/" + data.id)
     xhr.setRequestHeader("Content-Type", "application/json;charset=utf-8");
 xhr.send(JSON.stringify(data));
@@ -71,7 +71,7 @@ xhr.send(JSON.stringify(data));
 
 - El verbo DELETE es prácticamente lo mismo que cuando haciamos un GET específico. Pasamos un ID para apuntarle a una persona en específico, pero en vez de traerla, la vamos a eliminar. 
 
-```typescript
+```sql
 xhr.open("DELETE", URL + "/" + id);
 xhr.send();
 ```
@@ -108,7 +108,7 @@ fetch(URL, {
 
 - Y listo. Eso es lo único que modificamos para hacer un createPersona en FETCH. Y como estamos usando promesas, todo esto también lo podemos hacer como función asíncrona (async y await).
 
-```typescript
+```php
 const createPersonaAsync = async () => {
 	try {
 	    	$loader.classList.remove("oculto");
@@ -148,7 +148,7 @@ fetch(URL + "/" + data.id, {
 
 - Lo mismo que antes. Ahora todo es más rápido de entender. La función deletePersona recibe un ID como si fuese un GET específico, pero en vez de traernos a esa persona, la vamos a eliminar.
 
-```typescript
+```sql
 fetch(URL + "/" + id, {
     method: "Delete",
 }).then((res) => {  
@@ -163,7 +163,7 @@ fetch(URL + "/" + id, {
 
 - Nos basamos en el getPersonas del propio AXIOS, usando la data hardcodeada con otro nombre. Esto mantiene la misma lógica que vimos anteriormente con los otros métodos. 
 
-```typescript
+```php
 axios
 .post(URL, data, {
     "Content-Type": "application/json;charset=utf-8",
@@ -209,7 +209,7 @@ const data = {
 
 - **Más de lo mismo**: 
 
-```typescript
+```sql
 axios
     .delete(URL + "/" + id)
     .then(() => {

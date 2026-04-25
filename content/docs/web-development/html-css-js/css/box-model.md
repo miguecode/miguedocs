@@ -50,7 +50,7 @@ Margin > Border > Padding > Content
 - **Entonces**: 
 
 .container {
-```typescript
+```css
 height: 100px;
 width: 100px;
 padding: 10px;
@@ -80,7 +80,7 @@ box-sizing: border-box;      // estilo sobreescrito por nosotros (recomendado)
 - **Entonces**: 
 
 .container {
-```typescript
+```css
 height: 100px;
 width: 100px;
 padding: 10px;
@@ -127,13 +127,13 @@ border: 10px solid red;
 - **El outline**: Cuando queremos resaltar un elemento sin modificar su tamaño ni provocar desplazamientos.
 
 .link:hover {
-```typescript
+```css
 border: 5px solid red;
 ```
 }
 
 .link:hover {
-```typescript
+```text
 outline: 5px solid red;
 ```
 }

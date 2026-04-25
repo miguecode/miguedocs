@@ -36,7 +36,7 @@ header.payload.signature
 El encabezado va a definir el tipo de Token, en este caso JWT y la codificación utilizada. Comúnmente se usa HS256:
 
 {
-```typescript
+```text
 "typ": "JWT",
 "alg": "HS256
 ```
@@ -51,7 +51,7 @@ iat = Identifica la fecha de creación del Token (formato de tiempo UNIX)
 exp = Identifica la fecha de expiración del Token (formato de tiempo UNIX)
 
 {
-```typescript
+```text
 "sub":  "afsab3rb4sb",
 "iat": "2492849aisa9",
 "exp": "5254356sda",
@@ -67,7 +67,7 @@ Está formada por los anteriores componentes (Header y Payload) cifrados, y con 
 Sirve de Hash para comprobar que todo esté bien.
 
 HMACSHA256(
-```typescript
+```text
 base64UrlEncode(header) + "." + base64UrlEncode(payload), miClaveSecreta
 ```
 )

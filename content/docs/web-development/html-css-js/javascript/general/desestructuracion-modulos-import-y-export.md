@@ -99,7 +99,7 @@ import { sumar } from "./matematicas.js";
 ```
 - De esta forma, tenemos la posibilidad de usar "sumar", y podemos hacer:
 
-```typescript
+```text
 console.log(sumar(3, 5));  // No escribimos el "matematicas. ''
 ```
 - Con la importación nativa de JavaScript, sigue siendo el navegador quien solicita el archivo al servidor, pero ahora es el archivo scripts.js el que decide cuándo y cómo cargarlo.
@@ -169,7 +169,7 @@ import matematicas from "./matematicas.js";
 ```
 - Con el "default", lo que hacemos es importar todo directamente dentro de una variable que estamos creando llamada "matematicas", así que la usaríamos haciendo esto:
 
-```typescript
+```text
 matematicas.sumar(2, 4);
 ```
 - La diferencia entre "default" y "no default" es que el intérprete lo primero que cuelga y que tiene disponible es lo que sea default. Lo que no lo es, lo va a interpretar en el momento en que lo lea por primera vez al hacer el barrido.

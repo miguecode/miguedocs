@@ -12,12 +12,12 @@ description: "La History API nos permite interactuar con el historial del navega
 
 - Es decir, cuando estamos en Angular y vamos a hacer ruteo, podemos ver algo así:
 
-```typescript
+```text
 this.router.navigate(['/perfil']);
 ```
 - Cuando en realidad, por debajo, está ocurriendo esto:
 
-```typescript
+```text
 history.pushState(...);
 ```
 - Esto quiere decirnos que el framework nos hace de azúcar sintáctico, ya que "nos esconde" todo el manejo del History API (la API que vamos a aprender ahora).
@@ -35,24 +35,24 @@ history.pushState(...);
 
 ### Back y Forward
 
-```typescript
+```text
 history.back();	// Va una página hacia atrás (como si el usuario tocara el botón "atrás")
 history.forward(); // Va una página hacia adelante (como si el usuario tocara el botón "adelante")
 ```
 ### Go
 
-```typescript
+```text
 history.go(n);  // "n" puede ser -1, 0 o 1.
 ```
 - Va a una página en el historial relativa a la posición actual.
-```typescript
+```text
 n = -1 → una atrás
 n = 1 → una adelante
 n = 0 → recarga la página actual
 ```
 ### La propiedad length
 
-```typescript
+```text
 history.length; // Nos da la cantidad total de entradas en el historial de la pestaña actual
 ```
 - Ojo, no nos dice cuántas veces podemos ir hacia atrás o adelante, sino simplemente el total de entradas.

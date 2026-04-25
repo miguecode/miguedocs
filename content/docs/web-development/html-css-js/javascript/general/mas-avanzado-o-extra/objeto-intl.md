@@ -100,7 +100,7 @@ console.log(comparador.compare('hola', 'HOLA')); // 0 (considera iguales)
 ```
 6. Intl.PluralRules – Para saber el plural correcto
 
-```typescript
+```sql
 const plural = new Intl.PluralRules('en-US');
 
 console.log(plural.select(1)); // 'one'

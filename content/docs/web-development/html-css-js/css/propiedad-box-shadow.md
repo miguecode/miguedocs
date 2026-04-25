@@ -49,7 +49,7 @@ box-shadow: offset-x offset-y [blur-radius] [spread-radius] [color] [inset];
 - Nosotros podemos poner más de una sombra, usando la misma propiedad. Simplemente, lo separamos con comas , así:
 
 div {
-```typescript
+```text
 box-shadow: 5px 5px 0 red,
             10px 10px 5px blue,
             15px 15px 10px yellow;

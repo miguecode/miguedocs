@@ -70,7 +70,7 @@ En este ejemplo, sizes indica que:
 - Si es menor o igual a 1200px, usa una imagen de 800px.
 - De lo contrario, usa una imagen de 1200px.
 
-```typescript
+```text
 	Tamaño de la pantalla	|	Imagen que se carga
 	≤ 600px				|	small.jpg (480px)
 	≤ 1200px				|	medium.jpg (800px)
@@ -115,7 +115,7 @@ En este ejemplo, sizes indica que:
 ## Ejemplo de `<picture>` y `<source>`
 
 `<picture>`
-```typescript
+```text
 <source srcset="imagen-movil.webp" media="(max-width: 600px)">
 <source srcset="imagen-tablet.webp" media="(max-width: 1024px)">
 <img src="imagen-escritorio.webp" alt="Imagen adaptable">
@@ -132,7 +132,7 @@ En este ejemplo, sizes indica que:
 ## Ejemplo de srcset y sizes
 
 <img 
-```typescript
+```text
 src="imagen-pequena.jpg" 
 srcset="imagen-pequena.jpg 480w, imagen-mediana.jpg 800w, imagen-grande.jpg 1200w" 
 sizes="(max-width: 600px) 480px, (max-width: 1200px) 800px, 1200px" 
@@ -150,7 +150,7 @@ alt="Imagen adaptable"
 ## Ejemplo de los dos métodos combinados
 
 `<picture>`
-```typescript
+```text
 <source srcset="imagen-movil.webp 480w,
 imagen-movil-grande.webp 800w" media="(max-width: 600px)">
 

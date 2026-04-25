@@ -17,7 +17,7 @@ description: "Ruteo en Angular"
 
 - Como sabemos, nosotros vamos a trabajar en el componente appComponent, que es el componente invocado en el archivo index.html. Si vemos su template (app.component.html), vamos a ver que tenemos todo en blanco, pero con una línea:
 
-```typescript
+```text
 <router-outlet />
 ```
 - Esta es la clave de todo. El router-outlet lo que está haciendo es invocar el ruteo de nuestra app. Es decir, es la raíz de la cual van a salir todos los demás componentes de la aplicación.

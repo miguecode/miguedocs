@@ -38,26 +38,26 @@ root.render("Hola Mundo!");
 
 - Y... ¿Qué es lo que podíamos hacer ahora? Mostrar elementos. Y de hecho, como ahora estamos en un archivo JSX, podemos usar la siguiente sintaxis:
 
-```typescript
+```text
 root.render(
 	<button>	Boton 1</button>
 )
 ```
 - Esto funciona. Y si quisieramos agregar más botones...
 
-```typescript
+```text
 root.render(
 ```
 | `<button>` | Boton 1`</button>` |
 | --- | --- |
 | `<button>` | Boton 2`</button>` |
 | `<button>` | Boton 3`</button>` |
-```typescript
+```text
 )
 ```
 - Esto NO funciona. Porque como dijimos, render() solo puede recibir UN elemento. Porque JSX es JavaScript extendido. Y render es un método que recibe solo un parámetro. En este caso estaría recibiendo 3, y eso rompe. Entonces, lo que podíamos hacer era envolver nuestros 3 elementos button en un elemento div. Eso funcionaría perfectamente. Pero... estaríamos obligados a crear un `<div>` en nuestro HTML, cosa que quiza no queremos hacer. Para esto es que React tiene los Fragments, que son bloques "invisibles":
 
-```typescript
+```text
 root.render(
 	<React.Fragment>
 ```
@@ -65,7 +65,7 @@ root.render(
 | --- | --- |
 | `<button>` | Boton 2`</button>` |
 | `<button>` | Boton 3`</button>` |
-```typescript
+```text
 	</React.Fragment>
 )
 ```

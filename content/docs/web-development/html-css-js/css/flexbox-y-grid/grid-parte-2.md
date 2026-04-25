@@ -36,7 +36,7 @@ grid-template-columns: minmax(100px, 1fr) 1fr 1fr;
 - Estas propiedades determinan la separación que hay entre las columnas y filas de nuestra grid.
 
 div {
-```typescript
+```css
 display: grid;
 grid-template-columns: 1fr 1fr 1fr;
 grid-columns-gap: 5px;
@@ -55,7 +55,7 @@ grid-rows-gap: 5px;
 - Lo primero que haría alguien sería usar media queries, así:
 
 div {
-```typescript
+```css
 display: grid;
 grid-template-columns: 1fr;
 gap: 16px;
@@ -81,7 +81,7 @@ div {
 - De esta forma, conseguimos que sea responisve. PERO, como dijimos antes, esto no es lo ideal en Grid. Ya que para esto, lo mejor es usar la propiedad maxmin(), de esta forma:
 
 div {
-```typescript
+```css
 display: grid;
 grid-template-columns: repeat(
 	auto-fill,
@@ -131,7 +131,7 @@ O sea que, si tenemos 400px de ancho, va a colocar 2 columnas. Pero si tenemos 5
 - Para hacerlo, hay que usar las propidades "grid-column/row-start" y "grid-column/row-end".
 
 .container div:first-child {
-```typescript
+```css
 background: yellow;
 grid-column-start: 1;
 grid-column-end: 3;

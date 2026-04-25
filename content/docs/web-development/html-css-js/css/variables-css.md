@@ -24,7 +24,7 @@ description: "Variables CSS (Custom Properties)"
 - Para crear variables, tenemos que ir al principio de nuestro archivo CSS, y hacer uso de la pseudoclase "root", la cual hace referencia a la raíz del documento (que en HTML, es la etiqueta `<html>`).
 
 :root {
-```typescript
+```text
 ...
 ```
 }
@@ -32,7 +32,7 @@ description: "Variables CSS (Custom Properties)"
 - En esta pseudoclase, es donde nosotros vamos a crear variables globales CSS. Esto también sirve para aplicar estilos, como por ejemplo ponerle un "font-size: 20px", pero en este caso lo único que vamos a hacer es crear variables.
 
 :root {
-```typescript
+```text
 --color-primary: #505EF4;
 ```
 }
@@ -44,7 +44,7 @@ description: "Variables CSS (Custom Properties)"
 - Ahora, para usar nuestra variable "--color-primary", tenemos que hacer uso de var(), así:
 
 .button {
-```typescript
+```css
 background-color: var(--primary-color);
 ```
 }
@@ -53,7 +53,7 @@ background-color: var(--primary-color);
 - **Otro caso común es crear variables para fuentes**: 
 
 :root {
-```typescript
+```text
 --color-primary: #505EF4;
 --font-primary: 'Lato', sans-serif;
 ```
@@ -93,7 +93,7 @@ body {
 
 @media (max-width: 768px) {
   :root {
-```typescript
+```text
 --font-size: 14px;
 ```
   }
@@ -107,7 +107,7 @@ body {
 ### Usando el prefers-color-scheme para el modo oscuro
 
 :root {
-```typescript
+```text
 --color-primary: #777;
 --color-secondary: #333;
 ```
@@ -115,7 +115,7 @@ body {
 
 @media (prefers-color-scheme: dark) {
   :root {
-```typescript
+```text
 --color-primary: #333;
 --color-secondary: #777;
 ```

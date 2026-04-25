@@ -29,7 +29,7 @@ description: "Diferencia entre microdatos y metadatos"
 - Vamos a hacer que Google entienda que este código representa un restaurante y sus detalles.
 
 <div itemscope itemtype="https://schema.org/Restaurant">
-```typescript
+```text
 <h2 itemprop="name">La Pizzería de Miguel</h2>
 <p itemprop="address">Avenida Siempre Viva 123, Buenos Aires</p>
 <p>Calificación: <span itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">

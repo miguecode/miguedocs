@@ -43,12 +43,12 @@ console.log(dondeEstamos);		// Muestra window
 
 - Window, además de ser el scope global, también es un objeto. Y es el objeto contenedor de todo en JavaScript. Por ejemplo, window contiene al objeto console. Por ende, nosotros podríamos hacer esto:
 
-```typescript
+```text
 window.console.log("Hola Mundo");	// Funciona perfectamente
 ```
 - También podríamos hacer esto (si es que estamos en el scope global):
 
-```typescript
+```text
 this.console.log("Hola mundo"); 	// Funciona perfectamente
 ```
 - Esto quiere decir que todo lo que creemos dentro de window, va a formar parte de él. O sea, si creamos objetos, funciones, clases, arrays, variables... lo que sea, todo va a ser parte del objeto window. Por lo tanto, si nosotros hacemos console.log(window) y lo vemos en la consola de las herramientas de desarrollador, vamos a poder desglosar y ver todo lo que contiene window, incluyendo todo lo que nosotros mismos creamos.
@@ -177,7 +177,7 @@ const saludar2 = saludar.bind(persona, "Chocolate", 23, "Masculino");
 
 - Como dijimos antes, window es el objeto/scope global. Eso es cierto, pero siempre y cuando estemos trabajando en navegadores. Pero por ejemplo, en entornos como Node.js, no existe window. Y en cambio, globalThis es el universal.
 
-```typescript
+```text
 console.log(globalThis); 	// Funciona tanto en Node.js como en el navegador
 ```
 - El objeto globalThis va a ser siempre el scope global, independientemente del entorno en el que estemos ejecutando JavaScript. Si es en navegador, globalThis va a ser window, pero en Node, va a ser otro objeto.

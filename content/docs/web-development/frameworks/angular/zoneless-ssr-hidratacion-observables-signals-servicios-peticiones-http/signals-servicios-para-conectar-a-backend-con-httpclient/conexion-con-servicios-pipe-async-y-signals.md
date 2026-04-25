@@ -28,7 +28,7 @@ export interface Character { id: number, name: string, lastName: string, age: nu
 ```
 - Volvamos a nuestro servicio Character. Vamos a crear un método para recibir, modificar y eliminar a los personajes, los cuales van a devolver datos de tipo Observable. De esta forma, manejamos la reactividad.
 
-```typescript
+```sql
 getCharacters(): Observable<Character[]> {
 	return this.http.get<Character[]>(this.apiUrl);		
 }

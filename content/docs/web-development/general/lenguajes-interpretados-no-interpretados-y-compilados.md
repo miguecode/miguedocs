@@ -4,8 +4,7 @@ description: "Lenguaje Interpretado"
 ---
 
 
-
-### Lenguaje Interpretado
+## Lenguaje Interpretado
 
 - Un lenguaje interpretado es aquel en el que el código fuente es ejecutado línea por línea directamente por un intérprete en tiempo de ejecución, sin necesidad de ser compilado previamente a un código de máquina.
 
@@ -45,8 +44,7 @@ description: "Lenguaje Interpretado"
 
 - **Algunos lenguajes combinan ambos enfoques**: primero se compilan a un código intermedio (bytecode) y después son interpretados o ejecutados por una máquina virtual (VM).
 
-- Ejemplos
-Java (compilado a bytecode que corre en la JVM),  C# (compilado a bytecode que corre en el .NET CLR, Kotlin, Scala, Dart.
+- **Ejemplos**: Java (compilado a bytecode que corre en la JVM),  C# (compilado a bytecode que corre en el .NET CLR, Kotlin, Scala, Dart).
 
 #### Ventajas
 

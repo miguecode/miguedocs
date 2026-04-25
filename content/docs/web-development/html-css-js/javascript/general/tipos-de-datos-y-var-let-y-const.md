@@ -31,7 +31,7 @@ BigInt		Números enteros muy grandes	let big = 1234567890123456789n;
 
 * Aclaración sobre Null: La realidad es que null es un tipo de dato primitivo, y por eso lo colocamos acá. Pero hay que saber una cosa, y es que tiene una particularidad que lo distingue de los demás primitivos, y es que si hacemos esto:
 
-```typescript
+```text
 console.log(typeof null);  // Muestra "object"
 ```
 - Como vemos, el typeof nos dice que null es un objeto. Pero esto es un ERROR, literalmente es un bug muy antiguo de JavaScript, que con el tiempo se decidió no corregir, para evitar romper millones de sitios web antiguos. Pero hay que entender que null se comporta como un tipo de dato primitivo, al igual que los demás.

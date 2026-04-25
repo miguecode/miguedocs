@@ -36,7 +36,7 @@ const miObservable$ = new Observable<string>(observer => {
 - Primero importamos la clase Observable`<T>`, la cual implementa una interfaz llamada Subscribable`<T>`, y forma parte de la biblioteca rxjs. Para crear un Observable, hacemos una variable llamada miObservable$ (el '$' es por convención, se le suele poner a los observables). Ahora, usamos el constructor genérico pasándole un Type `<string>`, para indicar cuál va a ser el tipo genérico (un string en este caso). Y por parámetro, recibe un callback. 
 
 - Este callback va a usar una variable observer que es un objeto con 3 métodos: next(), error() y complete().
-```typescript
+```text
 observer.next(valor) → Emite un valor al suscriptor.
 observer.error(err) → Emite un error (y termina el observable).
 observer.complete() → Indica que ya no habrá más emisiones.
@@ -72,7 +72,7 @@ export class MiComponenteComponent implements OnInit {
 
 - Lo que vamos a ver por consola al momento de inicializar el componente MiComponenteComponent, va a ser esto:
 
-```typescript
+```text
 Valor: Hola
 Valor: ¿Todo bien?
 Valor: Esto llegó más tarde...
@@ -110,7 +110,7 @@ B: 0.892
 ```
 - **Y si ahora hicieramos esto...**: 
 
-```typescript
+```text
 obs$.next(20); // ❌ Error: Property 'next' does not exist on type 'Observable<number>'
 obs$.next(30); // ❌ Error: Property 'next' does not exist on type 'Observable<number>'
 ```

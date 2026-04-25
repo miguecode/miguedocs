@@ -11,7 +11,7 @@ description: "Overflow (desbordamiento)"
 - Existen formas de manipular el comportamiento del overflow, y es usando la propiedad overflow.
 
 .container {
-```typescript
+```text
 width: 150px;
 height: 150px;
 box-sizing: border-box;

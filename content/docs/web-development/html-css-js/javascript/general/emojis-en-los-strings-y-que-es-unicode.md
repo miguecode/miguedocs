@@ -19,7 +19,7 @@ console.log(emoji.length); // Muestra 2
 
 - Entonces, para los caracteres fuera de ese rango, como muchos emojis, se usan 2 valores de 16 bits en lugar de uno. Y a eso se lo llama un surrogate pair (par sustituto).
 
-```typescript
+```text
 "🔥" === "\uD83D\uDD25" // Esto es true
 ```
 - Ese emoji se representa como DOS unidades de código UTF-16. Y por eso el length es 2.
@@ -33,7 +33,7 @@ console.log(emoji.length); // Muestra 2
 
 - Cada carácter Unicode tiene un punto de código único:
 
-```typescript
+```text
 console.log("🔥".codePointAt(0).toString(16)); // Muestra 1f525
 ```
 - Esto nos quiere decir que el emoji "🔥" tiene el código Unicode U+1F525.

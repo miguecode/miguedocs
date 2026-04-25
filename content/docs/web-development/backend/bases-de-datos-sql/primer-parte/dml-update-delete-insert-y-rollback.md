@@ -8,17 +8,21 @@ DML - UPDATE
 
 Sintaxis:
 
+```sql
 UPDATE tablita
 SET CAMPO = valor
 WHERE condición;
+```
 
 "Cambiar el tamaño a 'chico', disminuir el precio del producto 003 de 8 a 7 pesos e indicar que su localidad es 'desconocida'":
 
+```sql
 UPDATE PRODUCTOS
 SET TAMAÑO = 'CHICO',
 PRECIO = PRECIO - 1,
 LOCALIDAD = NULL
 WHERE PNRO = 003;  // Si no pongo WHERE, modifica a todos los registros
+```
 
 Podría poner también PRECIO = 7.
 
@@ -32,8 +36,10 @@ WHERE condición   // Si no pongo WHERE, elimina a todos los registros
 
 "Eliminar todos los productos realizados en Capital":
 
+```sql
 DELETE FROM PRODUCTOS
 WHERE LOCALIDAD = 'CAPITAL';
+```
 
 
 DDL - TRUNCATE OJO: es de DDL. No DML
@@ -49,20 +55,26 @@ DML - INSERT
 INSERT INTO tablita (campos...)
 VALUES (valores...)
 
+```sql
 INSERT INTO PRODUCTOS (PNRO, PNOMBRE, PRECIO, LOCALIDAD)
 VALUES (004, 'jabón', 10, 'Avellaneda');
+```
 
 Esto agrega una nueva tupla a la tabla. No es necesario poner todos los campos. Pero: si yo no pongo un campo y ese campo NO admite NULOS, entonces va a dar error la inserción.
 
 
+```sql
 INSERT INTO PRODUCTOS
 VALUES (004, 'jabón', 10, 'Avellaneda');
+```
 
 En este ejemplo, no nombro ninguna columna. Si yo no nombro ninguna, tengo que pasarle TODOS los valores. Y se van a agregar en orden.
 
 
+```sql
 INSERT INTO PRODUCTOS
 VALUES (004, 'jabón', 10, NULL, 'Avellaneda');
+```
 
 En este ejemplo, en la columna 4 de la tabla, se va a colocar NULL, ya que es una palabra reservada. Obviamente que si la columna 4 no admite nulos, va a dar error.
 
@@ -74,14 +86,18 @@ DESCRIBE PRODUCTOS;
 
 Otra cosa que podemos hacer es pasar registros de una tabla a otra (siempre y cuando tengan ambas las mismas columnas):
 
+```sql
 INSERT INTO aux_clientes SELECT * FROM clientes WHERE LOCALIDAD = 'AVELLANEDA';
+```
 
 Si quiero crear una tabla igual a otra pero que esté vacía, puedo hacer:
 
 
 
+```sql
 CREATE TABLE AUX_CLIENTES AS SELECT * FROM CLIENTES WHERE 1=2;
 Como el WHERE siempre va a ser falso, la va a crear sin registros.
+```
 
 
 

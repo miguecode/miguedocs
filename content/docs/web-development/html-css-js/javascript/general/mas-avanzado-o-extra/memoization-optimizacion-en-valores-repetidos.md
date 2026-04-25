@@ -35,7 +35,7 @@ const hacerAlgo = num => {
 ```
 - Esa es la función. Así como tal no se ve especialmente pesada, pero lo es si le pasamos un número muy grande:
 
-```typescript
+```text
 console.log(hacerAlgo(60000);
 ```
 - Si ejecutamos la función pasándole un número alto como el 60000, vamos a ver que en la consola del navegador, va a tardar un poco en mostrar el retorno. Esto es porque tarda mucho en terminarla.

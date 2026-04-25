@@ -11,25 +11,25 @@ description: "Suponiendo que queremos hacer un template entero para la página. 
 - La propiedad grid-area nos permite definir nombres para distintas secciones de nuestra página:
 
 .container header {
-```typescript
+```text
 grid-area: header;
 ```
 }
 
 .container aside {
-```typescript
+```text
 grid-area: aside;
 ```
 }
 
 .container main {
-```typescript
+```text
 grid-area: content;
 ```
 }
 
 .container footer {
-```typescript
+```text
 grid-area: footer;
 ```
 }
@@ -37,7 +37,7 @@ grid-area: footer;
 - Gracias a esos nombres, nosotros podemos hacer esto en el contenedor grid:
 
 .container {
-```typescript
+```css
 display: grid;
 // grid-template-columns: 1fr 1fr 1fr; // Ya no lo usamos
 // grid-template-rows: 35px 1fr 100px; // Ya no lo usamos
@@ -65,7 +65,7 @@ grid-template-areas:
 
 - Y así, lo hacemos responsive para celulares. Si en algún lugar ponemos un punto " . ", significa que no queremos que haya nada. Así:
 
-```typescript
+```text
 grid-template-areas: 
 	"header header ."
 	"sidebar content content"
@@ -79,7 +79,7 @@ grid-template-areas:
 - Así como lo hacemos en flexbox, con grid también podemos alinear los elementos. Y lo hacemos con la propiedad "align-items". Esta propiedad es del contenedor grid. Su valor por defecto es "normal", el cual funciona prácticamente igual que el "stretch". O sea, estirando a los elementos a lo largo de toda la posición en la que estén. Los valores de align items son los típicos: start, end, center, space-between, space-around, space-evenly. De esta forma, todos los elementos de la grid se van a alinear según la propiedad "align-items". 
 
 .container {
-```typescript
+```css
 ... otras propiedades de grid ...
 align-items: center; // Todos los elementos van centrados en cada hueco de la grid
 ```
@@ -88,7 +88,7 @@ align-items: center; // Todos los elementos van centrados en cada hueco de la gr
 - Pero supongamos que queremos que un elemento tenga un alineación distinta. Bueno, al igual que en flex, tenemos la propiedad "align-self". Esta propiedad es propia de cada elemento de la grid. 
 
 .container div:first-child {
-```typescript
+```text
 align-self: end;
 ```
 }
@@ -105,7 +105,7 @@ align-self: end;
 - Por ende, si le ponemos "center" a las dos propiedades, estaríamos centrando a la grilla en ambos ejes, vertical y horizontal, así:
 
 .container {
-```typescript
+```css
 display: grid;
 justify-content: center;
 align-content: center;
@@ -115,7 +115,7 @@ align-content: center;
 - Y suponiendo que queremos ponerle el mismo valor a las dos propiedades, podemos abreviarlo usando una sola, llamada "place-content", así:
 
 .container {
-```typescript
+```css
 display: grid;
 place-content: center;
 ```

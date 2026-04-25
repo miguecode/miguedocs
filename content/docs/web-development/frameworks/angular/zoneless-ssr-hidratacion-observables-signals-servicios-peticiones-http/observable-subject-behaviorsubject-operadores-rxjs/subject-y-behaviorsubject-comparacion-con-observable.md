@@ -27,7 +27,7 @@ B: 0.892
 ```
 - **Y si ahora hicieramos esto...**: 
 
-```typescript
+```text
 obs$.next(20); // ❌ Error: Property 'next' does not exist on type 'Observable<number>'
 obs$.next(30); // ❌ Error: Property 'next' does not exist on type 'Observable<number>'
 ```

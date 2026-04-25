@@ -49,7 +49,7 @@ if (condición) {
 
 ## ¿1 Es true y 0 es false?
 
-```typescript
+```text
 console.log(true == 1);  // true (coerción de tipos)
 console.log(false == 0); // true (coerción de tipos)
 

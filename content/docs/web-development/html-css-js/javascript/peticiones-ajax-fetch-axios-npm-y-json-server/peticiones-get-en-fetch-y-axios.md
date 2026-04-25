@@ -30,7 +30,7 @@ fetch(URL)
 - Lo que más nos importa a nosotros para saber si tenemos que llamar o no al método JSON, es el campo "ok". Si está en "true", significa que está todo bien. Si por ejemplo le pasamos mal la URL a propósito, el campo "ok" va a estar en "false". Entonces ahí nos va a dar error. Veamos:
 
 
-```typescript
+```php
 fetch(URL)
 	.then((res) => {
 		if (res.ok) {
@@ -52,12 +52,12 @@ fetch(URL)
 
 - Como vimos, en el primer then hicimos un if-else. Eso está bien, pero podemos resumirlo con un operador ternario, así:
 
-```typescript
+```text
 return res.ok ? res.json() : Promise.reject(res);
 ```
 - Y si queremos resumirlo todavía más, también podemos reducir las arrow functions, sacándole las llaves { } y el "return" explícito. Esto lo podemos hacer gracias a que todas (en este caso) tienen solo una línea de código.
 
-```typescript
+```php
 fetch(URL)
 	.then((res) => res.ok ? res.json() : Promise.reject(res))
 	.then((data) => console.log(data))
@@ -70,7 +70,7 @@ fetch(URL)
 
 - **Se hace así**: 
 
-```typescript
+```php
 const getPersonasAsync = async () => {
     try {
         $loader.classList.remove("oculto");
@@ -92,7 +92,7 @@ const getPersonasAsync = async () => {
 
 - Así como vimos como hacer un GET global para traer a todas las personas, con GET también podemos traernos a una en específica. La lógica es la misma: usar promesas o usar async y await. Pero a la función (que en este caso sería getPersona()), le tenemos que pasar también un ID por parámetro. Obviamente es la ID de la persona que queremos traer.
 
-```typescript
+```text
 	    fetch(URL + "/" + id)
 ```
 - Eso es lo -ÚNICO- que cambia. Tanto para la función con promesas, como con la función async.
@@ -113,7 +113,7 @@ Va a ser una URL .js, así que en nuestro index tenemos que vincular ese script.
 ```
 - AXIOS lo que hace es devolver una promesa como lo haría FETCH, pero internamente trabaja con AJAX. Es decir, toma AJAX original y lo transforma en promesa.
 
-```typescript
+```php
 const getPersonas = () => {
 	$loader.classList.remove("oculto");
 	axios.get(URL)
@@ -134,7 +134,7 @@ const getPersonas = () => {
 
 - AXIOS, al trabajar con promesas, también puede tener su contraparte "función asíncronca" (async). Esto es así al igual que FETCH.
 
-```typescript
+```php
 const getPersonasAsync = async () => {
     try {
         $loader.classList.remove("oculto");
@@ -151,7 +151,7 @@ const getPersonasAsync = async () => {
 
 - Así como vimos como hacer un GET global para traer a todas las personas, con GET también podemos traernos a una en específica. La lógica es la misma: usar promesas o usar async y await. Pero a la función (que en este caso sería getPersona()), le tenemos que pasar también un ID por parámetro. Obviamente es la ID de la persona que queremos traer.
 
-```typescript
+```text
 	    axios.get(URL + "/" + id)
 ```
 - Eso es lo -ÚNICO- que cambia. Tanto para la función con promesas, como con la función async.

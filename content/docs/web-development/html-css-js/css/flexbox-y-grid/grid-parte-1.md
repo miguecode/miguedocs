@@ -30,7 +30,7 @@ description: "La diferencia clave de Grid con Flexbox, es que Grid no trabaja so
 `</ section>`
 
 .container {
-```typescript
+```css
 background: lightsalmon;
 border: 3px solid black;
 display: grid;
@@ -38,7 +38,7 @@ display: grid;
 }
 
 .container div {
-```typescript
+```css
 background: lightblue;
 border: 2px solid blue;
 ```
@@ -50,7 +50,7 @@ border: 2px solid blue;
 - Lo primero, es indicar cuántas columnas queremos que tenga nuestra grid, indicando el ANCHO de cada una. Lo hacemos con la propiedad "grid-template-columns".
 
 .container {
-```typescript
+```css
 background: lightsalmon;
 border: 3px solid black;
 display: grid;

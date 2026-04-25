@@ -8,7 +8,7 @@ Vamos a necesitar una función actualizarTabla por cada cambio que hagamos.
 
 export const actualizarTabla = (contenedor, data)=>{
   while(contenedor.hasChildNodes()){
-```typescript
+```text
   contenedor.removeElementChild(contenedor.firstElementChild);
 ```
   }
@@ -30,7 +30,7 @@ Método find(callback) en los arrays. personas.find(callback)
 Devuelve el primer elemento que hace que el callback retorne 'true'. Itera sobre el array de personas y devuelve ese primer elemento que retorne 'true'.
 
 const personaSeleccionada = personas.find((p)=>{
-```typescript
+```text
 return p.id == id;
 ```
 });
@@ -40,7 +40,7 @@ O más resumido:     const personaSeleccionada = personas.find( p=> p.id == id);
 Antes, vamos a guardar los datos cargados en el localStorage con esta función declarada en contenidos2.js:
 
 function actualizarStorage(clave, data){
-```typescript
+```text
 localStorage.setItem(clave, JSON.stringify(data);
 ```
 };
@@ -55,7 +55,7 @@ if(personas.length) actualizarTabla($divTablaContenedor, personas);
 Bueno, sigamos con lo de antes: que se vean los datos de la persona seleccionada cargados en el formulario.
 
 function cargarFormPersona(formulario, persona) {
-```typescript
+```text
 formulario.txtId.value = persona.id;
 formulario.txtNombre.value = persona.nombre;
 formulario.txtApellido.value = persona.apellido;
@@ -82,7 +82,7 @@ Ahora, el Eliminar:
 Dentro del evento del click hacemos:
 
 else if(e.target.matches("input[value='Baja Persona']")){
-```typescript
+```sql
 handlerDelete(	parseInt($formulario.txtId.value));
 ```
 );}
@@ -95,7 +95,7 @@ let index = personas.findIndex((p) => p.id == id);
 personas.splice(index, 1);
 ```
 Tomamos el indice, y del array 'personas', eliminamos el elemento con ese indice. Y a diferencia del modificar, no le pasamos tercer parámetro, ya que no vamos a reemplazarlo por ninguno.
-```typescript
+```php
 actualizarStorage("personas", personas);
 actualizarTabla($divTablaContenedor, personas);
 $formulario.reset();

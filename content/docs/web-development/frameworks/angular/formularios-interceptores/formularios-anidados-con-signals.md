@@ -336,13 +336,13 @@ export class FacturaComponent {
   fb = inject(NonNullableFormBuilder);
 
   form = this.fb.group({
-```typescript
+```text
 productos: this.fb.array<ProductoFormGroup>([]),
 ```
   });
 
   get productos() {
-```typescript
+```text
 return this.form.controls.productos;
 ```
   }
@@ -378,7 +378,7 @@ Editar
   <button (click)="addProducto()">Agregar producto`</button>`
 
   @for (formGroup of productos(); track formGroup.controls.id.value) {
-```typescript
+```text
 <app-producto-form [formGroup]="formGroup" />
 ```
   }
@@ -403,13 +403,13 @@ Copiar
 Editar
 <div [formGroup]="formGroup()">
   <app-custom-input
-```typescript
+```text
 [control]="formGroup().controls.nombre"
 formControlName="nombre"
 ```
   />
   <app-custom-input
-```typescript
+```text
 [control]="formGroup().controls.precio"
 formControlName="precio"
 ```
@@ -447,13 +447,13 @@ if (value !== this.control().value) {
   }
 
   registerOnChange(fn: any): void {
-```typescript
+```text
 this.onChange = fn;
 ```
   }
 
   setDisabledState(isDisabled: boolean): void {
-```typescript
+```text
 isDisabled ? this.control().disable() : this.control().enable();
 ```
   }

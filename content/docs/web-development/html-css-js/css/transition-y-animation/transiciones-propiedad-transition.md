@@ -19,7 +19,7 @@ description: "En CSS, existen 2 formas de animar elementos y son: Las transicion
 <div class="pulser">`</div>`
 
 body {
-```typescript
+```css
 display: grid;
 place-content: center;
 min-height: 50vh
@@ -27,7 +27,7 @@ min-height: 50vh
 } // Con esto, centramos todo en la pantalla
 
 .pulser {
-```typescript
+```css
 width: 30px;
 height: 30px;
 background: blue;
@@ -37,7 +37,7 @@ position: relative;
 }
 
 .pulser:hover {
-```typescript
+```text
 scale: 2; 
 ```
 }
@@ -47,7 +47,7 @@ scale: 2;
 - **A este punto, podemos hacer este análisis**: Tenemos 2 estados. El estado inicial, que es el elemento div con 50 de width y height, y tenemos el estado final, que sería cuando le hacemos hover. En ese estado final, el elemento se duplica visualmente. Lo que nosotros vamos a hacer es afectar la forma en la que el elemeneto va a transicionar del estado inicial al final.
 
 .pulser:hover {
-```typescript
+```css
 scale: 2; 
 background: purple;
 box-shadow: 0 0 10px purple;
@@ -60,7 +60,7 @@ box-shadow: 0 0 10px purple;
 ### transition-duration
 
 .pulser {
-```typescript
+```css
 width: 30px;
 height: 30px;
 background: blue;
@@ -145,14 +145,14 @@ transition: background-color 4s 1s;
 - **Esas serían dos formas. Otras pueden ser**: 
 
 transition: 
-```typescript
+```css
 background-color: 5s, 
 border-radius: 0.5s;
 ```
 - Lógicamente, siempre el primer valor de tiempo es referido a "duration". Y el segundo, a "delay". 
 
 transition:
-```typescript
+```text
 background 300ms linear,
 scale 800ms ease-in-out,
 box-shadow 2s ease-in 0.7s;

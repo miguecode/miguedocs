@@ -30,7 +30,7 @@ typeof string; // Muestra "number"
 
 - Va de la mano con el punto anterior, pero no es exactamente lo mismo. Que el lenguaje sea de tipado débil significa que no es obligatorio indicar el tipo de dato de las variables a la hora de declararlas, ya que JavaScript lleva a cabo la coerción de tipos. Es decir, convierte automáticamente los tipos de datos cuando lo considera necesario, aunque a veces lo haga de formas inesperadas. Veamos:
 
-```typescript
+```text
 console.log("5" + 2);   // "52" → convierte el number 2 en string, y concatena: "5" + "2" = "52"
 console.log("5" - 2);   // 3 → convierte el string a a number, realizando 5 - 2 = 3
 console.log(true + 1);  // 2 → true se convierte en 1, y realiza "1 + 1". Es decir, queda en number
@@ -93,7 +93,7 @@ console.log(true + 1);  // 2 → true se convierte en 1, y realiza "1 + 1". Es d
 
 ## Hola Mundo
 
-```typescript
+```text
 console.log("Hola Mundo!");
 alert("Hola Mundo!");
 ```

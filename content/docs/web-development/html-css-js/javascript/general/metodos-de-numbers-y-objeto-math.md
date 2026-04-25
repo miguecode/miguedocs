@@ -9,24 +9,24 @@ description: "Métodos de los numbers en JavaScript"
 - toString() → Devuelve el número como string.
 
 - toFixed(cantDecimales) → Devuelve un string con el número redondeado a la cantidad de decimales indicados.
-```typescript
+```text
 (3.14159).toFixed(2); // "3.14"
 ```
 - toExponential(cantDecimales) → Devuelve un string con el número en notación científica, con la cantidad de decimales deseados.
-```typescript
+```text
 (123456).toExponential(2); // "1.23e+5"
 ```
 - toPrecision(significativas) → Devuelve un string con el número con el número total de cifras significativas (no solo decimales).
-```typescript
+```text
 (3.14159).toPrecision(3); // "3.14"
 ```
 - Number.parseInt(string, base) → Convierte un string en número entero (con base opcional).
-```typescript
+```text
 Number.parseInt("42"); 	      // 42
 Number.parseInt("1010", 2);  // 10
 ```
 - Number.parseFloat(string) → Convierte un string en número con decimales.
-```typescript
+```text
 Number.parseFloat("3.14");   // 3.14
 ```
 - Number.isNaN(valor) → Verifica si el valor es NaN y que sea realmente de tipo number.
@@ -45,44 +45,44 @@ Number.parseFloat("3.14");   // 3.14
 - Math.random() → Devuelve un número pseudoaleatorio entre 0 (inclusive) y 1 (exclusivo).
 
 - Math.round(x) → Redondea al entero más cercano.
-```typescript
+```text
 Math.round(4.5); // 5
 Math.round(4.4); // 4
 ```
 - Math.floor(x) → Redondea hacia abajo (al entero menor).
-```typescript
+```text
 Math.floor(4.9); // 4
 ```
 - Math.ceil(x) → Redondea hacia arriba (al entero mayor).
-```typescript
+```text
 Math.ceil(4.1); // 5
 ```
 - Math.trunc(x) → Elimina los decimales (sin redondear).
-```typescript
+```text
 Math.trunc(4.9); // 4
 ```
 - Math.abs(x) → Devuelve el valor absoluto.
-```typescript
+```text
 Math.abs(-7); // 7
 ```
 - Math.max(a, b, ..., n) → Devuelve el mayor valor.
-```typescript
+```text
 Math.max(4, 10, 8); // 10
 ```
 - Math.min(a, b, ..., n) → Devuelve el menor valor.
-```typescript
+```text
 Math.min(4, 10, 8); // 4
 ```
 - Math.pow(base, exponente) → Eleva un número a una potencia.
-```typescript
+```text
 Math.pow(2, 3); // 8
 ```
 - Math.sqrt(x) → Raíz cuadrada.
-```typescript
+```text
 Math.sqrt(25); // 5
 ```
 - Math.cbrt(x) → Raíz cúbica.
-```typescript
+```text
 Math.cbrt(8); // 2
 ```
 ### Constantes útiles

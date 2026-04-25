@@ -16,7 +16,7 @@ description: "JSON - JavaScript Object Notation (notación de objetos de JavaScr
 ## Ejemplos de JSON
 
 {
-```typescript
+```text
 "nombre": "Cristiano",
 "apellido": "Ronaldo",
 "edad": 36 // Los valores numéricos no van entre comillas
@@ -28,7 +28,7 @@ description: "JSON - JavaScript Object Notation (notación de objetos de JavaScr
 ## Clave donde su valor es un conjunto de clave-valor
 
 {
-```typescript
+```text
 "nombre": "Cristiano",
 "apellido": "Ronaldo",
 "edad": 36, // Los valores numéricos no van entre comillas

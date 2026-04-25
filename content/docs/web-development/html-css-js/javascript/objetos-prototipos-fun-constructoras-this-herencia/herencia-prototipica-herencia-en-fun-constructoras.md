@@ -65,7 +65,7 @@ const mascota1 = new Mascota("Lolo", "perro", 9, "macho", true);
 
 - Como vimos recién, Mascota heredó correctamente las propiedades de Animal, con el fin de poder reutilizarlas. Eso está perfecto, pero hay un problema: a Mascota le falta heredar los MÉTODOS de Animal.
 
-```typescript
+```text
 mascota1.saludar(); // No funciona, Mascota no tiene "saludar". Lo tiene Animal. 
 mascota1.dormir(); // No funciona, Mascota no tiene "dormir". Lo tiene Animal. 
 ```
@@ -78,19 +78,19 @@ mascota1.dormir(); // No funciona, Mascota no tiene "dormir". Lo tiene Animal.
 
 - La función Object.setPrototypeOf() es un método del objeto Object, que sirve para conectar dos prototipos. Vamos a probarlo:
 
-```typescript
+```text
 Object.setPrototypeOf(Mascota.prototype, Animal.prototype);
 ```
 - El primer parámetro es el prototipo de la función constructora/clase hija, y el segundo, el del padre. En este caso, conectamos el prototipo de Mascota con el de Animal. Así que ahora, Mascota tiene el prototype de Animal, y por lo tanto va a poder acceder a los métodos "saludar" y "dormir", a los que antes no podía. Y el método "sonar", también lo sigue teniendo disponible, ya que ese siempre lo tuvo en su propio prototipo. 
 
-```typescript
+```text
 mascota1.sonar(); // Funciona ya que Mascota siempre tuvo este método en su prototipo 
 mascota1.saludar(); // Ahora funciona gracias a que conectamos los dos prototipos 
 mascota1.dormir(); // Ahora funciona gracias a que conectamos los dos prototipos 
 ```
 - Esto que hicimos recién es la verdadera HERENCIA PROTOTÍPICA, es decir, hicimos que el prototipo Mascota herede del prototipo Animal. También se le dice "armar la cadena prototipal".
 
-```typescript
+```text
 console.log(animal1);
 console.log(mascota1);
 ```
@@ -119,7 +119,7 @@ console.log(animal1);    // Muestra: Animal { tipo: "raton", edad: 2, sexo: "M",
 - Para redondear el tema de la Herencia Prototípica
 
 - Como vimos, cuando usamos "call" (o apply, o bind) para pasarle el "this" de Mascota a Animal, lo que hacemos es aprovecharnos de las propiedades de Animal, para que también las posea Mascota. Pero no lo hacemos así con los métodos. Entonces, para que Mascota reutilice los métodos de Animal, lo que hacemos es engancharle el prototype. Y para eso usamos el método:
-```typescript
+```text
 Object.setPrototypeOf(Mascota.prototype, Animal.prototype).
 ```
 ## "Sobreescribir" un método
@@ -133,14 +133,14 @@ Mascota.prototype.saludar = function () {
 ```
 - De esta forma, "sobreescribimos" al método saludar. Que en realidad, no es que literalmente lo sobreescribimos, sino que lo -ocultamos- dentro del contexto de Mascota.prototype. Es decir, si bien ahora Mascota.prototype tiene su propio método saludar() el cual es distinto al de Animal.prototype, el saludar() de Animal.prototype sigue existiendo y podemos seguir ejecutándolo manualmente.
 
-```typescript
+```text
 mascota1.saludar(); 	// Ejecuta el método de Mascota.prototype (el que creamos recién)
 ```
 ## Otra forma de heredar prototipos
 
 - Otra forma común de establecer la herencia prototípica es usando Object.create:
 
-```typescript
+```text
 Mascota.prototype = Object.create(Animal.prototype);
 Mascota.prototype.constructor = Mascota;
 ```

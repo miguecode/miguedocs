@@ -30,7 +30,7 @@ const user = {
 console.log(user);
 ```
 - En este caso, el Symbol no aparece en console.log(), pero sigue existiendo en el objeto.
-```typescript
+```text
 console.log(Object.keys(user)); // ["id", "nombre"] - No muestra los símbolos
 console.log(Object.getOwnPropertySymbols(user)); // Muestra los símbolos
 ```

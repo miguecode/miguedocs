@@ -86,7 +86,7 @@ flex: initial; // Significa grow 0, shrink 1 y basis auto. (Y todos los demás v
 - Pero ahora, consideremos que vamos a aplicarle estilos a sólo un elemento del contenedor. Por ejemplo, con un selector .item:first-child.
 
 .item:first-child {
-```typescript
+```css
 background: yellow;
 flex: 2;
 ```
@@ -97,27 +97,27 @@ flex: 2;
 - Entonces, podemos ajustar cada elemento como queramos:
 
 .item {
-```typescript
+```text
 flex: 1;
 ```
 }
 
 .item:first-child {
-```typescript
+```css
 background: yellow;
 flex: 2;
 ```
 }
 
 .item:nth-child(2) {
-```typescript
+```css
 background: blue;
 flex: 4;
 ```
 }
 
 .item:last-child {
-```typescript
+```css
 background: red;
 ```
 }
@@ -130,7 +130,7 @@ background: red;
 - Con la propiedad "order", podemos ordenar los elementos de un contenedor flex. Es una propiedad de los elementos.
 
 .item:nth-child(2) {
-```typescript
+```css
 background: blue;
 flex: 4;
 order: 0;

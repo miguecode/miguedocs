@@ -33,7 +33,7 @@ const xhr = new XMLHttpRequest();
 ```
 - Este objeto "xhr" de tipo XMLHttpRequest es el que vamos a utilizar para realizar la petición. Vamos a usar callbacks para manejar la asincronía. 
 
-```typescript
+```text
 console.log(xhr.readyState);
 ```
 - Así, podemos ver el estado de la petición, la cual puede tener distintos estados:
@@ -67,7 +67,7 @@ xhr.onreadystatechange.onclick = () => { console.log("Cambió el estado"); }
 ```
 ## Las peticiones tienen distintos códigos de respuesta numéricos, donde cada uno tiene su significado. Una página para aprenderlos con gatitos es http.cat. Pero en resumen, los podemos agrupar así:
 
-```typescript
+```text
 100-199: estados informativos
 200-299: estados exitosos
 300-399: estados de redirecciones
@@ -104,13 +104,13 @@ xhr.addEventListener("readystatechange", () => {
 
 ## Métodos open y send
 
-```typescript
+```text
 xhr.open([método de envío], [destino]);
 xhr.open("GET", URL); 
 ```
 - Con el método "open", abrimos la petición. Esto sirve para indicar el verbo con el que la vamos a realizar, y su destino (la URL http://localhost:3000/personas). 
 
-```typescript
+```text
 xhr.send();
 ```
 - Finalmente, con el método "send" enviamos la petición. Recordemos que "xhr" es nuestro objeto petición.
@@ -126,11 +126,11 @@ xhr.send();
 
 - La lógica de la función es la misma que getPersonas(), pero cambiando lo que le pasamos al método open:
 
-```typescript
+```text
 xhr.open("GET", URL + "/" + id);
 ```
 - El open se hace así, pasando la URL a la que queremos apuntar. Eso que escribimos ahí, se traduciría como:
-```typescript
+```text
 http://localhost:3000/personas/id
 ```
 - Después, todo se hace igual, con el xhr.send(), y el evento escuchador.

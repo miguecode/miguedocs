@@ -20,7 +20,7 @@ description: "Los Web Components permiten crear componentes reutilizables en HTM
 ## Ejemplo de Web Component
 
 <template id="boton-template">
-```typescript
+```css
 <style>
     button {
         background-color: #007bff;

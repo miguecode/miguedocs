@@ -42,13 +42,13 @@ vmax → Elige el mayor valor entre vw y vh.
 - Nosotros sabemos que los navegadores, por defecto, usan 16px para el font-size. Pero esto no significa necesariamente que 1em = 16px. A 1em le corresponde el valor del font-size de algún contenedor o algún elemento padre que tenga. El más cercano. Si no tiene ninguno, va a ser el body o el html. Entonces:
 
 .contenedor {
-```typescript
+```text
 font-size: 20px;
 ```
 }
 
 .contenedor h1 {
-```typescript
+```text
 font-size: 1em;
 ```
 }
@@ -58,19 +58,19 @@ font-size: 1em;
 - ¿Entonces, qué hace REM? La medida rem significa "root em", y es RELATIVA al tamaño del font-size del elemento BODY. Es decir que, a diferencia de em, rem no le presta atención al contenedor o elemento padre, sino que le presta atención específicamente al BODY. Entonces:
 
 body {
-```typescript
+```text
 font-size: 16px;  // Este es el valor por defecto que aplican los navegadores
 ```
 }
 
 .contenedor {
-```typescript
+```text
 font-size: 24px;
 ```
 }
 
 .contenedor h1 {
-```typescript
+```text
 font-size: 1rem;
 ```
 }

@@ -22,7 +22,7 @@ description: "En el desarrollo web, los formularios son una pieza clave. Es una 
 
 - `<input>` es una self-closing tag, es decir, es una etiqueta que no necesita etiqueta de cierre.
 
-```typescript
+```text
 <input type="text"> 
 ```
 - Text es el tipo más común de todos. Es para escribir texto plano, sin más.
@@ -98,7 +98,7 @@ accept="video/*" /// accept="image/png, image/jpg"
 
 - La etiqueta `<label>` sirve para indicar algo, como una leyenda. Su función es meramente visual (y de accesibilidad), y puede linkearse a una input. Esto se hace con el atributo for="[ID de la input]". Un uso común de los label es con las input de tipo text o checkbox (para que sea más sencillo hacerles clic). Si linkeamos un label a un checkbox (u otro tipo de input), al hacer clic en el label, se va a activar o desactivar el checkbox linkeado (o se va a enfocar a la input linkeada). 
 
-```typescript
+```text
 <label for="nombre">Nombre:</label>
 <input type="text" id="nombre" name="nombre">
 
@@ -120,7 +120,7 @@ accept="video/*" /// accept="image/png, image/jpg"
 
 <label for="pais">Selecciona tu país:`</label>`
 <select id="pais" name="pais">
-```typescript
+```text
 <option value="ar">Argentina</option>
 <option value="es">España</option>
 <option value="mx" selected>México</option>
@@ -132,7 +132,7 @@ accept="video/*" /// accept="image/png, image/jpg"
 
 - Es un cuadrado de texto multilínea, en el cual podemos escribir una cantidad de texto mayor. Es como "text", pero más grande y ampliable. Podemos hacer que sólo se extienda hacia abajo o sólo hacia los costados, usando CSS.
 
-```typescript
+```text
 <form>
 	<label for="comentario">Escribe tu comentario:</label>
 	<textarea id="comentario" name="comentario" 
@@ -143,7 +143,7 @@ accept="video/*" /// accept="image/png, image/jpg"
 
 ## Etiqueta `<datalist>` junto a Input con atributo "list" (Poco usado)
 
-```typescript
+```text
 <input list="paises">
 <datalist id="paises">
 	<option value="Argentina">Un gran país</option>
@@ -160,7 +160,7 @@ accept="video/*" /// accept="image/png, image/jpg"
 
 - La etiqueta `<fieldset>` es un elemento contenedor que sirve para agrupar inputs relacionados. Y la etiqueta `<legend>`, la cual es opcional, se ubica justo debajo del inicio de un contenedor `<fieldset>`. Sirve para darle un título o una leyenda a este grupo de inputs.
 
-```typescript
+```text
 <fieldset>
 	<legend>Información Personal</legend>
 	<label for="nombre">Nombre:</label>

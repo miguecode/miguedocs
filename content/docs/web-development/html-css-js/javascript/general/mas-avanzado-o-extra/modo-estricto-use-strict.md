@@ -39,7 +39,7 @@ nombre = "Juan" // Con el use strict, esto provoca una EXCEPCIÓN, no podemos om
 
 - Para hacerlo, tenemos que ir a nuestro scope global (window) del archivo JavaScript, y en la primera línea escribir "use strict", así:
 
-```typescript
+```text
 "use strict";  // Con esta simple línea, activamos el modo estricto
 
 nombre = "Juan"; // Lanza una excepción, nombre is not defined

@@ -27,8 +27,10 @@ En la carpeta 'xampp', que es donde está instalado XAMPP (ubicada en el disco l
 Dentro de htdocs vamos a hacer una carpeta llamada Clase01. Y dentro de ella, un archivo llamado 'index.php'.
 Dentro del index.php, vamos a escribir:
 
+```php
 <?php
-```typescript
+```
+```php
 echo "Hola Mundo";
 ```
 ?>

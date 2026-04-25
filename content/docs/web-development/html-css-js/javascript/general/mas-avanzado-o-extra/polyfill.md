@@ -35,7 +35,7 @@ if (!Array.prototype.includes) {
 
 - Si usamos Babel + Webpack (o Vite), podemos incluir automáticamente polyfills de cosas como Array.flat(), Itnl, Map, Set, WeakMap, fetch(), etc. Para eso, simplemente instalamos paquetes como:
 
-```typescript
+```text
 npm install core-js
 ```
 - **Y configuraciones como**: 

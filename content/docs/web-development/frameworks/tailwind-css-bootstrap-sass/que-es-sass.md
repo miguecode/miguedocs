@@ -46,7 +46,7 @@ button {
 
 nav {
   ul {
-```typescript
+```css
 list-style: none;
 
 li {

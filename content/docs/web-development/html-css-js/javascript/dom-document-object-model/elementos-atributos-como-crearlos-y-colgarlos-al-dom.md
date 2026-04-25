@@ -8,7 +8,7 @@ description: "Elementos del DOM y sus Atributos"
 
 - Si bien no es obligatorio, existe una convención que es ponerle " $ " a los nombres de las variables que van a contener algún tipo de nodo/elemento que se esté visualizando en la interfaz de usuario: 
 
-```typescript
+```php
 const $link = document.querySelector("a");
 console.log($link);
 ```
@@ -19,14 +19,14 @@ console.log($link);
 
 - Podemos acceder a los atributos del nodo $link mediante el operador " . "o mediante un método:
 
-```typescript
+```php
 console.log($link.href);  // Muestra el contenido del atributo href de $link, que contiene a un <a>
 console.log($link.getAttribute("href"));  // Muestra exactamente lo mismo
 ```
 ### setAttribute
 
 - También le podemos setear un atributo nuevo con setAttribute:
-```typescript
+```php
 $link.setAttribute("href", "https://infobae.com"); 
 ```
 - El primer parámetro es el nombre del atributo que queremos agregar, y el segundo es su valor.
@@ -34,7 +34,7 @@ $link.setAttribute("href", "https://infobae.com");
 
 ### removeAttribute
 
-```typescript
+```php
 $link.setAttribute("target", "_blank");  // Agregamos otro atributo
 $link.removeAttribute("target");  // Eliminamos un atributo (pasando su nombre)
 ```
@@ -45,7 +45,7 @@ $link.removeAttribute("target");  // Eliminamos un atributo (pasando su nombre)
 
 - Como sabemos, en los elementos HTML hay atributos booleanos. Es decir, aquellos que su valor solo puede ser true o false. Para ello, podemos usar el método toggleAttribute. 
 
-```typescript
+```php
 $link.toggleAttribute("disabled");   // Al no tener "disabled", se lo va a poner
 $link.toggleAttribute("disabled");   // Ahora como sí lo tiene, se lo va a sacar
 ```
@@ -54,7 +54,7 @@ $link.toggleAttribute("disabled");   // Ahora como sí lo tiene, se lo va a saca
 
 ### hasAttribute
 
-```typescript
+```php
 console.log($link.hasAttribute("href"));   // Devuelve true o false (en este caso, true)
 ```
 - Este método sirve para saber si un elemento tiene o no un atributo.
@@ -66,7 +66,7 @@ console.log($link.hasAttribute("href"));   // Devuelve true o false (en este cas
 
 - Para crear elementos, tenemos que usar el método de document "createElement()". A este método hay que pasarle un string, que será el nombre del tagHTML, es decir, el nombre de la etiqueta (p, div, h1, img, etc.).
 
-```typescript
+```php
 const $imagen = document.createElement("img");
 $imagen.setAttribute("src", "https://picsum.photos/id/237/200/200");
 $imagen.setAttribute("alt", "imagen de un animal");
@@ -85,7 +85,7 @@ $imagen.setAttribute("alt", "imagen de un animal");
 ```
 - Suponiendo que tenemos eso en el HTML, podemos hacer esto:
 
-```typescript
+```php
 const $divImagen = document.getElementById("contenedor-imagen");
 $divImagen.appendChild($imagen);
 ```
@@ -96,7 +96,7 @@ $divImagen.appendChild($imagen);
 
 - Otra forma de colocar elementos en el DOM es con el método innerHTML.
 
-```typescript
+```php
 $divImagen.innerHTML = '<img src="https://picsum.photos/id/180/200/200" alt="Otra imagen"/>';
 ```
 - Con el método innerHTML estamos literalmente incrustándole código HTML al $divImagen y funciona igual que lo que hicimos antes. La diferencia es que antes lo construimos de manera dinámica, y ahora lo hicimos con una cadena de texto HTML ya armada. 
@@ -105,7 +105,7 @@ $divImagen.innerHTML = '<img src="https://picsum.photos/id/180/200/200" alt="Otr
 
 - **O podría hacer un "pseudo-dinamismo" así**: 
 
-```typescript
+```php
 let url = "https://picsum.photos/id/180/200/200";
 let alt = "Otra imagen distinta";
 
@@ -121,7 +121,7 @@ $divImagen.innerHTML = '<img src=${url} alt=${alt}/>';
 
 - Su sintaxis es igual que el InnerHTML, es decir, hay que pasarle un string cuyo texto sea código HTML. En este caso, el código HTML que le pasemos va a REEMPLAZAR al elemento. Veamos:
 
-```typescript
+```php
 $primerImg.outerHTML = '<p>Aca había una imagen y la cambié por este párrafo usando outerHTML.</p>';
 ```
 - En este caso, lo que hicimos fue sacar del DOM a "$primerImg", y en su lugar colocar el párrafo que le pasamos por código HTML.
@@ -131,7 +131,7 @@ $primerImg.outerHTML = '<p>Aca había una imagen y la cambié por este párrafo 
 
 ## Otro ejemplo
 
-```typescript
+```php
 const $subTitulo = document.createElement("h2");
 $subTitulo.textContent = "Soy un subtítulo h2";
 ```
@@ -143,14 +143,14 @@ $subTitulo.textContent = "Soy un subtítulo h2";
 
 - **Vamos a crear un nodo de texto**: 
 
-```typescript
+```php
 const $nodoTexto = document.createTextNode("Soy un subtítulo h2");
 ```
 - Como dijimos antes, hay distintos tipos de nodo. Con el método "createElement", lo que hacíamos era crear "nodo elementos". Es decir, nodos que representan elementos HTML. Pero en este caso, no hicimos eso. Con el método createTextNode creamos un "nodo texto".
 
 - Y ahora, si bien tenemos el nodo de texto creado, tenemos que hacerle append para que algún elemento lo contenga. En este caso, nuestro nodo elemento $subtitulo:
 
-```typescript
+```php
 $subTitulo.appendChild($nodoTexto);
 ```
 - De esta forma, hicimos exactamente lo mismo que antes, pero no es la forma más común hoy en día. Lo más común es lo anterior, accediendo directamente textContent ($subTitulo.textContent = "Hola");

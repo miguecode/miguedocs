@@ -21,7 +21,7 @@ description: "Su nombre viene de JavaScript XML (pero no XML real, sino una sint
 
 - **Veamos un ejemplo sencillo de código JSX**: 
 
-```typescript
+```html
 const name = 'Miguel';
 <h1>Hola, {name}!</h1>
 ```

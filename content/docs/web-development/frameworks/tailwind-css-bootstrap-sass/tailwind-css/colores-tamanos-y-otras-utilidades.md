@@ -8,7 +8,7 @@ description: "En Tailwind ya hay una gran paleta de colores predefinidos. Pero s
 
 - En Tailwind ya hay una gran paleta de colores predefinidos. Pero si necesitamos uno todavía más específico, podemos directamente escribirlo en la clase así:
 
-```typescript
+```text
 <h1 bg-[#d2d255]>Hola Mundo</h2>
 ```
 - Pero también podemos crear una utilidad de color. En Tailwind 3, lo que se hacía era ir al archivo tailwind.config.js, y especificar las variables personalizadas de esta manera:

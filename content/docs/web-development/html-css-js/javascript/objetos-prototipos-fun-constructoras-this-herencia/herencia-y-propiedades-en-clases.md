@@ -47,12 +47,12 @@ class Mascota extends Animal
 
 - A diferencia de la herencia en funciones constructoras, en las clases no es necesario usar call, apply o bind. Sino que simplemente usamos "super". Super hace referencia a la clase de la cual nos estamos extendiendo, que en este caso sería la clase base Animal.
 
-```typescript
+```text
 super(tipo, edad, sexo); 	// Así se hace en clases
 ```
 - **Es lo mismo que**: 
 
-```typescript
+```text
 Animal.call(this, tipo, edad, sexo)  // Así se hace en funciones constructoras
 ```
 - Es importante que si una clase hija tiene un constructor, es obligatorio llamar a super() antes de usar this, ya que this en una subclase no está definido hasta que se invoque a super(), entonces JavaScript lanzará un error. Entonces, siempre que declaremos un constructor en una clase hija, su primer línea tiene que ser el super().
@@ -103,7 +103,7 @@ animal2.Edad = 16;  // Llamamos correctamente al setter Edad, pero no pasará la
 
 - **Lógicamente, hacer esto sería distinto**: 
 
-```typescript
+```text
 animal2.edad = 16;  // Asignamos -directamente- el valor 16 en la propiedad "edad"
 ```
 - En este caso no estamos usando "Edad", es decir, el setter Edad. Sino que estamos modificando directamente a la propiedad "edad" de animal2. Así que en este caso no hay ningún tipo de validación previa, y efectivamente animal2.edad va a pasar a tener el valor 16 que le asignamos.

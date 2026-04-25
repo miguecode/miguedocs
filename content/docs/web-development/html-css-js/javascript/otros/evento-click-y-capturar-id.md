@@ -11,7 +11,7 @@ Primero, en la función de crearCuerpo, cuando vamos a recorrer cada 'key' de ca
 td.addEventListener("click", handlerClick); 
 
 function handlerClick(){
-```typescript
+```text
 console.log("Click");
 ```
 }
@@ -23,7 +23,7 @@ Ahora, queremos hacer que cada vez que hacemos click en un 'td', capturemos su i
 'e' es por 'event' y es un parámetro que tienen todos los escuchadores de eventos. Sirve para ver la información sobre ese evento. A nosotros lo que nos importa es su 'target', el cual nos muestra quién es el emisor del evento. En este caso, el 'td'.
 
 function handlerClick(e){
-```typescript
+```text
 console.log(e); //Muestra toda la info sobre el evento
 console.log(e.target); //Muestra al emisor del evento
 ```
@@ -62,7 +62,7 @@ Para esto, vamos a sacar el addEventListener del forEach de los 'td'. Ya que ah�
 Entonces, fuera de crearTabla, tiro esta función:
 
 window.addEventListener("click", e =>{
-```typescript
+```text
 console.log("Hiciste Click");
 ```
 });

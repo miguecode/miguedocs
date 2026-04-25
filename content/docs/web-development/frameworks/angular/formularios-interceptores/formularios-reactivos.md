@@ -142,7 +142,7 @@ this.form = this.fb.group({
 
 - Y algo que agregamos también es un span para mostrar un posible error. En este caso está hecho de forma muy sencilla, básicamente lo que hacemos es un ngIf (que podría ser un bloque @if), en el que si el formulario tiene algún error claro, lo mostramos por escrito en el span. Para esto último usamos el método get() de los formularios en TypeScript: 
 
-```typescript
+```text
 form.get("elFormControl")
 ```
 - Así obtenemos cada control de formulario que queramos (si no lo tiene, es null). Después, una vez que ya accedimos al control de formulario, también podemos acceder a distintas propiedades y métodos, por ejemplo la propiedad touched, la cual es un booleano. Si el control fue tocado, se pone en true, y sino, en false. Y también está el más útil, que es el método hasError(). Este método devuelve true o false dependiendo de si encuentra un error o no en la validación que le pasamos por parámetro.
@@ -152,7 +152,7 @@ form.get("elFormControl")
 
 - Además de "hasError(tipoDeError)", también podemos acceder de forma directa a los errores así:
 
-```typescript
+```text
 form.get('correo')?.errors?.['email'];
 ```
 - Otros estados del formulario además de valid y touched pueden ser:
@@ -164,7 +164,7 @@ form.get('correo')?.errors?.['email'];
 
 - **Podemos resetear el formulario así**: 
 
-```typescript
+```text
 form.reset();
 ```
 - **Podemos deshabilitar un campo así**: 
@@ -173,7 +173,7 @@ form.reset();
 ({ value: null, disabled: true })	
 ```
 - También podemos desactivar o activar campos dinámicamente:
-```typescript
+```text
 this.form.get('edad')?.disable();
 this.form.get('edad')?.enable();
 ```
@@ -189,12 +189,12 @@ function sinEspacios(control: AbsctractControl): ValidationErrors | null {
 ```
 - **Lo usaríamos así en la lógica**: 
 
-```typescript
+```text
 nombreCompleto: [null, [Validators.required, sinEspacios]];
 ```
 - **Y así en el HTML**: 
 
-```typescript
+```text
 <span *ngIf="form.get('nombreCompleto')?.hasError('contieneEspacios')">
   El nombre no puede contener espacios.
 </span>

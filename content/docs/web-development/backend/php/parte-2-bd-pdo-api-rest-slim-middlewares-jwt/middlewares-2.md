@@ -11,7 +11,7 @@ Todos los middleware tienen que tener en su firma el Request y el RequestHandler
 Ejemplo:
 
 $mwUno = function (Request $request, RequestHandler $handler) : ResponseMW {
-```typescript
+```php
 //EJECUTO ACCIONES ANTES DE INVOCAR AL VERBO
 $antes = ' en MW_UNO antes del callabe <br>';
 
@@ -53,7 +53,7 @@ Middlewares de Ruta
 Se ejecuta inmediatamente después de invocar cualquiera de los métodos de enrutamiento de la aplicación Slim (por ej. Get o Post).
 
 $app->put( ...  {
-```typescript
+```text
 ...
 ```
 })->add( [middleware]); 

@@ -15,12 +15,12 @@ description: "Vincular los servicios de Firebase"
 
 - Primero, tenemos que instalar firebase en el proyecto, así:
 
-```typescript
+```text
 npm install firebase
 ```
 - Y también tenemos que instalar Angular Fire, que es una librería de Angular hecha para trabajar con Firebase:
 
-```typescript
+```text
 npm install @angular/fire
 ```
 - Esto último podría mostrar errores de compatibilidad en la consola, ya que podría pasar que nuestra versión de Angular no está tan actualizada como para instalar la versión más actual de Angular Fire. Entonces acá tenemos que buscar balance. Para ello, lo ideal sería actualizar Angular, y después instalar Angular Fire. O sino, no actualizar Angular pero instalar una versión de Angular Fire no tan actual, es decir, una que sea compatible con la versión de Angular que queramos usar en ese caso.

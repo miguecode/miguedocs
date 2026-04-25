@@ -91,7 +91,7 @@ h1, h2, h3, h4, h5, h6
 
 - Entonces, la manera más segura y definitiva de todas es:
 
-```typescript
+```text
 <a href="https://youtube.com/" target="_blank" 
 rel="noopener noreferrer nofollow">Youtube</a>
 ```

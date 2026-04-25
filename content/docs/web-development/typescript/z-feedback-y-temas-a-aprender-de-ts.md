@@ -3,6 +3,7 @@ title: "Z. Feedback y temas a aprender de TS"
 description: "[Este apunte es una respuesta de ChatGPT después de haber hecho todos los demás apuntes. Me responde con una conclusión de mi conocimiento después de lo aprendi..."
 ---
 
+## Feedback y temas a aprender de TS
 
 [Este apunte es una respuesta de ChatGPT después de haber hecho todos los demás apuntes. Me responde con una conclusión de mi conocimiento después de lo aprendido, y me comenta qué temas me faltarían ver para cubrir el 100% de los temas. Quizá lo haga en un futuro.]
 

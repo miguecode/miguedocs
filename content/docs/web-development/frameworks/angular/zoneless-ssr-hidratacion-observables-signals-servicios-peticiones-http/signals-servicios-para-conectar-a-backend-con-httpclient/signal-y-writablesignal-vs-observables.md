@@ -96,7 +96,7 @@ const characters: Signal<Character[]> = toSignal(characters$);
 
 2. El método update() de las Signals, a diferencia del set(), SÍ necesita tomar en cuenta al valor actual de la misma. Este método update() recibe un callback, el cual recibe por parámetro al valor actual de la signal. Y el retorno de dicho callback va a ser el nuevo valor de la signal. Es decir, el callback tiene 2 funcionalidades: recibe por parámetro al valor actual de la signal, y lo que va a retornar va a ser el nuevo valor de la signal.
 
-```typescript
+```sql
 let mySignal = signal(10);
 mySignal.set(20); // mySignal ahora es 20
 

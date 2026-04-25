@@ -14,7 +14,7 @@ description: "Configuración de un proyecto de React con Vite"
 
 - En otras palabras, Vite es una herramienta de compilación que tiene como objetivo proporcionar una experiencia de desarollo más rápida y ágil para proyectos web modernos. Consta de dos partes principales: 
 
-```typescript
+```text
 1. Un servidor de desarrollo que proporciona mejoras en funcionalidades sobre módulos ES nativos, como HMR 	(Hot Module Replacemente)
 
 2. Un comando de compilación que empaqueta nuestro código con Rollup, preconfigurado para generar recursos 	estáticos altamente optimizados para producción.
@@ -23,11 +23,11 @@ description: "Configuración de un proyecto de React con Vite"
 
 - En este caso, vamos a usar npm, y para inicializar un proyecto con vite, creamos una carpeta y en ella ejecutamos:
 
-```typescript
+```text
 npm create vite@latest
 ```
 - Este comando nos va a hacer ciertas preguntas por la consola como:
-```typescript
+```text
 1. Nombre del proyecto
 2. Framework a utilizar (Vanilla, Vue, React, Preact, Lit, Svelte, Solid, Qwik u Others)
 3. Al elegir alguno, nos pregunta sus variantes (TypeScript, TypeScript + SWC, JavaScript, JavaScript + SWC) *
@@ -42,7 +42,7 @@ npm create vite@latest
 
 
 - Y listo. Ahora vamos a ver que tenemos distintos archivos creados como:
-```typescript
+```text
 - package.json 
 - index.html por defecto
 - .gitignore configurado
@@ -51,12 +51,12 @@ npm create vite@latest
 ```
 - Vite ya tiene configurado un servidor, por ende, para correr nuestro sitio podríamos hacer:
 
-```typescript
+```text
 npm run dev
 ```
 - Esto ya que por defecto Vite nos deja ese script ya listo. El tema es que si bien las independencias aparecen indicadas, no todas están instaladas (en caso de que no hayamos hecho un npm init inicial anteriormente, que lo podríamos haber hecho). Por ende, antes de hacer eso, tenemos que tirar un npm install:
 
-```typescript
+```text
 npm install
 ```
 - Ahora sí, ya tenemos el node_modules instalado y podemos tirar el "npm run dev" y ver nuestro sitio funcionando en nuestro navegador.

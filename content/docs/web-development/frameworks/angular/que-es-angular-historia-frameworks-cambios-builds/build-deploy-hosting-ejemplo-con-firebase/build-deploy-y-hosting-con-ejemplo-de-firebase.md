@@ -20,12 +20,12 @@ description: "Build, Deploy y Hosting"
 
 - Para crear una build de nuestra aplicación Angular, usamos el siguiente comando:
 
-```typescript
+```text
 ng build
 ```
 - Después de esto, Angular se va a encargar de crearnos una carpeta llamada "dist". En ella, entre otros archivos, vamos a ver 2 carpetas principales: browser y server (si la aplicación es no-SSR no va a aparecer la carpeta server). Lo que importa es nuestra carpeta browser, ya que es la que vamos a usar para desplegar la aplicación:
 
-```typescript
+```text
 dist/
 ├── mi-proyecto/
 │   	├── browser/ ← 🌟Los archivos estáticos (HTML, JS, CSS, etc.)
@@ -38,19 +38,19 @@ dist/
 
 - Desde Angular 16, hacer "ng build" compila la build en modo producción por defecto, pero para hacerlo de una forma más explícita y óptima, se recomienda hacer:
 
-```typescript
+```text
 ng build --configuration production
 ```
 - **O resumido**: 
 
-```typescript
+```text
 ng build -c production
 ```
 - Hacerlo así, nos garantiza totalmente que el build se va a hacer en modo producción, hasta si estamos en un entorno de desarrollo o si tenemos varias configuraciones.
 
 - Pero... ¿Qué nos da el modo producción? Nos da mejor performance en nuestra aplicación, ya que:
 
-```typescript
+```text
 - Minifica el código
 - Elimina console.logs y debugger
 - Optimiza assets
@@ -61,7 +61,7 @@ ng build -c production
 
 - Esto es muy sencillo. Lo único que hay que hacer es usar este comando:
 
-```typescript
+```text
 firebase deploy
 ```
 - Y listo, ahora si vamos a la consola web de Firebase y vamos a la sección Hosting, vamos a ver los enlaces que nos llevan a nuestro sitio desplegado. Sin más.
@@ -88,14 +88,14 @@ firebase deploy
 ```
 - **Entonces, podemos usar el comando**: 
 
-```typescript
+```text
 npm run deploy-fb
 ```
 - Y se van a ejecutar ambos comandos en uno (el ng build y el firebase deploy --only-hosting).
 
 - Y... ¿Qué es el --only-hosting?  Este comando le dice a Firebase: "Desplegá solo la parte de Hosting. No toques Firestore, Storage, ni nada más.". Así como existe el --only-hosting, también están:
 
-```typescript
+```text
 firebase deploy --only firestore
 firebase deploy --only auth
 firebase deploy --only hosting,firestore

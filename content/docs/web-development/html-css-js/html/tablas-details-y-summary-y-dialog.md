@@ -33,7 +33,7 @@ description: "Esto significa que el uso actual de las tablas es para cuando quer
 - Y después del tbody (y este es más opcional), viene el `<tfoot>`. El cual contiene una fila (`<tr>`), que también contiene distintas celdas (`<td>`).
 
 `<table>`
-```typescript
+```text
 <thead>
 	<tr>
 		<th></th>
@@ -80,7 +80,7 @@ description: "Esto significa que el uso actual de las tablas es para cuando quer
 - Details va a ser el elemento contenedor, y summary el elemento que siempre va a estar visible, y representa al contenido oculto. 
 
 `<details>`
-```typescript
+```text
 <summary>¿Qué necesito llevar?</summary>
 <ul>
 	<li>Short de baño</li>
@@ -104,7 +104,7 @@ description: "Esto significa que el uso actual de las tablas es para cuando quer
 - **Para que funcione, hay que usar JS**: 
 
 <dialog id="miDialogo">
-```typescript
+```text
 <p>¡Este es un modal nativo de HTML!</p>
 <button id="cerrar">Cerrar</button>
 ```

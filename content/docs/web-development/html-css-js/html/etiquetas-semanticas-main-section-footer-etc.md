@@ -75,7 +75,7 @@ address: Se usa para escribir información de contacto.
 figure y figcaption: Figure es para englobar a una etiqueta img, a la cual queremos ponerle una descripción asociada. Para esa descripción, usamos figcaption.
 
 `<figure>`
-```typescript
+```text
 <img src="imagen.jpg" alt="Un hermoso paisaje">
 <figcaption>Un hermoso paisaje en la montaña.</figcaption>
 ```
@@ -84,7 +84,7 @@ figure y figcaption: Figure es para englobar a una etiqueta img, a la cual quere
 details y summary: Se usa cuando queremos mostrar u ocultar información de forma interactiva.
 
  `<details>`
-```typescript
+```text
 <summary>¿Qué es HTML?</summary>
 <p>HTML es un lenguaje de marcado para crear páginas web.</p>
 ```

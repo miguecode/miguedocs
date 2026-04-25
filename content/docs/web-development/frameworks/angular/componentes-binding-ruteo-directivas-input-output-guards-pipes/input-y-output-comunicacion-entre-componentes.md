@@ -10,7 +10,7 @@ description: "@Input y @Output (Comunicación entre componentes)"
 
 - Para ver cómo podemos comunicar dos componentes distintos, vamos a crear un componente Padre, Hijo y HijoMostrar. Antes que nada, vamos a hacer que el componente padre importe a sus dos hijos en su archivo de lógica (TypeScript), y los muestre a ambos en su template (HTML), haciendo esto:
 
-```typescript
+```text
 <app-hijo-input></app-hijo-input>
 <app-mostrar-></app-mostrar->
 ```
@@ -63,7 +63,7 @@ export class PadreComponent {
 ```
 - Como vemos, nos creamos una variable de tipo string. Nuestro objetivo es que el valor de esta variable vaya a parar a la variable "variableHijo" del componente Hijo. Esto lo hacemos yendo al HTML del componente padre:
 
-```typescript
+```text
 <app-hijo-input [variableHijo]="variableInformacion" </app-hijo-input>
 ```
 - Como vemos, estamos usando el Property Binding, uno de los bindeos que ya conocemos. De esta forma, estamos invocando al componente hijo y le estamos diciendo que: "A la variable 'variableHijo', del componente que estoy invocando, le voy a pasar el valor guardado en mi variable llamada 'variableInformacion'".
@@ -76,7 +76,7 @@ export class PadreComponent {
 
 - La dinámica del @Output es un poco distinta a la de @Input. Acá tenemos que usar objetos de tipo EventEmitter porque la idea es que cuando el componente hijo necesita avisarle algo al padre, lo hace a través de un EVENTO, el cual él mismo va a emitir. Primero vamos a crear una input de tipo texto en el HTML de nuestro componente Hijo, así:
 
-```typescript
+```text
 <input type="text" [(ngModel)]="nombre">
 <button (click)="agregarEmitido()>Agregar</button>
 ```
@@ -119,16 +119,16 @@ recibirAgregar(nombreRecibido: string) {
 
 - Se pueden renombrar las inputs, en caso de que queramos que el nombre que usamos en el Padre sea distinto al nombre real de la propiedad del hijo. Eso se haría así:
 
-```typescript
+```text
 @Input('aliasPadre') variableHijo: string;
 ```
 - **Y después, en el padre invocaríamos así**: 
 
-```typescript
+```text
 <app-hijo-input [aliasPadre]="valor">
 ```
 - Otro tip es que podemos marcar un input como opcional usando "?" en el HTML del Padre, para evitar errores por si no siempre queremos pasar información:
 
-```typescript
+```text
 <app-hijo-input [variableHijo]="variableInformacion"?>
 ```

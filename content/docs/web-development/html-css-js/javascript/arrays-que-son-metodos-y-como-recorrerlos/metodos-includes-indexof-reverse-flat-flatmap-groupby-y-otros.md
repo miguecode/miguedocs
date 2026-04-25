@@ -26,7 +26,7 @@ console.log(numeros.includes(8)); // Muestra false
 
 ## indexOf
 
-```typescript
+```text
 vec.indexOf("Pez");
 ```
 - indexOf es un método que recibe el valor que debe buscar, y devuelve su índice. Si no lo encuentra, devuelve -1. Además, puede recibir un segundo parámetro opcional, el cual va a ser el índice desde el cual tiene que empezar a buscar. Si no lo indicamos, simplemente va a buscar desde el índice 0 (el primero).
@@ -34,7 +34,7 @@ vec.indexOf("Pez");
 
 ## reverse
 
-```typescript
+```text
 vecInvertido = vec.reverse();
 ```
 - Reverse es un método que invierte el orden de los elementos del array. Sin más. Con el tiempo, apareció un nuevo método llamado toReversed(), que hace exactamente lo mismo que reverse(), pero sin modificar al array original. Es decir, crea un nuevo array en reversa y lo devuelve.
@@ -42,7 +42,7 @@ vecInvertido = vec.reverse();
 
 ## flat
 
-```typescript
+```text
 vec = [1, 2, 3, 4, [5, 6, 7]];
 vec.flat();
 console.log(vec);	// Muestra [1, 2, 3, 4, 5, 6, 7]
@@ -53,7 +53,7 @@ console.log(vec);	// Muestra [1, 2, 3, 4, 5, 6, 7]
 
 - Así que lo que podemos hacer para que también aplane ese, es pasarle un 2, así: flat(2). Entonces, un truco podría ser ponerle un número muy alto a flat, para que aplane todo lo que encuentre dentro. Pero es un poco feo hacer eso, es mejor poner Infinity o usar un número más adecuado.
 
-```typescript
+```text
 vec.flat(Infinity); // Ideal si queremos pasar un número grande de profundidad
 ```
 ## flatMap
@@ -130,7 +130,7 @@ Map(2) {
 }
 ```
 - También podríamos usar el método "get" de los Map, para obtener algún elemento:
-```typescript
+```text
 console.log(agrupadoMap.get('fruta'));  // Devuelve el array [ ], que va a contener cada producto tipo fruta
 ```
 ## at
@@ -138,7 +138,7 @@ console.log(agrupadoMap.get('fruta'));  // Devuelve el array [ ], que va a conte
 - El método at() es un método de arrays -y también de strings-, el cual te devuelve algún elemento del array o string, dependiendo del índice que le pases.
 
 - Uno podría decir ¿Y para qué? si ya podemos hacer eso usando [] así:
-```typescript
+```text
 array = ["Hola", "Chau", "Perro", "Agua"];
 console.log(array[2]);  // Muestra "Perro"
 ```
@@ -155,7 +155,7 @@ console.log(letras.at(100)); // undefined
 ```
 - Si quisiéramos hacer lo del "-1" del at(), sin usar at(), tendríamos que hacer:
 
-```typescript
+```text
 console.log(letras[letras.length - 1]);
 ```
 - Y si bien es lo mismo, es un poco más rebuscado, y por eso es más limpio letras.at(-1).

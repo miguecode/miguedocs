@@ -10,7 +10,7 @@ description: "El DOM (Document Object Model)"
 
 - En cualquier esquema de árbol hay NODOS. Un nodo no es ni más ni menos que un elemento de la estructura. El padre es un nodo, sus hijos son nodos, el padre del padre un nodo, todos son nodos.
 
-```typescript
+```text
 	 [Nodo]
 	      |
      ______|_______      [Estructura de árbol]
@@ -30,16 +30,16 @@ description: "El DOM (Document Object Model)"
 
 - Eso quiere decir que es el nodo raíz del DOM. A partir de él, se van anidando todos los demás nodos, es decir, todas las demás etiquetas HTML. 
 
-```typescript
+```text
 window > document > [Todos los elementos del DOM y métodos]
 ```
 - Por ejemplo, el objeto document es quien va a tener como propiedad un array de forms. Es decir, una lista con todas las etiquetas `<form>` de la página. Y no sólo eso, también tiene otras propiedades y métodos.
 
-```typescript
+```text
 console.log(document); // Así podemos ver el objeto entero y lo que contiene
 ```
 - Estos son algunos ejemplos de lo que contiene document:
-```typescript
+```text
 console.log(document.documentElement);
 console.log(document.head); 
 console.log(document.body);
@@ -66,17 +66,17 @@ getElementsByTag();		// Devuelve todos los elementos HTML de la etiqueta que le 
 
 - **Ejemplos**: 
 
-```typescript
+```text
 document.getElementById("redentor");
 ```
 - Devuelve el primer elemento que encuentre con la ID "redentor" (debería existir uno sólo).
 
-```typescript
+```text
 document.getElementsByClassName("introduccion");
 ```
 - Devuelve un HTMLCollection con todos los elementos con la clase "introduccion".
 
-```typescript
+```text
 document.getElementsByTagName("figure");
 ```
 - Devuelve un HTMLCollection (similar a un array) con todos los elementos HTML "figure".
@@ -91,17 +91,17 @@ querySelectorAll();	// Devuelve todos los elementos que tengan el selector CSS q
 
 - Así como dijimos que getElementsByClassName y getsElementsByTagName devuelven un HTMLCollection, hay que saber que querySelectorAll devuelve una NodeList. Después vamos a ver la diferencia.
 
-```typescript
+```text
 document.querySelector("#redentor");
 ```
 - Devuelve el primer elemento que encuentre con el selector CSS "#redentor".
 
-```typescript
+```text
 document.querySelectorAll(".contacto");
 ```
 - Devuelve una NodeList (similar a un array) con todos los elementos vinculados a la clase CSS "contacto". 
 
-```typescript
+```text
 document.querySelectorAll("figure");
 ```
 - Devuelve una NodeList (similar a un array) con todos los elementos "figure". En este caso le estamos pasando el nombre de una etiqueta (tagName), por lo tanto no tenemos que ponerle " # " ni " . ".
@@ -113,7 +113,7 @@ document.querySelectorAll("figure");
 
 - Aclaración sobre el querySelector (u otros selectores). Podemos buscar también asi:
 
-```typescript
+```php
 const $elementoLista = document.querySelector(ul>li);
 ```
 - **Eso quiere decir**: dame la primer ocurrencia que encuentres donde haya un '`<li>`' dentro de una '`<ul>`'

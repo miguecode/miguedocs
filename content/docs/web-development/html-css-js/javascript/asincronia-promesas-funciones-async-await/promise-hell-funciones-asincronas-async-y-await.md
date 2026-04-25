@@ -106,7 +106,7 @@ async function calcularAsync(a, b) {
 
 - **La sintaxis sería**: 
 
-```typescript
+```text
      await  funcion()
      Antes de continuar, esperá a que se resuelva la siguiente función: funcion() 
 ```
@@ -114,7 +114,7 @@ async function calcularAsync(a, b) {
 
 - **Finalmente, la invocamos así**: 
 
-```typescript
+```text
 calcularAsync(5, 8);
 ```
 - Para mejorar la lógica, a las funciones asíncronas siempre se les recomienda agregarles un bloque try-catch:

@@ -14,7 +14,7 @@ description: "Una pseudoclase es una situación especial en la que se encuentra 
 ### Hover
 
 div:hover {
-```typescript
+```css
 background-color: red;
 font-weight: bold;
 ```
@@ -32,7 +32,7 @@ transition: background-color 5s;
 ### Active
 
 .button:active {
-```typescript
+```css
 color: red;
 ```
 }
@@ -43,7 +43,7 @@ El estado "active" se refiera a cuando un elemento está activo o sea, cuando le
 ### Focus
 
 .input:focus {
-```typescript
+```css
 color: green;
 ```
 }
@@ -60,7 +60,7 @@ Otros estados, son el "disabled" y el "enabled", o sea, cuando el elemento está
 El estado visited hace referencia a un enlace (elemento `<a>`) al cual YA accedimos. Es el típico cambio de color de azul a violeta oscuro que hacen las búsquedas de Google para indicarte que ya entraste a tal página. Entonces, con esta pseudoclase podemos estilar al elemento en ese estado.
 
 a:visited {
-```typescript
+```css
 color: green;
 ```
 }
@@ -74,7 +74,7 @@ Los estados valid e invalid hacen referencia a las inputs válidas o inválidas 
 - **La pseudo-clase**: root de CSS selecciona el elemento raíz de un árbol que representa el documento. En HTML, :root representa el elemento `<html>` y es idéntico al selector html, excepto que su especificidad es mayor. Esta pseudoclase es útil para declarar variables CSS globales, o para aplicar estilos al HTML:
 
 :root {
-```typescript
+```css
 background: yellow;
 --main-color: #444;
 --secondary-color: #888;
@@ -89,7 +89,7 @@ background: yellow;
 - Esta pseudoclase es relativamente nueva y muy potente. Permite seleccionar a un elemento si contiene a otro elemento dentro. Como por ejemplo indicar a todos los DIV que contengan un IMG.
 
 div:has(img) {
-```typescript
+```css
 background-color: blue;
 ```
 }
@@ -102,25 +102,25 @@ background-color: blue;
 Estos son estados que generalmente se usan en listas, así:
 
 li:first-child { // Primer hijo
-```typescript
+```css
 color: red;
 ```
 }
 
 li:nth-child(2) { // Segundo hijo
-```typescript
+```css
 color: blue;
 ```
 }
 
 li:nth-child(3) { // Tercer hijo
-```typescript
+```css
 color: green;
 ```
 }
 
 li:last-child { // Último hijo
-```typescript
+```css
 color: yellow;
 ```
 }
@@ -168,7 +168,7 @@ color: yellow;
 - El CSS Nesting es una "nueva" sintaxis de CSS que permite colocar las pseudoclases dentro del elemento base, de la siguiente forma:
 
 .container {
-```typescript
+```css
 background: red;
 display: flex;
 

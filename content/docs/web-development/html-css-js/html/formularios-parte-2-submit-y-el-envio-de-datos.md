@@ -19,12 +19,12 @@ description: "Como sabemos, nosotros usamos la etiqueta Form para contener a los
 
 - Esta es la forma de enviar datos usando HTML. Si nosotros ponemos una input de tipo submit, lo que vamos a ver es un BOTÓN, el cual va a tener la funcionalidad de enviar datos. Este botón está directamente relacionado con la etiqueta `<form>`, de la que es parte. Es decir que, si nosotros ponemos una input de tipo submit fuera de un contenedor `<form>`, vamos a ver el botón, pero no va a tener ninguna funcionalidad.
 
-```typescript
+```text
 <input type="submit">
 ```
 - Por defecto -en español- el botón va a decir "Enviar". Nosotros podemos cambiar esa palabra, cambiando el "value" del input. 
 
-```typescript
+```text
 <input type="submit" value="Finalizar formulario">
 ```
 - **Ahora vamos a lo importante**: Por defecto, el input de tipo submit va a realizar la acción de "disparar" el envío del formulario. Y esto tiene relación directa con JavaScript, ya que esta "acción de disparar", hace referencia a un EVENTO. Y como sabemos, en JavaScript manejamos eventos. Bueno, en este caso, nuestro elemento `<form>` va a tener un evento de tipo "submit", el cual se dispara cuando nosotros pulsamos la input de tipo submit.
@@ -32,7 +32,7 @@ description: "Como sabemos, nosotros usamos la etiqueta Form para contener a los
 - Veamos un ejemplo de lo que pasa al hacer clic en la input de tipo submit:
 
 `<form>`
-```typescript
+```text
 <input type="text" name="nombre">
 <input type="email" name="correo">
 <input type="submit" value="Esta es la input de tipo submit">
@@ -71,7 +71,7 @@ const formulario = document.forms[0];
 - Y una vez que ya tenemos la dirección de memoria del elemento guardada dentro de nuestra variable constante llamada "formulario", vamos a agregar un escuchador al evento submit del que hablamos antes. Para recordarlo, habíamos dicho que los elementos `<form>` tienen un evento llamado "submit". Veamos:
 
 formulario.addEventListener('submit', (e) => {
-```typescript
+```text
 e.preventDefault();
 console.log("Hola, funcionó el envío de información");
 ```
@@ -86,7 +86,7 @@ console.log("Hola, funcionó el envío de información");
 - Esto quiere decir que nosotros pudimos haberlo también hecho así:
 
 function FrenarEventoYConfirmarEnvio(evento) {
-```typescript
+```text
 evento.preventDefault();
 console.log("Hola, funcionó el envío de información");
 ```
@@ -99,7 +99,7 @@ formulario.addEventListener('submit', FrenarEventoYConfirmarEnvio(evento));
 
 - El atributo "method" hace referencia al verbo que va a realizar la petición del formulario. Por defecto, es GET. Así que si no especificamos el atributo, su valor va a ser GET. Pero también podría ser POST, que es necesario de colocar para cuando los datos a ingresar son sensibles o modifican algo en el servidor. Esto es así ya que, cuando usamos GET, como vimos antes, los "name" y "value" de las input se ponen en la URL. Y eso es cero seguro. Si usamos POST, los datos se envían en el cuerpo de la petición, y no en la URL.
 
-```typescript
+```text
 <form method="POST">
 	...
 </form>
@@ -117,7 +117,7 @@ formulario.addEventListener('submit', FrenarEventoYConfirmarEnvio(evento));
 
 - El atributo "action" de la etiqueta `<form>` lo que hace es que, cuando se hace el submit, nos manda una página que le indiquemos, con los datos que contenga el formulario. Por defecto, el valor de action es la misma URL en la que estamos. Por eso, por lo general, no especificamos este atributo.
 
-```typescript
+```text
 <form action="https://ejemplo.com/procesar">
 ```
 ### Otros atributos de la etiqueta `<form>`
@@ -130,7 +130,7 @@ target - Define dónde se abre la respuesta del formulario (puede ser _self, _bl
 
 - Ejemplo básico de "name"
 
-```typescript
+```text
 <form name="registro">
 ```
 - Con eso, nosotros podríamos estar en JS y acceder al formulario así:

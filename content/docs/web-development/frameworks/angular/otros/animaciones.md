@@ -38,7 +38,7 @@ transition('cerrado' => abierto', [animate('0.5s')])
 Trigger espera el nombre y un array.
 
 @Component({
-```typescript
+```text
 ...
 animations:[mostrarOcultar]
 ```
@@ -47,7 +47,7 @@ animations:[mostrarOcultar]
 Bien. Ahora vamos a aplicar esto en el template para que se vea.
 
 <div [mostrarOcultarTrigger]="mostrarContenido ? 'abierto' : 'cerrado'">
-```typescript
+```html
 <h1>Título con Animación</h1>
 
 p
@@ -62,7 +62,7 @@ Esta forma de hacerlo es MALÍSIMA. Ya que NO saca a los elementos del DOM, solo
 Y listo. Ahora, otra forma de hacerlo: mostrarOcultar2:
 
 const mostrarOcultar2 = [
-```typescript
+```text
 transition(mostrarOcultarTrigger', [
 	transition(':enter', [
 

@@ -14,7 +14,7 @@ Al formulario le vamos a agregar un escuchador de evento 'submit' así:
 const $formulario = document.forms[0];  // document.forms es un array que contiene a todos los formularios existentes en el HTML
 
 $formulario.addEventListener("submit", (e)=>{
-```typescript
+```text
 e.preventDefault();   //Elimino el comportamiento por defecto del evento
 console.log("Enviando...");
 ```
@@ -42,7 +42,7 @@ Ahora limpiamos el LocalStorage para que quede vacío.
 
 Vamos a crear un archivo 'persona.js' el cual va a tener la función constructora de Persona.
 export function Persona(id, nombre, apellido, email, genero, edad){
-```typescript
+```text
 this.id = id;
 this.nombre = nombre;
 this.apellido = apellido;
@@ -58,7 +58,7 @@ Importamos a la función constructora:
 import { Persona } from "./persona.js";
 
 $formulario.addEventListener("submit", (e)=>{
-```typescript
+```php
 ...
 const {txtId, txtNombre, txtApellido, txtEmail, txtGenero, txtEdad} = $formulario;
 //$formulario contiene los 'names' de las inputs
@@ -75,7 +75,7 @@ if(txtId.value === ""){
 ```
 Analizamos el valor de txtId. Si es "", significa que esa persona todavía no fue cargada en el array. Ya que no tiene ID todavía. Por lo tanto, se trata de una persona nueva que debemos hacerle el alta. Para eso, simplemente creamos una const personaNueva y le asignamos lo que devuelva la función constructora Persona, la cual importamos anteriormente.
 
-```typescript
+```text
      handlerCreate(personaNueva);
 ```
 Llamamos al manejador de creación de personas. Es el que se invoca en estos casos.
@@ -93,7 +93,7 @@ Si la ID tiene algún valor, significa que estamos tomando un elemento ya cargad
 
 Creamos 3 funciones para el ABM
 function handlerCreate(nuevaPersona){
-```typescript
+```text
 personas.push(nuevaPersona);
 //Agregamos al elemento recibido al array
 ```

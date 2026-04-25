@@ -24,7 +24,7 @@ let variable2 = 10, variable3 = 20, variable4 = 30;
 | let num1 = 100; | // Se reserva un espacio en memoria con el valor 100 |
 | --- | --- |
 | num1 = num1 + 300; | // Se actualiza el valor en la memoria |
-```typescript
+```text
 console.log(num1); 		// Muestra 400
 ```
 ## Variables Actuales y Formales

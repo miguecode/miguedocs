@@ -33,7 +33,7 @@ import react from '@astrojs/react';
 También hay que agregarlo en defineConfig:
 
 export default defineConfig({
-```typescript
+```text
 integrations: [
 	react()
 ]

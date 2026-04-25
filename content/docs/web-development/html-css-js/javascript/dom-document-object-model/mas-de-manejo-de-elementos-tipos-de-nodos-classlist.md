@@ -20,14 +20,14 @@ console.log($divParrafos.childNodes);  // Muestra la NodeList de los hijos de $d
 ```
 - childNodes devuelve una NodeList con TODOS LOS NODOS HIJOS de divParrafos. Es decir, contiene a los `<p>` que están en el <div id="textos">, pero también a los textNode como el " \n", que son los saltos de línea del código HTML o de los "p". Esto nos demuestra que la NodeList muestra TODOS los tipos de nodos, ya sean elementos HTML o no. 
 
-```typescript
+```php
 console.log($divParrafos.children); // Muestra la HTMLCollection
 ```
 - children, a diferencia de childNodes, no nos devuelve una NodeList con todos los nodos. Lo que devuelve  es una HTMLCollection, la cual contiene únicamente a los nodos que sean elementos HTML, es decir, no incluye a los demás tipos de nodos.
 
 - **La diferencia clara se vería así**: 
 
-```typescript
+```php
 $elemento.childNodes	// NodeList (Todos los nodos hijos, sean del tipo que sean)
 $elemento.children		// HTMLCollection (Todos los nodos hijos que sean elementos HTML)
 ```
@@ -73,17 +73,17 @@ $divParrafos.hasChildNodes();	 // Devuelve true o false dependiendo de si el ele
 
 ### Vamos a ver ejemplos 
 
-```typescript
+```php
 $divParrafos.insertBefore($imagen2, $divParrafos.children[1]);
 ```
 - Le insertamos el elemento $imagen justo una línea antes (before) del elemento [1] de la lista de nodos hijo elemento de $divParrafos. Es decir, justo antes del segundo párrafo.
 
-```typescript
+```php
 $divParrafos.replaceChild($imagen, $divParrafos.firstElementChild);
 ```
 - Reemplazamos elementos. El primer parámetro va a ser el elemento que tome el lugar del segundo parámetro, el cual se elimina del DOM.
 
-```typescript
+```php
 console.log($divParrafos.hasChildNodes());  // Devuelve True o False (si el elemento tiene o no hijos)
 
 while($divParrafos.hasChildNodes()) { 
@@ -95,7 +95,7 @@ while($divParrafos.hasChildNodes()) {
 
 ### Más ejemplos con otro métodos
 
-```typescript
+```php
 let elemento = $divParrafos.firstElementChild;
 while(elemento) {
 	console.log(elemento);
@@ -107,13 +107,13 @@ console.log($pRojo.nextElementSibling);  // Devuelve siempre el siguiente elemen
 ```
 - Con este método, mostramos elemento por elemento.
 
-```typescript
+```php
 const $pRojo = document.querySelector("p.rojo");
 console.log($pRojo.closest("section"));
 ```
 - Closest() devuelve el elemento más cercano que se pida. En este caso, le estamos pidiendo que nos devuelva la `<section>` más cercana a $pRojo. Recordemos que el padre de pRojo (un párrafo con clase "rojo") es el `<div>` que contiene a los 3 párrafos. Y el padre de este div, es una section (que si bien no la escribimos, imaginemos que es así). 
 
-```typescript
+```php
 console.log($pRojo.closest("section.introduccion"));
 ```
 - Esto nos devuelve la <section class="introduccion"> más cercana que encuentre.
@@ -129,7 +129,7 @@ $pRojo.classList.toggle();     // Cambia el estado de presencia de la clase que 
 $pRojo.classList.contains();  // Devuelve True o False dependiendo de si contiene o no la clase
 $pRojo.classList.replace();    // Reemplaza una clase por otra
 
-```typescript
+```php
 console.log($pRojo.classList); 	     // Muestra un DOMTokenList con todas las clases de $pRojo
 console.log($pRojo.className);   // Muestra "rojo" (si tuviera más clases, muestra todas)
 ```
@@ -138,7 +138,7 @@ console.log($pRojo.className);   // Muestra "rojo" (si tuviera más clases, mues
 
 - **Sobre toggle**: 
 
-```typescript
+```php
 $pRojo.classList.toggle("negrita");  // Si ya tenía la clase "negrita", se la saca. Y sino, se la agrega
 $pRojo.classList.toggle("negrita", true);  // Así, se asegura que la clase esté presente
 $pRojo.classList.toggle("negrita", false); // Así, se asegura que la clase esté ausente
@@ -149,14 +149,14 @@ $pRojo.classList.toggle("negrita", false); // Así, se asegura que la clase est�
 
 - Imaginando que a <p class="rojo"> le sacamos la clase y le ponemos un estilo en línea así:
 
-```typescript
+```php
 <p style="background-color: darkgreen;">
 
 console.log($pRojo.style);
 ```
 - Style muestra una CSSStyleDeclaration, que contiene todos los estilos CSS aplicados.
 
-```typescript
+```php
 console.log($pRojo.style.backgroundColor);  // Muestra el valor del background-color (darkgreen)
 ```
 - El objeto style contiene propiedades cuyos nombres son los mismos nombres de las propiedades CSS. Por ejemplo, ese caso con el style.backgroundColor. Se puede acceder con el operador " . ".
@@ -166,7 +166,7 @@ console.log($pRojo.style.backgroundColor);  // Muestra el valor del background-c
 console.log($pRojo.style.getPropertyValue("background-color"));  // Muestra el valor del background-color
 - En este caso, pRojo NO tiene el atributo "style" en su línea de declaración en el archivo HTML. Por lo tanto, cuando mostremos su "style", nos va a mostrar que todos sus valores están sin modificar (""). Así que cuando quiero que me muestre el background, si hago el getPropertyValue, no me va a mostrar nada.
 
-```typescript
+```php
 $pRojo.style.setProperty("color", "red");  // Le establece una propiedad "color" con valor "red"
 ```
 - El setProperty funciona lo que hace es agregarle CSS embebido. Así que le agrega un: style="color: yellow;" al elemento.

@@ -59,14 +59,14 @@ try {
 ```
 - El comando "throw" (lanzar en español) se usa para lanzar un error manualmente. Cuando lo usamos, el flujo salta directamente al bloque catch, como si hubiese ocurrido un error real. Nosotros -lanzamos- el error, y "catch", como bien dice su palabra, lo captura. Y podemos lanzar errores con distintos tipos de dato:
 
-```typescript
+```text
 throw "Este es un error en texto"; // Lanzamos el error en forma de string
 throw 404; // Lanzamos el error en forma de Number
 throw new Error("Algo salió mal"); // Lanzamos el error en forma de Error
 ```
 - En este último caso, usamos "Error", que es la opción más completa, ya que nos permite crear errores más detallados y profesionales:
 
-```typescript
+```text
 throw new Error("El nombre no puede estar vacío");
 ```
 - **Esto nos da más contexto**: mensaje, tipo de error, y hasta el stack trace (ruta del error). Para capturarlo, hacemos:
@@ -122,7 +122,7 @@ try {
 
 - Entonces, así como podemos hacer "throw new Error("Este es el mensaje del error");", también podemos crear instancias de estas subclases nombradas, por ejemplo:
 
-```typescript
+```text
 throw new TypeError("Este no es el tipo que esperaba");
 throw new ReferenceError("Se uso una variable no definida");
 throw new RangeError("El valor numérico superó el rango permitido");

@@ -29,7 +29,7 @@ $archivo = fopen("archivo.txt", "r");
 
 while (!feof($archivo))
 {
-```typescript
+```php
 echo fgets($archivo) . "</br>";
 ```
 }

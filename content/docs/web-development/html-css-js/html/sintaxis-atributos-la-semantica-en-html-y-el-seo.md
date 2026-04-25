@@ -8,7 +8,7 @@ description: "Sintaxis básica HTML"
 
 - Todo se basa en TAGS (ETIQUETAS). Veamos un ejemplo:
 
-```typescript
+```text
 <p>Contenido de la etiqueta</p>
 ```
 - La etiqueta "p" significa "paragraph", es decir, párrafo. 
@@ -30,7 +30,7 @@ description: "Sintaxis básica HTML"
 
 - En este caso, img es una etiqueta que no necesita etiqueta de cierre. Y vemos que aparece un atributo llamado "src". Este atributo, tiene un valor escrito entre " ". La verdad es que las comillas NO son obligatorias (a menos que el valor tenga espacios). O sea, podríamos poner:   src=Hola.jpg, y funcionaría. Pero esto es una mala práctica. Lo correcto es que siempre pongamos las comillas "".
 
-```typescript
+```text
 <p hidden>Este párrafo no se va a ver</p>
 ```
 - En este párrafo, vemos que aparece el atributo booleano hidden. Es un atributo booleano ya que no tiene valor. Este tipo de atributos funcionan así: Si aparecen declarados, es porque su valor es true. Y si no aparecen, es porque su valor es false. En este caso, como pusimos hidden, el párrafo va a estar oculto. Así funciona ese atributo, y se puede poner en cualquier etiqueta HTML.

@@ -8,14 +8,14 @@ description: "Interceptores en Angular"
 
 - Un interceptor es otro elemento de Angular el cual puede crearse con Angular CLI:
 
-```typescript
+```text
 ng create interceptor interceptors/MiInterceptor
 ```
 - En Angular, un interceptor es una clase que intercepta todas las peticiones HTTP que hacemos desde nuestra aplicación (antes de que salgan al servidor) y también las respuestas que vuelven del servidor. Es decir, intercepta las peticiones y las respuestas.
 
 - Sirven para aplicar lógica común y automática en todas las peticiones o respuestas sin repetir código:
 
-```typescript
+```text
 Caso de uso			¿Qué hace?
 ```
 _____________________________________________________________________________________________

@@ -10,12 +10,12 @@ description: "Las rutas absolutas son siempre iguales, ya que no lo importa desd
 
 - Las rutas absolutas se usan siempre para las URL, por una cuestión lógica. Entonces, una ruta absoluta puede ser la URL a Google:
 
-```typescript
+```text
 https://www.google.com
 ```
 - Otro ejemplo de ruta absoluta puede ser una ruta de nuestro sistema, así:
 
-```typescript
+```text
 C:/Users/JUNIOR/Desktop/Carpeta1/
 ```
 - Eso sería una ruta absoluta. Ya que, accedamos desde donde accedamos, siempre nos va a llevar al mismo lugar. Eso es así porque la ruta es explícita de inicio a fin. Pero manejarnos así con las rutas de nuestro sistema no es lo ideal, se vuelve engorroso. Para esto vamos a usar las rutas relativas.
@@ -30,7 +30,7 @@ C:/Users/JUNIOR/Desktop/Carpeta1/
 ## Ejemplo considerando esta jerarquía de archivos:
 
 Desktop
-```typescript
+```text
 |----  Carpeta1
 |	          |----  MiniCarpeta1  ----  OtraCarpeta  ----  Carpetita
 |	          |----  MiniCarpeta2  ----  Hola.txt
@@ -41,14 +41,14 @@ Desktop
 ```
 - Supongamos que estamos parados dentro de "MiniCarpeta3", y queremos acceder al archivo "Hola.txt", el cual está dentro de MiniCarpeta 2. Para eso, vamos a usar la ruta relativa:
 
-```typescript
+```text
 ../Carpeta1/MiniCarpeta2/Hola.txt
 ```
 - Ese   "  ../  "  es un paso hacia atrás, o hacia afuera, o hacia arriba. Como queramos verlo. Si nosotros estábamos dentro de MiniCarpeta3, al hacer  "  ../  "  nos movimos hacia Carpeta2. Después, a partir de ahí, nos vamos acercando a donde queremos con   /   .
 
 - Supongamos que estamos parados dentro de "Carpetita", y queremos acceder al archivo "Chau.txt", el cual está dentro de Carpeta3. Para eso, vamos a usar la ruta relativa:
 
-```typescript
+```text
 ../../../Carpeta3/Chau.txt
 ```
 - También podemos aclarar que  "  ./  "  , es decir, con un solo puntito, significa "El directorio actual". Es decir, el lugar en el que estamos parados. En VSCode puede escribirse para que nos muestre los otros archivos o carpetas disponibles del lugar en el que estamos parados.

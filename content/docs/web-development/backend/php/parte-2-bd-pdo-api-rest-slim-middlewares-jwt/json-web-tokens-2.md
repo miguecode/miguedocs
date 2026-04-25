@@ -15,7 +15,7 @@ $ahora = time();
 
 Ahora, un payload
 $payload = array(
-```typescript
+```text
 ...
 ```
 );

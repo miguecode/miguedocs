@@ -19,7 +19,7 @@ description: "Los servicios son elementos de Angular muy potentes, usados para:"
 
 - **Para crear un Servicio, podemos usar el comando**: 
 
-```typescript
+```text
 ng generate service services/MiServicio
 ```
 - **Veamos un ejemplo**: 

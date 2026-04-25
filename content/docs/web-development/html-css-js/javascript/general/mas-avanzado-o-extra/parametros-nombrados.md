@@ -44,7 +44,7 @@ createPerson2({
 
 - Como sabemos, si pasamos distintos parámetros en el objeto pero nos faltó alguno, se va a tomar como undefined (o como el valor por defecto, como lo hace "age"). Pero... ¿Y si llamamos a la función y no le pasamos nada? Es decir:
 
-```typescript
+```text
 createPerson2();
 ```
 - En este caso, nos va a dar TypeError porque se va a intentar desestructurar undefined. Para evitarlo, hacemos esto:

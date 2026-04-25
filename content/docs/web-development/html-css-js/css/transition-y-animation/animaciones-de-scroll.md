@@ -19,14 +19,14 @@ description: "Animaciones que se activan a través del Scroll"
 `<main>` ... `</main>`
 
 body {
-```typescript
+```css
 margin: 0px;
 padding: 0px;
 ```
 }
 
 #progress {
-```typescript
+```css
 position: fixed;
 top: 0;
 height: 30px;
@@ -49,7 +49,7 @@ to { width: 100% }
 - Para poder todo esto con sólo CSS, es indispensable el uso de la propiedad "animation-timeline". Lo malo es que, al ser relativamente nueva, no todos los navegadores la soportan. Si quisiéramos, podríamos hacer un "respaldo de funcionalidad". Estos respaldos son como "el plan b" para cierta funcionalidad no soportada por navegadores. O sea que, con JS, podemos replicar la funcionalidad de animation-timeline, e incluirla en caso de que el navegador usado por el usuario no reconozca esa propiedad. Lógicamente, no va a ser igual de performante, pero sirve.
 
 #progress {
-```typescript
+```text
 animation: progress-grow auto linear;
 animation-timeline: scroll(root block);
 ```
@@ -71,7 +71,7 @@ animation-range: 0 100px;
 - La propiedad animation-range toma los valores de forma horizontal y vertical. En este caso, le ponemos 0 de horizontal (porque no nos interesa) y 100px de vertical. Lógicamente, cuantos más pixeles pongamos, más larga se haría la animación, ya que tendríamos que scrollear más hacia abajo para ver toda la animación de inicio a fin.
 
 #desktop-navbar {
-```typescript
+```text
 animation: nav-shadown 2s linear both;
 animation-timeline: scroll(root block);
 animation-range: 0 100px;
@@ -79,7 +79,7 @@ animation-range: 0 100px;
   }
 
   @keyframes nav-shadown {
-```typescript
+```sql
 0% {
   background: transparent;
 }
@@ -97,7 +97,7 @@ animation-range: 0 100px;
 - Vamos a usar view(). Es un valor de la propiedad animation-timeline. Lo que hace view es que la animación solo se realice cuando sea visible el elemento.
 
 section img {
-```typescript
+```text
 animation: reveal linear both;
 animation-timeline: view();
 animation-range: entry 20% cover 30%;

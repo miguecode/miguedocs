@@ -55,7 +55,7 @@ border: solid 5px black;
 - Existe también el *. Esto selecciona a todos los elementos del DOM y podría servir para sobreescribir los estilos que vienen por defecto del padding y del margin de los elementos, así:
 
 * {
-```typescript
+```css
 padding: 0;
 margin: 0;
 box-sizing: border-box;
@@ -63,13 +63,13 @@ box-sizing: border-box;
 }
 
 .link { // El "." de adelante, indica que el selector es una clase
-```typescript
+```css
 color: red;
 ```
 }
 
 #button { // El "#" de adelante, indica que el selector es un ID
-```typescript
+```css
 color: orange;
 ```
 }
@@ -81,7 +81,7 @@ color: orange;
 - Estos selectores buscan apuntar a elementos que sean hijos de otros.
 
 nav img {
-```typescript
+```text
  height: 30px;
 ```
 }
@@ -89,7 +89,7 @@ nav img {
 Esto apunta a: "todas las `<img>` que estén dentro de un `<nav>`".
 
 .contenedor p {
-```typescript
+```css
 background-color: orange;
 ```
 }
@@ -99,7 +99,7 @@ Esto apunta a: "todos los `<p>` que estén dentro de un elemento con clase .cont
 - También existe otra forma de hacerlo, que es con ">". Pero no funciona exactamente igual.
 
 .description > .bold {
-```typescript
+```css
 font-weight: bold;
 color: purple;
 ```
@@ -110,7 +110,7 @@ El ">" indica "Sólo al primer nivel", es decir que la regla va a aplicar a todo
 - Existe otro operador que es el "+". Significa "el elemento que le sigue inmediatamente a...".
 
 p + span {
-```typescript
+```css
 color: red;
 ```
 }
@@ -120,7 +120,7 @@ color: red;
 - Existe otro operador que es el "~" (alt+126). Significa "que le sigue a". Es como el anterior, pero no tan específico. O sea, no importa si no está JUSTO DESPUÉS. Selecciona a todas las coincidencias que encuentre, así:
 
 p ~ span {
-```typescript
+```css
 color: red;
 ```
 }
@@ -129,7 +129,7 @@ color: red;
 
 - También podemos apuntar a distintos elementos separando selectores por comas:
 p, h2, h3 { 
-```typescript
+```text
 color: red
 ```
 }

@@ -23,7 +23,7 @@ description: "Métodos de Arrays con callbacks"
 
 - Map crea y devuelve un nuevo array desde 0. Cada elemento de ese nuevo array lo va a obtener gracias al  cada "return" de la función que reciba. Es decir, del callback. Y como dijimos, esa función se va a ejecutar por cada elemento que tenga el array.
 - Los parámetros de la función callback (la que le pasamos) son 3. El primero siempre va a ser el elemento del array por el que estamos pasando, el segundo va a ser el índice del elemento, y el tercero va a ser el propio array. No es necesario que le pasemos los 3 parámetros obligatoriamente. Podemos sólo pasar el primero.
-```typescript
+```text
 callback(element, index, array)
 ```
 - **Veamos un ejemplo**: 
@@ -71,7 +71,7 @@ const pares = vec.filter(e => e % 2 === 0);
 
 - Además del callback, el método fitler también tiene un segundo parámetro opcional, al cual nos podemos referir a el como "this".
 
-```typescript
+```text
 vec.filter([función], [valorArbitrario]);    // A valorArbitrario vamos a acceder a el como 'this'.
 ```
 - Sirve por si necesitamos algún valor externo.
@@ -91,7 +91,7 @@ const total = vecValores.reduce( (prev, actual) => {
 
 - Esto quiere decir que en la primer iteración va a retornar 34. Y ese "34" que retorna, va a ser el valor de "prev" en la siguiente iteración. Y así con todo el array. En la segunda iteración, "prev" será 34 y "actual" será 20, es decir, el valor que sigue. 20+34 es 54. Retorna 54 y ese "54" es lo que valdrá "prev" en la siguiente iteración. Y así con todo. El último return de reduce será lo que le devuelva a "total".
 
-```typescript
+```text
 console.log(total);  // Va a devolver 109, que es la suma de todos los valores del vecValores
 ```
 - Si no especificamos el valor inicial como segundo parámetro de reduce, lo que va a pasar es que en la primera iteración, "prev" va a tomar el valor del primer elemento y "actual" el del segundo. Por eso poner como valor inicial 0 y no poner ningún valor inicial, es lo mismo.
@@ -176,7 +176,7 @@ vec.splice(2, 2);
 
 - **Extra**: el método splice() también puede agregar elementos en una posición específica en el lugar en donde eliminamos (o no) elementos. Por ejemplo:
 
-```typescript
+```text
 vec.splice(1, 0, "nuevo"); // Inserta "nuevo" en la posición 1
 console.log(vec); // [34, "nuevo", 20, 88, 3]
 ```

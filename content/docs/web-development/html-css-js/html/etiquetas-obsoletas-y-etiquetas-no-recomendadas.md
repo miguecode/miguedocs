@@ -18,42 +18,42 @@ description: "Etiquetas Obsoletas en HTML"
 ### Vamos a ver ejemplos de etiquetas obsoletas.
 
 `<font>`
-```typescript
+```text
 Esta fuente está personalizada.
 ```
 `</font>`
 - Font se usaba para, justamente, personalizar la fuente. 
 
 `<center>`
-```typescript
+```text
 Este texto está centrado.
 ```
 `</center>`
 - Center se usaba para centrar elementos en la pantalla.
 
 `<blink>`
-```typescript
+```text
 Este texto titila.
 ```
 `</blink>`
 - Blink se usaba para hacer que el texto titile.
 
 `<big>`
-```typescript
+```text
 Este texto es más grande.
 ```
 `</big>`
 - Big se usaba para que el texto sea más grande.
 
 `<strike>`
-```typescript
+```text
 Este texto está tachado.
 ```
 `</strike>`
 - La etiqueta `<strike>` se usaba para tachar texto y se reemplazó por `<del>`, ya que tiene un significado semántico.
 
 `<tt>`
-```typescript
+```text
 console.log("Este texto es código!");
 ```
 `</tt>`
@@ -68,7 +68,7 @@ console.log("Este texto es código!");
 - Se usaba para hacer que el texto se desplace animado, ahora esto se hace con CSS.
 
 `<menu>`
-```typescript
+```text
 <li>Inicio</li>
 <li>Servicios</li>
 <li>Contacto</li>
@@ -77,7 +77,7 @@ console.log("Este texto es código!");
 - Se usaba para indicar una lista de navegación. En HTML4 está obsoleta, pero en HTML5 existe con un propósito diferente. Para el propósito que tenía antes, ahora se usa `<ul>` u otra etiqueta de lista.
 
 `<noframes>`
-```typescript
+```text
 Tu navegador no soporta frames.
 ```
 `</noframes>`

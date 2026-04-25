@@ -6,9 +6,9 @@ description: "Como sabemos, en JavaScript tenemos 10 tipos los cuales se dividen
 
 ## Tipos de Datos
 
-- Como sabemos, en JavaScript tenemos 10 tipos los cuales se dividen en primitivos y no primitivos. Los primitivos son: String, Number, Boolean, Null, Undefined, BigInt y Symbol. Y los no primitivos, son Object, Function y Array.
+Como sabemos, en JavaScript tenemos 10 tipos los cuales se dividen en primitivos y no primitivos. Los primitivos son: String, Number, Boolean, Null, Undefined, BigInt y Symbol. Y los no primitivos, son Object, Function y Array.
 
-- TypeScript extiende esta lista agregando tipos más específicos. Los podemos dividir en tipos primitivos, complejos, especiales y avanzados:
+TypeScript extiende esta lista agregando tipos más específicos. Los podemos dividir en tipos primitivos, complejos, especiales y avanzados:
 
 
 ### Tipos primitivos (Los mismos de JavaScript)
@@ -56,16 +56,18 @@ let nombre: string = "Juan";
 let edad: number = 25;
 let esActivo: boolean = true;
 ```
-- **En una función**: 
+
+**En una función**: 
 
 ```typescript
 function saludar(nombre: string, edad: number): string {
 	return `Hola, ${nombre}. Tienes ${edad} años.`;
 }
 ```
-- En ese caso, la función saludar recibe "nombre" y "edad". El primero tiene que ser un string, y el segundo un number. Además, la función tiene que retornar un string, tal y como especificamos en su declaración.
 
-- **En objetos**: 
+En ese caso, la función saludar recibe "nombre" y "edad". El primero tiene que ser un string, y el segundo un number. Además, la función tiene que retornar un string, tal y como especificamos en su declaración.
+
+**En objetos**: 
 
 ```typescript
 let usuario: { nombre: string; edad: number } = {
@@ -73,7 +75,8 @@ let usuario: { nombre: string; edad: number } = {
 	edad: 30
 };
 ```
-- **En interfaces y en types**: 
+
+**En interfaces y en types**: 
 
 ```typescript
 interface Persona {
@@ -86,35 +89,36 @@ let persona: Persona = { nombre: "María", edad: 28 };
 type Producto = { nombre: string; precio: number };
 let producto: Producto = { nombre: "Laptop", precio: 1500 };
 ```
+
 ### Inferencia de tipos (Type Inference)
 
-- Como dijimos al principio en la sección anterior, si el dato es muy obvio, podemos ahorrarnos tipar. ¿Por qué? Porque en TypeScript existe la inferencia de tipos, es decir, TS deduce de qué tipo tiene que ser algo que no tiene su tipo especificado, veamos:
+Como dijimos al principio en la sección anterior, si el dato es muy obvio, podemos ahorrarnos tipar. ¿Por qué? Porque en TypeScript existe la inferencia de tipos, es decir, TS deduce de qué tipo tiene que ser algo que no tiene su tipo especificado, veamos:
 
-| let mensaje = "Hola"; | // TS infiere que "mensaje" es de tipo string |
-| --- | --- |
-| let mensaje = "Hola"; | // TS infiere que "mensaje" es de tipo string |
+```typescript
+let mensaje = "Hola"; // TS infiere que "mensaje" es de tipo string
+```
 
 ```typescript
 function doble(valor) {
-    return valor * 2; // TS infiere que "valor" es any, y que el retorno también es any (es un riesgo)
+	return valor * 2; // TS infiere que "valor" es any, y que el retorno también es any (es un riesgo)
 }
 
 function saludar() {
-    return "Hola"; // TS infiere que el tipo de retorno es string
+	return "Hola"; // TS infiere que el tipo de retorno es string
 }
 ```
-- Como vemos, en estos casos no estamos especificando el tipo pero aún así TS sabe lo que es. Esto evidentemente es más inseguro, pero para cosas obvias como "const edad = 20", lo podemos hacer.
 
-- También es buena práctica activar "strict" y "noImplicitAny" en el archivo "tsconfig.json" para que TS nos avise cuando no puede inferir tipos correctamente.
+Como vemos, en estos casos no estamos especificando el tipo pero aún así TS sabe lo que es. Esto evidentemente es más inseguro, pero para cosas obvias como "const edad = 20", lo podemos hacer.
 
 
+También es buena práctica activar "strict" y "noImplicitAny" en el archivo "tsconfig.json" para que TS nos avise cuando no puede inferir tipos correctamente.
 
 
 ## Tipado múltiple usando Union Types e Intersection Types
 
 ### Union Types ( | )
 
-- Los union types permiten que una variable pueda tener un valor u otro. Veamos:
+Los union types permiten que una variable pueda tener un valor u otro. Veamos:
 
 ```typescript
 let variable: string | number | [];
@@ -130,7 +134,8 @@ imprimirID(123); // Válido
 imprimirID("ABC123"); // Válido
 imprimirID(true); // Error
 ```
-- **Esto también se puede usar con objetos**: 
+
+**Esto también se puede usar con objetos**: 
 
 ```typescript
 type Estudiante = { nombre: string; curso: string };
@@ -142,7 +147,8 @@ persona = { nombre: "Juan", curso: "Matemáticas" }; // Estudiante
 persona = { nombre: "Ana", materia: "Física" }; //  Profesor
 persona = { nombre: "Pedro", edad: 25 }; // Error, edad no está ni en Estudiante ni en Profesor
 ```
-- Cómo acceder a las propiedades de "persona" si no sé de qué tipo es:
+
+Cómo acceder a las propiedades de "persona" si no sé de qué tipo es:
 
 ```typescript
 function imprimirPersona(p: Estudiante | Profesor) {
@@ -155,12 +161,13 @@ function imprimirPersona(p: Estudiante | Profesor) {
 	}
 }
 ```
-- En este caso, TypeScript no sabe si persona es de tipo Estudiante o Profesor, entonces hay que hacer una verificación de tipo previa. El uso de ( "curso" in p ) devuelve true o false, dependiendo de si "p" tiene dentro una propiedad "curso" o no.
+
+En este caso, TypeScript no sabe si persona es de tipo Estudiante o Profesor, entonces hay que hacer una verificación de tipo previa. El uso de ( "curso" in p ) devuelve true o false, dependiendo de si "p" tiene dentro una propiedad "curso" o no.
 
 
 ### Intersection Types ( & )
 
-- Esta alternativa es menos común, pero sirve para que la variable tenga que sí o sí cumplir con todos los tipos a la vez. Veamos:
+Esta alternativa es menos común, pero sirve para que la variable tenga que sí o sí cumplir con todos los tipos a la vez. Veamos:
 
 ```typescript
 type Empleado = { nombre: string; salario: number };
@@ -174,4 +181,5 @@ persona = {
 	juegoFavorito: "Zelda",
 }; // Válido
 ```
-- Es lo mismo que Union, pero cumpliendo con todo en vez de con uno sólo.
+
+Es lo mismo que Union, pero cumpliendo con todo en vez de con uno sólo.

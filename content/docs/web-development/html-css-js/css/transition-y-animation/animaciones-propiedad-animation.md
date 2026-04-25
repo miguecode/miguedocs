@@ -58,7 +58,7 @@ to {
 ### Propiedad animation
 
 .pulser {
-```typescript
+```text
 animation: move; // "move" es literalmente la animación que creamos
 ```
 }
@@ -66,7 +66,7 @@ animation: move; // "move" es literalmente la animación que creamos
 - Con eso no es suficiente. Es necesario que le asignemos una duración a la animación, usando la propiedad "animation-duration". Hay que hacerlo porque por defecto empieza con 0.
 
 .pulser {
-```typescript
+```text
 animation: move;
 animation-duration: 3s;
 ```
@@ -81,14 +81,14 @@ animation-duration: 3s;
 - Los pseudoelementos (que no son lo mismo que las pseudoclases) son ELEMENTOS HTML que aparecen justo después (after) o justo antes (before) de un elemento. Es como si se incrustara en el HTML para ser hijo o padre del elemento tratado. En este caso, vamos a hacerlo con todos los elementos que tengan la clase .pulser:
 
 .pulser {
-```typescript
+```css
 position: relative;  // Lo hacemos para que el pseudoelemento sea relativo a él
 background: lightblue;
 ```
 }
 
 .pulser::after {
-```typescript
+```css
 position: absolute;  // Su posición va a ser relativa al elemento .pulser
 width: 100%
 height: 100%
@@ -203,7 +203,7 @@ animation: mover 2s linear 3s infinite reverse both
 - Esto es muy sencillo, con la misma propiedad "animation", un elemento puede tener más de una animación separadas por ",", así:
 
 img {
-```typescript
+```text
 animation: 
 	mover 3s steps(10) both,
 	agrandar 1s linear 3s both;

@@ -7,7 +7,7 @@ description: "¡Tu navegador no soporta el video!"
 ## Etiqueta `<video>`
 
 <video controls autoplay muted src="mivideo.mp4" poster="miniatura.jpg" alt="Video muy lindo">
-```typescript
+```text
 ¡Tu navegador no soporta el video!
 ```
 `</video>`
@@ -24,14 +24,14 @@ description: "¡Tu navegador no soporta el video!"
 
 - El atributo "alt" (alternative), cumple la misma funcionalidad que en las imágenes. Se trata de dar una breve descripción de lo que es el elemento. Es importante para la accesibilidad.
 
-```typescript
+```text
 <video src="videocorto.mp4" loop></video>
 ```
 - El atributo "loop" hace que el video vuelva a reproducirse infinitamente cada vez que termina.
 
 ### Etiqueta `<track>`
 
-```typescript
+```text
 <video src="videocorto.mp4" loop>
 	<track src="captions.vtt" default kind="captions"
 	srclang="es" label="Español (Lationamérica)">

@@ -55,7 +55,7 @@ console.log(sinDefinir == vacio);  // Muestra true (comparación débil: JS los 
 
 - NaN significa "No es un número" y aparece cuando intentamos realizar una operación matemática con un dato inválido. Como dijimos antes, NO es un tipo de dato como null y undefined, sino que es un valor especial de la función constructora/clase Number. Veamos cómo funciona:
 
-```typescript
+```text
 console.log("Hola" * 2); // Muestra NaN (no se puede multiplicar un string por un número)
 console.log(parseInt("JS")); // Muestra NaN (no se puede convertir "JS" a número)
 console.log(0 / 0); // NaN Muestra (indeterminación matemática)
@@ -68,7 +68,7 @@ console.log(0 / 0); // NaN Muestra (indeterminación matemática)
 
 ## ¿Cómo verificarlos?
 
-```typescript
+```text
 console.log(typeof undefined); // Muestra "undefined"
 console.log(typeof null); // Muestra "object" (esto es un error histórico de JS)
 console.log(typeof NaN); // Muestra "number" (porque NaN es un valor especial de Number)

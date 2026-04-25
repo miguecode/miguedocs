@@ -15,7 +15,7 @@ description: "Son colores que van de un color a otro."
 ### Linear-gradient
 
 .element {
-```typescript
+```text
 width: 500px;
 height: 200px;
 background-image: linear-gradient(red, blue);
@@ -57,7 +57,7 @@ linear-gradient(dirección, color1 inicio fin, color2 inicio fin);
 - El inicio y fin se pueden escribir con px o con porcentajes. Se recomienda usar porcentajes.
 
 .element {
-```typescript
+```text
 width: 500px;
 height: 200px;
 background-image: linear-gradient(180deg, red 0 50%, blue 50% 100%);
@@ -80,7 +80,7 @@ linear-gradient(to right, red, 50%, blue);
 - Podemos tener más de un gradiente en el background. Para hacerlo, los separamos por comas:
 
 background-image: linear-gradient(to right, green, black),
-```typescript
+```text
 			linear-gradient(to bottom, blue, red)
 ```
 - Podemos anidar cuantos gradientes queramos, de cualquier tipo (lineal, radial, o cono) en distintas direcciones, colores, etc. 
@@ -88,7 +88,7 @@ background-image: linear-gradient(to right, green, black),
 - Otra cosa que podemos hacer también es combinarlo con poner una imagen. 
 
 background-image: linear-gradient(to right, rgb(200 0 0 / 0.5, rgb(0 0 0 / 0.5),
-```typescript
+```text
 			url(ruta de la imagen)
 ```
 - De esta forma, estamos poniendo un gradiente por encima de la imagen, y le pusimos que vaya del rojo al negro, hacia la derecha, y a ambos colores le pusimos una transparencia del 50%, por ende, debajo del gradiente, se va a ver la foto que colocamos.

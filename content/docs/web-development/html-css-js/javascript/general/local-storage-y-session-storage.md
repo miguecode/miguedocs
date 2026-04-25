@@ -10,7 +10,7 @@ description: "-Local Storage (Almacenamiento local)"
 
 - Para ver el Local Storage, hay que ir a las herramientas del desarrollador e ir a la sección:
 
-```typescript
+```text
 DevTools > Application > Storage > Local storage
 ```
 - El almacenamiento local es por página, es decir, se queda asociado a la página hasta que nosotros mismos lo borremos. Aunque cerremos la pestaña, cerremos el navegador, o apaguemos nuestra máquina, igualmente la información almacenada en el Local Storage persiste. La única forma de que se vaya es que nosotros mismos la borremos (mediante código, o usando las DevTools, o en los ajustes del navegador).
@@ -37,7 +37,7 @@ localStorage.clear()			// Limpia el LS entero, es decir, elimina todos sus eleme
 
 ## Método setItem()
 
-```typescript
+```text
 localStorage.setItem("persona", JSON.stringify(persona));
 ```
 - SetItem recibe dos strings. El primero va a ser la "key", y el segundo el "value" del elemento que vamos a guardar. En este caso, estamos guardando un elemento con key "persona" y con el valor de nuestro objeto en memoria convertido en un string con notación JSON.
@@ -45,7 +45,7 @@ localStorage.setItem("persona", JSON.stringify(persona));
 
 ## Método getItem()
 
-```typescript
+```text
 localStorage.getItem("persona");
 ```
 - GetItem recibe un string. Ese string va a ser el nombre (la key) del Item que queremos extraer del LS. Lo que va a devolver es el string en formato JSON del Item almacenado en LS.
@@ -60,7 +60,7 @@ const persona2 = JSON.parse(localStorage.getItem("persona"));
 
 ## Método removeItem()
 
-```typescript
+```text
 localStorage.removeItem("persona");
 ```
 - RemoveItem recibe un string al igual que getItem. Pero esta vez, en vez de devolverlo, lo elimina.
@@ -68,7 +68,7 @@ localStorage.removeItem("persona");
 
 ## Método clear()
 
-```typescript
+```text
 localStorage.clear();
 ```
 - No hay mucha ciencia. Este método elimina todos los elementos del Local Storage.
@@ -97,7 +97,7 @@ const listaDePersonas = [
 ```
 - La lógica es la misma que con objetos. Podemos guardar y extraer arrays con el LS. 
 
-```typescript
+```text
 localStorage.setItem("listaDePersonas", JSON.stringify(listaDePersonas));
 ```
 - Agregamos el array al LS. Tendrá como "key" listaDePersonas y su "value" será un array con todos los objetos que contenga listaDePersonas. Obviamente, se guarda en forma de string como todo lo que se guarda en el LS.

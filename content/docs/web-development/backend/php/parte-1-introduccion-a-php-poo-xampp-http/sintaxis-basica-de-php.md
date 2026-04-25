@@ -8,11 +8,15 @@ Sintaxis básica del lenguaje PHP
 La extensión del archivo fuente debe ser .php, es decir, vamos a trabajar con archivos .php.
 Todo código va entre etiquetas de apertura y cierre. Todo lo que esté fuera de eso, el intérprete lo va a ignorar. Ojo, no es obligatoria la etiqueta de cierre.
 
+```php
 <?php  Etiqueta de apertura
 ?>        Etiqueta de cierre (no es obligatoria)
+```
 
+```php
 <?php
-```typescript
+```
+```php
 echo "Hola Mundo";
 ```
 ?>
@@ -45,11 +49,13 @@ Conversión de Tipos
 Las conversiones las realiza automáticamente PHP dependiendo del contenido de la variable, esto es porque como dijimos, es de tipado dinámico.
 (int)$edad
 
+```php
 <?php
 print("nombre: $nombre");
 echo "edad:", $edad;
 printf("sueldo: %f", $sueldo);
 ?>
+```
 
 PHP tiene similitudes con C puesto que hereda de él, o implementa muchas funciones de él.
 Funciones de cadenas: strlen(), strcmp(), strtolower(), strtoupper(), substr(), ucfirst(), ucwords()
@@ -72,7 +78,7 @@ Funciones n PHP
 Los nombres no son case-sensitive. Las funciones pueden recibir parámetros, retornar valores, y los parámetros pueden tener valores por default. Obviamente se leen de izquierda a derecha.
 
 function NombreFuncion() {    
-```typescript
+```text
 // Código
 ```
 }

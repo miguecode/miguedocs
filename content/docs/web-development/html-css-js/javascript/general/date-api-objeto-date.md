@@ -32,7 +32,7 @@ const fecha = new Date("2025-04-09T15:30:00");
 ```
 - Vamos a obtener las diferentes partes de esa fecha:
 
-```typescript
+```text
 fecha.getDate();	→ 9         // Día del mes (Los días del mes no forman parte de un array, es de 1 a 31)
 fecha.getDay();         → 3        // Día de la semana (0 = domingo, 6 = sábado) (porque es un array)
 fecha.getMonth();	→ 3        // Mes (0 = enero, 11 = diciembre) (porque es un array)

@@ -43,7 +43,7 @@ try {
 
 - Entonces, así como podemos hacer "throw new Error("Este es el mensaje del error");", también podemos crear instancias de estas subclases nombradas, por ejemplo:
 
-```typescript
+```text
 throw new TypeError("Este no es el tipo que esperaba");
 throw new ReferenceError("Se uso una variable no definida");
 throw new RangeError("El valor numérico superó el rango permitido");

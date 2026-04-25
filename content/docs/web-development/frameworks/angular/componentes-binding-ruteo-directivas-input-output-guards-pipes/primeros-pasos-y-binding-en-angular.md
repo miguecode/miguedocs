@@ -8,17 +8,17 @@ description: "Primeros pasos y Bindeo en Angular"
 
 - Primero que nada, vamos al archivo del template del componente base:
 
-```typescript
+```text
 app.component.html
 ```
 - **En él, vamos a borrar todo y dejar esta línea**: 
 
-```typescript
+```text
 <router-outlet  />
 ```
 - **Ahora, vamos a nuestro archivo de lógica**: 
 
-```typescript
+```text
 app.component.ts
 ```
 - En este archivo, vamos a ver la clase de nuestro componente principal (llamado AppComponent), siendo decorada por el decorador de Angular @Component. Uno de los parámetros del objeto que recibe este decorador, es el "selector". El valor que tenga "selector" va a ser el nombre de la tag `<tag>`, la cual va a invocar a este componente en el que estamos trabajando. Es decir, cuando queramos invocar al componente, en el HTML hacemos: `<pepe>``</pepe>` Eso sería así, suponiendo que le pusimos "pepe" al "selector".
@@ -39,7 +39,7 @@ export class AppComponent {
 ```
 - Ahora, en el template (el archivo HTML) vamos a poner la siguiente línea, la cual la podemos usar gracias a Angular y a "ngModel", que es quien nos va a ayudar a enviar información desde el HTML hacia el TS, así:
 
-```typescript
+```text
 <input type="text" [(ngModel)]="title">
 ```
 - En principio, esto nos va a tirar un error, ya que no estamos incluyendo el componente ngModel. Para eso, hay que importarlo. Esto lo vamos a hacer en el archivo de la lógica (el app.component.ts). Para eso, agregamos un "FormsModule" en el "imports" del componente. Ese componente "FormsModule" sirve justamente para usar elementos de formularios. Quedaría así:
@@ -61,7 +61,7 @@ export class AppComponent {
 ```
 - **Bien. Ahora, vamos a agregar una línea HTML más**: 
 
-```typescript
+```html
 <h1>{{ title }}</h1>
 ```
 - Esto lo que hace es mostrar el valor de nuestra variable "title". Ahí está la magia de Angular: estamos mostrando por HTML el valor de una variable que tenemos creada en nuestro archivo de lógica TypeScript. Y esto lo hacemos colocando llaves dobles: {{ [Código TypeScript] }}. Entre las {{ }}, podemos escribir en TypeScript.
@@ -98,7 +98,7 @@ Two-Way			[(ngModel)]	TS ↔ HTML	Formularios con sincronización en vivo
 
 - Este binding se usa para enlazar propiedades de elementos HTML (es decir, atributos) o componentes personalizados. También es unidireccional como la interpolación: TS → HTML, pero a diferencia de ella, SÍ sirve para modificar atributos reales del DOM. Veamos:
 
-```typescript
+```text
 imgUrl = 'https://miimagen.com/foto.jpg';	// Tenemos esto en nuestro archivo TypeScript
 
 <img [src]="imgUrl" /> <!-- Tenemos esto en nuestro archivo HTML -->
@@ -124,7 +124,7 @@ onBtnClick() {
 ```
 - En el HTML, vamos a invocarla mediante el Event Binding (evento)="función()"
 
-```typescript
+```text
 <button (click)="onBtnClick()">Hacer clic acá</button>
 ```
 - Entonces, este binding permite que el HTML dispare funciones de la lógica TS. Como vemos, usamos el binding que dijimos que ibamos a usar: (elNombreDelEvento)="laFunción()"

@@ -15,14 +15,14 @@ export const Header = ({ title }) => { ... }
 
 - Además de recibir este tipo de propiedades, existe 'children', que es un parámetro especial que hace referencia a los hijos del componente a nivel estructura HTML. Por ejemplo, si lo invocamos así:
 
-```typescript
+```text
 <Header>
 	<h3>Este es el título</h3>
 </ Header>
 ```
 - Ese h3 que aparece dentro de la invocación del componente, va a caer en {children}, y va a poder ser utilizado en el componente Header de esta forma:
 
-```typescript
+```html
 export const Header = ({ children, title }) => {
 	return (
 		<header>
@@ -60,14 +60,14 @@ Header.propTypes = {
 
 - Incluso, también lo podríamos resumir poniendo solo "show", y se sobreentiende que lo estamos pasando en TRUE. Así:
 
-```typescript
+```text
 	<Header title="Mi sitio web" show>
 ```
 - Y si no le pasamos nada, es decir, si no escribimos show, va a llegar como Undefined. Y como sabemos, en JavaScript, undefined es falsy. Así que ese undefined se terminaría traduciendo en false.
 
 - Y después, dependiendo de si show es true o no, podemos hacer esta lógica:
 
-```typescript
+```html
 export const Header = ({ children, title, show }) => {
 	return (
 		<header>

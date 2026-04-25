@@ -7,7 +7,7 @@ description: "'green' es una palabra clave. Existen más, para usar colores est�
 ## Colores 
 
 h1 {
-```typescript
+```css
 color: green;
 ```
 }
@@ -51,7 +51,7 @@ color: green;
 - **La propiedad para las fuentes es**: "font-family".
 
 body {
-```typescript
+```text
 font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, 'Open Sans', 'Helvetica Neue',
 ```
 }
@@ -97,7 +97,7 @@ body {
 - Con @font-face estamos definiendo una fuente personalizada dentro de nuestro proyecto. En lugar de depender de fuentes del sistema o de Google Fonts mediante una CDN, podemos almacenar los archivos de fuente (.ttf, .otf, .woff, .woff2) (siendo .woff2 la más recomendada hoy en día) de manera local en nuestra carpeta:
 
 @font-face {
-```typescript
+```text
 font-family: 'New Rocker';  /* Nombre que le damos a la fuente */
 src: url('./fonts/NewRocker-Regular.woff2') format('woff2'),
       url('./fonts/NewRocker-Regular.woff') format('woff');
@@ -109,7 +109,7 @@ font-style: normal;
 - Escribiendo eso adentro del CSS, tenemos una nueva fuente 'New Rocker' disponible, para usarla así:
 
 body {
-```typescript
+```text
 font-family: 'New Rocker', sans-serif;
 ```
 }
@@ -135,7 +135,7 @@ Este es el contenedor.
 `</div>`
 
 .container {
-```typescript
+```css
 color: #09f;
 font-size: 32px;
 border: 3px solid #09f;
@@ -143,7 +143,7 @@ border: 3px solid #09f;
 }
 
 .child {
-```typescript
+```css
 border: inherit;
 ```
 }

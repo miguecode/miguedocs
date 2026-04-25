@@ -50,7 +50,7 @@ console.log(objetoLiteral[atributo]);
 ```
 - Como vemos, podemos acceder a sus propiedades con el operador " . " o con los [ ].
 
-```typescript
+```text
 console.log(objetoLiteral["3D"]);
 console.log(objetoLiteral["Una Key"]);
 ```
@@ -115,7 +115,7 @@ const objeto7 = Object.create(null);
 const entradas = Object.entries(objetoLiteral);
 ```
 - Entries devuelve un array de arrays. Cada elemento de ese array, es un array que va a tener dentro dos elementos: una key y un value (el nombre de la propiedad, y su valor).
-```typescript
+```text
 console.log(entradas); // Muestra el "key = value" de cada entrada, es decir, cada propiedad
 [["nombre", "Juan"], ["apellido", "Perez"], ["edad", 25]]
 ```

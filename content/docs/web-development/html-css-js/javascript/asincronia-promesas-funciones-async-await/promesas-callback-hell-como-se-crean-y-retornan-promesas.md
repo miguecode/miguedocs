@@ -57,12 +57,12 @@ paso1(() => {
 
 ## Crear una Promise
 
-```typescript
+```text
 new Promise()
 ```
 - La función constructora Promise recibe un callback ("executor") el cual no va a retornar nada. Ese callback que recibe tiene 2 parámetros: un "resolve" y un "reject", que ambos son callbacks también. El callback Resolve recibe un VALUE y el callback Reject recibe una reason o un Error (puede ser cualquier cosa).
 
-```typescript
+```text
 Resolve ---> value
 Reject -----> reason
 ```
@@ -128,7 +128,7 @@ validarPar(20).then((resultado) => {
 ```
 - Dentro de la promesa, el valor que le pasemos al "Resolve" es el que va a ir a parar al parámetro "resultado", del método Then. Y el valor que le pasemos al "Reject", es el valor que va a ir a parar al parámetro "error" del método Catch.
 
-```typescript
+```text
 Resolve ---> value -----> capturado por el parámetro del método "then"
 Reject -----> reason ---> capturado por el parámetro del método "catch"
 ```

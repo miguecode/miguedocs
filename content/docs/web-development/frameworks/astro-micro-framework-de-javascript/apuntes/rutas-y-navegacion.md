@@ -14,7 +14,7 @@ description: "En Astro, las rutas se definen a través de la estructura de archi
 
 src
 |---> pages
-```typescript
+```text
 |---> blog
 |	|---> index.astro
 |	|---> otra-pagina-de-blog.astro
@@ -35,7 +35,7 @@ src/pages/blog/otra-pagina-de-blog.astro = /blog/otra-pagina-de-blog
 - En Astro, esto se puede resolver con la etiqueta `<a>` de HTML.
 
 `<nav>`
-```typescript
+```text
 <a href="/">Inicio</a>
 <a href="my-page">Mi Página</a>
 <a href="second-page">Mi Segunda Página</a>

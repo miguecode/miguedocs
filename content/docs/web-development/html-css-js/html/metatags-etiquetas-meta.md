@@ -82,7 +82,7 @@ description: "**Ahora sí, veamos ejemplos de metatags**:"
 
 - Para ver una previsualización de esto, y así poder probar su funcionamiento, podemos ponernos a compartir la URL escribiéndolo en un tweet, o mejor, usar alguna de estas páginas:
 
-```typescript
+```text
 https://www.opengraph.xyz/
 https://www.metatags.io/
 ```
@@ -91,7 +91,7 @@ https://www.metatags.io/
 
 ## Theme color
 
-```typescript
+```text
 <meta name="theme-color" content="#ff6600">
 ```
 - Algunos navegadores en dispositivos móviles permiten personalizar el color de la barra de búsqueda o de información. Con theme color, podemos elegir ese color.
@@ -99,7 +99,7 @@ https://www.metatags.io/
 
 ## Format-detection
 
-```typescript
+```text
 <meta name="format-detection" content="telephone=no">
 ```
 - Algunos navegadores como Safari convierten números en enlaces de teléfono automáticamente. Para evitarlo, usamos esa metatag.

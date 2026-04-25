@@ -60,13 +60,13 @@ description: "Diseño responsive"
 ## Ejemplo
 
 .h2 {
-```typescript
+```css
 color: black;
 ```
 }
 
 @media screen and (max-width: 480px) {
-```typescript
+```css
 .h2 {
 	color: grey;
 }
@@ -78,7 +78,7 @@ Esto se lee: "Mientras la pantalla respete el máximo de 480px, el h2 va a ser g
 - **También puede escribirse así**: 
 
 @media (max-width: 480px) {
-```typescript
+```text
 ...
 ```
 }
@@ -87,7 +87,7 @@ Esto se lee: "Mientras la pantalla respete el máximo de 480px, el h2 va a ser g
 ## Ejemplo
 
 @media screen and (max-width: 700px) {
-```typescript
+```css
 div {
 	background-color: green;			
 	width: 25vw;
@@ -101,7 +101,7 @@ Esto se lee: "Mientras la pantalla respete el máximo de 700px, los div van a se
 - **También puede escribirse así**: 
 
 @media (max-width: 700px) {
-```typescript
+```text
 ...
 ```
 }
@@ -120,7 +120,7 @@ Esto se lee: "Mientras la pantalla respete el máximo de 700px, los div van a se
 - Range Syntax es una nueva característica de CSS que simplifica la escritura de los breakpoints, para que no sea obligatorio usar min-width, max-width, min-height o max-height. Ahora podemos directamente usar width o height, y marcar los límites con `< >` >= <= así:
 
 @media screen and (width >= 700px) {
-```typescript
+```text
 ...
 ```
 }
@@ -131,7 +131,7 @@ Esto se lee: "Mientras la pantalla respete el máximo de 700px, los div van a se
 - Esto ya lo hablamos en otros apuntes, pero esta característica permite anidar reglas dentro de otras, de la siguiente manera:
 
 .nav {
-```typescript
+```css
 width: max-content;
 background-color: red;
 display: flex;
@@ -154,7 +154,7 @@ flex-wrap: wrap;
 - **Podemos escribir media queries así**: 
 
 @media (prefers-color-scheme: light) {
-```typescript
+```css
 body {
 	background-color: white;
 	color: black;
@@ -163,7 +163,7 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-```typescript
+```css
 body {
 	background-color: black;
 	color: white;
@@ -179,7 +179,7 @@ body {
 - Se usa en etiquetas como `<link>` y `<style>`. Pero no es recomendado. También puede ser en las `<picture>`, y esto sí puede ser util, y se hace así:
 
 `<picture>`
-```typescript
+```text
 <source srcset="imageMovil.jpg" media="screen and (max-width:480px)">
 <img src="imagenPC.jpg" alt="imagen">
 ```

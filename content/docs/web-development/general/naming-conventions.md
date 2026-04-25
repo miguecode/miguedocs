@@ -6,10 +6,10 @@ description: "Naming Conventions (Casos de escritura)"
 
 ## Naming Conventions (Casos de escritura)
 
-- En programación, usamos distintos "naming cases" o estilos para nombrar variables, funciones, clases, archivos, constantes, etc. Cada uno tiene un propósito y se usa en contextos específicos.
+En programación, usamos distintos "naming cases" o estilos para nombrar variables, funciones, clases, archivos, constantes, etc. Cada uno tiene un propósito y se usa en contextos específicos.
 
 
-1. camelCase
+**1. camelCase**
 
 - **Regla**: Primera palabra en minúscula, y las siguientes con mayúscula.
 
@@ -20,8 +20,7 @@ description: "Naming Conventions (Casos de escritura)"
 - **Lenguajes que lo usan mucho**: JavaScript, TypeScript, Java, Kotlin, Swift.
 
 
-
-2. PascalCase (o UpperCamelCase)
+**2. PascalCase (o UpperCamelCase)**
 
 - **Regla**: Todas las palabras empiezan con mayúscula.
 
@@ -32,8 +31,7 @@ description: "Naming Conventions (Casos de escritura)"
 - **Lenguajes que lo usan mucho**: C#, TypeScript, Java, Swift.
 
 
-
-3. snake_case
+**3. snake_case**
 
 - **Regla**: Palabras separadas por " _ ".
 
@@ -44,8 +42,7 @@ description: "Naming Conventions (Casos de escritura)"
 - **Lenguajes que lo usan mucho**: Python, Ruby, C, algunos estilos de backend.
 
 
-
-4. kebab-case
+**4. kebab-case**
 
 - **Regla**: Palabras separadas por " - ".
 
@@ -53,15 +50,14 @@ description: "Naming Conventions (Casos de escritura)"
 
 - **Ojo**: No se puede usar en variables (no es válido en muchos lenguajes), pero sí en:
 
-- Nombres de archivos
-- URLs y rutas (/mi-perfil, /lista-de-productos)
-- Proyectos de frontend (nombres de componentes en HTML)
+  - Nombres de archivos
+  - URLs y rutas (/mi-perfil, /lista-de-productos)
+  - Proyectos de frontend (nombres de componentes en HTML)
 
-- **Lenguajes donde aparece**: HTML, archivos de configuración, frameworks web .
+- **Lenguajes donde aparece**: HTML, archivos de configuración, frameworks web.
 
 
-
-5. UPPER_CASE (o SCREAMING_SNAKE_CASE)
+**5. UPPER_CASE (o SCREAMING_SNAKE_CASE)**
 
 - **Regla**: Todo en mayúsculas y palabras separadas por " _ ".
 

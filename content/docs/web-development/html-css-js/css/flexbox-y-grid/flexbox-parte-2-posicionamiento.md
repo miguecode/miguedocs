@@ -46,7 +46,7 @@ align-items: baseline; // Se alinean en base al texto más grande
 - Esta propiedad NO es del contenedor flex. Es de los elementos. Acepta los mismos valores que align-items (flex-start, end, etc.). No ignora a lo establecido en align-items, sino que lo sobreescribe. Básicamente, sirve para hacer excepciones.
 
 .item:nth-child(4) {
-```typescript
+```text
 align-self: flex-end;
 ```
 }

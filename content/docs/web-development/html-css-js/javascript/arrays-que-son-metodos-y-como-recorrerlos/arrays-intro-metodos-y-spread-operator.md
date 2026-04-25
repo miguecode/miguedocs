@@ -48,7 +48,7 @@ const vec4 = [23, 4, 7, 8];  // Crea un array con 4 elementos
 - **Vamos a ver los métodos más comunes**: push, pop, shift, unshift, concat, map, filter, reduce y splite.
 
 
-```typescript
+```text
 array.push();	 // Agrega elementos al final del array y devuelve el length del array
 array.pop();  	 // Devuelve el último elemento y lo elimina
 array.shift(); 	 // Devuelve el primer elemento y lo elimina

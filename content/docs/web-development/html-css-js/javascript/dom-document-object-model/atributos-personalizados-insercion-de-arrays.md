@@ -8,25 +8,25 @@ description: "Atributos personalizados"
 
 - Los atributos personalizados empiezan con el prefijo "data-" y son nombres de atributos inventados por nosotros. Sirven para que, desde el DOM, podamos apuntar a elementos por cierta condición. Se suele usar para usar un "id" (data-id).
 
-```typescript
+```text
 <img src = "./arbol.png" alt="Un arbol" data-descripcion="Es un arbol antiguo" />
 ```
 - En este caso, el atributo va a almacenarse en un objeto llamado "dataset". Este objeto es contenido por los elementos. Podemos acceder a el así:
 
-```typescript
+```php
 console.log($imgArbol.dataset.descripcion);  // Muestra "Es un arbol antiguo"
 console.log($img.getAttribute("data-descripcion"));  // Muestra "Es un árbol antiguo"
 ```
 - Accedemos al objeto "dataset", que es el que contiene a todos los atributos personalizados del elemento. Y cuando quiero acceder a uno de ellos, escribimos su nombre (sin el "data-" adelante).
 
-```typescript
+```php
 console.log($imgArbol.dataset);
 ```
 - Muestra un objeto DOMStringMap. Es el objeto a donde van a parar todos los "data-".
 
 - Obviamente, con el setAttribute también podemos modificar estos atributos "data": 
 
-```typescript
+```php
 $imgArbol.setAttribute("data-id", "1234");
 $img.dataset.descripcion = "Un roble muy grande";
 ```
@@ -53,7 +53,7 @@ export const movies = [ {}, {}, {}, {}, {} ... ];
 
 - Y en el archivo .js en el que voy a importar el array, ponemos:
 
-```typescript
+```php
 import {movies} from "./peliculas.js"
 const $lista = document.getElementById("lista");
 console.log($lista);
@@ -63,7 +63,7 @@ console.log($lista);
 ```
 - Ahora, lo que queremos es construir la lista con las películas. Vamos a hacer esto:
 
-```typescript
+```php
 movies.forEach((movie)=>{
 	const $li = document.createElement("li");
 	const $texto = document.createTextNode(movie.titulo);
@@ -77,7 +77,7 @@ movies.forEach((movie)=>{
 
 - **Así que ahora hacemos**: 
 
-```typescript
+```php
 const $div = document.createElement("div");
 
 movies.forEach((movie)=>{
@@ -95,7 +95,7 @@ $lista.appendChild($div);
 
 - Entonces, para esto resolver esto, existen los "fragments":
 
-```typescript
+```php
 const $fragmento = document.createDocumentFragment();
 
 movies.forEach((movie)=>{
@@ -114,7 +114,7 @@ $lista.appendChild($fragmento);
 
 ### Otro ejemplo con el fragment
 
-```typescript
+```php
 const $fragment = document.createDocumentFragment();
 const $li = document.createElement("li");
 $li.textContent = "Soy un elemento";
@@ -128,7 +128,7 @@ console.log($fragment.childNodes.length); // 0 (se vació, el <li> ahora está e
 ```
 - **También podría**: 
 
-```typescript
+```php
 const crearItems = (lista) =>{
 	const $fragmento = document.createDocumentFragment();
 	lista.forEach((movie)=>{
@@ -144,6 +144,6 @@ const crearItems = (lista) =>{
 ```
 - **Y después, usando esta función haría**: 
 
-```typescript
+```php
 $lista.appendChild(crearItems(movies));
 ```

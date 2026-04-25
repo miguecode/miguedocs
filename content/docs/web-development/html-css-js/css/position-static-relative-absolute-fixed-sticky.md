@@ -20,7 +20,7 @@ position: absolute;
 - Que la posición sea "absolute", significa que nosotros vamos a poder determinar las coordenadas exactas de la posición del elemento en la página, usando "top, right, bottom, left". Los elementos con posición "absolute" son totalmente dependientes de otro elemento padre cuya position sea relative. 
 
 .container {
-```typescript
+```text
 box-sizing: border-box;
 width: 240px;
 height: 240px;
@@ -41,14 +41,14 @@ right: 0;
 - Para esto, lo que tenemos que hacer es que la section, o el elemento contenedor al elemento absoluto, tenga su position en RELATIVE.
 
 section {
-```typescript
+```text
 box-sizing: border-box;
 position: relative;
 ```
 }
 
 .container {
-```typescript
+```text
 box-sizing: border-box;
 position: absolute;
 top: 0;

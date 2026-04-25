@@ -8,7 +8,7 @@ description: "Configurar Zoneless en Angular 20"
 
 - **Ahora es más fácil**: al crear una nueva aplicación con Angular CLI (ng new myApp), una de las preguntas que nos va a hacer es si queremos usar Zoneless o no, así que simplemente le decimos que SÍ. La secuencia literalmente es:
 
-```typescript
+```text
 ng new probando-angular
 Do you want to create a 'zoneless' application without zone.js (Developer Preview) (y/N)
 ```
@@ -27,7 +27,7 @@ export const appConfig: ApplicationConfig = {
 ```
 - Como vemos, al responder con SÍ a la pregunta del Zoneless, aparece automáticamente el "provideZonelessChangeDetection()", el cual nos habilita el uso de Zoneless en lugar de Zone.js. Como sabemos, en Angular 19 lo que había que hacer era cambiarlo manualmente, y en vez de provideZonelessChangeDetection, se llamaba provideExperimentalZonelessChangeDetection. Lógicamente ese cambio refleja que ya no es experimental, sino que es estable.
 
-```typescript
+```text
 provideExperimentalZoneChangeDetection()  ---> provideZonelessChangeDetection()
 ```
 - Además de este cambio, una cosa que sabíamos que se podía hacer (pero no lo hacíamos) era eliminar el polyfill de "zone.js" en nuestro archivo angular.json. Ahora, nuestro proyecto se crea automáticamente SIN ese polyfill. 

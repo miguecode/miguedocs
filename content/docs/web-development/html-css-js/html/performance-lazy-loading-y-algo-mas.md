@@ -78,7 +78,7 @@ En este ejemplo, sizes indica que:
 - Si es menor o igual a 1200px, usa una imagen de 800px.
 - De lo contrario, usa una imagen de 1200px.
 
-```typescript
+```text
 	Tamaño de la pantalla	|	Imagen que se carga
 	≤ 600px				|	small.jpg (480px)
 	≤ 1200px				|	medium.jpg (800px)

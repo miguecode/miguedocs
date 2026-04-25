@@ -9,14 +9,14 @@ description: "Como vimos en el apunte anterior, un componente en React es una fu
 
 - Como vimos antes, usamos React.Fragment para agrupar más de un elemento dentro de un return. Pero existe una forma más limpia de referirnos a ese React.Fragment, que es escribir etiquetas vacías, así:
 
-```typescript
+```text
 <>
 	...
 </>
 ```
 - Para crear un componente, lo ideal es crear un archivo individual para él:
 
-```typescript
+```text
 Header.js  //  Header.jsx (mejor)
 ```
 - Obviamente y por lo que vimos recién, lo ideal es usar JSX. Entonces, creamos un archivo Header.jsx, en el cual vamos a escribir la lógica de la función JavaScript -> una función llamada Header() que puede tener toda la lógica que quiera, pero el punto es que va a hacer un return() de lo que tiene que renderizar. Esta función, al estar en un archivo separado, hay que exportarla para que cualquier otro archivo que la quiera usar, la importe.

@@ -7,7 +7,7 @@ description: "Los eventos son acciones que ocurren en la interfaz del usuario: h
 
 - Los eventos son acciones que ocurren en la interfaz del usuario: hacer un clic, mover el mouse, etc. Ejemplos de estos pueden ser los siguientes:
 
-```typescript
+```text
 onClick (para clics)
 onChange (para inputs)
 onSubmit (para forms)

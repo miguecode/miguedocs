@@ -106,7 +106,7 @@ export const UserCard = ({ user }) => {
 
 - Basados en ese último ejemplo, específicamente en esta línea:
 
-```typescript
+```text
 isContacted ? 'Contactado' : 'Contactar';
 ```
 - ¿Qué estamos haciendo acá? Un ternario, que dependiendo de si isContacted es TRUE o FALSE, muestra un string u otro. Es decir, esto es renderización dinámica. ¿Y si quisiéramos hacerlo con estilos? La mejor forma, o una buena forma es crearnos variables por fuera, así:

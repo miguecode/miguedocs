@@ -30,19 +30,19 @@ description: "Accesibilidad Web: ¿Qué es y por qué es importante?"
 
 - Antes de ver un ejemplo, tenemos que saber que ARIA son siglas de Accessible Rich Internet Applications. El atributo aria-label es parte de las especificaciones de ARIA, diseñadas para mejorar la accesibilidad de las aplicaciones web. Lo que pongamos en aria-label no se ve en la pantalla, está creado única y exclusivamente para aportar accesibilidad.
 
-```typescript
+```text
 <button id="cambiar-tema">Cambiar de Tema</button>
 ```
 - Este elemento es autodescriptivo. Es decir, tiene un texto que describe qué es lo que hace. Y es un texto claro y directo. Entonces, este elemento NO necesita que usemos el atributo aria-label. Porque el lector de voz va a simplemente leer el texto "Cambiar de Tema". Esto ya es accesible.
 
 - Pero supongamos que nuestro botón para cambiar de tema NO es autodescriptivo, y sólo es un ícono:
 
-```typescript
+```text
 <button id="cambiar-tema"><svg>...</svg></button>
 ```
 - En este caso, el botón es sólo un ícono. Entonces, la persona con problemas de vista no va a saber qué hace ese botón, ya que el lector de voz sólo va a decirle que es un botón, sin más. Y acá es cuando entra en juego el atributo aria-label. 
 
-```typescript
+```text
 <button aria-label="Cambiar de tema"><svg>...</svg></button>
 ```
 - Ahora, el lector de voz va a decir "Cambiar de tema" cuando se enfoque a ese botón. Y eso es lo correcto, ya que conseguimos el mismo efecto que antes. Visualmente, sólo se va a ver un ícono. Pero auditivamente, el lector va a pronunciar la frase "Cambiar de tema". 
@@ -52,7 +52,7 @@ description: "Accesibilidad Web: ¿Qué es y por qué es importante?"
 
 - El atributo "alt" de la etiqueta `<img>` cumple la misma función que "aria-label", pero en este caso, sólo para imágenes. Es una descripción que no se ve visualmente, pero que es leído por los lectores de voz y sirve para explicar de qué trata la imagen. 
 
-```typescript
+```text
 <img src="foto.jpg" alt="Foto de Miguel en la playa">
 ```
 - Cabe decir que, en imágenes decorativas (como íconos de adorno que no aportan información), se recomienda dejar el atributo alt vacío en lugar de poner un texto innecesario. O sea: alt=""
@@ -93,7 +93,7 @@ description: "Accesibilidad Web: ¿Qué es y por qué es importante?"
 
 - Es decir, si nosotros usamos etiquetas semánticas correctamente, estas ya tienen un rol accesible por defecto, y por ende no es necesario agregar el atributo role. Veamos ejemplos de cuándo NO usarlo:
 
-```typescript
+```text
 <button>Enviar</button> <!-- No necesita role="button", ya es un botón -->
 <a href="#">Ver más</a> <!-- No necesita role="link", ya es un enlace -->
 <nav>Menú principal</nav> <!-- No necesita role="navigation" -->
@@ -126,14 +126,14 @@ description: "Accesibilidad Web: ¿Qué es y por qué es importante?"
 
 - Indica que un elemento debe ser ignorado por los lectores de pantalla. Se usa cuando hay elementos decorativos que no aportan información relevante, y por ende no tiene sentido que el lector los lea.
 
-```typescript
+```text
 <span aria-hidden="true">🔥</span>
 ```
 ### Aria-Labelledby
 
 - Similar a aria-label, pero en lugar de escribir un texto manualmente, referencia un ID de otro elemento que ya contiene el texto. Esto le dice al lector de pantalla que este input está relacionado con "Formulario de Contacto".
 
-```typescript
+```text
 <h2 id="titulo-form">Formulario de Contacto</h2>
 <input type="text" aria-labelledby="titulo-form">
 ```

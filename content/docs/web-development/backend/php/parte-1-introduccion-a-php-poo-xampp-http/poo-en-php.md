@@ -13,7 +13,7 @@ Ejemplos de clases en PHP:
 
 class NombreClase
 {
-```typescript
+```php
 // Atributos (private - protected- public/var - static)
 [Modificadores] $nombreAtributo;
 
@@ -24,7 +24,7 @@ class NombreClase
 
 class NombreClase
 {
-```typescript
+```php
 // Atributos
 private $_attr1;
 protected $_attr2;
@@ -71,7 +71,7 @@ Herencia
 Usamos 'extends' para indicar a la clase padre de una clase. Obviamente, esta clase derivada (hija) va a tener su propio constructor, y además, tiene que hacer uso del constructor de la clase base (padre). Asi que hay que pasarle los parámetros necesarios para el constructor del padre, y del hijo.
 
 class ClaseBase {
-```typescript
+```php
 public function __construct($id, $nombre) {
 	// Inicializar variables acá
 	if ($this->validar($id)){
@@ -104,7 +104,7 @@ En PHP cualquier método puede ser modificado en sus clases derivadas.
 Supongamos que en la clase base tenemos una función Saludar(). Bueno, nosotros en la clase derivada a esa clase base podemos hacer:
 
 public function Saludar(){
-```typescript
+```text
 return parent::Saludar(). " " . "mundo";
 ```
 }

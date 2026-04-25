@@ -8,7 +8,7 @@ description: "Operador Ternario (If-Else resumido)"
 
 - El operador ternario es una forma de escribir un IF-ELSE de forma más rápida. La idea es que, al escribir menos código, podamos resumir todo en una sola línea.
 
-```typescript
+```text
 [condición] ? [se ejecuta si es true] : [se ejecuta si es false];
 ```
 - **Veamos un ejemplo fácil**: 
@@ -31,13 +31,13 @@ console.log(resultado); // Muestra "Mayor de edad"
 - ?? (Nullish Coalescing)
 
 
-```typescript
+```text
 *** Resumen visual rápido de cada uno ***
 ```
 | valor1 || valor2 | --> Se devuelve el primer valor truthy que encuentre |
 | --- | --- |
 | valor1 && valor2 | --> Se devuelve el primer valor falsy que encuentre |
-```typescript
+```text
 valor1 ?? valor2      --> Se devuelve el primer valor no nullish que encuentre (el primero que no sea null o undefined)
 ```
 ### Operador || (OR)
@@ -51,7 +51,7 @@ const personas = JSON.parse(localStorage.getItem("personas")) || [];
 
 - Una forma rápida de conocer los truthy y los falsy es simplemente recordar cuáles son los valores falsy: false, null, undefined, 0, "" y NaN. Y todo lo que no sean esos valores, es truthy. Por cierto, los nullish son null y undefined.
 
-```typescript
+```text
 console.log(false || "Miguel");  	 // Muestra "Miguel" porque false es falsy
 console.log(null || "hola");   	 // Muestra "hola" porque null es falsy
 console.log(undefined || true);  // Muestra true porque undefined es falsy
@@ -65,7 +65,7 @@ console.log(null || undefined);  // Muestra undefined (los dos son falsy)
 
 - Este operador es exactamente igual que el || pero invertido. Entonces, lo que hace es retornar el primer valor falsy que encuentre. Y si no encuentra ninguno, retorna el último que evalúa.
 
-```typescript
+```text
 console.log("Hola" && "Mundo");  	// Muestra "Mundo" (porque los dos son truthy pero "Mundo" fue el último
 console.log(0 && "Mundo");       	// Muestra 0 (porque 0 es falsy)
 console.log(5 && undefined);       	// Muestra undefined (porque 5 es truthy y undefined falsy)
@@ -74,7 +74,7 @@ console.log(5 && undefined);       	// Muestra undefined (porque 5 es truthy y u
 
 - Este operador solo usa el valor derecho si el izquierdo es null o indefined (es decir, si es nullish). O sea, devuelve el primer valor no-nullish que encuentre (Es decir, lo primero que no sea null ni undefined). Como los dos operadores anteriores, si no encuentra ningún valor no-nullish, retorna el último que evalúa.
 
-```typescript
+```text
 console.log(0 || "default");  	// 0 (porque 0 no es null ni undefined)
 console.log(false || "default");  	// false (porque false no es null ni undefined)
 console.log(null ?? "default");  	// "default"
@@ -85,7 +85,7 @@ console.log(undefined ?? null); // null (porque los dos son nullish pero null fu
 
 - La asignación lógica sirve como atajo para asignar valores basados en condiciones específicas. También hace uso de &&, || y ??. Pero en este caso lo hacen acompañados de =
 
-```typescript
+```text
 *** Resumen visual rápido de cada uno ***
 ```
 | variable ||= valor | --> Si variable es falsy, se le asigna valor |
@@ -124,7 +124,7 @@ console.log(persona.trabajo?.empresa);   // Muestra undefined (Sin tirar error!)
 ```
 - Trabajo no existe dentro de persona, y aún así pudimos hacer el console.log normalmente mostrando undefined. Esto no podríamos lograrlo sin el "?".
 
-```typescript
+```text
 console.log(persona.trabajo.empresa); // Esto sí muestra error
 ```
 ## Doble Negación (!!)

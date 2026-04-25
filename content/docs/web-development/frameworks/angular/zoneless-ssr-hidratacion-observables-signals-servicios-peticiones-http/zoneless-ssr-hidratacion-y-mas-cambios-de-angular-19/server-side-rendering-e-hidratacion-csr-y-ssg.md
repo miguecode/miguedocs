@@ -52,7 +52,7 @@ description: "Server Side Rendering"
 
 - **Ahora (Angular 17+)**: Angular ya no necesita ese "puente", porque el soporte SSR ya viene built-in. Entonces, cuando creamos una nueva aplicación Angular con SSR, automáticamente viene con un servidor Express. Dicho servidor vive en un archivo llamado "server.ts", y está pensado para deploy directo (por ejemplo, en Vercel, Firebase, etc.). Y también genear sus rutas separadas para SSR, CSR o SSG (en los archivos "app.routes.server.ts" y "app.config.server.ts").
 
-```typescript
+```text
 📁 src/
 ├── app/
 │   ├── app.routes.ts                 <- Rutas principales
@@ -62,7 +62,7 @@ description: "Server Side Rendering"
 | --- | --- | --- |
 | ├── main.ts | <- Entrada cliente |  |
 | ├── main.server.ts | <- Entrada para el servidor |  |
-```typescript
+```text
 📁 server/
 ├── server.ts                       <- Servidor Express (creado por Angular)
 ```
