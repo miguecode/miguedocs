@@ -1,100 +1,108 @@
 ---
-title: "Single Source of Truth Architecture - Parte 2"
-description: "Cómo conectarnos a este Servicio"
+title: "Single Source of Truth con Signals (Parte 2)"
+description: "Aprende a consumir la Fuente de Verdad usando señales computadas y a implementar métodos de actualización (CRUD) reactivos asegurando la inmutabilidad de los datos."
 ---
 
+## Consumo del Servicio en el Componente
 
-## Cómo conectarnos a este Servicio
-
-- Para que nuestro pueda usar el Servicio, hacemos esto:
+Para que un componente utilice los datos del servicio de forma reactiva, lo ideal es crear una **señal computada** (`computed`). Esto asegura que el componente se actualice automáticamente cada vez que el estado global del servicio cambie.
 
 ```typescript
-// En el TypeScript
-characterService = inject(CharacterService);
+import { Component, inject, computed, Signal } from '@angular/core';
+import { CharacterService } from './character.service';
 
-characters: Signal<Character[] | undefined> = computed(() =>
-	this.characterService.getFormattedCharacters();
-);
+@Component({ ... })
+export class PersonajesListComponent {
+  private characterService = inject(CharacterService);
 
-// En el HTML
-@let charactersLocal = characters();
-
-@for (character of charactersLocal; track character.id) {
-	{{ character.name }}
+  // Señal derivada: reacciona cada vez que state() cambie en el servicio
+  characters: Signal<Character[]> = computed(() =>
+    this.characterService.getFormattedCharacters()
+  );
 }
 ```
-- Y listo. Así, el componente se ve a actualizar siempre ante cualquier cambio en el backend. Vamos a explicar qué es ese método computed():
 
-- computed() es una función de Angular (desde la API de Signals) que nos permite crear una signal derivada, es decir, una señal que calcula su valor automáticamente en base a otras signals. Se actualiza automáticamente cada vez que cambia alguna de las signals de las que depende. Es como un getter reactivo. Veamos un ejemplo:
+### Visualización en el HTML
+Utilizamos el bloque `@let` para obtener el valor de la señal una sola vez y recorrerlo con `@for`:
+
+```html
+<section>
+  @let lista = characters();
+
+  @for (char of lista; track char.id) {
+    <article>
+      <h3>{{ char.name }} {{ char.lastName }}</h3>
+      <p>Edad: {{ char.age }}</p>
+    </article>
+  } @empty {
+    <p>No hay personajes disponibles.</p>
+  }
+</section>
+```
+
+---
+
+## ¿Qué es `computed()`?
+
+La función `computed()` crea una señal de **solo lectura** cuyo valor depende de otras señales. 
+*   **Reactividad Automática**: Si alguna de las señales utilizadas dentro del `computed` cambia, se marca como sucia y se recalcula en el siguiente acceso.
+*   **Eficiencia**: Solo se ejecuta si los valores de los que depende han cambiado realmente.
 
 ```typescript
-const count = signal(2);
+const precio = signal(100);
+const conIva = computed(() => precio() * 1.21);
 
-const double = computed(() => count() * 2);
-console.log(double()); // Muestra 4
-
-count.set(5);
-console.log(double()); // Muestra 10 → se recalcula automáticamente
+console.log(conIva()); // 121
+precio.set(200);
+console.log(conIva()); // 242 (recalculado automáticamente)
 ```
-- Entonces, en este caso, "double" va a ser una Signal, la cual depende del valor de OTRA Signal, en este caso, "count". El valor de double se va a actualizar automáticamente cada vez que cambie el de count, sin que nosotros tengamos que ejecutar nada de forma manual. Se hace sólo de forma automática.
 
-- **En nuestro ejemplo anterior**: 
+---
+
+## Métodos CRUD en la Arquitectura SSoT
+
+Para modificar los datos, el servicio debe asegurar que se cree una **nueva referencia** del mapa interno, disparando así la reactividad de todas las señales computadas que dependen de él.
+
+### 1. Actualizar/Editar (`updateCharacter`)
+Cuando recibimos un personaje editado, actualizamos el mapa creando una copia previa para mantener la inmutabilidad:
 
 ```typescript
-characters: Signal<Character[] | undefined> = computed(() =>
-  this.characterService.getFormattedCharacters()
-);
-```
-- Acá lo que está pasando es que estamos creando una signal derivada llamada characters, la cual se recalcula automáticamente cada vez que cambia el valor de otra signal. En este caso, el valor de la signal "state" del servicio CharacterService. Esto es así ya que el método getFormattedCharacters() accede al state() (que es una signal), y como computed() se alimenta de eso, reacciona automáticamente a los cambios.
-
-
-## Otros métodos de nuestro Servicio
-
-- Así como ya hicimos getFormattedCharacters() para conectarnos a la Signal principal, y getCharacters() para inicializar el servicio, vamos a ver otros métodos útiles: updateCharacters(), deleteCharacter() y GetCharacterById().
-
-
-### Método updateCharacter()
-
-- Este método lógicamente sirve para modificar un personaje en específico. Entonces, se lo tenemos que pasar ya modificado por parámetro. OJO: El enfoque de este método va a ser como si nosotros tuviésemos que hacer una petición HTTP para, obviamente, realizar la modificación en el backend. Entonces, como ya sabemos, vamos a usar el método of() para crear un Observable. Porque ahora estamos haciéndolo SIN base de datos, entonces no necesitamos hacer ninguna petición http. Pero en caso de que sí lo hiciéramos, trabajaríamos con el Observable que devuelva http.put():
-
-```sql
 updateCharacter(character: Character): void {
-	const updatedCharacter = { ...character };
-
-	of(updatedCharacter).subscribe((result) => {
-		this.state.update((state) => {
-			const newMap = new Map(state.characters);
-			newMap.set(result.id, result);
-			return { characters: newMap };
-		});
-	});
-
-	this.getCharacters(); // Esto puede no ser necesario, pero por las dudas.
+  // Simulamos una petición HTTP exitosa
+  of(character).subscribe((res) => {
+    this.state.update((current) => {
+      const updatedMap = new Map(current.characters);
+      updatedMap.set(res.id, res);
+      return { characters: updatedMap };
+    });
+  });
 }
 ```
-- Como vemos, lo primero que hacemos es copiar el objeto recibido para crear una nueva referencia. Es decir, en vez de usar el "character" recibido, usamos un updatedCharacter, que es literalmente un clon de ese character. Sólo le cambia la referencia (es decir, por más de que tengan los mismos valores, físicamente son 2 objetos distintos). Y esto lo hacemos porque las signals de Angular detectan los cambios por referencia, entonces, si pasamos el mismo objeto sin clonarlo, puede pasar que Angular no detecte el cambio si en realidad no llega a ver un "cambio visible". 
 
-
-### Método deleteCharacter()
-
-- Mantenemos la misma filosofía de antes. Vamos a simular que a la hora de eliminar al personaje, vamos a hacer una petición HTTP. Por ende, tenemos que manejar el Observable que devolvería el método http.delete(), y eso lo hacemos creando un Observable con el método of(). Si realmente estuviésemos usando http.delete(), no necesitaríamos usar este of(), y directamente nos suscribiríamos al Observable que devuelva http.delete().
-
-- Entonces, en este caso recibimos un id por parámetro, y usamos el método delete() de los Map, que busca por KEYS. Y como todas las keys son las ID's de nuestros personajes, usamos eso para encontrarlo. Después, retornamos el Map actualizado, sin el personaje eliminado.
-
-```sql
-deleteCharacter(id: number): void {
-	of({ status: 200 }).subscribe(() => {
-		state.characters.delete(id);
-		return { characters: state.characters };
-	}
-}
-```
-### Método getCharacterById()
-
-- Esto no necesita mucha explicación, simplemente devolvemos el personaje con el ID a buscar.
+### 2. Eliminar (`deleteCharacter`)
+Buscamos el personaje por su clave (ID) y lo removemos creando un nuevo mapa:
 
 ```typescript
-getCharacterById(id: number) {
-	return this.state().characters.get(id);
+deleteCharacter(id: number): void {
+  // Simulamos respuesta de éxito del backend
+  of({ status: 200 }).subscribe(() => {
+    this.state.update((current) => {
+      const updatedMap = new Map(current.characters);
+      updatedMap.delete(id);
+      return { characters: updatedMap };
+    });
+  });
 }
 ```
+
+### 3. Consultar por ID (`getCharacterById`)
+Este es un acceso directo de lectura síncrona:
+
+```typescript
+getCharacterById(id: number): Character | undefined {
+  return this.state().characters.get(id);
+}
+```
+
+> [!IMPORTANT]
+> El uso de **`state.update()`** es preferible al `set()` cuando necesitamos el valor previo del estado para construir el nuevo, garantizando que el flujo de datos sea atómico y predecible.

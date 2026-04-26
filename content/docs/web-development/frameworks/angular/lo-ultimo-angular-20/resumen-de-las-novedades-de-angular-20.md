@@ -1,36 +1,38 @@
 ---
 title: "Resumen de las novedades de Angular 20"
-description: "Llegó Angular 20"
+description: "Explora las innovaciones de Angular 20: estabilización de Signals, hidratación incremental, eliminación de Zone.js y cambios en la guía de estilos."
 ---
 
+## Novedades de Angular 20
 
-## Llegó Angular 20
+Lanzada en mayo de 2025, la versión 20 de Angular consolida la mayor transformación del framework desde su creación, apostando por un modelo de reactividad puro y una arquitectura extremadamente ligera.
 
-- El 29 de mayo de 2025, Angular lanzó su versión 20. Vamos a ver sus novedades:
+### 1. APIs de Signals Estables
+Las APIs fundamentales de Signals han alcanzado su fase estable:
+*   **`effect()`**
+*   **`linkedSignal()`**
+*   **`toSignal()`**
+*   **`afterNextRender()`**
 
-1. APIs de Signals pasaron a Estables
-- Las APIs de Signals como effect(), linkedSignal(), toSignal() y afterNextRender() ahora son estables. Esto un paso importante hacia un modelo de reactividad más moderno y eficiente en Angular.
+Esto marca la transición definitiva hacia un modelo de reactividad basado en Signals, dejando atrás la dependencia histórica de la detección de cambios global.
 
-2. Formularios Basados en Signals (Developer Preview)
-- Se introduce una nueva forma de manejar formularios usando Signals, ofreciendo una gestión de estado más reactiva y declarativa. Aunque todavía en Developer Preview, promete simplificar la lógica de formularios complejos.
+### 2. Formularios Basados en Signals (*Developer Preview*)
+Se introduce una nueva arquitectura de formularios que utiliza Signals como motor de estado. Aunque se encuentra en fase de vista previa para desarrolladores, promete resolver la complejidad de los formularios anidados y reactivos con una sintaxis mucho más declarativa.
 
-3. Zoneless Angular (Continúa en Developer Preview)
-- Angular 20 permite ejecutar aplicaciones sin necesidad de Zone.js, cosa que ya veníamos viendo en Angular 19. Sigue en Developer Preview, pero cada vez se acerca mas a la eliminación de Zone.js.
+### 3. Zoneless Angular
+Angular 20 continúa perfeccionando la ejecución de aplicaciones sin **Zone.js**. Aunque se mantiene en *Developer Preview*, es el modo de ejecución recomendado para nuevas aplicaciones, eliminando la sobrecarga que Zone.js imponía al capturar todos los eventos del navegador.
 
-4. Hidratación Incremental (SSR) pasa a Estable
-- Mejoras en el renderizado del lado del servidor con la estabilización de la hidratación incremental, permitiendo que los componentes se hidraten según sea necesario, mejorando los tiempos de carga y la experiencia del usuario. Esto también ya lo veníamos viendo desde antes, ahora es estable.
+### 4. Hidratación Incremental Estable
+La hidratación incremental en SSR ya es estable. Esto permite que el servidor envíe el código de interactividad de forma fraccionada, hidratando únicamente los componentes que el usuario necesita o tiene a la vista, mejorando drásticamente el tiempo de carga y la interactividad (TBT).
 
-5. Cambios en Angular CLI y Guía de Estilos
-- **Nombres de Archivos Simplificados**: Por defecto, los archivos generados ya no incluyen sufijos como .component.ts, adoptando nombres más concisos como user.ts.
+### 5. Guía de Estilos y Angular CLI
+*   **Nombres Simplificados**: Por defecto, el CLI genera archivos sin sufijos de tipo (ej: `user.ts` en lugar de `user.component.ts`).
+*   **Simplificación de Configuración**: Los archivos `angular.json` y `tsconfig.json` son ahora más delgados y fáciles de entender.
+*   **Browserslist**: Se adopta el estándar "Baseline", apuntando a navegadores lanzados en los últimos 30 meses.
 
-- **Configuración Simplificada**: angular.json y tsconfig.json fueron simplificados para reflejar prácticas modernas de desarrollo.
+### 6. Evolución en el Testing
+*   **AOT en Pruebas**: Ahora los tests pueden ejecutarse con compilación **AOT** (*Ahead-of-Time*), asegurando que el comportamiento de las pruebas sea idéntico al de producción.
+*   **Adiós a Karma**: Karma ha sido reemplazado oficialmente por un nuevo corredor de pruebas más rápido y moderno (basado en Web Test Runner).
 
-- **Compatibilidad con Browserslist**: Se actualiza la configuración para apuntar a navegadores lanzados en los últimos 30 meses, alineándose con el estándar "Baseline".
-
-6. Mejoras en Testing
-- **Compilación Ahead-of-Time (AOT) para Tests**: Ahora es posible ejecutar pruebas utilizando AOT, lo que mejora la consistencia y el rendimiento de las pruebas.
-
-- **Deprecación de Karma**: Se introduce un nuevo runner de pruebas más rápido, reemplazando a Karma como la opción predeterminada.
-
-7. Deprecación de directivas
-- Las directivas @NgIf, @NgSwitch y @NgFor, van en camino a deprecarse para ser reemplazadas por Control Flow Syntax.
+### 7. Modernización del Template
+Las directivas clásicas `*ngIf`, `*ngFor` y `*ngSwitch` inician su camino hacia la deprecación formal en favor de la **Control Flow Syntax** (`@if`, `@for`, `@switch`), que es ahora el estándar absoluto para la manipulación del DOM en Angular.

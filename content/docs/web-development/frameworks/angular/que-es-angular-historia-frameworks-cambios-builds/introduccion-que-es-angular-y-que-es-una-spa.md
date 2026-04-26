@@ -1,64 +1,58 @@
 ---
-title: "Introducción. Qué es Angular y qué es una SPA"
-description: "Angular es un framework de desarrollo de aplicaciones web, de código abierto, desarrollado y mantenido por Google. Está diseñado para construir aplicaciones web..."
+title: "Introducción a Angular y el concepto de SPA"
+description: "Descubre qué es Angular, cómo funciona bajo el modelo de Single Page Application y por qué es una de las plataformas de desarrollo web más robustas creadas por Google."
 ---
 
+## ¿Qué es Angular?
 
-## Angular
+**Angular** es un framework de desarrollo de aplicaciones web de código abierto, creado y mantenido por **Google**. Está diseñado específicamente para construir aplicaciones web dinámicas y escalables, orientadas principalmente al modelo de **SPA** (*Single Page Application*).
 
-- Angular es un framework de desarrollo de aplicaciones web, de código abierto, desarrollado y mantenido por Google. Está diseñado para construir aplicaciones web dinámicas, especialmente del tipo SPA (Single Page Application), donde el contenido se actualiza de forma fluida sin necesidad de recargar toda la página. Cuando se escribe esto, se encuentra en su versión 20.
+A diferencia de los sitios web tradicionales, en una SPA el contenido se actualiza de forma fluida mediante JavaScript; solo cambian los componentes necesarios sin necesidad de recargar la página completa en el navegador.
 
+---
 
-## Estructura clave del framework
+## Estructura clave del Framework
 
-- La idea de su desarrollo está basada en el uso de Componentes y Módulos. Aunque estos últimos recientemente dejaron de ser el estándar del framework, que ahora prioriza el uso de Componentes Standalone, dejando de lado a los módulos. Veamos:
+La arquitectura de Angular ha evolucionado significativamente, pasando de una dependencia estricta de los módulos a un enfoque más ligero basado en componentes.
 
-1. Componentes: Son las unidades básicas de construcción de la interfaz.
+### 1. Componentes
+Son las unidades básicas y reutilizables de la interfaz de usuario. Cada componente encapsula tres elementos fundamentales:
+*   **Lógica**: Definida mediante código TypeScript.
+*   **Estructura**: La plantilla visual definida en HTML.
+*   **Estética**: Los estilos aplicados mediante CSS (o preprocesadores como SCSS).
 
-- **Cada componente se conforma de**: 
-```text
-1. Lógica y datos (Usando TypeScript)
-2. Una estructura visual/plantilla (Usando HTML)
-3. Estilos (Usando CSS u otros)
-```
-2. Módulos (hasta Angular 13 era obligatorio): Agrupan componentes, pipes, servicios y otros módulos relacionados. Además, declaran qué cosas pueden ser usadas dentro del proyecto.
+### 2. Módulos (`NgModule`)
+Históricamente, los módulos actuaban como contenedores para organizar componentes, servicios y otras dependencias. Aunque siguen existiendo para compatibilidad, ya no son el estándar absoluto.
 
-3. Componentes Standalone (Angular 14+): Estos nuevos componentes son independientes, sin necesidad de formar parte de un módulo. Esto simplifica el desarrollo y mejora la modularidad del código.
+### 3. Componentes Standalone (v14+)
+A partir de Angular 17, el estándar recomendado es el uso de **Componentes Standalone**. Estos son independientes y no requieren ser declarados en un módulo, lo que simplifica enormemente la estructura del proyecto y mejora la modularidad.
 
-- A partir de Angular 17, se recomienda usar exclusivamente Standalone Components para nuevas aplicaciones. Es decir, el crear nuestros propios módulos se va a dejar atrás (aunque podríamos seguir haciéndolo si quisiéramos).
+---
 
+## El Lenguaje: TypeScript
 
-## Lenguaje
+Angular se fundamenta en **TypeScript**, un superconjunto de JavaScript que añade tipado estático, decoradores y características avanzadas de programación orientada a objetos. Durante el proceso de construcción (*build*), este código se **transpila** a JavaScript puro para que cualquier navegador pueda ejecutarlo.
 
-- Angular se basa en el lenguaje de programación TypeScript, que es una versión de JavaScript con características adicionales, como los decoradores, el tipado estático y otras mejoras que facilitan el desarrollo y aumentan la seguridad. Ojo: Si bien es una versión extendida de JavaScript, al momento de ejecutarse, se transpila (convierte) en JavaScript puro. Además, para la estructura y los estilos, se usan HTML y CSS (u otro).
+---
 
+## Angular como Plataforma Integral
 
-## Angular como plataforma
+Más que un simple framework, Angular es una plataforma completa que ofrece herramientas oficiales para casi cualquier necesidad del desarrollo moderno:
 
-- Angular no es solo un framework sino una plataforma completa, que incluye:
+*   **Angular CLI**: Herramientas de línea de comandos para automatizar la creación de archivos, pruebas y compilación.
+*   **Router**: Un potente sistema de navegación interna para manejar las rutas de la SPA.
+*   **HttpClient**: Módulo especializado para realizar peticiones a APIs externas.
+*   **Forms**: Sistemas robustos para el manejo de formularios reactivos o basados en plantillas.
+*   **RxJS**: Librería integrada para programación reactiva basada en observables.
+*   **Signals**: (v17+) El nuevo motor de reactividad que simplifica la detección de cambios.
 
-- **Angular CLI**: herramientas de línea de comandos para scaffolding, testing y builds.
-- **Router**: sistema de navegación interno para SPA.
-- **HttpClient**: para consumir APIs.
-- **Forms**: para formularios reactivos o template-driven.
-- **RxJS**: librería para programación reactiva (observables y otros).
-- **Zone.js**: para detección de cambios y control del ciclo de vida
+---
 
+## ¿Por qué elegir Angular?
 
-## Ciclo de versiones
+Angular es la opción preferida para proyectos a gran escala y de nivel empresarial debido a:
 
-- Google mantiene una nueva versión estable cada 6 meses (aproximadamente).
-
-- Se da soporte a las últimas 6 versiones, por lo tanto:
-1. Siempre hay una versión LTS (Long Term Support).
-2. Las actualizaciones son predecibles y organizadas.
-
-
-## ¿Por qué Angular? porque ofrece:
-
-- Seguridad integrada (sanitización, XSS)
-- Escalabilidad para proyectos grandes
-- Arquitectura basada en componentes reutilizables
-- Herramientas oficiales (CLI, Angular DevTools)
-- Testing con Jasmine, Karma y TestBed integrados
-- Gran comunidad + soporte empresarial
+*   **Seguridad Integrada**: Cuenta con protección nativa contra vulnerabilidades comunes como XSS.
+*   **Escalabilidad**: Su estructura organizada facilita que equipos grandes trabajen sobre el mismo código sin conflictos.
+*   **Mantenimiento Predictivo**: Google lanza una nueva versión estable cada 6 meses, asegurando que la tecnología se mantenga siempre a la vanguardia.
+*   **Comunidad y Soporte**: Al ser desarrollado por Google, existe una documentación oficial excelente y un vasto ecosistema de librerías de terceros.

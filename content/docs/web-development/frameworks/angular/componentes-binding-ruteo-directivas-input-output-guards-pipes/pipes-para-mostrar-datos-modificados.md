@@ -1,129 +1,94 @@
 ---
-title: "Pipes (Para mostrar datos modificados)"
-description: "'Pipe' significa tubería. La idea de los pipes en Angular es tomar un dato desde la lógica (TypeScript), y antes de mostrarlo en pantalla (en el HTML), modifica..."
+title: "Pipes (Dando formato a los datos)"
+description: "Aprende a usar los pipes en Angular para transformar y dar formato a los datos en la vista de manera sencilla y eficiente."
 ---
 
+## Pipes (Símbolo `|`)
 
-## Pipes ( símbolo | )
+El término **Pipe** significa "tubería". En Angular, la idea de un pipe es tomar un dato desde la lógica (TypeScript) y, antes de mostrarlo en pantalla (HTML), transformarlo visualmente. Es como hacer pasar el dato por un tubo que modifica su apariencia sin alterar el valor original almacenado en la memoria o la base de datos.
 
-- "Pipe" significa tubería. La idea de los pipes en Angular es tomar un dato desde la lógica (TypeScript), y antes de mostrarlo en pantalla (en el HTML), modificarlo. Es decir, hacerlo pasar por un tubo que lo va am odificar. 
+> [!NOTE]
+> No confundas los pipes de la vista con el método `.pipe()` de los Observables de RxJS. Aunque comparten nombre, los pipes de Angular son herramientas de formato para los templates.
 
-- Obviamente, esta descripción recuerda al método pipe() de los Observable. Pero esto NO TIENE NADA QUE VER con eso. Es decir, son dos cosas distintas, aunque su definición sea la misma. Una cosa es el método pipe() de los Observables, y otra cosa son los pipes de Angular, que son elementos que se crean por el Angular CLI y que se escriben en el código HTML con la sintaxis " | nombrePipe ". Ese " | " hace referencia a un tubo/pipe.
+### ¿Por qué usarlos?
+El objetivo principal es la separación de responsabilidades. Por ejemplo, te conviene guardar un DNI como un número de 8 dígitos puro (`43596276`), pero al usuario le resulta más legible verlo con puntos (`43.596.276`). El pipe se encarga de esa transformación visual en el momento del renderizado.
 
-- Los datos que pasen por el pipe se van a modificar de forma puramente visual. Es decir, no se modifica literalmente el dato, solamente se transforma para verse distinto en la vista, pero sigue siendo lo mismo todo el tiempo.
+Otros ejemplos comunes:
+*   **Fechas**: Transformar un objeto `Date` en un formato legible (`06/06/2024`).
+*   **Precios**: Añadir símbolos de moneda y decimales uniformes.
+*   **Texto**: Acortar strings muy largos añadiendo puntos suspensivos ("Ver más...").
 
-- Por ejemplo, el DNI. Yo lo que quiero y lo que me conviene, es guardar el DNI como un numero de 8 digitos, sin los "puntitos". Sin embargo, cuando yo quiero mostrarle el DNI al usuario por pantalla, estéticamente es mejor que SÍ aparezcan esos 2 puntitos. Entonces, con un pipe lo puedo hacer.
+---
 
-- Los Pipes, entonces, son visuales. Cuando yo pase mi DNI por un Pipe, antes de mostrarlo visualmente, el Pipe se va a encargar de agregarle esos puntitos.
+## Pipes integrados en Angular
 
-```text
-43596276     // El DNI guardado en la BD
-... Pasa por un Pipe ...
-43.596.276   // El DNI que le muestro al usuario
+Angular ya incluye varios pipes listos para usar. Estos son algunos de los más comunes:
 
-Jueves 6 de Junio
-Date -> pipe -> Día Día de Mes (por ejemplo)
-Date -> pipe -> 06/06/2024 (por ejemplo)
-```
-- También podemos tener un pipe que reciba un string, y que si es muy largo, lo corte y le ponga unos '...' al final. O uno que estilice el valor de un precio según su moneda...
-
-
-## Pipes de Angular
-
-- Angular ya tiene sus propios Pipes incorporados. Vamos a ver algunos:
-
-### UpperCasePipe: Transforma el string a mayúsculas (como dijimos, sólo visualmente)
-
+### `UpperCasePipe` y `LowerCasePipe`
+Transforman el texto a mayúsculas o minúsculas.
 ```html
 <h1>{{ title | uppercase }}</h1>
 ```
-### CurrencyPipe: Sirve para mostrar valores de dinero.
 
+### `CurrencyPipe`
+Ideal para mostrar valores monetarios. Admite parámetros para configurar la moneda y el formato.
 ```html
-<h1>Dinero: {{ dinero | currency }}</h1>
+<p>Precio: {{ total | currency:'EUR' }}</p>
+<!-- Resultado: €1,000.00 -->
 ```
-- "dinero" es una de mis variables creadas en código TypeScript. Supongamos que el valor de esta variable es 1000, en ese caso, visualmente se va a mostrar:
-```text
-Dinero: $1000.00
-```
-- A currency le podemos pasar distintos parámetros, para configurarlo a nuestro gusto, por ejemplo:
 
+### `JsonPipe`
+Muy útil durante el desarrollo para depurar y ver el contenido de un objeto literal o array directamente en el HTML.
 ```html
-<h1>Dinero: {{ dinero | currency: "EUR" }}</h1>
+<pre>{{ usuarioObjeto | json }}</pre>
 ```
-- Así, lo mostramos en tipo EURO
 
+---
 
-### JsonPipe: Sirve para mostrar la información de un JSON.
+## Crear un Pipe Personalizado
+
+Para crear tu propio pipe, utiliza el CLI de Angular:
+
+```bash
+ng generate pipe pipes/truncate
+```
+
+Esto generará una clase con el decorador **`@Pipe`** y el método **`transform`**:
 
 ```typescript
-<p>{{ myJson | json }}</p>
-```
-- Así como ponemos un pipe, podríamos poner todos los que queramos:
+import { Pipe, PipeTransform } from '@angular/core';
 
-```html
-	<h1>{{ miValor | unPipe | otroPipe | tercerPipe | cuartoPipe }}</h1>
-```
-## Crear nuestro propio Pipe
-
-- Ahora, nosotros vamos a crear Pipes. Para esto, podemos usar el comando de Angular CLI:
-
-```text
-ng g pipe pipes/textoLargo
-```
-- **En nuestro texto-largo.pipe.ts vamos a tener esto**: 
-
-```typescript
 @Pipe({
-	name: 'textoLargo',
-	standalone: true,
+  name: 'truncate',
+  standalone: true
 })
-
-transform(value: unknow,    ..) {
-	return null;
+export class TruncatePipe implements PipeTransform {
+  // El primer parámetro es el valor a transformar
+  // Los siguientes son argumentos opcionales del pipe
+  transform(value: string, limit: number = 10, trail: string = '...'): string {
+    if (!value) return '';
+    
+    if (value.length > limit) {
+      return value.substring(0, limit) + trail;
+    }
+    
+    return value;
+  }
 }
 ```
-- En "value" vamos a obtener el valor del dato que vamos a transformar, y el return va a ser el dato transformado que vamos a devolver. En este caso, lo vamos a hacer así:
 
-```typescript
-transform(value: string, ...args: any[]): string {
-	if (value.length > 10) {
-		let newValue = value.slice(0, 10);
-		return newValue + '...';
-	}
-
-	return value;
-}
-```
-- **Vamos, entonces, a combinar pipes así**: 
+### Cómo usarlo en el HTML
+Podemos pasarle parámetros usando los dos puntos (`:`) y encadenar varios pipes juntos:
 
 ```html
-<h1> {{ title | textoLargo | uppercase }}  </h1>
+<!-- Recortar a 20 caracteres y luego pasar a mayúsculas -->
+<p>{{ descripcionLarga | truncate:20:' (leer más)' | uppercase }}</p>
 ```
-- **Ahora vamos a cambiarlo un poco**: 
 
+### Parámetros opcionales
+En el método `transform`, puedes definir valores por defecto o usar el signo `?` para marcar argumentos como opcionales:
 ```typescript
-transform(value: string, puntos: boolean): string {
-	if (value.length > 10) {
-		let newValue = value.slice(0, 10);
-
-		if (puntos) {
-			newValue += '...';
-		}
-
-		return newValue;
-	}
-
-	return value;
+transform(value: string, showPoints: boolean = true, maxChars?: number): string {
+  // lógica...
 }
-```
-- **Entonces lo llamamos así**: 
-
-```html
-<h1> {{ title | textoLargo : true | uppercase }}  </h1>
-```
-- Otra cosa que podemos hacer es pasarle un 'max', para establecer el máximo de caracteres para que se convierta en textoLargo... o pasarle un string que sea el valor del texto agregado, por ejemplo pasarle un 'Ver Más'... etc. Por cierto, nosotros podemos hacer que estos argumentos sean opcionales, poniendo un ? en cada variable que creo en la declaración de la función transform o dandoles un valor por defecto, así:
-
-```typescript
-transform(value: string, puntos: boolean = true, max: number = 10): string {}
 ```

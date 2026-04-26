@@ -1,42 +1,65 @@
 ---
 title: "Guards (Para el ruteo)"
-description: "La idea de los Route Guards es manejar cuándo podemos o no acceder a cada ruta, a través de los parámetros que definamos. Es algo similar a los Middlewares de P..."
+description: "Maneja la seguridad y el acceso a tus rutas en Angular utilizando Guards para permitir, bloquear o redirigir a los usuarios según su estado o permisos."
 ---
-
 
 ## Route Guards
 
-- La idea de los Route Guards es manejar cuándo podemos o no acceder a cada ruta, a través de los parámetros que definamos. Es algo similar a los Middlewares de PHP Slim.
+Los **Route Guards** son servicios o funciones que Angular ejecuta antes de navegar a una ruta específica. Su propósito fundamental es determinar si la navegación es permitida, bloqueada o si el usuario debe ser redirigido a otra página. Es un concepto similar a los Middlewares en otros ecosistemas de desarrollo.
 
-- Los Guards son servicios que Angular ejecuta antes de navegar a una ruta. Pueden permitir, bloquear, redirigir o cancelar la navegación en la app.
+### Creación con Angular CLI
 
-- **Así se crea un guard con el Angular CLI**: 
+Para crear un guard desde la terminal, usamos el siguiente comando:
 
-```text
-ng g guard guards/logeado
+```bash
+ng generate guard guards/auth
 ```
-- Después, nos da 4 opciones para elegir qué tipo de Guard vamos a crear.
 
-1. canActivate: Pregunta si el usuario puede o no acceder a la ruta
-2. canActivateChild: Similar al anterior, pero a una ruta hija
-3. canDeactivate: Pregunta si el usuario puede SALIR de una ruta
-4. canMatch: Sirve para checkear que los datos de la ruta estén correctos
-5. resolve: Sirve para la recuperación de datos de ruta antes de su activación
+Al ejecutarlo, la consola nos preguntará qué tipo de interfaz queremos implementar. Estas son las opciones principales:
 
-- Vamos a hacer un ejemplo de un Guard de logeo. Si está logeado, sobrepasa al guardian. Y sino, no puede. Para eso, creamos el Guard como vimos antes, elegimos CanActivate y codeamos la función que nos aparece por defecto. Va a devolver TRUE o FALSE.
+1.  **`canActivate`**: El más común. Determina si un usuario puede entrar a una ruta (ej: ¿está logueado?).
+2.  **`canActivateChild`**: Controla el acceso a todas las rutas hijas de una ruta principal.
+3.  **`canDeactivate`**: Útil para preguntar al usuario si realmente quiere abandonar una página (ej: tiene cambios sin guardar en un formulario).
+4.  **`canMatch`**: Verifica si una ruta coincide con la configuración antes de descargar el código del componente (ideal para lazy loading).
+5.  **`resolve`**: Pre-procesa o recupera datos antes de que la ruta se cargue para que el componente ya los tenga disponibles al iniciar.
 
-- Antes de codear la función, vamos al archivo de ruteo. En el, nos tenemos que enfocar en el path al que queremos resguardar. O sea, el path que tendrá que tener un guardia previo, que va a definir si podemos acceder a la ruta o no, que generalmente es a un componente 'home', 'bienvenida', etc.
+---
 
-```text
-[lógica del path con su componente], canActivate: [logeadoGuard]
+## Implementación en el Ruteo
+
+Una vez creado el guard, debemos aplicarlo en la definición de nuestras rutas. La sintaxis en el archivo `app.routes.ts` es la siguiente:
+
+```typescript
+export const routes: Routes = [
+  { 
+    path: 'dashboard', 
+    component: DashboardComponent, 
+    canActivate: [authGuard] // Aplicamos el guard aquí
+  }
+];
 ```
-- Esta es la sintaxis. Primero, toda la declaración de nuestro path, y después, seguido de una coma " , ", la nuestro Guard. El cual, primero ponemos su tipo (en este caso canActivate), seguido de " : " y el nombre dle Guard puesto entre corchetes []. Y si quisiéramos poner más Guards en este path, lo hacemos separándolos por " , ".
 
-- **Ahora vamos a hacer uno de admin**: 
+Podemos asignar varios guards a una misma ruta pasándolos dentro del array `[guard1, guard2]`. Los guards se ejecutarán en el orden en que aparecen.
 
-```text
-ng g guard guards/admin
+---
+
+## Lógica del Guard
+
+Los guards modernos en Angular suelen definirse como funciones. El guard debe retornar un booleano, una `UrlTree` (para redirigir), una `Promise` o un `Observable`.
+
+```typescript
+export const authGuard: CanActivateFn = (route, state) => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  if (authService.isLoggedIn()) {
+    return true; // Acceso permitido
+  } else {
+    // Si no está logueado, lo redirigimos al login
+    return router.parseUrl('/login'); 
+  }
+};
 ```
-- Se mantiene la misma lógica. Se invoca en las rutas, y la función devuelve un bool.
 
-- **OJO**: Además de devoler un booleano en la función del Guard, yo puedo hacer todo tipo de lógica. Una gran idea es tirar un router.navigate ahí mismo y después retornar false. Entonces si el usuario quiere acceder a algún lugar sin estar logeado, el guard lo puede mandar al login.
+> [!TIP]
+> Es una excelente práctica que el propio guard maneje la redirección (devolviendo una `UrlTree` mediante `router.parseUrl`) en lugar de simplemente retornar `false`, ya que así el usuario tendrá una respuesta clara de por qué no pudo entrar a la sección.

@@ -1,77 +1,79 @@
 ---
 title: "Grupos de rutas (rutas hijas) y Navegación entre rutas"
-description: "Grupos de rutas (rutas hijas)"
+description: "Aprende a organizar tus rutas en Angular mediante Lazy Loading y descubre cómo navegar entre ellas usando RouterLink y el servicio Router."
 ---
 
+## Grupos de rutas (Rutas hijas)
 
-## Grupos de rutas (rutas hijas)
-
-- Para mejorar la legibilidad y no tener todas las rutas en un mismo archivo, podemos agruparlas:
+Para mantener una aplicación escalable y evitar que el archivo de rutas principal sea gigantesco, podemos agrupar las rutas relacionadas en archivos independientes utilizando **Lazy Loading**.
 
 ```typescript
-{ path: 'auth', loadChildren: () => import('./views/auth./auth.routes').then(c => c.routes) }
+// app.routes.ts
+export const APP_ROUTES: Routes = [
+  { 
+    path: 'auth', 
+    loadChildren: () => import('./views/auth/auth.routes').then(m => m.AUTH_ROUTES) 
+  }
+];
 ```
-- En este caso, el loadChildren carga un nuevo archivo de ruteo. En ese nuevo archivo van a haber nuevas rutas que van a ser hijas de este path 'auth'. En ella es donde van a estar los loadComponent(). Como vemos en el import, lo que estamos pasando es un "auth.routes", es decir, otro archivo de ruteo, que en este caso tiene el nombre de otro componente (auth). Nosotros podríamos tener varios así, y así agrupar cada ruta en un componente específico.
 
-- Ese archivo "auth.routes.ts" lo creamos nosotros a mano. La semántica es opcional, pero una buena opción es crear la carpeta 'views'. Y en ella, colocar la carpeta 'auth'. Después, dentro de la carpeta 'auth', coloco los 3 componentes que quiero que sean hijos de 'auth'. Entonces, podría poner componentes como login, profile y register allí.
+En este ejemplo, `loadChildren` carga un archivo de rutas secundario solo cuando el usuario intenta acceder a `/auth`. Todas las rutas definidas dentro de `auth.routes.ts` serán automáticamente "hijas" de la base `/auth`. Por ejemplo:
 
-- Las rutas que estén declaradas en auth.routes.ts, van a terminar con paths así: /auth/[path]. Es decir, se le agrega el /path/ adelante automáticamente, enfatizando que estamos en una "sub-ruta".
+*   Si en `auth.routes.ts` definimos un path `'login'`, la URL final será `/auth/login`.
+*   Si definimos un path `'register'`, la URL final será `/auth/register`.
 
+Esta organización por carpetas (ej: `views/auth/`) mejora drásticamente la mantenibilidad del proyecto.
 
-## Navegación mediante routerLink
+---
 
-- Como es lógico, nosotros no queremos que el usuario navegue entre las distintas rutas de nuestro sitio teniendo que escribir el path específico en la URL. Lo ideal es que tenga un menú o navbar en el cual pueda elegir a dónde ir.
+## Navegación mediante `routerLink`
 
-- Vamos a crear un simple botón, y le vamos a agregar la propiedad routerLink, la cual, para usarla, tenemos que importar el componente RouterLink en el componente donde queramos usarlo:
-
-```text
-<button routerLink="bienvenido">Bienvenido</button>
-```
-- En este caso, "routerLink" nos va a redirigir a la ruta que le indiquemos.
-
-- **OJO**: Cuando ponemos el routerLink, podemos poner "bienvenido" o "/bienvenido", y no es lo mismo. Sin la " / " al principio, estamos indicando una ruta ABSOLUTA a la aplicación base. Es decir, ignora todas las sub-rutas y nos manda directamente a /bienvenido. En cambio, con el " / ", se va a parar primeramente en la ruta actual y va a agregar el /bienvenido al final de todo: assa/saas/sas/bienvenido
-
-routerLink="/bienvenido": ruta absoluta → empieza desde la raíz (vamos directo a /bienvenido)
-routerLink="bienvenido": ruta relativa → se concatena a la ruta actual (vamos a [ruta-actual]/bienvenido)
-
-### Vamos a hacer un ruteo básico:
+Para que el usuario navegue sin recargar la página (comportamiento de SPA), Angular proporciona la directiva `routerLink`. Para usarla, debemos importar `RouterLink` en la propiedad `imports` de nuestro componente.
 
 ```html
-<h1>Ruteo</h1> <br>
-
-<button routerLink="/bienvenido">Bienvenido</button>
-<button routerLink="/login">Login</button>
-<button routerLink="/error">Error</button>
+<button routerLink="/home">Ir al Inicio</button>
 ```
-- Esto funciona perfectamente. Al pulsar cada botón, el routerLink nos va a redirigir hacia la ruta que indiquemos.
 
+### Rutas Absolutas vs. Relativas
+
+Es fundamental entender la diferencia entre empezar el path con una barra diagonal o no:
+
+*   **`/ruta` (Absoluta)**: Empieza siempre desde la raíz de la aplicación. No importa en qué sub-ruta nos encontremos, `/bienvenido` siempre irá a `tudominio.com/bienvenido`.
+*   **`ruta` (Relativa)**: Se concatena a la ruta actual. Si estamos en `/auth` y pulsamos un `routerLink="login"`, navegaremos a `/auth/login`.
+
+> [!TIP]
+> También puedes usar `./ruta` para indicar explícitamente que es relativa al nivel actual, o `../ruta` para subir un nivel en la jerarquía de rutas.
+
+---
 
 ## Navegación mediante Router (TypeScript)
 
-- Hasta ahora vimos cómo hacer los ruteos por HTML. Pero también se puede por lógica, es decir, por TypeScript. Esto lo podemos hacer gracias al servicio Router, veamos:
+A veces necesitamos navegar como respuesta a una acción lógica (por ejemplo, después de que un usuario rellene un formulario correctamente). Para esto, inyectamos el servicio `Router`.
 
 ```typescript
-private router = inject(Router);
+import { Router } from '@angular/router';
 
-volver() {
-	this.router.navigateByUrl('bienvenido');
+export class LoginPage {
+  private router = inject(Router);
+
+  iniciarSesion() {
+    // Lógica de autenticación...
+    if (loginExitoso) {
+      this.router.navigateByUrl('/dashboard');
+    }
+  }
 }
 ```
-- Acá lo que hicimos fue crear una función volver(), que al ejecutarse, nos manda a la ruta con path 'bienvenido'. Así es como se usa Router con el método "navigateByUrl()", el cual recibe una URL completa como string. Como cuando hacemos el routerLink="/..." en código HTML.
 
-- Pero también existe el método navigate, el cual es más versatil ya que acepta arrays y parámetros:
+### Métodos principales:
 
-```text
-this.router.navigate(['/usuario', id]);
-```
-- Si la id de usuario fuese 123, esta línea nos llevaría a /usuario/123. Además, con navigate podríamos pasar opciones como queryParams.
-
-- **Un ejemplo básico de navegación lógica podría ser**: 
+1.  **`navigateByUrl(url: string)`**: Recibe un string con la ruta completa, similar a cómo funciona `routerLink`.
+2.  **`navigate(commands: any[], extras?: NavigationExtras)`**: Es más versátil. Recibe un array de segmentos y permite pasar parámetros de consulta o fragmentos.
 
 ```typescript
-if (usuario.estaLogueado) {
-  this.router.navigate(['/dashboard']);
-} else {
-  this.router.navigate(['/login']);
-}
+// Navegación con parámetros dinámicos
+const userId = 123;
+this.router.navigate(['/usuario', userId]); // Navega a /usuario/123
 ```
+
+Este enfoque lógico es ideal para flujos de control complejos, como redirigir al usuario al login si su sesión ha expirado o mandarlo a su perfil tras un registro exitoso.

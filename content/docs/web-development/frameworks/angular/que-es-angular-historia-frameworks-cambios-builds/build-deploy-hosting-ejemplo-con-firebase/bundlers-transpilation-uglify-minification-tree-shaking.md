@@ -1,67 +1,62 @@
 ---
-title: "Bundlers, Transpilation, Uglify, Minification, Tree Shaking"
-description: "Preparación y Optimización de Código"
+title: "Bundlers, Transpilation, Uglify, Minification y Tree Shaking"
+description: "Descubre los procesos internos que ocurren durante la compilación de una aplicación: desde la transformación de TypeScript hasta la optimización extrema del código final."
 ---
-
 
 ## Preparación y Optimización de Código
 
-- Como vimos antes, el proceso de hacer una build de nuestra aplicación sirve para, entre otras cosas, reducir el peso de nuestro proyecto, y así, mejorar su rendimiento. Vamos a ver cómo se consigue esto.
+Cuando desarrollamos con frameworks modernos como Angular, React o Vue, escribimos código que el navegador no puede interpretar directamente (como TypeScript o sintaxis de módulos avanzada). Por ello, el proceso de **build** utiliza diversas herramientas para transformar, empaquetar y optimizar ese código, haciéndolo liviano, eficiente y compatible con todos los navegadores.
 
-- Cuando desarrollamos una aplicación con frameworks como Angular, React, Vue, etc., estamos escribiendo código que el navegador no puede interpretar directamente (al menos no todo). Por eso, existen herramientas que transforman, empaquetan y optimizan ese código para que sea entendible, liviano y eficiente. Hablando de esas herramientas, vamos a ver distintos conceptos: Los Bundlers, lo que es la transpilación, el uglify, la minification y el tree shaking.
+A continuación, exploramos los conceptos fundamentales de este proceso:
 
+---
 
-## Bundlers (empaquetadores)
+## Bundlers (Empaquetadores)
 
-- Un bundler es una herramienta que toma todos los archivos del proyecto (JS, CSS, imágenes, etc.) y los combina en uno o varios archivos finales listos para el navegador. Esto se hace para reducir la cantidad de solicitudes HTTP, organizar mejor las dependencias, y preparar el código para la producción.
+Un **bundler** es una herramienta que analiza todas las dependencias de tu proyecto (archivos JavaScript, CSS, imágenes, fuentes) y las combina en uno o pocos archivos finales.
+*   **Objetivo**: Reducir el número de peticiones HTTP que el navegador debe realizar para cargar la página.
+*   **Ejemplos**: Webpack (motor interno de Angular CLI), Vite, Rollup y Parcel.
 
-- Ejemplos de bundlers pueden ser Webpack (usado por Angular internamente), Vite, Rollup y Parcel.
-
+---
 
 ## Transpilation (Transpilación)
 
-- La transpilación es cuando convertimos código de un lenguaje (o versión) a otro equivalente pero más compatible. En otras palabras, transpilar es convertir código de un lenguaje a otro.
+La transpilación consiste en traducir código de un lenguaje a otro de nivel similar o transformar una versión moderna de un lenguaje a una más antigua.
+*   **Caso Angular**: Nosotros escribimos en **TypeScript** (un superconjunto de JavaScript con tipos), pero el navegador solo entiende JavaScript puro. El compilador de Angular transpila nuestro código TS a una versión compatible de JS (como ES6 o ES2022).
+*   **Compatibilidad**: También permite usar características modernas de JavaScript (ESNext) y convertirlas a versiones anteriores para asegurar que funcionen en navegadores antiguos.
 
-- Esto se hace porque nosotros podemos escribir código moderno (TypeScript, ES6+), pero los navegadores no necesariamente lo van a entender todo. Entonces, transpilamos el código a una versión más antigua de JS (como ES5), que sí entiende cualquier navegador.
-
-- Básicamente, TypeScript es el lenguaje que vamos a usar nosotros como desarrolladores, pero al momento de pasar a producción, lo que le va a llegar al navegador NO es TypeScript, sino que le va a llegar JavaScript. Es decir, nuestro código TS se transpiló a código JS, y así el navegador lo puede interpretar.
-
+---
 
 ## Minification (Minificación)
 
-- La minificación es el proceso de eliminar todos los caracteres innecesarios del código como espacios, saltos de línea, comentarios... también lo que se hace es renombrar variables con nombres largos: (const nombreUsuario → const a).
+Es el proceso de eliminar todos los caracteres innecesarios del código fuente sin cambiar su funcionalidad.
+*   **Acciones**: Elimina espacios en blanco, saltos de línea, comentarios y acorta los nombres de las variables (ej: `const nombreUsuario` se convierte en `const a`).
+*   **Objetivo**: Reducir el peso del archivo (KB) para que la descarga sea lo más rápida posible.
 
-- Esto se hace con el objetivo de que el archivo pese lo menos posible y cargue rápido.
+---
 
+## Uglify (Ofuscación)
 
-## Uglify (hacer feo)
+El proceso de **Uglify** es una forma extrema de minificación que, además de reducir el tamaño, busca hacer que el código sea ilegible para los seres humanos.
+*   **Técnicas**: Renombrar variables a nombres sin sentido, reorganizar la lógica interna y ocultar la intención original del código.
+*   **Objetivo**: Añadir una capa básica de protección contra la ingeniería inversa y reducir aún más el tamaño del bundle.
 
-- Uglify es como una versión extrema de la minificación. Además de hacer el código más chico, también lo hace ilegible para los humanos. Hace cosas como: 
-
-1. Renombrar variables a nombres sin sentido.
-2. Reorganizar el código para que no se entienda nada.
-3. Obfuscar (ocultar intención).
-
-- Se usa para proteger la lógica interna del código, y evitar ingeniería inversa (aunque nunca es 100% seguro). 
-
+---
 
 ## Tree Shaking
 
-- "Sacudir el árbol" es una técnica para eliminar automáticamente el código que no se usa. Por ejemplo, si importamos uan librería pero solo usamos uan función, el bundler detecta las otras funciones que no se usan y no las incluye en el archivo final. 
+Metafóricamente "sacudir el árbol" para que caigan las hojas muertas. Es una técnica para eliminar automáticamente el código que no se está utilizando en el proyecto.
+*   **Funcionamiento**: Si importas una librería gigante pero solo utilizas una función específica, el bundler detecta las partes huérfanas y no las incluye en la construcción final.
+*   **Resultado**: Un bundle mucho más pequeño y una carga de aplicación más veloz.
 
-- Lógicamente, esto reduce el peso y la cantidad de código de la aplicación.
+---
 
+## Resumen de Herramientas
 
-## ¿Quién hace todas estas cosas?
-
-- Las herramientas como Webpack, Angular CLI, Vite o esbuild pueden hacer todo lo anterior:
-
-
-Concepto			Quién lo hace normalmente
-______________________________________________________
-| Bundling | Webpack, Vite |
-| --- | --- |
-| Transpiling | TypeScript, Babel |
-| Minification | Terser, esbuild |
-| Uglify | Terser, UglifyJS |
-| Tree Shaking | Webpack, Rollup, Vite |
+| Concepto | Herramientas comunes |
+| :--- | :--- |
+| **Bundling** | Webpack, Vite, Rollup |
+| **Transpiling** | TypeScript, Babel |
+| **Minification** | Terser, esbuild |
+| **Uglify** | Terser, UglifyJS |
+| **Tree Shaking** | Webpack, Rollup, Vite |

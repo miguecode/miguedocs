@@ -1,69 +1,62 @@
 ---
 title: "Ciclo de vida de un Componente y sus Hooks"
-description: "Ciclo de vida de los componentes (Hooks)"
+description: "Aprende a dominar el ciclo de vida de los componentes en Angular mediante el uso estratégico de sus 8 hooks fundamentales."
 ---
-
 
 ## Ciclo de vida de los componentes (Hooks)
 
-- Los hooks son una característica que nos brinda Angular y son importantes para especificar qué cosas deben suceder dependiendo del momento. Por ejemplo, si yo paso de un componente a otro en mi página, cuando salgo del componente en el que estaba, se ejecuta una función de salida. Yo podría ahí escribir código (definir un método) para que pase algo en ese preciso momento. Hay 8 hooks en total.
+Los **hooks** son una característica fundamental que nos brinda Angular para ejecutar lógica en momentos específicos de la existencia de un componente. Por ejemplo, si un usuario navega de un componente a otro, podemos ejecutar una función de "salida" antes de que el componente desaparezca. 
 
-- La idea de los hooks es que podamos ejecutar lógica en momentos clave del ciclo de vida del componente, como al recibir datos nuevos, inicializar la vista o limpiar recursos. No siempre necesitamos usarlos todos, pero conocerlos nos permite tener más control sobre el comportamiento del componente.
+Conocer estos momentos clave nos permite controlar cuándo inicializar datos, cuándo reaccionar a cambios en las propiedades de entrada (@Input) y cuándo limpiar recursos para evitar fugas de memoria. Angular cuenta con **8 hooks** principales en total.
 
-- "ngOnInit" es el ejemplo más básico de un hook, ya que hace referencia al inicio de nuestro componente, es decir, al momento en el que se instancia por primera vez. Todos nuestros componentes tienen que pasar por este momento.  
+`ngOnInit` es el ejemplo más conocido, ya que se ejecuta cuando el componente se inicializa por primera vez.
 
+## Implementación de un Hook
 
-## ngOnInit
+Para usar un hook, la buena práctica dicta que nuestra clase debe implementar la interfaz correspondiente que Angular provee.
 
 ```typescript
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-mi-componente',
+  template: '...'
+})
 export class MiComponente implements OnInit {
-	ngOnInit(): void {
-		    console.log('Arrancó el componente "MiComponent"');
-	}
+  // Implementamos la interfaz OnInit
+  ngOnInit(): void {
+    console.log('El componente se ha inicializado correctamente.');
+  }
 }
 ```
-- En la declaración de nuestro componente, es decir, en su class, podemos especificar "implements OnInit". Es decir, implementar la interfaz de Angular llamada "OnInit". Si no lo hacemos, va a funcionar igual, y vamos a poder usar la función ngOnInit perfectamente. Pero por respetar las buenas prácticas, se recomienda escribir el "implements OnInit". Si lo agregamos, la interfaz le va a exigir a la clase que incluya al método ngOnInit, y así nos evita el error de no ponerlo.
 
-- Esta misma explicación vale para todos los demás hooks que vamos a ver.
+Al especificar `implements OnInit`, TypeScript nos exigirá incluir el método `ngOnInit` dentro de la clase, lo que previene errores y mejora la legibilidad del código. Esta lógica aplica para todos los hooks (ej: `implements OnDestroy`, `implements OnChanges`, etc.).
 
+---
 
-## Otros ejemplos y etapas del ciclo de vida
+## Etapas y Hooks del Ciclo de Vida
 
-- Como dijimos, hay muchos hooks distintos aparte del ngOnInit. Y cada uno de ellos hace referencia a un momento distinto del ciclo de vida de nuestro componente. Ahora vamos a ver todos los demás, en orden temporal y separado por 4 etapas:
+A continuación se presentan los 8 hooks ordenados temporalmente, agrupados en 4 etapas principales:
 
-1) Inicialización (Creación del componente)
+### 1. Inicialización (Creación)
 
-1. ngOnChanges(changes: SimpleChanges) {}
-- Sí, aunque parezca loco, este hook ocurre antes que el ngOnInit, y se ejecuta cada vez que cambia un @Input del componente, incluso antes de que el componente se inicialice por completo.
+1.  **`ngOnChanges(changes: SimpleChanges)`**: Se ejecuta antes que `ngOnInit` y cada vez que cambia un valor en una propiedad de entrada (`@Input`).
+2.  **`ngOnInit()`**: Se ejecuta una única vez después del primer `ngOnChanges`. Es el lugar ideal para peticiones HTTP iniciales.
+3.  **`ngDoCheck()`**: Se ejecuta en cada ciclo de detección de cambios de Angular, inmediatamente después de `ngOnInit` o `ngOnChanges`.
 
-2. ngOnInit() {}
-- Se ejecuta una única vez, en el momento en el que termina el primer ngOnChanges y el componente se inicializa.
+### 2. Contenido Proyectado (`<ng-content>`)
 
-3. ngDoCheck() {}
-- Se ejecuta en cada detección de cambios, inmediatamente después de ngOnInit, o después de cualquier ngOnChanges. Es útil para personalizar el chequeo manualmente.
+4.  **`ngAfterContentInit()`**: Se ejecuta una sola vez después de que Angular proyecte el contenido externo en el componente.
+5.  **`ngAfterContentChecked()`**: Se ejecuta después de cada chequeo del contenido proyectado.
 
+### 3. Vista del Componente
 
-2) Contenido Proyectado (`<ng-content>`)
+6.  **`ngAfterViewInit()`**: Se ejecuta una vez cuando la vista del componente (y sus hijos) se ha renderizado completamente. Es el momento seguro para manipular el DOM.
+7.  **`ngAfterViewChecked()`**: Se ejecuta tras cada chequeo de la vista del componente y sus hijos.
 
-4. ngAfterContentInit() {}
-- Se ejecuta una sola vez, cuando Angular inserta el contenido proyectado (`<ng-content>`) en el componente.
+### 4. Destrucción
 
-5. ngAfterContentChecked() {}
-- Se ejecuta después de cada chequeo del contenido proyectado (ng-content). Puede llamarse muchas veces.
+8.  **`ngOnDestroy()`**: Se ejecuta justo antes de que Angular destruya el componente. **Es vital** para desuscribirse de Observables, limpiar timers o liberar recursos.
 
-
-3) Vista del Componente
-
-6. ngAfterViewInit() {}
-- Se ejecuta una única vez, cuando la vista del componente (y la de sus hijos) ha sido renderizada completamente.
-
-7. ngAfterViewChecked() {}
-- Se ejecuta después de cada chequeo de la vista del componente, incluyendo sus componentes hijos.
-
-
-4) Destrucción del Componente
-8. ngOnDestroy() {}
-- Se ejecuta justo antes de que el componente se destruya (ideal para limpiar timers, desuscribirse de observables, etc.).
-
-
-## OJO: Entre medio de todo este ciclo de 8 momentos, los hook ngOnChanges() y ngDoCheck() pueden volver a ejecutarse varias veces si hay cambios en los @Input, o si Angular detecta modificaciones.
+> [!IMPORTANT]
+> Durante la vida del componente, los hooks **`ngOnChanges`**, **`ngDoCheck`**, **`ngAfterContentChecked`** y **`ngAfterViewChecked`** pueden ejecutarse múltiples veces si se detectan cambios de estado o entradas. Los hooks terminados en `Init` solo ocurren una vez por instancia.

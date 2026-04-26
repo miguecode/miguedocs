@@ -1,84 +1,96 @@
 ---
-title: "Configurar los demás servicios"
-description: "Vincular los servicios de Firebase"
+title: "Vincular Servicios de Firebase en Angular"
+description: "Aprende a integrar Firestore, Authentication y otros servicios de Firebase en tu aplicación Angular mediante el uso de Angular Fire y variables de entorno."
 ---
 
+## Introducción
 
-## Vincular los servicios de Firebase
+Una vez que tienes inicializada tu aplicación con el CLI de Firebase, el siguiente paso es vincular los servicios (como Base de Datos y Autenticación) directamente en tu código fuente. Mientras que el Hosting solo requiere el CLI para funcionar, servicios como Firestore y Auth necesitan librerías específicas para que Angular pueda comunicarse con ellos.
 
-- Si ya tenemos instalado e inicializado nuestro proyecto con Firebase y Firebase CLI, podemos vincular nuestro proyecto en código con el proyecto en Firebase. Para el Hosting, el apunte pasado ya bastaba. Pero para el Firestore, Authentication y Storage, hay que hacer unas cosas más.
+---
 
-- Como dijimos, hoy en día Storage es de pago, así que no lo vamos a explicar acá.
+## Instalación de Dependencias
 
+Para integrar Firebase con Angular de forma profesional, necesitamos instalar dos paquetes fundamentales:
 
-## Instalar Firebase y Angular Fire
+1.  **`firebase`**: El SDK oficial de Google para JavaScript.
+2.  **`@angular/fire`**: La librería oficial que adapta el SDK de Firebase al ecosistema de Angular (usando Observables y Dependency Injection).
 
-- Primero, tenemos que instalar firebase en el proyecto, así:
+Ejecuta el siguiente comando en la raíz de tu proyecto:
 
-```text
-npm install firebase
+```bash
+npm install firebase @angular/fire
 ```
-- Y también tenemos que instalar Angular Fire, que es una librería de Angular hecha para trabajar con Firebase:
 
-```text
-npm install @angular/fire
-```
-- Esto último podría mostrar errores de compatibilidad en la consola, ya que podría pasar que nuestra versión de Angular no está tan actualizada como para instalar la versión más actual de Angular Fire. Entonces acá tenemos que buscar balance. Para ello, lo ideal sería actualizar Angular, y después instalar Angular Fire. O sino, no actualizar Angular pero instalar una versión de Angular Fire no tan actual, es decir, una que sea compatible con la versión de Angular que queramos usar en ese caso.
+> [!TIP]
+> Si encuentras errores de compatibilidad, asegúrate de que tu versión de Angular sea compatible con la versión de Angular Fire que intentas instalar. Puedes forzar una versión específica si es necesario (ej: `npm install @angular/fire@^17.0.0`).
 
+---
 
-## Vincular el proyecto
+## Configuración de Variables de Entorno
 
-- Si ya hicimos estas dos instalaciones, podemos seguir con vincular el proyecto a los servicios de Firebase.
+Nunca debemos exponer nuestras claves de API directamente en el código de los componentes. Para ello, utilizamos los archivos de entorno de Angular.
 
-- Primero, algo importante es crear los archivos de entorno, donde tenemos que colocar nuestras claves. Así que dentro de "src/" pero fuera de "app/", vamos a crear una carpeta "environments/". En ella creamos dos archivos: environment.ts y environment.prod.ts, que se tienen que ver así:
+1.  Crea la carpeta `src/environments/` si no existe.
+2.  Crea el archivo **`environment.ts`** (Desarrollo):
 
 ```typescript
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: 'TU_API_KEY',
-    authDomain: 'TU_DOMINIO.firebaseapp.com',
-    projectId: 'TU_PROJECT_ID',
-    storageBucket: 'TU_BUCKET',
-    messagingSenderId: '...',
-    appId: '...',
-  },
+    apiKey: "TU_API_KEY",
+    authDomain: "TU_PROYECTO.firebaseapp.com",
+    projectId: "TU_PROYECTO_ID",
+    storageBucket: "TU_PROYECTO.appspot.com",
+    messagingSenderId: "TU_SENDER_ID",
+    appId: "TU_APP_ID"
+  }
 };
 ```
-- El otro archivo tiene que estar igual pero con "production: true".
 
-- Si estamos usando Angular, también tenemos que ir al archivo "angular.json", ir a la sección "production", y en ese objeto colocar una nueva entrada así:
+3.  Crea el archivo **`environment.prod.ts`** (Producción) con los mismos datos pero con `production: true`.
 
-```typescript
-"fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ]
+### Reemplazo de archivos en `angular.json`
+Para que Angular cambie automáticamente entre el archivo de desarrollo y el de producción al hacer el build, asegúrate de tener esta configuración en tu **`angular.json`**:
+
+```json
+"configurations": {
+  "production": {
+    "fileReplacements": [
+      {
+        "replace": "src/environments/environment.ts",
+        "with": "src/environments/environment.prod.ts"
+      }
+    ]
+  }
+}
 ```
-- Esto para vincular los archivos de entorno con la configuración de producción. Y listo.
 
-- Una vez que hicimos esto y completamos los archivos con las KEYS de nuestro proyecto de Firebase, tenemos que ir invocar e importar las cosas que vamos a requerir, provenientes de Firebase. Para hacerlo en Angular, originalmente iríamos al archivo app.module.ts, pero ahora eso ya no va. Así que vamos al app.config.ts, y hacemos esto:
+---
+
+## Registro de Providers en `app.config.ts`
+
+En las versiones modernas de Angular (v17+), ya no usamos `AppModule`. En su lugar, registramos los servicios de Firebase en el archivo de configuración global:
 
 ```typescript
-// app/app.config.ts
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { routes } from './app.routes';
-
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
-	... los demás providers...
-    // 🔥 Firebase Providers
+    // ... otros providers (router, etc)
+    
+    // 🔥 Inicialización de Firebase
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    
+    // 🔥 Servicios específicos
     provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
   ],
 };
 ```
-- De esta manera, ya podemos hacer uso del servicio Authentication de Firebase.
+
+Con esta configuración, ya puedes inyectar los servicios de Auth o Firestore en tus componentes y empezar a interactuar con los datos de Firebase de forma reactiva.

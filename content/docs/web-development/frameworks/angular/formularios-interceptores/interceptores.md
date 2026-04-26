@@ -1,63 +1,78 @@
 ---
 title: "Interceptores"
-description: "Interceptores en Angular"
+description: "Aprende a capturar y modificar peticiones y respuestas HTTP de forma global en Angular utilizando interceptores para autenticación, logs o manejo de errores."
 ---
-
 
 ## Interceptores en Angular
 
-- Un interceptor es otro elemento de Angular el cual puede crearse con Angular CLI:
+Un **interceptor** es una pieza de código que captura las peticiones HTTP que salen de tu aplicación hacia un servidor y las respuestas que regresan de él. Actúa como un middleware que permite aplicar lógica común de forma centralizada sin tener que repetir código en cada servicio.
 
-```text
-ng create interceptor interceptors/MiInterceptor
-```
-- En Angular, un interceptor es una clase que intercepta todas las peticiones HTTP que hacemos desde nuestra aplicación (antes de que salgan al servidor) y también las respuestas que vuelven del servidor. Es decir, intercepta las peticiones y las respuestas.
+### Casos de uso comunes
 
-- Sirven para aplicar lógica común y automática en todas las peticiones o respuestas sin repetir código:
+| Caso de uso | Descripción |
+| :--- | :--- |
+| **Autenticación** | Adjunta automáticamente un token JWT (Bearer) en los headers de cada petición. |
+| **Manejo de errores** | Redirige al login si recibes un error 401 o muestra mensajes globales de error. |
+| **Carga / Spinners** | Activa un loader global al iniciar una petición y lo oculta al finalizar. |
+| **Logs / Debug** | Imprime en consola todas las peticiones enviadas para depuración. |
+| **Transformación** | Modifica el cuerpo de la petición o los headers antes del envío. |
 
-```text
-Caso de uso			¿Qué hace?
-```
-_____________________________________________________________________________________________
-| Autenticación | Agrega el token JWT a todas las requests. |
-| --- | --- |
-| Manejo de errores | Centraliza cómo manejar errores HTTP. |
-| Carga / Spinner | Muestra u oculta un loader global durante requests. |
- 	Transformación		Modifica la request o la response (headers, body, etc).
- 	Logs / Debug			Imprime todas las requests/responses para debugear.
+---
 
+## Implementación de un Interceptor
 
-## Ejemplo de Interceptor que agrega un token
+En las versiones modernas de Angular (v15+), se recomienda el uso de **interceptores funcionales**, aunque la arquitectura basada en clases sigue siendo válida.
+
+### Ejemplo: Interceptor de Autenticación (Funcional)
+Este es el enfoque más limpio y moderno:
 
 ```typescript
-@Injectable()
-export class AuthInterceptor implements HttpInterceptor {
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = 'token123'; // Normalmente lo obtenemos del localStorage o AuthService
+import { HttpInterceptorFn } from '@angular/common/http';
 
-    const authReq = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+export const authInterceptor: HttpInterceptorFn = (req, next) => {
+  const token = localStorage.getItem('token');
 
-    return next.handle(authReq); // Envía la nueva request modificada
-  }
-}
+  // Clonamos la petición para añadir el encabezado (las peticiones son inmutables)
+  const authReq = req.clone({
+    setHeaders: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  // Pasamos la petición modificada al siguiente paso
+  return next(authReq);
+};
 ```
-- Para poder hacer uso de este interceptor, tenemos que aclararlo en nuestro archivo de configuración:
+
+---
+
+## Configuración en los Providers
+
+Para que el interceptor funcione, debemos registrarlo en la configuración global de la aplicación (`app.config.ts` o `main.ts`):
 
 ```typescript
-...
-providers: [provideHttpClient(withInterceptors([(req, next) => inject(AuthInterceptor).intercept(req, next)])]
-...
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from './interceptors/auth.interceptor';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideHttpClient(
+      withInterceptors([authInterceptor]) // Registramos el interceptor funcional aquí
+    )
+  ]
+};
 ```
-## Cómo funciona internamente
 
-- Cuando hacemos una request con HttpClient (como http.get()), lo que hace Angular es:
+---
 
-1. Pasa la request por todos los interceptores registrados en withInterceptors(), en orden.
-2. Cada uno de estos interceptores puede modificar o detener la request.
-3. Al final, la request llega al servidor.
-4. Cuando vuelve la respuesta del servidor, pasa de nuevo por los interceptores (en orden inverso).
-5. Podemos modificar la respuesta o manejar errores ahí.
+## Cómo funciona el ciclo de vida
+
+Cuando realizas una petición mediante `HttpClient`, el flujo es el siguiente:
+
+1.  **Petición Saliente**: Pasa por cada interceptor registrado en el orden en que fueron declarados en `withInterceptors`.
+2.  **Modificación**: Cada interceptor puede clonar y modificar la petición (ej: añadir un ID de rastreo o un token).
+3.  **Servidor**: La petición modificada llega finalmente al servidor externo.
+4.  **Respuesta Entrante**: Cuando el servidor responde, los datos vuelven a pasar por los interceptores (en orden inverso).
+5.  **Manejo Final**: Aquí puedes interceptar errores (ej: un error 500) antes de que la respuesta llegue al componente que inició la petición.
+
+Esta arquitectura permite que tus servicios se enfoquen únicamente en la lógica de negocio, delegando la infraestructura de red a los interceptores.

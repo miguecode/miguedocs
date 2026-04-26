@@ -1,38 +1,54 @@
 ---
 title: "Netlify y Bootstrap"
-description: "Hostear en Netlify"
+description: "Aprende a desplegar tus aplicaciones Angular en Netlify y a integrar Bootstrap mediante diferentes métodos, desde CDN hasta paquetes npm."
 ---
 
+## Despliegue en Netlify
 
-### Hostear en Netlify
+Existen varias formas de subir un proyecto a Netlify. La forma más profesional es vinculando un repositorio de GitHub (lo cual permite despliegues automáticos al hacer *push*), pero también existe un método manual rápido.
 
-Si bien existe una mejor forma de hacerlo, es decir, vinculando el proyecto a un repositorio de GitHub, ahora vamos a ver otra forma de hacerlo mucho más BURDA, es decir, no la ideal.
+### Método manual (Drag & Drop)
 
-Primero, vamos a BUILDEAR el proyecto. ¿Por qué? Porque nosotros no vamos a subir literalmente todas las carpetas de la app Angular, tenemos que pseudocompilarlo para que este código pase a "comprimirse". Para hacerlo, vamos a poner este comando en la terminal:
+1.  **Generar el Build**: Antes de subir nada, debemos compilar nuestro proyecto de Angular para optimizarlo y "comprimirlo". Ejecutamos en la terminal:
+    ```bash
+    ng build
+    ```
+2.  **Localizar los archivos**: Tras finalizar el build, Angular creará una carpeta llamada `dist/`. Dentro encontraremos otra carpeta con el nombre de nuestro proyecto (o simplemente `browser` en versiones recientes).
+3.  **Subir a Netlify**: Arrastra esa carpeta final directamente a la zona de carga de Netlify.
 
-ng build
+> [!CAUTION]
+> Este método es poco óptimo para el desarrollo continuo. Si realizas cambios en el código, deberás ejecutar `ng build` y volver a arrastrar la carpeta manualmente. Lo ideal es usar la integración con Git.
 
-Una vez que termine de hacerse el build, vamos a ver que nos crea una carpeta llamada "dist". Dentro de esa carpeta, va a aparecer una carpeta "browser". Esa carpeta "browser" es la que tenemos que ARRASTRAR al Netlify. De esa forma se inicia el deploy y vamos a tener la web subida.
+### Recomendación sobre repositorios
+Al trabajar con Angular, lo ideal es tener **un repositorio por proyecto**. Evita subir una carpeta contenedora con múltiples aplicaciones, ya que esto complica los procesos de CI/CD (Integración y Despliegue Continuo) y duplica innecesariamente archivos pesados como los `node_modules`.
 
-Esta es la forma menos óptima de hacerlo. Si hacemos cambios en algun archivo, habría que hacer build otra vez. Obviamente lo lógico es hacerlo con GIT como ya lo sé hacer (la misma Netlify te indica cómo hacerlo, es sencillo).
+---
 
+## Integración de Bootstrap en Angular
 
-## Aclaración importante
-Cuando vamos a subir una app de Angular a Github, tiene que ser una app por cada repositorio. Es decir, en un repositorio no deberíamos subir una carpeta con todos nuestros proyectos Angular, eso provocaría que se suban más de una vez los mismos archivos innecesariamente.
+Hay tres formas principales de añadir Bootstrap a tu aplicación:
 
+1.  **CDN**: Copiar los enlaces de CSS y JS de la web oficial y pegarlos en el `index.html`. Es lo más rápido pero menos profesional.
+2.  **npm (Instalación local)**: Ejecutar el comando para instalarlo como dependencia del proyecto:
+    ```bash
+    npm install bootstrap
+    ```
+    Luego, debes referenciar el archivo CSS en el array `styles` de tu archivo `angular.json`.
+3.  **ng-bootstrap / ngx-bootstrap**: Utilizar librerías específicas diseñadas para Angular:
+    ```bash
+    ng add @ng-bootstrap/ng-bootstrap
+    ```
+    Este método es el más performante ya que permite importar solo los módulos que necesites (ej: solo el carrusel o solo los modales), optimizando el tamaño final de la aplicación.
 
+---
 
-## Bootstrap
-Para aplicar Bootstrap a nuestros proyectos hay 3 maneras. La primera es copiar el link del cdn y pegarlo en nuestro index.html. Otra forma es usar el comando ' npm install bootstrap@5.3.3 '. De esta forma, lo instalamos localmente.
+## Uso de Templates (Ejemplo Jumbotron)
 
-La tercer forma es poner el comando:
+Bootstrap ofrece una sección de **"Examples"** con estructuras ya listas para usar. Un ejemplo clásico es el **Jumbotron**.
 
-ng add @ng ... -habría que buscar el comando-
-
-La diferencia es que este está pensado para Angular. Eso serviría para importarlo con módulos para no traerme todo el Bootstrap entero, es decir, yo voy a elegir qué módulo de Bootstrap quiero usar, y lo importo. Serviría para que rinda más. Ojo: si bien sería lo más performante, no se pide hacer esto.
-
-
-## Templates
-Ahora vamos a la página de Bootstrap, y vamos a ir a la sección 'examples'. Vamos a descargarlos todos. Nos va a descargar una carpeta de ejemplos. Son todos templates. El que se recomienda usar es el que se llama Jumbotron
-
-Bien. Vamos a ver que Jumbotron tiene un archivo HTML llamado index. Lo abrimos con VSC y nos vamos a copiar SÓLO lo que esta dentro del body. Pero literalmente, es decir, la etiqueta de apertura y cierre de body tampoco debe estar. Sólo va el contenido del mismo. Esto es así porque nosotros ya tenemos nuestro propio body en nuestro HTML.
+### Cómo importar un template:
+1.  Descarga el código del ejemplo.
+2.  Abre el archivo `index.html` del template en tu editor.
+3.  Copia **únicamente** lo que se encuentra dentro de las etiquetas `<body>`. **No incluyas** las etiquetas `<body>` ni `<html>`, ya que tu aplicación Angular ya tiene su propia estructura base.
+4.  Pega ese contenido en el archivo `.html` de tu componente de Angular.
+5.  Asegúrate de tener Bootstrap correctamente instalado para que los estilos se apliquen de forma automática.

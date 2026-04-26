@@ -1,128 +1,82 @@
 ---
-title: "Defer de Hidratación Incremental"
-description: "'Hydrate' en @defer"
+title: "Defer y Hidratación Incremental"
+description: "Aprende a gestionar la hidratación de tus componentes de forma manual y progresiva en Angular utilizando disparadores de hidratación en bloques @defer."
 ---
 
+## Hidratación en `@defer`
 
-## "Hydrate" en @defer
+Además de controlar cuándo se renderiza un componente mediante el disparador `on`, Angular permite controlar cuándo se debe **hidratar** un componente utilizando el disparador **`hydrate on`**. Esto forma parte de la **Hidratación Incremental**, una técnica avanzada para optimizar aplicaciones que utilizan SSR (*Server Side Rendering*) o Prerendering.
 
-- Así como vimos el "on" para complementar el bloque @defer, ahora vamos a ver el "hydrate on". De esta forma llevamos a cabo la hidratación de nuestra aplicación de forma manual (Incremental Hydration). Es decir, nosotros vamos a especificar cuándo sí y cuándo no vamos a hidratar a los diferentes elementos de nuestra aplicación.
+### ¿Qué es la Hidratación?
+La hidratación es el proceso mediante el cual Angular "da vida" al HTML estático enviado por el servidor. Consiste en adjuntar los event listeners de JavaScript y establecer el estado de los componentes para que la página sea interactiva. Con la hidratación incremental, podemos decidir qué partes de la página se vuelven funcionales y en qué momento exacto.
 
-- Recordemos que la hidratación significa darle vida a los elementos HTML interactuables, para que tengan funcionalidad. Es decir, aplicarle JavaScript al HTML ya renderizado que ve el usuario.
+---
 
-- Para empezar, tenemos que ir a nuestro archivo "app.config.ts", y configurar la propiedad array "providers", de forma que al provideClientHydration le pasemos por parámetro el método llamado withIncrementalHydration(), así:
+## Configuración Inicial
+
+Para habilitar esta característica, debemos configurar nuestra aplicación en el archivo `app.config.ts`:
 
 ```typescript
+import { provideClientHydration, withIncrementalHydration, withEventReplay } from '@angular/platform-browser';
+
 export const appConfig: ApplicationConfig = {
-  	providers: [
-  	 	provideClientHydration(withIncrementalHydration(), withEventReplay())
-  	 ]
+  providers: [
+    provideClientHydration(
+      withIncrementalHydration(), 
+      withEventReplay()
+    )
+  ]
 };
 ```
-## Sintaxis
 
-- Antes de ver cada uno, veamos un resumen visual (es lo mismo que "on", pero con "hydrate"adelante):
+---
 
-Trigger					Descripción
-_______________________________________________________________________________________________________________
-| hydrate on idle | Hidrata cuando el navegador está idle |
-| --- | --- |
-| hydrate on viewport | Hidrata cuando un elemento en específico aparece en el viewport |
-| hydrate on interaction | Hidrata cuando el usuario interactúa con un elemento en específico |
-| hydrate on hover | Hidrata cuando el cursor pasa por encima de un elemento específico |
-| hydrate on timer | Hidrata después de una cantidad de tiempo definida |
-| hydrate on immediate | Hidrata  |
+## Disparadores de Hidratación
 
+Los disparadores de hidratación siguen la misma lógica que los disparadores de renderizado, pero actúan sobre la lógica del componente en lugar de su presencia física en el DOM.
 
-```typescript
-@defer (hydrate on idle) {
-```
-  		`<app-algun-componente />`
-```typescript
-}
-```
-- El bloque @defer se hidrata cuando el navegador está idle, es decir, cuando no tiene tareas importantes pendientes. Ideal para evitar hacer trabajo pesado mientras el usuario interactúa activamente con la app.
+| Disparador | Descripción |
+| :--- | :--- |
+| **`hydrate on idle`** | Hidrata el componente cuando el navegador está inactivo (sin tareas críticas). |
+| **`hydrate on viewport`** | Hidrata el componente solo cuando entra en el área visible del usuario. |
+| **`hydrate on interaction`** | Hidrata únicamente cuando el usuario interactúa (clic, teclado) con el elemento. |
+| **`hydrate on hover`** | Hidrata cuando el usuario pasa el cursor sobre el componente. |
+| **`hydrate on timer(X)`** | Pospone la hidratación una cantidad de tiempo definida. |
+| **`hydrate on immediate`** | Hidrata lo antes posible después del renderizado inicial. |
 
+### Ejemplos de uso
 
-```typescript
+**Hidratación por scroll:**
+```html
 @defer (hydrate on viewport) {
-	<app-algun-componente />
+  <app-heavy-charts />
 }
 ```
-- Así, el bloque @defer no se hidrata hasta que aparece en el viewport. Hasta entonces, no se aplica la lógica JS. Muy útil para componentes pesados que están lejos del scroll inicial del usuario.
+Esto permite que el gráfico sea visible (HTML/CSS), pero que el código JavaScript pesado que lo controla no se ejecute hasta que el usuario llegue a esa sección de la página.
+
+**Hidratación por interacción con disparador externo:**
+```html
+<button #loadBtn>Activar Funcionalidad</button>
+
+@defer (hydrate on interaction(loadBtn)) {
+  <app-interactive-editor />
+}
+```
+
+---
+
+## Combinando Renderizado e Hidratación
+
+Una de las potencias de esta sintaxis es que podemos separar el momento en que un componente aparece en el DOM del momento en que se vuelve interactivo:
 
 ```html
-<div #trigger></div>
-
-@defer (hydrate on viewport(trigger)) {
-```
-  		`<app-algun-componente />`
-```typescript
-}
-```
-- Este es lo mismo, pero basado en el componente que le pasamos por parámetro. Es decir, hasta que el "div" que tiene el "#trigger" no aparezca en el viewport, no se hidrata lo que esté dentro del bloque @defer.
-
-
-```typescript
-@defer (hydrate on interaction) {
-	<app-algun-componente />
-}
-```
-- El componente no se hidrata hasta que se interactúa con él (click, input, etc). Es una forma muy eficiente de cargar lógica solo si el usuario realmente quiere usar algo.
-
-
-```html
-<div #boton>¡Click acá!</div>
-
-@defer (hydrate on interaction(boton)) {
-	<app-algun-componente />
-}
-```
-- Este es lo mismo, pero basado en el componente que le pasamos por parámetro. Es decir, hasta que el usuario no interactúe con el "div" que tiene el "#trigger", no se hidrata lo que esté dentro del bloque @defer.
-
-```typescript
-@defer (hydrate on hover) {
-	<app-algun-componente />
-}
-```
-- Se hidrata cuando el usuario pasa el mouse por encima del componente (hover). Útil para elementos tipo tooltip, menús o vistas previas.
-
-
-```html
-<div #hoverZone>Pasá por encima</div>
-
-@defer (hydrate on hover(hoverZone)) {
-```
-  		`<app-algun-componente />`
-```typescript
-}
-```
-- Igual al anterior, pero disparado por hover sobre otro elemento específico.
-
-
-```typescript
-@defer (hydrate on timer(500ms)) {
-	<app-algun-componente />
-}
-```
-- El componente se hidrata una vez que pasan 500ms desde que se cargó. Se puede usar para distribuir la carga de la lógica a lo largo del tiempo y no saturar el navegador.
-
-
-```typescript
-@defer (hydrate on immediate) {
-	<app-algun-componente />
-}
-```
-- Se hidrata inmediatamente después de que Angular renderiza el HTML. Es útil si queremos aplicar un placeholder pero aún así hidratarlo tan pronto como sea posible.
-
-
-## Mezcla de "on" e "hydrate on"
-
-- Podemos hacer que un bloque @defer contenga ambas lógicas, separadas por un " ; ":
-
-```typescript
 @defer (on idle; hydrate on interaction) {
-	<app-algun-componente />
+  <app-complex-widget />
 }
 ```
-- Esto sería decir "el bloque @defer se renderiza una vez que el navegador está idle, es decir, disponible para cargar algo. Y quiero que se hidrate, es decir, que reciba lógica, en el momento en el que el usuario interactúa con él". Obviamente, esto se puede ir variando con cada trigger que estuvimos viendo en este apunte y en el anterior.
+
+**Explicación del flujo:**
+1.  **`on idle`**: El componente se renderiza (descarga su HTML y estilos) cuando el navegador está libre.
+2.  **`hydrate on interaction`**: El componente se vuelve funcional (descarga y ejecuta su lógica JS) solo cuando el usuario interactúa con él.
+
+Esta combinación es la clave para alcanzar un rendimiento excepcional, cargando solo lo indispensable y en el orden más eficiente para el usuario final.

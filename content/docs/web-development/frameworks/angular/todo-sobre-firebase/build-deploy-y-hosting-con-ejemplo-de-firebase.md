@@ -1,103 +1,90 @@
 ---
-title: "Build, Deploy y Hosting. Con ejemplo de Firebase"
-description: "Build, Deploy y Hosting"
+title: "Build, Deploy y Hosting (Ejemplo con Firebase)"
+description: "Aprende el flujo de trabajo completo para llevar tu aplicación Angular a producción: desde la optimización del build hasta el despliegue automático en Firebase Hosting."
 ---
 
+## Conceptos Fundamentales: Build, Deploy y Hosting
 
-## Build, Deploy y Hosting
+Para llevar una aplicación al mundo real, debemos entender tres procesos clave que a menudo se confunden:
 
-- Una build o construcción es el proceso de pasar a producción una aplicación, comprimiéndola y optimizándola lo máximo posible y de forma automática. Esto se logra modificando el contenido de los archivos del proyecto (y hasta omitiendo los que no deberíamos "subir". En este proceso se suelen llevar a cabo técnicas como Bundling, Transpiling, Minification, Uglify o Tree Shaking. De estos últimos hablamos en otro apunte, pero básicamente sirven para, justamente, reducir el peso de un proyecto lo máximo posible.
+1.  **Build (Construcción)**: Es el proceso de transformar el código de desarrollo en un paquete optimizado para producción. Durante este paso, Angular utiliza técnicas como *Bundling, Transpiling, Minification* y *Tree Shaking* para reducir el peso de los archivos al mínimo posible.
+2.  **Hosting (Alojamiento)**: Es el servicio donde residen físicamente los archivos de tu aplicación (como Firebase, Netlify o Vercel). Es el "servidor" que entrega tu web cuando alguien ingresa la URL.
+3.  **Deploy (Despliegue)**: Es la acción de subir tus archivos optimizados (la build) al servicio de hosting. Es el puente entre tu computadora y el servidor público.
 
-- Lógicamente, el motivo principal de hacer un build es que lo vamos a publicar en la web. Y sí, para publicar nuestra aplicación a la web, necesitamos tener una build de la misma. Y acá llega el concepto del Hosting, es decir, alojar nuestro sitio. Para esto, tenemos que usar alguna plataforma que sirva para hostear sitios web, como puede ser Netlify, Firebase, Vercel, Supabase, entre otros. 
+---
 
-- Lógicamente, nosotros no vamos a querer que TODOS nuestros archivos del proyecto estén subidos de forma pública, y por eso es que hacemos el build, que es lo que realmente vamos a subir a Netlify, Firebase o los demás.
+## El Proceso de Build en Angular
 
-- Y... ¿Qué es el deploy? El deploy es el DESPLIEGUE, de nuestra aplicación. Es decir, el proceso de publicar nuestra build en una plataforma de hosting, y se podría leer como: "Tengo mi aplicación, creo una build de ella, es decir, la buildeo, y después hago el deploy en alguna plataforma de hosting, es decir, 'la deployeo' o 'la despliego'".
+Para generar la versión de producción de tu aplicación, utiliza el siguiente comando:
 
-
-
-## Build en Angular
-
-- Para crear una build de nuestra aplicación Angular, usamos el siguiente comando:
-
-```text
-ng build
+```bash
+ng build --configuration production
 ```
-- Después de esto, Angular se va a encargar de crearnos una carpeta llamada "dist". En ella, entre otros archivos, vamos a ver 2 carpetas principales: browser y server (si la aplicación es no-SSR no va a aparecer la carpeta server). Lo que importa es nuestra carpeta browser, ya que es la que vamos a usar para desplegar la aplicación:
+
+Angular generará una carpeta llamada `dist/` en la raíz de tu proyecto. Dentro de ella, la estructura típica será:
 
 ```text
 dist/
-├── mi-proyecto/
-│   	├── browser/ ← 🌟Los archivos estáticos (HTML, JS, CSS, etc.)
+└── mi-proyecto/
+    ├── browser/  <-- 🌟 Contiene los archivos finales (HTML, JS, CSS) que lee el navegador.
+    └── server/   <-- Solo aparecerá si has habilitado SSR (Server Side Rendering).
 ```
-| │ | ├── server/  |
-| --- | --- |
-| │ | ├── ... otros |
 
-- Como vemos, "browser" va a ser la carpeta que necesitan interpretar los navegadores. Así que esa es la que vamos a usar para hostear nuestra aplicación en Netlify, Firebase, Vercel, o cualquiera de estos.
+### ¿Por qué usar el modo producción?
+El parámetro `--configuration production` (o `-c production`) asegura que Angular aplique optimizaciones máximas:
+*   **Minificación**: Elimina espacios y renombra variables para ahorrar espacio.
+*   **Tree Shaking**: Elimina automáticamente el código que no estás utilizando.
+*   **AOT (Ahead-of-Time)**: Pre-compila las plantillas para que el navegador no tenga que hacerlo.
+*   **Limpieza**: Elimina `console.log` y comentarios innecesarios.
 
-- Desde Angular 16, hacer "ng build" compila la build en modo producción por defecto, pero para hacerlo de una forma más explícita y óptima, se recomienda hacer:
+---
 
-```text
-ng build --configuration production
-```
-- **O resumido**: 
+## Despliegue en Firebase Hosting
 
-```text
-ng build -c production
-```
-- Hacerlo así, nos garantiza totalmente que el build se va a hacer en modo producción, hasta si estamos en un entorno de desarrollo o si tenemos varias configuraciones.
+Firebase facilita enormemente el despliegue de aplicaciones estáticas. Una vez configurado el proyecto, el despliegue se resume en un comando:
 
-- Pero... ¿Qué nos da el modo producción? Nos da mejor performance en nuestra aplicación, ya que:
-
-```text
-- Minifica el código
-- Elimina console.logs y debugger
-- Optimiza assets
-- Tree shaking (sacar código no usado)
-- Compresión más eficiente
-```
-## Deploy en Firebase
-
-- Esto es muy sencillo. Lo único que hay que hacer es usar este comando:
-
-```text
+```bash
 firebase deploy
 ```
-- Y listo, ahora si vamos a la consola web de Firebase y vamos a la sección Hosting, vamos a ver los enlaces que nos llevan a nuestro sitio desplegado. Sin más.
 
-- Aunque sí, obviamente y como hablamos antes en este apunte, la ruta en donde nosotros hacemos nuestro build de la aplicación tiene que coincidir con la que le indicamos a Firebase qué tiene que hostear. En el archivo "firebase.json", vamos a encontrar:
+### Configuración del directorio público
+Es vital que Firebase sepa exactamente dónde está tu carpeta de build. Esto se define en el archivo **`firebase.json`**:
 
-```typescript
-"hosting": {
-    "public": "dist/vital-avellaneda/browser",
-    ... otras ...
-```
-- Ese es un ejemplo correcto de cómo indicar la carpeta donde se hace el build.
-
-
-## Truco para agilizar el proceso build-deploy
-
-- Como vemos, cada vez que vayamos a querer actualizar los cambios de nuestra app, tendríamos que hacer la build y después el deploy. Bueno, podríamos resumir esos dos pasos en uno, creando un script en el archivo "package.json":
-
-```typescript
-"scripts": {
-	...otros...
-	"deploy-fb": "ng build && firebase deploy --only hosting"
+```json
+{
+  "hosting": {
+    "public": "dist/nombre-de-tu-proyecto/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
 }
 ```
-- **Entonces, podemos usar el comando**: 
 
-```text
-npm run deploy-fb
+---
+
+## Pro Tip: Automatiza con Scripts
+
+Puedes agilizar el proceso de actualizar tu web creando un script personalizado en tu archivo **`package.json`**:
+
+```json
+"scripts": {
+  "deploy-prod": "ng build -c production && firebase deploy --only hosting"
+}
 ```
-- Y se van a ejecutar ambos comandos en uno (el ng build y el firebase deploy --only-hosting).
 
-- Y... ¿Qué es el --only-hosting?  Este comando le dice a Firebase: "Desplegá solo la parte de Hosting. No toques Firestore, Storage, ni nada más.". Así como existe el --only-hosting, también están:
-
-```text
-firebase deploy --only firestore
-firebase deploy --only auth
-firebase deploy --only hosting,firestore
+Ahora, solo necesitas ejecutar:
+```bash
+npm run deploy-prod
 ```
-- En resumen, usar --only es una buena práctica cuando queremos controlar exactamente qué se sube, y así hacer que el deploy se haga más rápido.
+
+### ¿Para qué sirve `--only hosting`?
+Este comando le indica a Firebase que **solo** suba los archivos de la web, ignorando cambios en la base de datos (Firestore), reglas de seguridad o funciones (Cloud Functions). Esto hace que el proceso de despliegue sea mucho más rápido y seguro si solo has modificado la interfaz visual.

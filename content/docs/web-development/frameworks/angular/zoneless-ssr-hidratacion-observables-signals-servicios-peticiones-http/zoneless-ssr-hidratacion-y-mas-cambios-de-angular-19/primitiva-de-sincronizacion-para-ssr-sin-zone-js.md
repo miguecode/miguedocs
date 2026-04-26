@@ -1,40 +1,61 @@
 ---
-title: "Primitiva de sincronización para SSR sin Zone.js"
-description: "Primitiva de sincronización para SSR sin Zone.js [Lo mismo del apunte anterior]"
+title: "Primitiva de Sincronización: pendingUntilEvent"
+description: "Guía rápida sobre el uso de la primitiva pendingUntilEvent en Angular para coordinar peticiones asíncronas durante el renderizado SSR en aplicaciones Zoneless."
 ---
 
+## Sincronización en Aplicaciones Zoneless
 
-## Primitiva de sincronización para SSR sin Zone.js [Lo mismo del apunte anterior]
+En una aplicación **Zoneless** (sin `Zone.js`), Angular pierde la capacidad de monitorear automáticamente cuándo terminan las tareas asíncronas en el servidor. Esto genera un problema crítico en **SSR (Server Side Rendering)**: Angular podría enviar el HTML al cliente antes de que los datos de una API hayan llegado, resultando en una página vacía o con errores de hidratación.
 
-- Esto ya lo hablamos en el apunte anterior (literalmente, es un copy-paste), pero ahora lo vuelvo a poner acá en un apunte aparte, por las dudas y para encontrarlo más rápido.
+La primitiva **`pendingUntilEvent()`** soluciona esto actuando como un semáforo que detiene el renderizado del servidor hasta que un flujo de datos específico se complete.
 
-- Una primitiva es una herramienta base que busca resolver un problema complejo. En este contexto, Angular nos brinda una API de bajo nivel para coordinar eventos de renderizado SSR sin Zone.js (Zoneless).
+---
 
-- **Antes de ver la solución, veamos el problema**: Sin Zone.js, ¿Cómo sabe Angular cuándo se termina de renderizar un componente en el servidor, es decir, antes de enviárselo al cliente/navegador? Bueno, para esto es que vamos a ver la primitiva, la cual se aplica en HttpClient y Router. Siempre se va a escribir así:
+## El Problema: Carreras de Renderizado
+
+Sin esta primitiva, el ciclo de vida en el servidor sería:
+1.  Angular inicia el renderizado.
+2.  El componente solicita datos vía `HttpClient` (Petición asíncrona).
+3.  Angular no "ve" que hay una tarea pendiente.
+4.  Angular termina el renderizado y envía un HTML incompleto al navegador.
+
+---
+
+## La Solución: `pendingUntilEvent()`
+
+Esta API le indica explícitamente a Angular: *"No cierres el proceso de renderizado de este componente hasta que este Observable emita un valor o se complete"*.
+
+### Implementación en un Servicio o Componente:
 
 ```typescript
-subscription.asObservable()
-	.pipe(
-		pendingUntilEvent(injector),  // <- Esto le dice a Angular que debe esperar antes de enviar el HTML
-		catchError(() => EMPTY),  // <- Esto catchea un posible error
-	)
-	.subscribe();
-```
-- Primero, entendamos la solución conceptualmente. La idea de la primitiva es decirle a Angular: "Che, el HTML que estamos pre-renderizando en el servidor, todavía no se lo mandes al navegador, porque todavía falta agregarle los datos que me va a devolver este Observable (ya sean valores emitidos o un complete()). Y aparte, porque son datos importantes".
+import { inject, Injector } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { pendingUntilEvent } from '@angular/core';
+import { catchError, EMPTY, Observable } from 'rxjs';
 
-- ¿Cuándo usar esta primitiva? Cuando estamos usando SSR y nuestro componente realiza peticiones con HttpClient, o cuando usa Router.navigate, por ejemplo. Un método completo se puede ver así:
+export class DataService {
+  private http = inject(HttpClient);
+  private injector = inject(Injector);
 
-```typescript
-getData(): Observable<any> {
-    return this.http.get('/api/data') // Como hacemos una petición HTTP, usamos la primitiva
-      .pipe(
-        pendingUntilEvent(this.injector),
-        catchError(() => EMPTY)
-      );
+  getData(): Observable<any> {
+    return this.http.get('https://api.example.com/data').pipe(
+      // Marcamos este flujo como crítico para el renderizado SSR
+      pendingUntilEvent(this.injector),
+      
+      // Es vital capturar errores para no bloquear el servidor infinitamente
+      catchError(() => EMPTY)
+    );
   }
+}
 ```
-- El método pendingUntilEvent() marca nuestro observable como algo importante. Angular, durante el render SSR, va a ESPERAR hasta que se complete ese observable (o falle y lo catcheemos). Y una vez que termine, ahí sí cierra la "foto del Servidor" y la manda al cliente/navegador. 
 
-- Si no usáramos pendingUntilEvent(), Angular simplemente no se entera de que nosotros estamos esperando algo (como la petición HTTP en el Observable), y por ende manda el HTML lo más rápido posible al navegador. Eso va a provocar que el HTML renderizado no tenga datos necesarios, que el SEO no funcione bien, o que el usuario vea un parpadeo raro.
+---
 
-- **Y eso es todo. Y ojo**: no pasa nada con que usemos un "asObservable()" o no, eso es indistinto (sería necesario si estamos usando una Signal convertida a Observable con el toObservable()). El punto es que este pipe() va enchufado a algún Observable cuya emisión sea una petición HTTP, o sino (y menos común) en el uso de algún método de Router, como Router.navigate().
+## ¿Cuándo utilizarla?
+
+*   **Peticiones HTTP**: Cualquier dato necesario para que el SEO de la página sea correcto (títulos, descripciones, contenido principal).
+*   **Navegación del Router**: En métodos como `Router.navigate()`, si el cambio de ruta debe completarse antes de la hidratación inicial.
+*   **Cualquier flujo de RxJS**: Que deba ser resuelto del lado del servidor antes de generar el "snapshot" final del HTML.
+
+> [!IMPORTANT]
+> El uso de `pendingUntilEvent` requiere un `Injector`. Asegúrate de inyectarlo en el constructor o mediante la función `inject()`. Además, siempre añade un `catchError` para evitar que peticiones fallidas mantengan el renderizado del servidor en espera de forma indefinida.

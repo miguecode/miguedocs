@@ -1,10 +1,24 @@
 ---
 title: "Service Workers"
-description: "Se encarga de mantener la info. guardada en nuestro navegador, como una plantilla de lo que debería ser. Para que si nosotros estamos offline -por lo que sea-, ..."
+description: "Descubre cómo los Service Workers permiten que tus aplicaciones Angular funcionen sin conexión a internet, mejorando la fiabilidad y la experiencia del usuario."
 ---
 
+## Introducción a los Service Workers
 
-Service Workers
-Se encarga de mantener la info. guardada en nuestro navegador, como una plantilla de lo que debería ser. Para que si nosotros estamos offline -por lo que sea-, podamos seguir navegando en la página en una versión local la cual obviamente no va a poder actualizarse en vivo. Pero la idea es que siga funcionando localmente para que, si nos vuelve el internet, nosotros ni nos demos cuenta de que se nos había ido.
+Un **Service Worker** es un script que el navegador ejecuta en segundo plano, separado de la página web principal. Su función principal es actuar como un intermediario entre la aplicación, el navegador y la red.
 
-Un ejemplo de esto puede ser Youtube cuando se va la conexión, que el video se sigue reproduciendo hasta donde haya cargado y quizá ni nos damos cuenta de que se nos fué el internet.
+### ¿Para qué sirven?
+Su objetivo principal es gestionar el **almacenamiento en caché** de los recursos de la aplicación. De esta forma, mantiene una copia local de la "plantilla" de la web en nuestro navegador.
+
+*   **Soporte Offline**: Si el usuario pierde la conexión a internet, el Service Worker sirve los archivos desde la caché. Esto permite que el usuario pueda seguir navegando en una versión local de la página.
+*   **Sincronización en segundo plano**: Cuando el internet regresa, el Service Worker puede sincronizar los datos acumulados sin que el usuario lo note, garantizando una experiencia fluida y sin cortes.
+*   **Notificaciones Push**: Permiten enviar notificaciones incluso cuando la aplicación no está abierta.
+
+### Ejemplo práctico
+Un ejemplo muy común es **YouTube**: cuando pierdes la conexión, el video sigue reproduciéndose hasta donde el almacenamiento en caché (gestionado en parte por este concepto) ha logrado descargar los datos. A menudo, el usuario ni siquiera se da cuenta de la caída momentánea del servicio gracias a este colchón de datos local.
+
+En Angular, podemos añadir soporte para Service Workers fácilmente ejecutando:
+```bash
+ng add @angular/pwa
+```
+Esto configurará automáticamente los archivos necesarios para transformar nuestra aplicación en una **PWA** (*Progressive Web App*).

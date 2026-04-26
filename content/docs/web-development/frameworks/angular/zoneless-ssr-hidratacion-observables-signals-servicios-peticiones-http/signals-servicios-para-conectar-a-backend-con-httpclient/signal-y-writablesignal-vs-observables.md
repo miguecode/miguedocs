@@ -1,106 +1,86 @@
 ---
-title: "Signal y WritableSignal. VS Observables"
-description: "Un Signal es una FUNCIÓN. Una función reactiva que representa un valor que cambia en el tiempo. Forma parte del núcelo de Angular (desde Angular 16), y no de la..."
+title: "Signals y WritableSignals: La nueva reactividad"
+description: "Entiende el motor de reactividad nativo de Angular: los Signals. Aprende las diferencias con RxJS, cómo transformar observables y cuándo utilizar set vs update."
 ---
 
+## ¿Qué es un Signal?
 
-## Signal
+Un **Signal** es una función reactiva que representa un valor que cambia a lo largo del tiempo. A diferencia de RxJS, los Signals forman parte del núcleo de Angular (`@angular/core`) desde la versión 16.
 
-- Un Signal es una FUNCIÓN. Una función reactiva que representa un valor que cambia en el tiempo. Forma parte del núcelo de Angular (desde Angular 16), y no de la biblioteca RxJS. Para que se entienda fácil: Una signal es como un "contenedor", es una cajita que guarda un valor. La idea es que dicho valor vaya cambiando con el tiempo, pero es eso sólo: un valor. Y obviamente, ese valor puede ser cualquier cosa, un objeto, una función, una clase, un número, lo que sea. El punto es que siempre contiene un valor, el cual cambia con el tiempo.
+Conceptualmente, podemos ver un Signal como un **contenedor** o cajita que siempre guarda un valor actual. Al ser una función, se accede a dicho valor llamándola con paréntesis: `miSignal()`. Su gran ventaja es que Angular sabe exactamente qué partes de la interfaz dependen de ese valor, permitiendo actualizaciones quirúrgicas sin necesidad de Zone.js.
 
-- Al ser una función, se accede a ella llamándola con paréntesis (). Su particularidad es que reacciona automáticamente cuando cambia su valor, como si fuera un computed de Voue o un useState de React, pero más fluido.
+### Tipos de Signals
+1.  **`WritableSignal<T>`**: Es una señal que permite tanto la lectura como la escritura (modificación del valor). Se crea mediante la función `signal()`.
+2.  **`Signal<T>`**: Es una señal de **solo lectura**. No permite usar métodos como `set` o `update`. Suele ser el resultado de transformar un observable o de crear una señal computada.
 
-- **Hay dos tipos de Signal comunes**: 
+---
 
-1. Signal`<T>` (El signal no modificable)
-2. WritableSignal`<T>` (El signal modificable)
+## Manipulación de Signals (WritableSignal)
 
-- Si bien son lo mismo en esencia, el primero es de solo lectura, y el segundo puede usar los métodos set() y update(), para cambiar su valor. Todas las signales, ya sean Signal o WritableSignal, se crean con la función signal().
+Para modificar el valor de una señal, disponemos de dos métodos principales:
 
-
-## WritableSignal`<T>` (el Signal modificable)
+*   **`set(nuevoValor)`**: Reemplaza el valor actual por uno completamente nuevo, sin importar cuál fuera el anterior.
+*   **`update(fn)`**: Modifica el valor basándose en el estado actual mediante una función callback.
 
 ```typescript
 import { signal } from '@angular/core';
 
-const count: signal<number> = signal(0);
+const count = signal(0); // Creamos un WritableSignal<number>
 
-console.log(count()); // Muestra 0
-count.set(5);
-console.log(count()); // Muestra 5
+// Actualización directa
+count.set(10); 
+
+// Actualización basada en el valor anterior
+count.update(current => current + 1);
+
+console.log(count()); // Salida: 11
 ```
-- En este caso, creamos una variable llamada "count", la cual va a ser de tipo WritableSignal`<number>`. Como vemos, la creamos mediante la función signal(), porque es eso, una función. En este caso, hicimos que su T (tipo genérico) sea un number. La creamos con signal() y le pasamos un valor inicial, que en este caso es un 0. Entonces, al hacer console.log de count(), se muestra dicho valor. Después, con "set" podemos ACTUALIZAR ese valor.
 
+---
 
-## Signal`<T>` (el Signal de solo lectura)
+## Comparativa: Signals vs. RxJS (Observables)
 
-- Signal`<T>` es la versión de WritableSignal pero sin sus métodos mutadores (modificadores), como set() o update(). Y esa es la única diferencia, el concepto es literalmente mismo (ser el contenedor de un valor), pero con la diferencia de que estos no tienen métodos para cambiar el valor que están guardando.
+Los Signals no vienen a reemplazar a los Observables, sino a complementarlos. Cada herramienta tiene su escenario ideal.
 
-- Pero antes de ver un ejemplo con Signal`<T>`, vamos a ver la diferenciación entre los Signal en genral y los Observables, Subject y BehaviorSubjects:
+| Característica | Signals | Observables (RxJS) |
+| :--- | :--- | :--- |
+| **Librería** | `@angular/core` | `rxjs` |
+| **Acceso** | Llamada a función: `count()` | Suscripción: `.subscribe()` |
+| **Manejo de Memoria** | Automático (sincrónico) | Manual (`unsubscribe`) o `async` pipe |
+| **Uso Ideal** | Estado de la UI, variables locales | Flujos asíncronos (HTTP, WebSockets) |
+| **Valor Inicial** | Siempre tiene un valor | Puede no tener valor inicial |
 
+### ¿Cómo decidir?
+*   Usa **Signals** para representar el estado de tus componentes y mostrar datos en el HTML. Son más simples y no requieren gestión de suscripciones.
+*   Usa **RxJS** para manejar flujos complejos de datos, orquestar múltiples peticiones HTTP o capturar eventos continuos del navegador.
 
-## Comparación de WritableSignal`<T>` vs Observable y variantes
+---
 
-Característica			WritableSignal`<T>`				Observable				Subject / BehaviorSubject
-_____________________________________________________________________________________________________________________________
-| Librería | @angular/core | RxJS | RxJS |
-| --- | --- | --- | --- |
-| Reactividad | Funciona por "lectura reactiva" | Funciona por suscripción | Funcionan por suscripción |
-¿Cómo se accede?		signal()						observable.subscribe()		También con subscribe()
-¿Cómo emite valor?		set() / update()					next() o métodos RxJS		next()
-| ¿Guarda último valor? | ✅ Siempre guarda el valor | ❌ No | ✅ BehaviorSubject sí |
-| --- | --- | --- | --- |
-| Limpieza | No necesita, es sincrónico | Necesita desuscripción | Necesita desuscripción |
-_____________________________________________________________________________________________________________________________
+## Interoperabilidad: toSignal y fromObservable
 
-- **Aclaración**: Esa tabla habla de los signals como WritableSignal`<T>`. Como dijimos antes, también existe Signal`<T>`, que es lo mismo pero sin métodos de modificación.
+Angular proporciona herramientas en `@angular/core/rxjs-interop` para saltar entre ambos mundos de forma sencilla.
 
-- Entonces... ¿Los Signals reemplazan a los Observables? No exactamente: son herramientas diferentes con enfoques distintos. Lo ideal es usarlos juntos: por ejemplo, hacer una petición HTTP con HttpClient (que devuelve un Observable), y convertir su retorno en un Signal con el método toSignal(), para que sea más fácil trabajar con ella en la vista (es decir, en el template HTML).
-
-- Esto último es justamente lo que hicimos de ejemplo en apuntes anteriores: Crear un servicio que hace peticiones HTTP, las cuales devuelven objetos de tipo Observable, y después inyectar el servicio en otro componente, el cual va a transformar esos Observable a Signal, usando la función toSignal().
-
-Signal					Observable
-______________________________________________________________________________________________
-Ideal para estado local / UI	Ideal para manejar streams (HTTP, websockets, eventos)
-Declarativo y sincrónico		Asíncrono, orientado a flujos
-No necesita subscribe()		Necesita subscribe() o async pipe
-No requiere desuscripción	Sí requiere o usa async/takeUntilDestroyed()
-______________________________________________________________________________________________
-
-
-- Eso sí, los Signal comparten ciertas ideas con BehaviorSubject:
-
-- Ambos guardan el valor actual
-- Podemos leer ese valor en cualquier momento
-- Pueden cambiar ese valor actual para que los suscriptores reaccionen a él
-
-- Pero la diferencia clave es que Signal lo hace sin necesidad de suscripción / desuscripción.
-
-
-## Pasar de Observable a Signal y viceversa
-
-- Esto forma parte de la relación entre Signal y RxJS. Como dijimos anteriormente, toSignal() es una función que convierte un Observable en un Signal, pero también existe fromSignal() para hacer la conversión al revés, así:
-
--	toSignal(miObservable$) 	  → convierte el Observable en Signal`<T>`.
--	fromSignal(miSignal) 	  → convierte el Signal en Observable.
-
-- **En código, lo veríamos así**: 
+### De Observable a Signal
+Ideal para convertir una petición HTTP en un valor fácil de usar en el template sin `async` pipe:
 
 ```typescript
-const characters$: Observable<Character[]> = this.http.get<Character[]>(...);
-const characters: Signal<Character[]> = toSignal(characters$);
+import { toSignal } from '@angular/core/rxjs-interop';
+
+const data$ = http.get<User[]>('/api/users');
+const users = toSignal(data$, { initialValue: [] });
+
+// En el HTML: @for (user of users()) { ... }
 ```
-## Método set() y update()
 
-1. El método set() de las Signals reemplaza/actualiza/pisa el valor actual de la signal por el valor que se le pasa por argumento, pero no se basa en el valor actual de la signal. Es decir, da igual el valor actual de la signal, lo que le pasemos por set() va a reemplazar a dicho valor. 
+### De Signal a Observable
+Útil si necesitas usar operadores de RxJS (como `debounceTime` o `switchMap`) sobre un valor que vive en una señal:
 
-2. El método update() de las Signals, a diferencia del set(), SÍ necesita tomar en cuenta al valor actual de la misma. Este método update() recibe un callback, el cual recibe por parámetro al valor actual de la signal. Y el retorno de dicho callback va a ser el nuevo valor de la signal. Es decir, el callback tiene 2 funcionalidades: recibe por parámetro al valor actual de la signal, y lo que va a retornar va a ser el nuevo valor de la signal.
+```typescript
+import { fromObservable, fromSignal } from '@angular/core/rxjs-interop';
 
-```sql
-let mySignal = signal(10);
-mySignal.set(20); // mySignal ahora es 20
-
-let mySignal = signal(10);
-mySignal.update(current => current + 5); // mySignal ahora es 15
+const count$ = fromSignal(myCountSignal);
+count$.pipe(debounceTime(300)).subscribe(...);
 ```
-- Como vemos, set() simplemente recibe un valor. Ese valor va a pisar al valor actual de la signal. En cambio, update() recibe un callback. En este caso, el callback es una arrow function la cual tiene una variable "current". En ella, se va a almacenar el valor actual de la signal (que en este caso sería 10). Después, lo que retorne dicho callback va a pisar al valor actual de la signal.
+
+> [!TIP]
+> Una señal compartida se parece mucho a un `BehaviorSubject` de RxJS, pero con una sintaxis mucho más limpia y sin la sobrecarga de tener que desuscribirse manualmente.

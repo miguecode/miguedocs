@@ -1,67 +1,54 @@
 ---
-title: "Det. de cambios. Zone.js, Znless, Signals, Reactividad"
-description: "Detección de cambios en Angular"
+title: "Detección de Cambios: De Zone.js a Signals"
+description: "Comprende la evolución de la detección de cambios en Angular: qué es Zone.js, por qué el futuro es Zoneless y cómo las Signals revolucionan la performance de las aplicaciones."
 ---
 
+## ¿Qué es Zone.js?
 
-## Detección de cambios en Angular
+Históricamente, Angular ha dependido de una librería llamada **Zone.js**. Su función es monitorear todas las operaciones asíncronas de la aplicación (promesas, eventos del DOM, `setTimeout`, etc.). Cuando detecta que algo ha terminado, le avisa a Angular: *"Algo ha ocurrido, revisa si hay cambios en la interfaz"*.
 
-- Para empezar, tenemos que saber que Zone.js es una librería de JavaScript que "monitorea" todas las operaciones asíncronas (promesas, eventos, timeouts, etc.) de nuestra aplicación. Lo que hace es "interceptar" esas operaciones y le avisa a Angular: "Che, hubo un cambio. Mirá a ver si tenés que actualizar el DOM". Esto no es del todo eficiente.
+Sin embargo, este proceso tiene una ineficiencia clave: **el burbujeo global**. Ante cualquier pequeño cambio en un componente, Zone.js provoca que Angular recorra el árbol completo de componentes para verificar qué debe actualizarse. Aunque se optimizó con el tiempo, sigue siendo un proceso costoso para aplicaciones grandes.
 
-- Últimamente, la detección de cambios en Angular está empezando a pasar de Zone.js a Signals (señales), y ¿Por qué? Esto es porque la detección de cambios con Zone.js, como dijimos, es poco eficiente: cada vez que ocurre un cambio, se pone a hacer un burbujeo en TODO el DOM. Entonces, si hay un cambio en algún componente específico, el Zone.js se pone a recorrer todo el resto del DOM a ver si había otro cambio. Es cierto que después se mejoró ese sistema mediante el uso de ramas, pero sigue sin ser lo ideal.
+---
 
-- Más adelante, apareció el concepto de ChangeDetectionStrategy (Estrategia de detección de cambios). Al configurar esta estrategia en "OnPush", cambiamos ese comportamiento: ahora Angular solo chequea los componentes que recibieron cambios explícitos. A raíz de esto, aparecieron las Signals, pero ojo: Zone.js sigue siendo la opción predeterminada, lo cual se espera que en un tiempo deje de ser así. 
+## La Evolución: De Global a Quirúrgico
 
-Zone.js -> "Cuando algo cambia, chequeo TODO."
-Signals -> "Cuando algo cambia, sé exactamente dónde impacta ese cambio."
+Para mejorar el rendimiento, Angular introdujo dos conceptos fundamentales que nos llevan hacia el futuro **Zoneless** (sin Zone.js):
 
-- Y... ¿Qué es "Zoneless"? Literalmente significa "Sin Zone.js". Zoneless hace referencia a la no necesidad de Zone.js, haciendo que Angular ya no necesite "vigilar" todo el tiempo las operaciones asíncronas, y en cambio, usa Signals y otros mecanismos para detectar cambios de forma mucho más precisa y controlada. ¿Cómo? Haciendo que cada componente registre de forma explícita sus propias dependencias reactivas (Ej: una Signal). Entonces, Angular ya sabe exactamente qué actualizar y cuándo.
+*   **ChangeDetectionStrategy.OnPush**: Esta estrategia le indica a Angular que solo revise un componente si sus entradas (`@Input`) han cambiado o si ocurre un evento de usuario explícito dentro de él.
+*   **Signals**: Son "canales" de datos reactivos. A diferencia de las variables normales, una Signal sabe exactamente quién la está utilizando. Cuando el valor de una Signal cambia, Angular no necesita revisar todo el edificio; sabe qué "habitaciones" (componentes) impacta el cambio y actúa solo allí.
 
-- **Una analogía rápida puede ser**: 
+### Analogía del Portero vs. Cámaras
+1.  **Zone.js**: Es como un portero que revisa **todos los departamentos** de un edificio cada vez que suena cualquier timbre.
+2.  **Zoneless (Signals)**: Es como un sistema de cámaras inteligentes que sabe exactamente qué puerta se abrió y solo envía al personal a esa oficina específica.
 
-1. Zone.js es como un portero que revisa todo el edificio cada vez que alguien toca el timbre.
+---
 
-2. Zoneless (usando Signals) es como un sistema de cámaras que sabe exactamente en qué puerta hay movimiento, y por ende, solo revisa esa puerta.
+## Programación Reactiva: Canales y Espectadores
 
+El uso de Signals fomenta la **Reactividad**, un concepto que podemos ver mediante esta analogía:
 
-## Reactividad o Programación Reactiva (Reactive Programming)
+1.  **Canales (Tubos)**: Son flujos de datos por donde pasan "pelotas" (eventos).
+2.  **Espectadores (Componentes)**: Observan a través de agujeros en esos tubos. Cada espectador es un mundo y reacciona de forma diferente a lo que ve pasar.
+3.  **Filtrado**: Mientras un espectador ve una pelota verde, otro ve una pelota rápida. Cada uno toma lo que necesita del canal y **reacciona** actualizando su propia vista.
 
-- El uso de Signals favorece a la Programación Reactiva o Reactividad. Para entender este concepto, pensemos en la siguiente analogía: 
+Al usar Signals como canales, Angular puede rastrear automáticamente quién disparó el evento y quién reaccionó a él. Esto elimina la necesidad de "vigilar" todo el tiempo, ya que la aplicación se vuelve autogestionada por el flujo de datos.
 
-1. Canales: Son tubos con agujeritos.
-2. Espectadores: Van a mirar a través de esos agujeritos.
-3. Eventos: Pasa un objeto por el tubo
+---
 
-- Cada espectador es como un humano, cada uno es su propio mundo, y cada uno ve lo que quiere. Es posible que pase un objeto por un tubo, y los espectadores hayan visto cosas distintas. Quizá uno vió que pasó una pelota, otro vió que el objeto era verde, y otro vió que pasó a 20km/h. Es decir, ante un mismo objeto pasado por un canal, los espectadores vieron distintos aspectos de ese objeto, a través de los agujeritos del canal/tubo.
+## El Rol de RxJS en el Ecosistema
 
-- Y como cada espectador ve algo distinto, REACCIONA de forma diferente ante lo que vio. Y de ahí viene la "Reactividad", de "Reaccionar" a algo. En esta analogía, los espectadores serían nuestros COMPONENTES. Los cuales, ante un evento, van a reaccionar de una forma particular e individual.
+Angular sigue siendo compatible y potente gracias a **RxJS**, que gestiona tres tipos principales de canales:
 
-- **Y ahora unimos dos conceptos**: Las Signals (señales), y los canales. Sí: las Signals son nuestros canales, y gracias a ellas, vamos a poder saber lo siguiente:
+1.  **Observable**: Un canal unidireccional donde solo el productor puede enviar datos.
+2.  **Subject**: Un canal bidireccional donde múltiples emisores pueden enviar datos.
+3.  **BehaviorSubject**: Un canal que, además de ser bidireccional, siempre guarda la "última pelota" emitida para entregarla a nuevos suscriptores.
 
-1. Quién hizo pasar la pelota por el tubo. Es decir, quién disparó el evento.
-2. Quién escuchó el evento. Es decir, qué espectador reaccionó a la pelota que pasó a través del tubo.
+> [!IMPORTANT]
+> Las **Signals** no reemplazan a RxJS. Las Signals son ideales para el **estado de la UI** y la detección automática de cambios, mientras que RxJS sigue siendo la mejor herramienta para **flujos asíncronos complejos** como orquestación de APIs o WebSockets.
 
-- Entonces, ¿Quiénes se ven impactados por cambios? La respuesta es: los que usen el canal. Es decir, el que use la Signal. Y esos van a ser los componentes asociados a esa Signal. O sea, los espectadores que estaban viendo ese canal.
+---
 
+## Hacia un Futuro Zoneless
 
-## Biblioteca RxJS
-
-- La biblioteca de Angular llamada RxJS se encarga de manejar tres tipos de CANALES, que son los Observables, los Subject y los BehaviorSubject:
-
-1. Observable: Es un canal, pero donde solo UNO puede hacer pasar la pelota por él. Es UNIDIRECCIONAL. 
-2. Subject: Es un canal, pero en el cual TODOS pueden mandar una pelota. Es BIDIRECCIONAL.
-3. BehaviorSubject: Es como el Subject, pero en este caso, siempre queda la última pelota guardada.
-
-- Angular SIGUE usando la biblioteca RxJS, ya que es muy poderosa y está siendo usada en infinidad de proyectos. Es decir, las Signals no reemplazan totalmente a los Observables.
-
-
-## Concepto general
-
-- En resumen, Angular está dando un gran paso hacia una reactividad más precisa, dejando atrás los chequeos globales de Zone.js, y adoptando mecanismos donde solo reaccionan quienes realmente lo necesitan. Eso significa mayor eficiencia y control para nosotros como desarrolladores.
-
-- Signals + OnPush + Zoneless = la mejor combinación para apps de alta performance.
-
-
-## ¿Cómo implementar este cambio en código?
-
-- Esto lo vamos a ver en un apunte futuro. No es nada difícil pero lo vamos a separar en un apunte dedicado a cómo implementar cada cambio nuevo de Angular.
+La combinación de **Signals + OnPush + Zoneless** representa el estándar de alta performance en Angular moderno (v18 - v19+). Al eliminar Zone.js, reducimos el peso del paquete final (*bundle size*) y ganamos un control total y predecible sobre cuándo y cómo se actualiza nuestra aplicación.

@@ -1,74 +1,86 @@
 ---
-title: "Servicios"
-description: "Los servicios son elementos de Angular muy potentes, usados para:"
+title: "Servicios en Angular"
+description: "Aprende qué son los servicios, cómo implementan el patrón Singleton para compartir información y por qué son fundamentales para la lógica de negocio y la conexión con el backend."
 ---
 
+## ¿Qué son los Servicios?
 
+Los **Servicios** son clases especializadas en Angular diseñadas para manejar tareas que no deberían estar ligadas a la vista de un componente específico. Sus funciones principales son:
 
-- Los servicios son elementos de Angular muy potentes, usados para:
+1.  **Compartir información**: Actuar como puente entre distintos componentes de la aplicación.
+2.  **Lógica de Negocio**: Centralizar cálculos, validaciones y procesamiento de datos.
+3.  **Conexión Externa**: Gestionar peticiones a APIs, bases de datos (como Firebase) o integración con librerías externas.
 
-1. Compartir información entre los distintos elementos de la aplicación
-2. Conectarse a entidades externas
-3. Manejar la lógica de negocios
+---
 
-- Un servicio es muy importante porque sirve para llevar a cabo el patrón Singleton (aunque no es obligatorio que sea así). Y... ¿Qué quiere decir Singleton? Veamos:
+## El Patrón Singleton
 
-- **SINGLETON**: Significa que hay una ÚNICA instancia del Servicio. Y además, esa instancia se comparte a través de la app. La información que contiene el servicio se comparte a través de toda la app. Como vimos en otro apunte con @Input y @Output, ese es un método para compartir información entre componentes con una estructura de padre-hijo. Con los servicios también podemos compartir información pero de forma Singleton, es decir, un sólo elemento (el servicio) se comunica con todos los demás elementos a la vez. Como una relación de uno a muchos o viceversa.
+Por defecto, los servicios en Angular implementan el patrón **Singleton**. Esto significa que existe una **única instancia** de la clase en toda la aplicación.
 
-- Generalmente, un componente está muy ligado a una URL. Entonces, si la URL deja de existir, se borra el componente con toda su información. Esto no nos va a pasar con un Servicio.
+*   **Persistencia**: A diferencia de los componentes, que nacen y mueren al cambiar de URL, el servicio permanece vivo mientras la aplicación esté abierta.
+*   **Estado compartido**: Si un componente modifica una propiedad en el servicio, cualquier otro componente que acceda a ese servicio verá el cambio inmediatamente, ya que todos están utilizando la misma instancia.
 
-- **Para crear un Servicio, podemos usar el comando**: 
-
-```text
-ng generate service services/MiServicio
-```
-- **Veamos un ejemplo**: 
+### Inyección de Dependencias
+Para usar un servicio en un componente, utilizamos el decorador `@Injectable` y la función `inject()`:
 
 ```typescript
+import { Injectable, inject } from '@angular/core';
+
 @Injectable({
-	providedIn: 'root'
+  providedIn: 'root' // Define que el servicio sea Singleton y esté disponible globalmente
 })
 export class AuthService {
-	login() {
-		console.log("usuario no autenticado");
-	}
+  isAuthenticated = false;
+
+  login() {
+    this.isAuthenticated = true;
+  }
 }
 ```
-- Como vemos, un servicio es una clase con un decorador @Injectable. La forma de usar sus métodos y propiedades es creando una instancia del servicio (o no, ahora lo vamos a ver).
 
-- **La propiedad providedIn**: 'root', es la que hace que nuestro servicio sea Singleton, ya que va a ubicar a la clase AuthService ne el root de la aplicación. Esto hace que sea de una única instancia, la cual se va a compartir con todas las entidades de nuestra aplicación.
-
-- Como dijimos, si algún componente quisiera usar el método login del servicio, tendría que instanciarlo así:
-
+**Uso en el componente:**
 ```typescript
-const authService = inject(AuthService);
-authService.login();
-```
-- **Si bien esto está perfecto, hay un detalle**: nosotros también podríamos hacer que AuthService, como clase que es, tenga métodos estáticos. De hecho, ese mismo método login podría ser estático, porque no está usando elementos de instancia. Entonces, podríamos hacer esto:
+export class MiComponente {
+  private authService = inject(AuthService);
 
-```typescript
-static login() {
-	console.log("usuario no autenticado");
+  check() {
+    console.log(this.authService.isAuthenticated);
+  }
 }
 ```
-- Así, un componente no va a necesitar instanciar el servicio, sino que directamente accede con AuthService.login(). Esto una buena práctica que, si es posible, hagamos que los métodos sean estáticos. Así nos ahorramos instanciar. Hay que saber llevar a cabo ambas dinámicas: Si no necesito elementos de instancia, que el método sea estático. Si necesito, que no sea estático. 
 
-- Lógicamente, si tenemos un método que necesita usar otros elementos de la instancia, no vamos a poder hacer que el método sea estático. Por ejemplo:
+---
+
+## Métodos Estáticos vs. Instancia
+
+Aunque lo ideal en Angular es aprovechar la Inyección de Dependencias (DI), existe la posibilidad de usar métodos estáticos si el servicio no requiere acceder a propiedades de su propia clase.
+
+*   **Cuando usar Instancia**: Si necesitas acceder a variables como `this.isAuthenticated`. Es el estándar de Angular.
+*   **Cuando usar Static**: Si el método es una función pura (ej: un conversor de moneda o un formateador de texto) que no depende del estado del servicio.
 
 ```typescript
-export class AuthService {
-	isAuthenticated: boolean = false;
+export class UtilsService {
+  // Método de instancia
+  calcularIva(precio: number) {
+     return precio * 0.21;
+  }
 
-	static login() {
-		console.log(this.isAuthenticated);
-	}
+  // Método estático
+  static capitalizar(texto: string) {
+    return texto.toUpperCase();
+  }
 }
 ```
-- Como los servicios son Singleton, lo que va a pasar es que: Cada vez que alguna entidad de nuestra aplicación cree una instancia de la clase AuthService, Angular se va a preguntar ¿Ya existe una instancia de AuthService? Entonces, si ya existe, no va a crear otra. Va a usar la misma que ya está creada y ubicada en el root de nuestra aplicación (gracias al providedIn: 'root'). Esto quiere decir que la propiedad "isAuthenticated" va a tener el mismo valor en cada entidad de nuestra aplicación, ya que todas las entidades van a estar trabajando con la misma instancia de AuthService.
 
-- Si el valor de "isAuthenticated" cambia, todos los componentes que estén accediendo a dicha propiedad "isAuthenticated", van a reflejar ese cambio. Porque todos están accediendo a la misma instancia de AuthService, la única que existe.
+---
 
+## Creación y Configuración
 
-## Propiedad providedIn
+Para generar un servicio rápidamente desde la terminal:
+```bash
+ng generate service services/nombre-del-servicio
+```
 
-- Como dijimos antes, la propiedad providedIn con valor 'root' es la que define el comportamiento Singleton de nuestro servicio. Si nosotros cambiamos ese valor a, por ejemplo 'any', esto cambia. Son otras formas de hacer funcionar el servicio. La realidad es que esto que vimos acá es lo más común y usado, pero en el siguiente apunte vamos a ver las demás variaciones.
+### Propiedad `providedIn`
+*   **`'root'`**: Es la opción predeterminada y recomendada. Crea una única instancia global (Singleton) que se carga de forma diferida (*lazy loaded*) solo cuando se usa por primera vez.
+*   **Otras opciones**: En configuraciones avanzadas, se puede limitar el alcance del servicio a un módulo o componente específico, permitiendo tener múltiples instancias si fuera necesario.

@@ -1,14 +1,13 @@
 ---
-title: "Hybrid Rendering y los distintos modos de renderizado"
-description: "Hybrid Rendering"
+title: "Hybrid Rendering y Modos de Renderizado"
+description: "Optimiza la entrega de tu aplicación Angular configurando diferentes modos de renderizado (CSR, SSR, SSG) para cada ruta según tus necesidades de SEO y rendimiento."
 ---
 
+## Hybrid Rendering en Angular
 
-## Hybrid Rendering
+El **Hybrid Rendering** es una estrategia avanzada que permite renderizar diferentes partes de una aplicación en distintos entornos. En lugar de forzar a toda la aplicación a usar un solo método, podemos decidir qué rutas se renderizan en el servidor, cuáles en el cliente y cuáles se pre-generan de forma estática.
 
-- El Hybrid Rendering hace referencia a renderizar las distintas partes de nuestra aplicación en distintos lugares. Es decir, no renderizarlo todo en el servidor, ni en el cliente, sino que los repartimos en donde más nos convenga. Para esto vamos a usar la nueva característica de Angular (que llegó en Angular 19 y se estabilizó en el 20).
-
-- Esta configuración se realiza en el ruteo del servidor de nuestra aplicación, en el archivo app.routes.server.ts:
+Esta configuración se gestiona en las versiones modernas de Angular a través del archivo de rutas del servidor, normalmente `app.routes.server.ts`:
 
 ```typescript
 import { RenderMode, ServerRoute } from '@angular/ssr';
@@ -20,7 +19,7 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: 'about',
-    renderMode: RenderMode.Prerender,	// Static Site Generation (SSG)
+    renderMode: RenderMode.Prerender, // Static Site Generation (SSG)
   },
   {
     path: 'profile',
@@ -28,55 +27,51 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: '**', 
-    renderMode: RenderMode.Server, // Server Side Rendering (SSR)
-  },
+    renderMode: RenderMode.Server, // Server Side Rendering (SSR) por defecto
+  }
 ];
 ```
-- Como vemos, usamos distintos RenderModes. Así le decimos a Angular "Tal ruta quiero que la renderices de tal forma". Existen 3 opciones: Client, Server y Prerender. Cada una se relaciona con un método distinto de renderizado, el CSR, SSR y SSG. 
 
-- En este caso, la ruta "/" la renderizamos en el cliente, "about" al ser estática la prerendizamos con SSG, "profile" al requerir información específica del usuario usamos SSR, y el resto de las rutas las renderizamos también en el servidor.
-
-- Cabe aclarar que para que esto funcione, en nuestro archivo app.config.server.ts tenemos que tener algo como esto:
+Para que esta configuración surta efecto, asegúrate de que tu archivo `app.config.server.ts` esté utilizando el proveedor correspondiente:
 
 ```typescript
+import { provideServerRendering } from '@angular/platform-server';
+import { serverRoutes } from './app.routes.server';
+
 const serverConfig: ApplicationConfig = {
   providers: [
-    provideServerRendering(withRoutes(serverRoutes)),
-    // ... otros ...
+    provideServerRendering(withRoutes(serverRoutes))
   ]
 };
 ```
-- No es un problema ya que viene así por defecto.
 
+---
 
-## Los 3 modos de renderizado
+## Los 3 Modos de Renderizado
 
-1. Client Side Rendering (CSR)
+### 1. Client Side Rendering (CSR)
+Es el modo tradicional de Angular (SPA). El servidor envía un archivo HTML prácticamente vacío y es el navegador del usuario quien descarga, procesa y ejecuta el JavaScript para construir la interfaz.
 
-- Es el modo clásico en el que Angular siempre funcionó desde sus comienzos. Es decir, es el modo de renderizado que se usaría en todos los casos si nosotros eligieramos no usar SSR en nuestra aplicación. Es el renderizado de toda la vida. En el, todo el HTML es generado del lado del cliente. Es decir, el servidor solo envía un HTML vacío (con un `<app-root>``</app-root>`), y después se carga el JavaScript en el propio cliente. 
+*   **Ventajas**: Menor carga computacional inicial para el servidor. Navegación instantánea tras la carga inicial.
+*   **Desventajas**: Tiempo de primera pintura (FCP) más lento. SEO pobre si el contenido depende exclusivamente del JS.
+*   **Ideal para**: Paneles de administración, dashboards privados o cualquier sección que no requiera indexación en buscadores.
 
-- **Ventajas**: Es ideal para apps SPA (Single Page Application). Tiene una menor carga inicial en el servidor, y brinda una navegación fluida una vez que se cargó la app.
-- **Desventajas**: Es el modo de renderizado -generalmente- más lento, ya que tiene que descargar, analizar y ejecutar el JavaScript de la página antes de que el usuario pueda ver el contenido. Y si la página obtiene más datos del servidor durante el renderizado, el usuario también va a tener que esperar a esas solicitudes. Además, si el sitio está indexado para los rastreadores de búsqueda, va a tener un mal SEO (los motores de búsqueda no "ven" bien el contenido"). 
+### 2. Server Side Rendering (SSR)
+El servidor genera el HTML completo con datos reales antes de enviarlo al navegador. Angular se ejecuta en el servidor (Node.js) para cada petición.
 
-- Tiene sentido usarlo para rutas o páginas que no necesitan ser indexadas por buscadores o no requieren mostrar nada antes de que cargue Angular. Por ejemplo: paneles internos, dashboards, etc.
+*   **Ventajas**: Contenido visible casi al instante. SEO excelente.
+*   **Desventajas**: Mayor consumo de recursos en el servidor. Mayor tiempo de respuesta del servidor (TTFB).
+*   **Ideal para**: Secciones dinámicas que necesitan visibilidad en buscadores, como perfiles públicos, detalles de productos o feeds de noticias.
 
+### 3. Static Site Generation (SSG / Prerendering)
+El HTML se genera una sola vez durante el proceso de **build**. El resultado son archivos HTML estáticos que se sirven directamente desde un servidor web o CDN.
 
-2. Server Side Rendering (SSR)
+*   **Ventajas**: Rendimiento máximo (carga casi instantánea). SEO perfecto. Seguridad mejorada.
+*   **Desventajas**: El contenido es estático; si los datos cambian, es necesario volver a compilar y desplegar la aplicación.
+*   **Ideal para**: Páginas informativas que cambian poco, como "Sobre nosotros", "FAQ", documentación técnica o landing pages comerciales.
 
-- Esto ya lo hablamos. El SSR genera el HTML completo en el servidor ANTES de enviarlo al cliente. Es decir, Angular corre en el servidor y devuelve una página completamente renderizada.
+---
 
-- **Ventajas**: Mejor rendimiento general (se ve el contenido al instante). Mejor SEO, y útil cuando el contenido depende del usuario o de datos dinámicos.
-- **Desventaja**: Más carga en el servidor.
+## Conclusión
 
-- Tiene sentido usarlo para páginas con contenido dinámico o que necesitan ser visibles para el SEO, como perfiles de usuario, productos, blogs, etc.
-
-
-3. Static Site Generation (SSG)
-
-- En este modo, el HTML se genera una única vez en build time, antes de poner la app online. Angular compila el HTML de las rutas marcadas como "prerender", y después ese HTML queda estático, listo para servirse como un sitio HTML tradicional.
-
-- **Ventajas**: Brinda un rendimiento altísimo, ya que es HTML puro listo para servirse. Esto da una carga instantánea y perfecta para el SEO. Además, no depende del servidor para cada request.
-
-- **Desventajas**: Obviamente, esto no se puede hacer con contenido dinámico (salvo que usemos APIs externas). Si cambia el contenido de la página, hay que volver a hacer el build. 
-
-- Tiene sentido usarlo para páginas completamente estáticas, como "About", "FAQ", landing pages, etc.
+El **Hybrid Rendering** es la clave para aplicaciones modernas que no quieren sacrificar el SEO por el rendimiento, permitiendo que Angular sea tan flexible como sea necesario, adaptándose a las necesidades específicas de cada página de tu proyecto.

@@ -1,200 +1,105 @@
 ---
-title: "Servicios any o con Providers. UseClass, Value, Factory, Existing"
-description: "Propiedad providedIn para los Servicios"
+title: "Configuración Avanzada de Servicios y Providers"
+description: "Aprende a controlar el ciclo de vida y la inyección de tus servicios usando providedIn: 'any' o personalizando la resolución de dependencias con useClass, useValue, useFactory y useExisting."
 ---
 
+## Alcance de los Servicios: `providedIn`
 
-## Propiedad providedIn para los Servicios
+La propiedad `providedIn` en el decorador `@Injectable` define qué tan amplia es la cobertura del servicio en la aplicación.
 
-providedIn: 'root' -> Única instancia en TODA la aplicación (Singleton).
-providedIn: 'any' -> Se va a inyectar en el módulo más cercano al que lo solicite por primera vez.
-
-
-## providedIn en "any"
-
-- Lo que hace el "any" es que, en lugar de crear una única instancia global (como con "root"), crea una instancia diferente por cada "zona de inyección" donde sea solicitado por primera vez. Esto significa que si dos módulos distintos piden el servicio, cada uno tendrá su propia instancia.
-
-- Sirve por si queremos aislar el estado de un servicio entre distintas partes de la app (por ejemplo, módulos perezosos). Es útil para cuando no necesitamos compartir una información en toda la aplicación, sino en unas en específico.
+1.  **`providedIn: 'root'`**: Crea una única instancia global (**Singleton**) para toda la aplicación. Se carga de forma diferida (*lazy*) cuando se inyecta por primera vez.
+2.  **`providedIn: 'any'`**: Crea una instancia diferente para cada "área funcional" o módulo cargado de forma diferida. Esto permite aislar el estado del servicio entre distintas secciones de la app.
 
 ```typescript
 @Injectable({
-	providedIn: 'any';
+  providedIn: 'any'
 })
-export class LoginService {
-	log(message: string) {
-		console.log('log': , message);
-	}
-}
+export class LocalStorageService { ... }
 ```
-## Usar la propidad "providers" en vez de providedIn
 
-- La propiedad array providers se usa para cuando el servicio va a ser usado únicamente por un componente y por sus hijos. Es un Singleton local al árbol de ese componente.
+---
 
-- Es ideal si el servicio tiene un estado interno que no queremos que se mezcle con otros componentes (por ejemplo, un contador local o una configuración personalizada por sección). Además, evitamos contaminar el scope global.
+## El Array `providers` en Componentes
 
-- Entonces, si en vez de usar la propiedad providedIn para importar un servicio usamos la propiedad array "providers", podemos hacer uso de useClass, useValue, useFactory o useExisting.
+Si registramos un servicio directamente en el array `providers` de un componente (en lugar de usar `providedIn: 'root'`), logramos un **Singleton Local**:
 
-- Primero, veamos un ejemplo básico de uso de providers:
+*   El servicio solo es accesible para ese componente y todos sus hijos.
+*   Al destruir el componente, la instancia del servicio también se destruye.
+*   Permite tener un estado interno aislado que no contamina el sistema global.
 
 ```typescript
 @Component({
-	standalone: true,
-	selector: 'app-local',
-	template: `<p>Contenido del componente local</p>`,
-	providers: [LocalService],
+  standalone: true,
+  selector: 'app-seccion',
+  providers: [FeatureService], // Instancia única para esta sección
+  template: `...`
 })
-export class LocalComponent {
-	localService = inject(LocalService);
-}
+export class SeccionComponent { ... }
 ```
-- De esta forma, el servicio LocalService va a estar disponible solo para el componente LocalComponent y para todos sus hijos, creando una instancia única y aislada del resto.
 
+---
 
-## useClass en "providers"
+## Estrategias de Inyección Avanzadas
 
-- El useClass permite reemplazar uan clase por otra en el momento de la inyección. Es ideal para testing, mocking, o para cambiar implementaciones de manera dinámica sin cambiar el código consumidor.
+Dentro del array `providers`, podemos usar objetos de configuración para alterar cómo Angular resuelve una dependencia.
 
-- Primero, vamos a crear dos servicios distintos MockData y RealData:
+### 1. `useClass` (Reemplazo de Clase)
+Permite inyectar una clase distinta a la solicitada. Es ideal para pruebas unitarias o para cambiar implementaciones según el contexto.
 
 ```typescript
-@Injectable()
-export class MockDataService {
-	getData() { return 'mock data'; }
-}
-@Injectable()
-export class RealDataService {
-	getData() { return 'real data'; }
-}
+providers: [
+  // Cuando alguien pida MockDataService, entrégale RealDataService
+  { provide: MockDataService, useClass: RealDataService }
+]
 ```
-- **Ahora, vamos a aplicar esto en un módulo, así**: 
+
+### 2. `useValue` (Inyección de Valores)
+Permite inyectar un objeto estático, una constante o una configuración manual. Útil para tokens de API o configuraciones globales.
 
 ```typescript
-@NgModule({
-	providers: [
-		{ provide: MockDataService, useClass: RealDataService }
-	]
-})
+export const API_CONFIG = new InjectionToken<string>('apiUrl');
+
+providers: [
+  { provide: API_CONFIG, useValue: 'https://rickandmortyapi.com/api' }
+]
 ```
-- Como vemos, hicimos uso del "useClass" en la propiedad "providers".  
 
-- Y obviamente, si se puede aplicar en un módulo, también se puede aplicar en un componente standalone:
-```typescript
-@Component({
-	standalone: true,
-	selector: 'app-root',
-	template: `<p>{{ data }}</p>`,
-	providers: [
-		{ provide: MockDataService, useClass: RealDataService };
-	]	
-})
-export class AppComponent {
-	data: string;
-	dataService = inject(MockDataService);
-	data = this.dataService.getData();
-}
-```
-- Lo que hicimos acá es que, si inyectamos el MockDataService, se va a hacer uso de la clase RealDataService. Así que lo que va a parar a "data" es el string "real data".
-
-
-
-## useValue
-
-- useValue lo que hace es inyectar un objeto literal, constante o valor definido, de forma manual. Sirve para configurar parámetros globales como URLs de APIs, tokens de configuración, flags de entorno, etc. Veamos:
+### 3. `useFactory` (Instanciación Dinámica)
+Define una función que actúa como fábrica, permitiendo usar lógica personalizada (e incluso otras dependencias) para crear el servicio.
 
 ```typescript
-const CONFIG = { apiUrl: 'https://api.example.com' }
+export function dataServiceFactory(env: string) {
+  return env === 'prod' ? new ProdService() : new DevService();
+}
 
-@Component ({
-	standalone: true,
-	selector: 'app-config',
-	template: ` <p>{{ API: config.apiUrl }}</p>`
-	providers: [{
-		provide: "CONFIG", useValue: { apiUrl: 'https://rickandmorty.com' }
-	}]
-})
-export class ConfigComponent { ... }
+providers: [
+  { 
+    provide: DataService, 
+    useFactory: () => dataServiceFactory('prod') 
+  }
+]
 ```
-- De esta forma, CONFIG va a ser un objeto que viene de afuera de la declaración del componente, pero le pisa el valor usando useValue. En este caso, la api.example va a ser pisada por rickandmorty, pero usando el mismo objeto CONFIG.
 
-
-## useFactory
-
-- useFactory define una función que devuelve una instancia personalizada del servicio, permitiendonos usar lógica para poder construirla. Sirve para inicializar un servicio en base a condiciones, como hostname, idioma, o datos del entorno.
-
-- Primero, vamos a crear un servicio, y la función que va a hacer de fábrica:
+### 4. `useExisting` (Alias)
+Hace que un token apunte a la misma instancia que otro servicio ya existente, evitando crear duplicados innecesarios.
 
 ```typescript
-@Injectable
-export class DataService { 
-	apiUrl: string = ""; 
-}
-
-export function dataServiceFactory(hostname: string) {
-	const apiUrl = hostname === "localhost"
-	? "https://localhost:3000"
-	: "https://rickandmorty.com"
-
-	return new DataService(apiUrl);
-}
+providers: [
+  // AuthAliasService usará exactamente la misma instancia que AuthService
+  { provide: AuthAliasService, useExisting: AuthService }
+]
 ```
-- **Para usar la fábrica, hacemos**: 
 
-```typescript
-@Component({
-		standalone: true,
-		selector: 'app-root',
-		template: `<p>{{ data }}</p>`,
-		providers: [
-			{ provide: DataService, useFactory: dataServiceFactory };
-		]	
-	})
-	export class AppComponent {
-		data: string;
-		dataService = inject(DataService);
-		data = this.dataService.apiUrl;
-	}
-```
-## useExisting
+---
 
-- useExisting hace que un token apunte al mismo objeto que otro servicio ya existente. Sirve para que dos servicios compartan exactamente la misma instancia (alias).
+## Resumen de Estrategias
 
-```typescript
-@Injectable()
-export class BaseService {
-	getData() {
-		return 'base data';
-	}
-}
-
-@Injectable()
-export class DerivecService {
-	baseService = inject(BaseService);
-
-	getData() {
-		return this.baseService.getData() + ' - derived';
-	}
-}
-
-@Component ({
-	standalone: true,
-	selector: 'app-root',
-	template: ` <p>{{ data }}</p>`
-	providers: [
-		{ provide: DerivedService, useExsiting: BaseService }
-	]
-})
-export class AppComponent {
-	derivedService = inject(DerivedService)
-	data = this.derivedService.getData();
-}
-```
-## Resumen visual	
-Objetivo										Qué usar
-___________________________________________________________________________________________________
-Compartir globalmente (Singleton)					providedIn: 'root'
-Compartir por módulo/área funcional				providedIn: 'any'
-Compartir entre un componente y sus hijos			providers: [Servicio] en el componente
-| Usar lógica de inicialización | useFactory |
-| --- | --- |
-| Cambiar comportamiento según entorno/test | useClass o useValue |
-| Reutilizar una misma instancia con otro nombre | useExisting |
+| Objetivo | Qué usar |
+| :--- | :--- |
+| **Singleton Global** | `providedIn: 'root'` |
+| **Aislar por áreas funcionales** | `providedIn: 'any'` |
+| **Aislar en un componente e hijos** | Array `providers: [Service]` |
+| **Mocking para Testing** | `useClass` |
+| **Inyectar constantes/objetos** | `useValue` |
+| **Lógica condicional al crear** | `useFactory` |
+| **Reutilizar instancia con otro nombre** | `useExisting` |

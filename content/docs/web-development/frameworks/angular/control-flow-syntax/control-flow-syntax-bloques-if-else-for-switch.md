@@ -1,71 +1,82 @@
 ---
-title: "Control Flow Syntax (Bloques If, Else, For, Switch)"
-description: "Control Flow Syntax (Bloques)"
+title: "Control Flow Syntax (Bloques @if, @for, @switch)"
+description: "Descubre la nueva sintaxis de control de flujo de Angular, una forma más limpia, rápida y legible de manejar la estructura del DOM sin directivas tradicionales."
 ---
-
 
 ## Control Flow Syntax (Bloques)
 
-- Como sabemos, las directivas estructurales *ngIf y *ngFor sirven para modificar la estructura de nuestro DOM. Bueno, a partir de Angular 16, apareció la preview de una nueva característica: Control Flow Syntax, la cual viene a facilitar y mejorar el uso de directivas estructurales como *ngIf, *ngFor o *ngSwitch. Hoy en día es sin duda la mejor opción, ya que brinda mayor legibilidad, no es necesario importar nada para usarlo, soporta lógica más compleja, y nos permite hacer Lazy rendering (esto último lo vamos a ver en el siguiente apunte).
+Históricamente, Angular ha utilizado directivas estructurales como `*ngIf`, `*ngFor` y `*ngSwitch` para manipular el DOM. A partir de **Angular 17**, se introdujo oficialmente la **Control Flow Syntax**, una nueva forma de manejar la lógica del template mediante bloques integrados en el compilador.
 
-- La particularidad de estos -también llamados bloques- es que todos empiezan con una arroba " @ ", y obviamente, van en nuestro código HTML. Son parte del compilador de Angular desde su versión 17, así que no funciona en versiones anteriores. Cabe decir que no son funciones JavaScript reales, sino que son bloques de template DSL.
+Esta sintaxis ofrece ventajas significativas:
+*   **Mayor legibilidad**: Se asemeja más a la sintaxis nativa de JavaScript.
+*   **Sin importaciones**: No necesitas importar `CommonModule` o directivas específicas para usarlos.
+*   **Mejor rendimiento**: El compilador de Angular optimiza estos bloques de forma nativa.
+*   **Lazy rendering**: Es la base para utilizar características avanzadas como los bloques `@defer`.
 
+---
 
-## Bloque @if (reemplazo de *ngIf)
+## Bloque `@if` (Reemplazo de `*ngIf`)
+
+El bloque `@if` permite manejar condicionales de forma mucho más limpia, eliminando la necesidad de usar elementos `<ng-template>` para el caso de `else`.
 
 ```html
 @if (isVisible) {
-	<div>Me veo porque isVisible es true</div>
+  <div>El contenido es visible.</div>
+} @else if (isPending) {
+  <div>Cargando datos...</div>
 } @else {
-	<div>Me veo porque isVisible es false</div>
+  <div>El contenido está oculto.</div>
 }
 ```
-- No hay mucha explicación, está todo muy claro. Esto es mucho más legible que *ngIf y evita el uso de `<ng-template>`
 
+---
 
-## Bloque @for (reemplazo de *ngFor)
+## Bloque `@for` (Reemplazo de `*ngFor`)
 
-```typescript
+El bloque `@for` es extremadamente eficiente y soluciona uno de los problemas comunes de `*ngFor`: la obligatoriedad de seguir un identificador para optimizar el rendimiento.
+
+```html
 <ul>
-	@for(person of persons; track person.id) {
-		<li>{{ person.name }}</li>
-	}
+  @for (person of persons; track person.id) {
+    <li>{{ person.name }}</li>
+  }
 </ul>
 ```
-- Muy simple, es mucho más legible que el *ngFor. Esta sintaxis nos obliga a agregar "track", que es necesario para que el bucle sepa bien cómo recorrer el array. La forma correcta de usar track es que sea el ID del elemento a recorrer. Si el elemento no tiene ID ni nada para identificarlo, se puede poner directamente "person". Es decir, el mismo item que se está recorriendo. 
 
+### La importancia de `track`
+En la nueva sintaxis, la expresión **`track`** es obligatoria. Esto permite que Angular identifique de forma única cada elemento de la lista y sepa exactamente qué parte del DOM actualizar cuando los datos cambian, mejorando drásticamente el rendimiento del renderizado.
 
-### Bloque @empty (en combinación con @for)
+### Bloque `@empty`
+Podemos definir un estado visual por defecto para los casos en los que la lista que intentamos recorrer esté vacía:
 
-```typescript
+```html
 <ul>
-	@for(person of persons; track person.id) {
-		<li>{{ person.name }}</li>
-	}
-	@empty {
-		<li>No persons</li>
-	}
+  @for (item of items; track item.id) {
+    <li>{{ item.name }}</li>
+  } @empty {
+    <li>No hay elementos disponibles en la lista.</li>
+  }
 </ul>
 ```
-- Si el for tiene que recorrer un array vacío, podemos usar el bloque @empty, el cual sólo se va a mostrar si dicho array está vacío. Sino, no se muestra.
 
+---
 
-## Bloque @switch (reemplazo de *ngSwitch)
+## Bloque `@switch` (Reemplazo de `*ngSwitch`)
 
-```typescript
-@switch (selectedValue) {
-	@case ("option 1") {
-		<p>Option 1</p>
-	}
-	@case ("option 2") {
-		<p>Option 2</p>
-	}
-	@case ("option 3") {
-		<p>Option 3</p>
-	}
-	@default {
-		<p>Invalid option</p>
-	}
+El bloque `@switch` simplifica la lógica de múltiples condiciones eliminando el bindeo de atributos y las directivas de caso:
+
+```html
+@switch (userRole) {
+  @case ('admin') {
+    <app-admin-dashboard />
+  }
+  @case ('editor') {
+    <app-editor-panel />
+  }
+  @default {
+    <app-user-view />
+  }
 }
 ```
-- Es lo mismo que el *ngSwitch, pero con más claridad y simpleza. Además, puede incluir o no un bloque @default.
+
+Al ser una sintaxis integrada directamente en el lenguaje de plantillas de Angular (DSL), estos bloques son procesados antes de que el código llegue al navegador, lo que resulta en una aplicación más ligera y rápida.

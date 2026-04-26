@@ -1,81 +1,93 @@
 ---
 title: "Animaciones"
-description: "Animaciones en Angular"
+description: "Aprende a dar vida a tus componentes de Angular mediante el uso de disparadores, estados y transiciones para mejorar la experiencia de usuario."
 ---
 
+## Animaciones en Angular
 
-Animaciones en Angular
+Para habilitar el sistema de animaciones en Angular, primero debemos registrar el proveedor correspondiente en nuestro archivo de configuración global (`app.config.ts` o `main.ts`):
 
-Agregamos provideAnimations(), así como antes agregamos provideHttpClient().
-
-Creamos un nuevo componente 'animation', el cual vamos a poner en la carpeta 'animation'.
-
-El HTML del componente tiene un botón Mostrar/Ocultar. 
-
-Dentro del componente, en el decorador @Component, tenemos que declarar un array llamado 'animations'.
-
-const mostrarOcultar = trigger('mostrarOcultarTrigger', [
 ```typescript
-state (
-	'abierto',
-	style([ opacity: 1 ])
-),
-state (
-	'cerrado',
-	style([ opacity: 0 ])
-),
-transition('abierto' => cerrado', [animate('1s')])
-transition('cerrado' => abierto', [animate('0.5s')])
-
-// En vez de 'abierto' yo podría poner un *. Y eso significa, ''de cualquier cosa'', pasa a cerrado
-
-
-// state (el estado) recibe parámetros de animación, el nombre, el estilo...
-// transition establece la transicion entre 2 estados
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideAnimations() // Habilita el soporte para BrowserAnimationsModule
+  ]
+};
 ```
-])
 
-Trigger espera el nombre y un array.
+---
 
-@Component({
-```text
-...
-animations:[mostrarOcultar]
+## Definición de una Animación
+
+Las animaciones se definen generalmente fuera del decorador `@Component` como constantes, para mantener el archivo limpio, y luego se asignan al array `animations`.
+
+### Método 1: Basado en Estados (Abierto/Cerrado)
+
+Este método cambia las propiedades CSS según el valor de una variable.
+
+```typescript
+import { trigger, state, style, transition, animate } from '@angular/animations';
+
+export const mostrarOcultarAnimacion = trigger('mostrarOcultarTrigger', [
+  state('abierto', style({
+    opacity: 1,
+    height: '*' // Altura automática
+  })),
+  state('cerrado', style({
+    opacity: 0,
+    height: '0px'
+  })),
+  transition('abierto <=> cerrado', [
+    animate('0.5s ease-in-out')
+  ])
+]);
 ```
-})
 
-Bien. Ahora vamos a aplicar esto en el template para que se vea.
-
-<div [mostrarOcultarTrigger]="mostrarContenido ? 'abierto' : 'cerrado'">
+**Uso en el HTML:**
 ```html
-<h1>Título con Animación</h1>
-
-p
-p
+<div [@mostrarOcultarTrigger]="isOpen ? 'abierto' : 'cerrado'">
+  <p>Contenido que se anima...</p>
+</div>
 ```
-`</div>`
 
+> [!WARNING]
+> Este método solo oculta visualmente el elemento. El elemento **sigue existiendo en el DOM**, lo que puede causar problemas si tiene botones interactivos o enlaces que deberían estar deshabilitados.
 
+---
 
-Esta forma de hacerlo es MALÍSIMA. Ya que NO saca a los elementos del DOM, solo los hace invisibles. Y que estén invisibles es algo meramente visual, en realidad vos podes para el mouse por los elementos y vas a ver que están ahí, que el cursor cambia a pointer si pasas por un botón, por ejemplo. Por eso es que no tiene sentido hacerlo así.
+## Método 2: Animaciones de Entrada y Salida (`:enter` / `:leave`)
 
-Y listo. Ahora, otra forma de hacerlo: mostrarOcultar2:
+Este es el método recomendado si utilizas directivas como `*ngIf` o bloques `@if`, ya que anima al elemento mientras se **añade o elimina del DOM**.
 
-const mostrarOcultar2 = [
-```text
-transition(mostrarOcultarTrigger', [
-	transition(':enter', [
-
-	]),
-	transition(':leave', [
-
-	])
-]
+```typescript
+export const entradaSalidaAnimacion = trigger('fadeSlide', [
+  // :enter es un alias para la transición 'void => *'
+  transition(':enter', [
+    style({ opacity: 0, transform: 'translateY(-20px)' }),
+    animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+  ]),
+  // :leave es un alias para la transición '* => void'
+  transition(':leave', [
+    animate('300ms ease-in', style({ opacity: 0, transform: 'translateY(-20px)' }))
+  ])
+]);
 ```
-]
 
-Con este método 2, ya no estamos usando 'abierto' y 'cerrado'.
+### Aplicación en el Template
 
-<div @mostrarOcultarTrigger>
+Para usar estas animaciones, simplemente aplicamos el disparador con el símbolo `@` en el elemento que está siendo controlado por un condicional:
 
-Este métdo 2 sirve para QUITAR el elemento del DOM, y no sólo ocultarlo.
+```html
+@if (isVisible) {
+  <div @fadeSlide class="alerta">
+    ¡Este elemento se anima al aparecer y al desaparecer del DOM!
+  </div>
+}
+```
+
+### Conceptos clave:
+1.  **`trigger`**: Nombre de la animación que identificamos en el HTML.
+2.  **`state`**: Define los estilos fijos para un nombre de estado específico.
+3.  **`transition`**: Define cómo se debe realizar el cambio entre dos estados.
+4.  **`animate`**: Especifica la duración y el tipo de curva (*easing*) de la transición.
+5.  **`:enter` y `:leave`**: Alias para manejar elementos que entran o salen de la vista de forma dinámica.
