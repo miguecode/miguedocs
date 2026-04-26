@@ -44,7 +44,11 @@ Si yo tengo una tabla Empleado y le pongo las columnas: Legajo, Nombre, Cod-Idio
 Vamos a normalizar: ¿Qué datos me causan problema en la repetición? Los datos del idioma.
 Entonces yo me tengo que llevar a otra entidad los datos del idioma.
 
-Crearía otra tabla así: EMP-IDIOMA (LEGAJO, COD-IDIOMA, NIVEL-IDIOMA)
+Crearía otra tabla así: 
+
+```sql
+EMP-IDIOMA (LEGAJO, COD-IDIOMA, NIVEL-IDIOMA)
+```
 
 En este caso, se repetirá COD-IDIOMA, pero jamás el mismo LEGAJO (ponemos que la PK sea compuesta entre LEGAJO y COD-IDIOMA).
 Las tablas en las que yo intervine, tienen que quedar todas en 1FN. En primera forma. Tengo que comprobarlo y si no es así, tengo que seguir descomponiendo hasta que estén todas en primera.
@@ -63,21 +67,30 @@ Cuando es compuesta, tengo que asegurarme de que cada atributo clave dependa de 
 Ahora: ¿Qué serÍa DEPENDER? Que una columna dependa de otra significa que si cambia el valor de una, tiene que cambiar también el valor de la otra.
 
 Vamos a seguir con el ejemplo anterior, con la tercer tabla que hicimos:
+
+```sql
 EMP-IDIOMA (LEGAJO, COD-IDIOMA, NIVEL-IDIOMA)
+```
 
 Aca tenemos una PK compuesta con LEGAJO y COD-IDIOMA. Por lo tanto, el único atributo no clave es NIVEL-IDIOMA. Tenemos que hacernos la pregunta de: ¿Nivel-Idioma depende de Legajo? y ¿Nivel-Idioma depende de Cod-Idioma? Ambas respuestas son sí. Por lo tanto, esta tabla está en segunda forma. Está bien.
 
 Nivel-Idioma depende de Legajo porque el legajo corresponde a la persona a la que le atribuimos ese nivel de idioma. Y depende del Código porque ese código va a ser el código que le corresponde al idioma al que le estamos poniendo el nivel.
 
 Ahora un ejemplo en el que hay que normalizar una tabla para llegar a la 2NF:
+
+```sql
 EMPLE (LEGAJO, COD-IDIOMA, NIV-IDIOMA, NIVEL-DE-ESTUDIO);
+```
 
 Es la misma tabla de antes, pero con un atributo nuevo: 'Nivel de estudio'. La columna 'NIVEL-DE-ESTUDIO' depende del legajo, ya que ese legajo le corresponde al empleado que va a tener ese nivel de estudio. PERO, no depende del COD-IDIOMA, ya que no tiene nada que ver el nivel de estudio que tenga esa persona con el código del idioma que estudia. Entonces no hay una dependencia completa de la PK, sino que parcial. Así que esta tabla NO está en segunda forma. Tenemos que normalizarla (hacer el desglose/descomposición).
 
 Esto se resuelve descomponiendo las tabla así:
+
+```sql
 EMPLEADO (LEGAJO, NOMBRE, SECCION, NIVEL-DE-ESTUDIO);
 IDIOMA (COD-IDIOMA, NOMBRE-IDIOMA);
 EMP-IDIOMA (LEGAJO, COD-IDIOMA, NIVEL-IDIOMA);
+```
 
 Ahora, estas 3 tablas están en primera y en segunda forma. Lo normalizamos.
 
@@ -92,7 +105,9 @@ Si hay algún atributo no clave que dependa del otro, significa que la tabla NO 
 
 ### Ejemplo:
 
+```sql
 EMPLEADO (LEGAJO*, NOMBRE, NRO-SECCION, OFIC-SECCION)
+```
 
 En este caso, la relación no se encuentra en tercera, ya que 'NRO-SECCION' depende de 'OFIC-SECCION' ¿Por qué? Porque si cambio el valor de uno, tengo que cambiar el valor del otro. Entonces, tengo 2 atributos no clave los cuales dependen entre sí. Esto significa que la tabla no está en 3FN y hay que normalizarla.
 

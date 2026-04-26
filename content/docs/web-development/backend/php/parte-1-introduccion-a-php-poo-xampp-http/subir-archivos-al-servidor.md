@@ -4,47 +4,67 @@ description: "Persistir Información"
 ---
 
 
-Persistir Información
+## Persistir Información: Subir archivos al Servidor
 
-Subir archivos al Servidor
-Para poder subir archivos al Servidor, es necesario crear un formulario en HTML que le permita a los usuarios seleccionar un archivo. Obviamente usando el input type ="file". 'Form' tiene que quedar así: 
-<form action="upload.php" method "post" enctype="multipart/form-data">
+Para poder subir archivos al Servidor, es necesario crear un formulario en HTML que le permita a los usuarios seleccionar un archivo, utilizando el `input type="file"`. 
 
-El método del formulario debe ser POST. El enctype especifica el contenido/tipo a usarse cuando se envía el formulario. Sin esos requerimientos, la subida de archivos no funcionará.
+El `form` debe configurarse de la siguiente manera:
 
-Esta es la forma más antigua, actualmente dejó de ser tan usado.
+```html
+<form action="upload.php" method="post" enctype="multipart/form-data">
+    <input type="file" name="archivo">
+    <input type="submit" value="Subir">
+</form>
+```
 
-Ahora, del lado del Servidor, vamos a tratar esa subida de archivos (ya sea con la forma más antigua o con otra), usando la variable global $_FILES.
-Vamos a tener que mover el archivo subido desde su ubicación temporal, a la ubicación definitiva dentro del Servidor.
+**Requerimientos importantes:**
+- El **método** del formulario debe ser **POST**.
+- El **enctype** especifica el contenido/tipo a usarse cuando se envía el formulario (`multipart/form-data`). Sin esto, la subida de archivos no funcionará.
 
+> Esta es la forma más antigua de subida de archivos; actualmente ha sido desplazada por métodos más modernos (vía AJAX/Fetch), aunque el concepto base en el Servidor sigue siendo similar.
+
+### Manejo en el Servidor (PHP)
+
+Del lado del Servidor, tratamos la subida de archivos usando la variable global `$_FILES`. Debemos mover el archivo desde su ubicación temporal a la ubicación definitiva dentro del Servidor.
+
+```php
 $destino = "uploads/" . $_FILES["archivo"]["name"];
 move_uploaded_file($_FILES["archivo"]["tmp_name"], $destino);
+```
 
-Cuando PHP recibe el archivo, lo guarda en una carpeta temporal. Entonces, si nosotros queremos que ese archivo persista por siempre en el Servidor, nosotros lo tenemos que mover hacia dentro del propio Servidor.
+Cuando PHP recibe el archivo, lo guarda en una carpeta temporal. Si queremos que el archivo persista, debemos moverlo manualmente.
 
-Para nosotros, el archivo va a ser un objeto. Va a tener un nombre, un tamaño, un nombre temporal y otras características.
+#### La función `move_uploaded_file`
 
+```php
 move_uploaded_file($_FILES["archivo"]["tmp_name"], $destino);
-Esta línea es una función de PHP que nos va a permitir mover el archivo. Como primer parámetro, recibe el nombre temporal del archivo. Y como dijimos, el archivo es un objeto. Por lo tanto, tiene su propio atributo ["tmp_name"], que es su nombre temporal. Por eso es que accedemos a él así:
-$_FILES["archivo"]["tmp_name"]
-El array asociativo $_FILES contiene un elemento ["archivo"], el cual es un objeto que tiene un atributo ["tmp_name"]
+```
 
-Y como segundo parámetro, va a ser el destino. Significa en qué parte del Servidor lo quiero guardar. 
+Esta función recibe dos parámetros:
+1. **Nombre temporal:** El archivo es tratado como un objeto que tiene un atributo `["tmp_name"]`. Accedemos a él mediante `$_FILES["archivo"]["tmp_name"]`.
+2. **Destino:** La ruta dentro del Servidor donde deseamos guardar el archivo.
 
-$_FILES es una variable super global (esto es algo propio de PHP). Es un array asociativo de elementos cargados al script actual a través del método POST.
-Tiene los siguientes elementos/keys:
-"name" - nombre del archivo (con su extensión).
-"type" - tipo del archivo (dado por el navegador).
-"tmp_name" - carpeta temporal donde se guardará el archivo subido.
-"error" - código de error (si es 0, no hubo errores).
-"size" - tamaño del archivo medido en bytes.
+### Variable Super Global `$_FILES`
 
-Aclaración
-Las validaciones SIEMPRE deben estar de ambos lados del mostrador: es decir, del Frontend y del Backend.
+`$_FILES` es un array asociativo que contiene información sobre los archivos cargados mediante el método POST. Contiene las siguientes claves:
 
-Como dijimos antes, hacerlo mediante HTML está algo obsoleto. Por eso nosotros lo vamos a hacer mediante Postman de la siguiente forma:
+- **"name":** nombre del archivo (con su extensión).
+- **"type":** tipo del archivo (determinado por el navegador, ej: `image/png`).
+- **"tmp_name":** ruta temporal donde se almacenó el archivo en el servidor.
+- **"error":** código de error asociado a la subida (si es 0, no hubo errores).
+- **"size":** tamaño del archivo en bytes.
 
-Tenemos que ponerlo en método POST, y en Body ponemos form-data. Cuando vamos a escribir una key, en este caso le ponemos 'archivo', y vamos a ver que puede estar en modo 'Text' o modo 'File'. Si ponemos File, nos va a hacer seleccionar un archivo desde nuestro explorador de archivos del SO.
+### 💡 Aclaración
+Las validaciones **SIEMPRE** deben estar de ambos lados: en el **Frontend** (para experiencia de usuario) y en el **Backend** (por seguridad).
 
-Ojo
-Cuidado con hacer esto en un index.php ya que, tenemos que tomarnos el trabajo de escribir 'index.php' en la URL del Postman. Es decir, tenemos que explicitar index.php en la URL.
+### Uso con Postman
+
+Dado que el uso directo de formularios HTML está cayendo en desuso para APIs, podemos probarlo en Postman:
+
+1. Seleccionar el método **POST**.
+2. En la pestaña **Body**, seleccionar **form-data**.
+3. En la columna de **Key**, escribir el nombre (ej: `archivo`) y cambiar el tipo de `Text` a `File` (aparece un desplegable al posicionar el mouse sobre la key).
+4. Seleccionar el archivo desde el explorador del SO.
+
+> [!CAUTION]
+> **Ojo:** Si estás enviando la petición a un archivo llamado `index.php`, recuerda explicitarlo en la URL del Postman (`http://localhost/tu-proyecto/index.php`) para evitar confusiones de ruteo si el servidor no lo toma por defecto.

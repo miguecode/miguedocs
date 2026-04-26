@@ -8,13 +8,14 @@ description: "💻 PHP (Hypertext Pre Processor)"
 PHP es un lenguaje de código abierto muy popular en el ámbito del desarrollo web el cual se puede incrustar fácilmente en código HTML. Es muy popular, el 77% de los sitios web incluyen PHP.
 
 ### 📌 Características principales
+
 - **Multiplataforma**: Puede correr en más de un sistema operativo (Windows, Linux, Mac).
 - **Código invisible**: El código PHP es 'invisible' para el navegador.
 - **Conexión a bases de datos**: Tiene capacidad para conectarse a bases de datos y puede expandir su potencial con plugins.
 
 PHP, a diferencia de otros lenguajes, necesita un intérprete el cual devuelva en tiempo de ejecución una 'salida' (una respuesta).
 
-✍️Sintaxis básica de PHP
+### ✍️Sintaxis básica de PHP
 - La extensión del archivo fuente debe ser .php, es decir, vamos a trabajar con archivos .php.
 - Todo código va entre etiquetas de apertura y cierre. Todo lo que esté fuera de eso, el intérprete lo va a ignorar. Ojo, no es obligatoria la etiqueta de cierre.
 
@@ -42,9 +43,9 @@ PHP, a diferencia de otros lenguajes, necesita un intérprete el cual devuelva e
 //Holaaa  o  #Holaaa  y también bloques de comentarios entre: */   ....   /*
 
 ### 🛠 Tipos primitivos en PHP:
-4 escalares: boolean, integer, float, string
-2 compuestos: array, object
-2 especiales: resource, null
+- 4 escalares: boolean, integer, float, string
+- 2 compuestos: array, object
+- 2 especiales: resource, null
 
 ### 💡 Variables:
 
@@ -70,10 +71,10 @@ Esa diferencia se nota por ejemplo en C#, que ahí estamos obligados a especific
 ### 🔄 Conversión de Tipos
 Las conversiones las realiza automáticamente PHP dependiendo del contenido de la variable, esto es porque como dijimos, es de tipado dinámico.
 
-(int)$edad
 
 ```php
 <?php
+  (int)$edad
   print("nombre: $nombre");
   echo "edad:", $edad;
   printf("sueldo: %f", $sueldo);
@@ -83,7 +84,8 @@ Las conversiones las realiza automáticamente PHP dependiendo del contenido de l
 ### 🔗 Operadores:
 Los operadores son iguales a los de C, C# y Java.
 
-###💻 Estructuras de control:
+### 💻 Estructuras de control:
+
 Las estructuras como IF, SWITCH, FOR, WHILE funcionan igual que en otros lenguajes.
 El ForEach también es muy similar.
 
@@ -113,7 +115,7 @@ Los nombres no son case-sensitive. Las funciones pueden recibir parámetros, ret
 
 - 'var_dump' es una función MUY ÚTIL de PHP, ya que muestra el contenido detallado de cualquier elemento que le pasemos, sea del tipo que sea.
 
-### 📋 Arrays en PHP
+## 📋 Arrays en PHP
 
 En PHP existen 3 tipos de arrays:
 1. Arrays indexados (índices numéricos).

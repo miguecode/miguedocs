@@ -12,7 +12,9 @@ Con diseño lógico nos referimos a una correcta normalización de las tablas. Y
 Cuando yo empiezo con el diseño físico, es decir, al momento real de empezar a hacer los CREATE (DDL), yo no puedo ponerme a analizar o a pensar si lo que estoy haciendo está normalizado o no. O sea, no puedo ponerme a pensar si las tablas que estoy creando están normalizadas o no, eso yo ya lo tengo que saber desde antes cuando hice el diseño lógico (Los grupos de tablas normalizadas y el DER). El DER es lo que vamos a ver hoy mismo.
 Por lo tanto, queda claro que el orden es    Diseño lógico   ->   Diseño físico
 
-**------------ Fin de la aclaración**
+**Fin de la aclaración**
+
+---
 
 Pautas para el Diseño Físico (factores que deben tomarse en cuenta)
 Análisis de las consultas y transacciones (en relación de su calidad, con respecto a la frecuencia de la consulta, con relación a las restricciones de tiempo sobre ellas).
@@ -43,9 +45,9 @@ Ejemplos: envío (prov-prod), grabación (composición-orquesta).
 - Subtipo. El tipo de entidad Y es un subtipo de entidad X si y sólo si todo Y es por fuerza un X.
 Ejemplos: Empleado es un subtipo de persona.
 
-a) Clase. Representa una colección de entidades similares (de un mismo tipo).
+  - a) Clase. Representa una colección de entidades similares (de un mismo tipo).
 
-b) Subclase. La subclase es un subconjunto de una clase, y la clase que sirve como 'padre-raiz' se conoce como una 'superclase'.
+  - b) Subclase. La subclase es un subconjunto de una clase, y la clase que sirve como 'padre-raiz' se conoce como una 'superclase'.
 
 ### Ejemplo:
 

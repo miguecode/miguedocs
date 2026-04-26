@@ -8,7 +8,6 @@ description: "Programación Orientada a Objetos en TypeScript"
 
 TypeScript mejora la Programación Orientada a Objetos (POO) en JavaScript agregando tipado estático, modificadores de acceso y más características que hacen que el código sea más seguro, estructurado y fácil de mantener.
 
-
 ## Clases
 
 ```typescript
@@ -32,7 +31,6 @@ persona1.saludar(); // Muestra "Hola, soy Juan y tengo 25 años."
 
 Así se ve una clase en TypeScript. Como vemos, es lo mismo que en JavaScript pero tipando atributos y métodos. Esto brinda mayor seguridad, ya que si intentamos asignar un número a la propiedad nombre, eso daría un error. También sirve para tener un mejor autocompletado y detección de errores en el VSCode.
 
-
 ## Modificadores de Acceso (public, private y protected)
 
 En JavaScript no hay control de acceso real como lo hay por ejemplo en C#. Pero en TypeScript, tenemos tres modificadores para definir la visibilidad de propiedades y métodos en una clase.
@@ -42,7 +40,6 @@ En JavaScript no hay control de acceso real como lo hay por ejemplo en C#. Pero 
 - ¿Accesible desde afuera? en public SÍ, en private SÍ y en protected NO.
 
 Lógicamente, el modificador de acceso por defecto es "public". Entonces, si no especificamos nunca el modificador de acceso, como hicimos en Persona, todo va a ser público. "Private" es lo más restringido posible, porque sólo se puede acceder desde dentro del scope de la propia clase. "Protected" es lo mismo pero al menos permite acceder desde una subclase también, para que los hijos de una clase puedan acceder a ellos.
-
 
 ### Ejemplo con el mod. de acceso Private
 
@@ -72,7 +69,6 @@ cuenta.mostrarSaldo(); // Muestra "Saldo actual: 1500" porque "mostrarSaldo" es 
 ```
 
 Private sirve para evitar que los datos sensibles sean modificados directamente desde fuera de la clase, y obliga a usar métodos específicos (como mostrarSaldo) par ainteractuar con los atributos internos.
-
 
 ### Ejemplo con el mod. de acceso Protected
 
@@ -106,7 +102,6 @@ console.log(miPerro.nombre); // Va a dar error porque "saldo" es protected
 ```
 
 Protected sirve para que las sublcases (en este caso, Perro) puedan acceder a los métodos y propiedades de su clase padre (en este caso, Animal). Y a la vez, no se exponen al exterior. 
-
 
 ## Readonly
 

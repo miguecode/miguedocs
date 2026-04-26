@@ -4,47 +4,69 @@ description: "Vamos a ver un ejemplo de uso de PDO en PHP con un ABM con de una 
 ---
 
 
-Vamos a ver un ejemplo de uso de PDO en PHP con un ABM con de una entidad, en este caso, de CD's.
+## 💿 Ejemplo ABM usando PDO
 
-OJO: Para seguir estos apuntes, hay que tener a mano este código de ejemplo, el cual está en el proyecto global de apuntes y ejercicios. Es el que está en: php-apuntes-ejercicios/Clase06/EjemploCD/
+En este apunte veremos cómo implementar un ABM (Altas, Bajas y Modificaciones) de una entidad utilizando **PDO**. Tomaremos como referencia el ejemplo de una entidad `CD`.
 
+> [!IMPORTANT]
+> Se recomienda tener a mano el código de referencia en: `php-apuntes-ejercicios/Clase06/EjemploCD/`
 
-La idea es que mediante nuestras peticiones y parámetros, podamos interactuar con la DB para hacer altas, bajas o modificaciones.
+---
 
-Aclaración
-Que un constructor sea privado significa que la única forma de llamar a ese constructor, es que lo llame la propia clase.
+### 🧱 Patrones y Estructura
 
-El método die() frena TODO el código. Se termina ahí.
+#### Patrón Singleton en `AccesoDatos`
+La clase `AccesoDatos` implementa el patrón **Singleton**, lo que garantiza que solo exista una única instancia de conexión a la base de datos durante el ciclo de vida de la petición.
 
-La clase AccesoDatos sólo permite una instancia de sí misma. A eso se lo llama 'singleton'. Funciona así justamente porque el constructor es privado, por lo tanto no podemos crear instancias libremente en otros archivos. Pero tenemos el método estático 'dameUnObjetoAcceso'. El cual, justamente, se encarga de devolver una instancia. La cual, si ya está seteada, te devuelve la que ya se instanció, y si no, la instancia y la devuelve. Entonces siempre termina existiendo una única instancia de 'AccesoDatos'.
+- **Constructor Privado:** Evita que otros archivos instancien la clase libremente.
+- **`dameUnObjetoAcceso()`:** Método estático que gestiona la instancia única. Si no existe, la crea; si ya existe, devuelve la actual.
 
-¿Qué es un Controller?
-Un Controller sería lo que llama a la BD. Es quien organiza la lógica esencial de negocios, la prepara para ser ejecutada por otra capa y se desentiende de eso. Genera las validaciones y lo necesario, y después arma lo que tiene que armar.
+#### ¿Qué es un Controller?
+El **Controller** es la capa encargada de organizar la lógica de negocio.
+1. Recibe la petición.
+2. Realiza las validaciones necesarias.
+3. Prepara los datos.
+4. Invoca a la capa de persistencia (modelo) y devuelve la respuesta.
 
+---
 
-fetchAll() Devuelve todo lo que tiene una consulta.
-fetchAll(PDO::FETCH_CLASS, "cd"); Devuelve un array de tipo de clase 'cd'. Es decir, crea un array de objetos de tipo CD y lo devuelve.
+### 🛠️ Métodos de PDO en el Ejemplo
 
-$consulta->fetchAll(---);
-$consulta, una vez ya ejecutada, es quien tiene la respuesta de la query.
+| Método | Descripción |
+| :--- | :--- |
+| **`fetchAll()`** | Devuelve todos los registros de una consulta. |
+| **`fetchAll(PDO::FETCH_CLASS, "cd")`** | Devuelve un array de objetos instanciados como la clase `cd`. |
+| **`fetchObject("cd")`** | Devuelve un único objeto instanciado como la clase `cd`. |
+| **`execute()`** | Ejecuta la sentencia preparada. Retorna `false` si ocurre un error. |
 
-$consulta->fetchObject("cd"); //fetchObject devuelve un objeto de tipo CD.
+#### Manejo de respuestas vacías
+Si buscamos un registro por ID, el retorno de la consulta podría ser `false` si no existe:
 
-El execute() devuelve false si su ejecución dio error.
-
-
-$retorno = Cd::TraerUnCd($id);
-El retorno podría ser 'false' así que podría quedar mejor:
-if ($retorno ===false) {
 ```php
-$retorno = -- el error -
-```
+$retorno = Cd::TraerUnCd($id);
+if ($retorno === false) {
+    // Manejar el error o devolver un mensaje de "No encontrado"
 }
 return $retorno;
+```
 
-El PUT se manda en la tercer opción del body del Postman.
-Como no existe $_PUT, para poder tomar lo que mandamos en ese método, tenemos que hacer un parse_str(file_get_contents("php://input"), $putData);
+---
 
-Ahora '$putData' sería nuestro '$_PUT'. 
+### 🌐 Interacción con Métodos HTTP
 
-El DELETE lo recibimos en el $_GET, ya que al igual que el GET, no tiene BODY.
+#### El problema de PUT en PHP
+A diferencia de `$_GET` y `$_POST`, PHP no tiene una variable nativa `$_PUT`. Para capturar los datos enviados por este método (generalmente en el Body de Postman), debemos parsear el flujo de entrada:
+
+```php
+parse_str(file_get_contents("php://input"), $putData);
+// A partir de aquí, $putData funciona como nuestro $_PUT
+```
+
+#### DELETE
+Generalmente se maneja de forma similar a un GET, recibiendo los parámetros (como el ID) a través de la URL (`$_GET`), ya que por estándar no suele llevar un Body.
+
+---
+
+### 💡 Notas Adicionales
+- **`die()`**: Esta función detiene inmediatamente la ejecución de todo el script. Útil para depuración agresiva o errores fatales de conexión.
+- **`$consulta`**: Una vez ejecutado el `execute()`, este objeto contiene el conjunto de resultados (stream) listos para ser extraídos con `fetch`.

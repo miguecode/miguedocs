@@ -16,7 +16,6 @@ La idea no es que la estructura sea Pepito > Tablas > Clientes, Pedidos, etc. Po
 De esta forma, si el día de mañana el usuario PEPITO se va de la empresa, yo elimino su usuario y listo. No habría problema, ya que el no era el propietario de ninguna tabla principal de mi sistema. Las tablas van a seguir vivas en el usuario RRHH o el usuario FINANZAS, etc.
 
 
-
 ## Componentes de una BD. Son 4:  INFORMACIÓN, EQUIPOS, PROGRAMAS y USUARIOS.
 
 - 1 - Información.  La información debe ser integrada y compartida. Que sea integrada significa que la BD puede considerarse como una unificación de varios archivos de datos, eliminando lo más que se pueda la redundancia. Es decir, que los datos no se repitan. Para evitar la redundancia, tenemos que tener bien administrada/diseñada la BD. La técnica para esto es la NORMALIZACIÓN (lo vamos a ver después).

@@ -6,7 +6,7 @@ description: "Comparación entre plataformas Firebase, Supabase y Vercel"
 
 ## Comparación entre plataformas Firebase, Supabase y Vercel
 
-🟡 Firebase	
+**🟡 Firebase**
 
 - **¿Qué es?**: Es un "Backend-as-a-Service".
 - **¿Tiene Base de datos?**: Sí, Firestore (NoSQL) / Realtime DB
@@ -19,7 +19,7 @@ description: "Comparación entre plataformas Firebase, Supabase y Vercel"
 - **Integración con GitHub**: Muy buena
 
 
-🟢 Supabase
+**🟢 Supabase**
 
 - **¿Qué es?**: Es un "Backend-as-a-Service" (de código abierto).
 - **¿Tiene Base de datos?**: Sí, PostgreSQL (relacional y potente)
@@ -32,7 +32,7 @@ description: "Comparación entre plataformas Firebase, Supabase y Vercel"
 - **Integración con GitHub**: Buena
 
 
-⚫ Vercel
+**⚫ Vercel**
 
 - **¿Qué es?**: Es solo Hosting y Deploy de Frontend (JAMstack)
 - **¿Tiene Base de datos?**: No, no incluye base de datos nativa (podríamos conectar otra)
@@ -47,37 +47,37 @@ description: "Comparación entre plataformas Firebase, Supabase y Vercel"
 
 ## ¿Cómo elegir uno u otro?
 
-🟡 Firebase es ideal si:
+**🟡 Firebase es ideal si:**
 
 - Queremos algo rápido y ya hecho (out of the box).
 - No nos molesta estar dentro del ecosistema de Google.
 - No necesitamos SQL, sino algo más tipo documentos.
 - Nos llevamos bien con Angular o apps tipo SPA.
 
-- Firebase es bueno para apps móviles, dashboards, o prototipos full-stack sin servidor propio.
+Firebase es bueno para apps móviles, dashboards, o prototipos full-stack sin servidor propio.
 
-🟢 Supabase es ideal si:
+**🟢 Supabase es ideal si:**
 
 - Queremos SQL real (con relaciones, joins, triggers).
 - Queremos tener más control sin montar nuestro propio backend.
 - Nos gusta que todo sea open source y extensible.
 - Queremos hacer cosas que requieren mucha lógica de base (como filtros complejos o reportes).
 
-- Supabase es como un “Firebase con PostgreSQL”, y es mucho más cercano a una base de datos real de producción.
+Supabase es como un “Firebase con PostgreSQL”, y es mucho más cercano a una base de datos real de producción.
 
-⚫ Vercel es ideal si:
+**⚫ Vercel es ideal si:**
 
 - Nuestra app es frontend puro como un portfolio o landing page (React, Next.js, Angular, Svelte, Astro...).
 - Queremos un deploy totalmente simple.
 - Tenemos nuestro backend por otro lado (Supabase, Firebase, o propio).
 - Queremos buena performance (Edge Rendering, CDN, etc).
 
-- Vercel es el rey del frontend moderno. Pero no brinda backend real ni base de datos. Es como Netlify, sirve para alojar un portfolio personal, una landing page, o una SPA o SSR con frameworks modernos (Next.js, Astro, SvelteKit).
+Vercel es el rey del frontend moderno. Pero no brinda backend real ni base de datos. Es como Netlify, sirve para alojar un portfolio personal, una landing page, o una SPA o SSR con frameworks modernos (Next.js, Astro, SvelteKit).
 
 
 ## Comparación entre Vercel y Netlify
 
-- Ambos sirven para alojar aplicaciones de puro frontend, es decir, que no requieren un respaldo de backend agregado. Se centra en el hosting, el deloy, y el rendimiento. Para las bases de datos, autenticación, almacenamiento de archivos y demás, tendríamos que usar otros servicios en combinación con Vercel o Netlify. Veamos:
+Ambos sirven para alojar aplicaciones de puro frontend, es decir, que no requieren un respaldo de backend agregado. Se centra en el hosting, el deloy, y el rendimiento. Para las bases de datos, autenticación, almacenamiento de archivos y demás, tendríamos que usar otros servicios en combinación con Vercel o Netlify. Veamos:
 
 | Característica			|		Vercel			|			Netlify |
 | --- | --- | --- |
@@ -100,7 +100,7 @@ description: "Comparación entre plataformas Firebase, Supabase y Vercel"
 - Si usamos cualquier framework o tenemos un flujo más custom → Netlify es igual de buena opción.
 - Si queremos Auth sin usar Firebase o Auth0, Netlify Identity te puede servir (básico pero funcional).
 
-- Ninguno de los dos ofrece base de datos ni almacenamiento real. Eso lo conseguimos con servicios externos como:
+Ninguno de los dos ofrece base de datos ni almacenamiento real. Eso lo conseguimos con servicios externos como:
 - Firebase
 - Supabase
 - Planetscale
@@ -122,7 +122,7 @@ description: "Comparación entre plataformas Firebase, Supabase y Vercel"
 
 ## ¿Entonces cuáles son "las mejores"?
 
-- **Todo depende del tipo de proyecto**: 
+**Todo depende del tipo de proyecto**: 
 
 🔸 Para apps modernas sin complicarte (SPA, Firebase, auth, chat, etc):
 ✅ Firebase
@@ -143,7 +143,7 @@ description: "Comparación entre plataformas Firebase, Supabase y Vercel"
 ✅ Google Cloud + Firebase
 ✅ Azure App Services
 
-- Plataformas que también existen pero no son tan modernas:
+Plataformas que también existen pero no son tan modernas:
 
 | Plataforma	|	¿Por qué ya no son tan populares como antes? |
 | --- | --- |

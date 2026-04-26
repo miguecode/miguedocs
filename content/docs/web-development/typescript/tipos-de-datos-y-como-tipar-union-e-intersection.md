@@ -10,7 +10,6 @@ Como sabemos, en JavaScript tenemos 10 tipos los cuales se dividen en primitivos
 
 TypeScript extiende esta lista agregando tipos más específicos. Los podemos dividir en tipos primitivos, complejos, especiales y avanzados:
 
-
 ### Tipos primitivos (Los mismos de JavaScript)
 - string → Cadenas de texto.
 - number → Números (enteros y decimales).
@@ -49,7 +48,7 @@ TypeScript extiende esta lista agregando tipos más específicos. Los podemos di
 
 ## ¿Cómo y cuándo hay que tipar valores?
 
-- Al declarar variables (si es muy obvio, se puede evitar)
+- **Al declarar variables (si es muy obvio, se puede evitar)**
 
 ```typescript
 let nombre: string = "Juan";
@@ -57,7 +56,7 @@ let edad: number = 25;
 let esActivo: boolean = true;
 ```
 
-**En una función**: 
+- **En una función**: 
 
 ```typescript
 function saludar(nombre: string, edad: number): string {
@@ -90,7 +89,7 @@ type Producto = { nombre: string; precio: number };
 let producto: Producto = { nombre: "Laptop", precio: 1500 };
 ```
 
-### Inferencia de tipos (Type Inference)
+## Inferencia de tipos (Type Inference)
 
 Como dijimos al principio en la sección anterior, si el dato es muy obvio, podemos ahorrarnos tipar. ¿Por qué? Porque en TypeScript existe la inferencia de tipos, es decir, TS deduce de qué tipo tiene que ser algo que no tiene su tipo especificado, veamos:
 

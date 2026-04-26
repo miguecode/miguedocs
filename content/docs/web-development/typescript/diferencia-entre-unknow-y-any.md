@@ -8,7 +8,6 @@ description: "En TypeScript, unknown y any son tipos especiales, pero cada uno s
 
 En TypeScript, unknown y any son tipos especiales, pero cada uno se usa en situaciones distintas y con un propósito diferente.  Any se usa cuando realmente queremos evitar la verificación de tipo y unknow se usa cuano queremos permitir flexibilidad como any, pero también queremos tener la seguridad de que se va a verificar el tipo antes de realizar operaciones. Unknow nos obliga a inferir el tipo previo a usarlo.
 
-
 ### Any
 
 **Usar any es como decir**: "No me importa el tipo de este valor, así que va a ser válido para cualquier operación, sin validación alguna". Any puede guardar cualquier cosa todo el tiempo.

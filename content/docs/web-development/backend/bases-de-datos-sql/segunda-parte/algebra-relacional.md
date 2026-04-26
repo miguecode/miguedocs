@@ -17,8 +17,7 @@ Lo que escribamos en AG no es SQL, después tenemos que trasladarlo a sentencias
 - Unión, intersección, diferencia, producto cartesiano (como operadores tradicionales)
 - Restricción (o selección), proyección, reunión y división (como operadores relacionales específicos para BD relacionales).
 
-- Funciones de cada Operación
-(Cada operación trabaja sobre 2 tablas, y da como resultado una tercer tabla).
+Cada operación trabaja sobre 2 tablas, y da como resultado una tercer tabla.
 
 ### OPERADORES TRADICIONALES
 
@@ -123,7 +122,10 @@ Supongamos que en la tabla DIVIDENDO tenemos que el NUMERO 101 se repite 3 veces
 Y supongamos que la tabla DIVISOR tiene como PNRO 01, 02 y 03. Eso quiere decir que NUMERO 101 involucra a TODAS las tuplas de la tabla DIVISOR. Por lo tanto, el 101 va a aparecer en la tabla resultado. Ya que involucra a todas de la otra tabla. En cambio si en la DIVISOR hay un NUMERO 102 que se repite 2 veces, una vez con un PNRO de 01 y otra vez con un PNRO de 03, el NUMERO 102 no va a mantenerse, ya que no involucra a todos, le faltó el PNRO 02 de la otra tabla.
 
 También existe la operación 'Asignación relacional', que también es previa, como el RENAME.
+
+```sql
 R1 <-  PRODUCTOS WHERE PNRO = 001 [PNOMBRE]
+```
 
 Esa es una expresión algebraica de una asignación relacional. En R1 estoy guardando lo que devuelve la derecha. Sólo puedo guardar un valor en ese R1. No un vector de resultados, uno sólo. 
 

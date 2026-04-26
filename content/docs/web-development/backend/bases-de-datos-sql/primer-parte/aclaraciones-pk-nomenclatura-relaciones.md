@@ -18,23 +18,23 @@ En 'Proveedores' la PK sería la columna NUMERO. En 'Productos' sería la column
 
 
 ## Nomenclatura
-* Si vamos a hacer tablas en plural, todas tienen que estar en plural. Si van a ser en singular, todas en singular. Pero lo correcto es PLURAL.
+- Si vamos a hacer tablas en plural, todas tienen que estar en plural. Si van a ser en singular, todas en singular. Pero lo correcto es PLURAL.
 
-* Las columnas no suelen seguir un orden específico. Lo que sí se estila hacer y es necesario es que la o las primeras columnas sean las de PK. Eso sí hay que respetarlo. Los nombres de las tablas van siempre en plural. Si el nombre de la tabla es un nombre compuesto, todos deben tener el mismo prefijo (- _). Como'Prov-Prod' o 'Prov_Prod'. 
+- Las columnas no suelen seguir un orden específico. Lo que sí se estila hacer y es necesario es que la o las primeras columnas sean las de PK. Eso sí hay que respetarlo. Los nombres de las tablas van siempre en plural. Si el nombre de la tabla es un nombre compuesto, todos deben tener el mismo prefijo (- _). Como'Prov-Prod' o 'Prov_Prod'. 
 
-* Si tenemos un objeto vista, lo lógico es que empiece con un V_
+- Si tenemos un objeto vista, lo lógico es que empiece con un V_
 
 
 ## Tecnicismos para hablar en Bases de Datos:
-* Una tabla, como dijimos, es una entidad.
-* Una fila es una TUPLA. Tupla = Fila. Es un registro de datos.
-* Una columna es un atributo. Columna = Atributo.
+- Una tabla, como dijimos, es una entidad.
+- Una fila es una TUPLA. Tupla = Fila. Es un registro de datos.
+- Una columna es un atributo. Columna = Atributo.
 
 Entonces, en vez de decir que una tabla tiene filas y columnas, decimos que una entidad tiene tuplas y atributos.
 
-* El 'grado de la relación' es la cantidad de columnas (atributos) que tiene una tabla.
-* La cardinalidad es el número de filas (tuplas) que tiene una tabla.
-* El dominio es un conjunto de valores, es decir, el rango de valores posibles que puede adoptar una columna, si yo tengo una columna día, su dominio va a ser 1-31, si tengo una columna mes su dominio va a ser 1-12.
+- El 'grado de la relación' es la cantidad de columnas (atributos) que tiene una tabla.
+- La cardinalidad es el número de filas (tuplas) que tiene una tabla.
+- El dominio es un conjunto de valores, es decir, el rango de valores posibles que puede adoptar una columna, si yo tengo una columna día, su dominio va a ser 1-31, si tengo una columna mes su dominio va a ser 1-12.
 
 
 ## Tipos de relaciones

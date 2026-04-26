@@ -14,7 +14,6 @@ Las rutas absolutas se usan siempre para las URL, por una cuestión lógica. Ent
 https://www.google.com
 ```
 
-
 Otro ejemplo de ruta absoluta puede ser una ruta de nuestro sistema, así:
 
 ```text
@@ -26,9 +25,9 @@ Eso sería una ruta absoluta. Ya que, accedamos desde donde accedamos, siempre n
 
 ## Rutas Relativas
 
-- Estas son las que más se usan. De hecho, cuando estamos programando o moviéndonos por los archivos de nuestro proyecto o de nuestro sistema, SIEMPRE vamos a estar manipulando rutas RELATIVAS. 
+Estas son las que más se usan. De hecho, cuando estamos programando o moviéndonos por los archivos de nuestro proyecto o de nuestro sistema, SIEMPRE vamos a estar manipulando rutas RELATIVAS. 
 
-- Las rutas relativas, son a las que SÍ les importa en dónde estamos parados. Estas rutas indican la ubicación de un archivo o carpeta en relación con la posición actual. Es decir, dependen de la carpeta en la que estemos ubicados, y por eso a veces las escribimos de una forma u otra.
+Las rutas relativas, son a las que SÍ les importa en dónde estamos parados. Estas rutas indican la ubicación de un archivo o carpeta en relación con la posición actual. Es decir, dependen de la carpeta en la que estemos ubicados, y por eso a veces las escribimos de una forma u otra.
 
 ## Ejemplo considerando esta jerarquía de archivos:
 
@@ -49,9 +48,9 @@ Supongamos que estamos parados dentro de "MiniCarpeta3", y queremos acceder al a
 ../Carpeta1/MiniCarpeta2/Hola.txt
 ```
 
-- Ese   "  ../  "  es un paso hacia atrás, o hacia afuera, o hacia arriba. Como queramos verlo. Si nosotros estábamos dentro de MiniCarpeta3, al hacer  "  ../  "  nos movimos hacia Carpeta2. Después, a partir de ahí, nos vamos acercando a donde queremos con   /   .
+Ese   "  ../  "  es un paso hacia atrás, o hacia afuera, o hacia arriba. Como queramos verlo. Si nosotros estábamos dentro de MiniCarpeta3, al hacer  "  ../  "  nos movimos hacia Carpeta2. Después, a partir de ahí, nos vamos acercando a donde queremos con   /   .
 
-- Supongamos que estamos parados dentro de "Carpetita", y queremos acceder al archivo "Chau.txt", el cual está dentro de Carpeta3. Para eso, vamos a usar la ruta relativa:
+Supongamos que estamos parados dentro de "Carpetita", y queremos acceder al archivo "Chau.txt", el cual está dentro de Carpeta3. Para eso, vamos a usar la ruta relativa:
 
 ```text
 ../../../Carpeta3/Chau.txt

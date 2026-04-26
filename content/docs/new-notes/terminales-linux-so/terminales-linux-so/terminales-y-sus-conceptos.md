@@ -4,6 +4,8 @@ description: "📚 Este apunte explica qué son y cómo se relacionan los siguie
 ---
 
 
+## Introducción
+
 📚 Este apunte explica qué son y cómo se relacionan los siguientes conceptos.
 
 - Terminal de Windows
@@ -20,7 +22,6 @@ description: "📚 Este apunte explica qué son y cómo se relacionan los siguie
 ## Terminal de Windows
 
 Terminal de Windows es una aplicación de Windows que se instala fácilmente en la Microsoft Store. Es una interfaz de terminal personalizable y moderna, que soporta múltiples pestañas y la posibilidad de usar distintos perfiles como PowerShell, CMD o WSL.
-
 
 ## Diferencias entre "Terminal", "Shell" y "CLI"
 
@@ -72,7 +73,7 @@ Por defecto, Ubuntu usa bash (Bourne Again Shell), pero podríamos cambiarlo a z
 
 - **Zsh**: es una versión mejorada de bash, con más funcionalidades por defecto como: Autocompletado más inteligente y sugerencias de comandos. Además de temas y personalización (por ejemplo, usando oh-my-zsh).
 
-- Básicamente, bash sirve para más simplicidad. Pero si se quiere más personalización y herramientas "out-of-the-box", es mejor zsh.
+Básicamente, bash sirve para más simplicidad. Pero si se quiere más personalización y herramientas "out-of-the-box", es mejor zsh.
 
 
 ## Extra: la terminal Warp

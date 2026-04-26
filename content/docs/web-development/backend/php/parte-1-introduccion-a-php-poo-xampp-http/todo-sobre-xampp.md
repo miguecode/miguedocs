@@ -4,43 +4,52 @@ description: "La 'X' significa que es multiplataforma (es decir, para cualquier 
 ---
 
 
-- XAMPP -
-La 'X' significa que es multiplataforma (es decir, para cualquier SO).
-La 'A' significa Apache, que es el servidor de PHP que vamos a usar. Va a ser el intérprete de nuestro código.
-La 'M' significa MariaDB, que es la base de datos MySQL que es la que vamos a usar.
-La P es de PHP y la otra P es de Perl. Perl no lo vamos a usar.
+## 🛠 Todo sobre XAMPP
 
-XAMPP es un paquete de aplicaciones que nos facilita levantar un servidor Apache (que es el servidor que vamos a utilizar para interpretar nuestro código PHP), levantar un servidor de base de datos MySql, y todo lo que necesitamos para poder utilizar PHP en nuestra máquina.
+**XAMPP** es un paquete de software que facilita la instalación de un entorno de desarrollo local. Sus siglas significan:
 
-A esta altura, me instalé XAMPP. El instalador ya viene con todos los componentes necesarios. 'Perl', como no lo vamos a usar, no es necesario.
+- **X:** Multiplataforma (Cross-platform), funciona en cualquier SO.
+- **A:** **Apache**, el servidor web que interpreta nuestro código PHP.
+- **M:** **MariaDB** (antes MySQL), el sistema de gestión de bases de datos.
+- **P:** **PHP**, el lenguaje de programación.
+- **P:** **Perl**, otro lenguaje de programación (que generalmente no usaremos).
 
-Hay que darle 'Start' al que dice Apache, justamente para levantar/correr el servidor Apache.
+Este paquete nos permite levantar un servidor local en nuestra máquina de manera sencilla para probar aplicaciones web sin necesidad de un hosting externo.
 
-Abrimos el navegador y vamos a esta URL:      http://localhost/dashboard/
-Podemos simplemente escribir 'localhost' en la barra y darle a enter, y nos va a llevar ahí. O también podemos poner localhost:80 y darle a enter, y tambien nos lleva. Hay que poner 80 porque es por defecto el puerto con el que estamos levantando el servidor Apache. Esto, en la configuración del XAMPP Control Panel (el XAMPP) lo podemos modificar, para que el puerto sea otro.
+### Instalación y Configuración
 
-Una aclaración sobre los puertos
-Puede pasar que se de el error de que el puerto ya este usado. Por ejemplo, capaz que tengo algún programa en mi máquina que me levanta el puerto 80. Entonces cuando quiera levantar al servidor Apache en el mismo puerto 80, me va a decir que no se puede. Eso se resuelve simplemente cambiandole el puerto. Es lo mismo que habiamos visto con el Live Server.
+1. Tras instalar XAMPP, abre el **XAMPP Control Panel**.
+2. Dale al botón **'Start'** en el módulo de **Apache** para iniciar el servidor.
+3. Abre tu navegador y dirígete a: `http://localhost/` o `http://localhost:80/`. El puerto 80 es el puerto por defecto de Apache.
 
-En la carpeta 'xampp', que es donde está instalado XAMPP (ubicada en el disco local C), vamos a tener una carpeta llamada 'htdocs'. A partir de lo que esté aca adentro, es donde inicia la raiz de nuestro servidor. Eso significa que si vamos a '' localhost/ '' estamos yendo a la carpeta 'htdocs'. Así que todo lo que esté dentro de htdocs, va a verse reflejado ahí. 
+#### ⚖️ Una aclaración sobre los puertos
+Si Apache no inicia, puede ser que el puerto 80 esté ocupado por otro programa (como Skype o algún otro servidor local). En ese caso, deberás cambiar el puerto en la configuración de Apache dentro del panel de control de XAMPP.
 
-Dentro de htdocs vamos a hacer una carpeta llamada Clase01. Y dentro de ella, un archivo llamado 'index.php'.
-Dentro del index.php, vamos a escribir:
+### ¿Dónde guardar mis proyectos? (htdocs)
+
+En el directorio de instalación de XAMPP (usualmente `C:\xampp\`), encontrarás una carpeta llamada **`htdocs`**. Esta es la **raíz de tu servidor local**.
+
+> [!IMPORTANT]
+> Todo lo que coloques dentro de `htdocs` será accesible desde el navegador a través de `localhost/`.
+
+---
+
+### Ejemplo práctico: Mi primera página PHP
+
+1. Dentro de `htdocs`, crea una carpeta llamada `Clase01`.
+2. Crea un archivo dentro llamado **`index.php`**.
+3. Escribe el siguiente código:
 
 ```php
 <?php
-```
-```php
-echo "Hola Mundo";
-```
+  echo "Hola Mundo";
 ?>
+```
 
-Para ver esto reflejado en el navegador tenemos que escribir esto en la URL:
+4. Para verlo en el navegador, accede a: `http://localhost/Clase01/`
 
-http://localhost/Clase01/index.php/
+### 💡 Aclaraciones adicionales
 
-Aclaraciones
-- Como dijimos, localhost accede al contenido de htdocs.
-- Apache, por defecto, lo primero que va a ir a buscar siempre va a ser un archivo llamado index.php. Si no lo encuentra, va a buscar un index.html. Y si tampoco lo encuentra, va a dar error.
-
-Se recomienda borrar todo que hay por defecto en htdocs. Literalmente todo. No lo necesitamos, son archivos como para informar que Apache está bien instalado, da igual que estén o no. O sea que, htdocs quedaría vacío y solo tendría la carpeta 'Clase01' que creamos nosotros.
+- **localhost** apunta directamente al contenido de la carpeta `htdocs`.
+- **Búsqueda automática:** Apache busca siempre por defecto un archivo llamado `index.php`. Si no existe, busca `index.html`. Si lo encuentra, lo sirve automáticamente al entrar a la carpeta.
+- **Limpieza:** Se recomienda borrar los archivos que vienen por defecto en `htdocs` (como el dashboard) para tener un espacio de trabajo limpio y ver tus propias carpetas al entrar a `localhost`.

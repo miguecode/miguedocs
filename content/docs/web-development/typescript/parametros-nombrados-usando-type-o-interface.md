@@ -10,7 +10,6 @@ Es una técnica que consiste en pasar un único objeto como argumento a una func
 
 ¿Cuándo hacer esto? Cuando tenemos una función que recibe varios parámetros, y nosotros sabemos que en algún futuro esos parámetros pueden ser más. Esto es una buena práctica.
 
-
 ## Ejemplo básico SIN parámetros nombrados
 
 ```typescript

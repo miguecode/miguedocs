@@ -15,8 +15,6 @@ Una foreign key, o clave ajena, o clave foránea, es para relacionar tablas. La 
 
 - Si ambas entidades tienen una relación de uno a muchos entre sí, entonces necesito hacer una tercer tabla. La tabla interrelacional o también llamada intermedia. (El ejemplo de los pacientes y los medicamentos o el de los proveedores y los productos).
 
-
-
 ```text
 PRODUCTOS          PROVEEDORES
   (uno) ------------->(muchos)
@@ -56,10 +54,10 @@ CREATE TABLE tablita (...);
 ```
 
 
-TIPOS DE DATOS
-Numéricos: INTEGER, DECIMAL, FLOAT
-Cadena: CHARACTER(n), VARCHAR(n)
-Fechas: DATE, TIME
+**TIPOS DE DATOS**
+- Numéricos: INTEGER, DECIMAL, FLOAT
+- Cadena: CHARACTER(n), VARCHAR(n)
+- Fechas: DATE, TIME
 
 Ejemplo de una tabla entidad proveedores:
 
@@ -111,10 +109,16 @@ Por lo tanto, primero hago el ADD aceptando NULL y después hago un MODIFY, le p
 ### DROP TABLE
 
 Sintaxis:
+
+```sql
 DROP TABLE tablita;
+```
 
 Ejemplo:
+
+```sql
 DROP TABLE PRODUCTOS;
+```
 
 Ojo: Una tabla NO puede borrarse si está cediéndole información a otra. Es decir, no puedo borrar la tabla PRODUCTOS si en mi tabla PROD-CLIEN estoy usando elementos de la tabla PRODUCTOS. (Obviamente estando relacionadas).
 
@@ -153,15 +157,20 @@ El ALTER INDEX no existe. Los índices no se alteran. Sólo se crean o se elimin
 
 ### DROP INDEX
 Sintaxis:
+
+```sql
 DROP INDEX indice1;
 DROP INDEX I_XNP;
-
+```
 
 ### VIEW
+
+```sql
 CREATE OR REPLACE (Es un ALTER VIEW camuflado)
 CREATE OR REPLACE VIEW V_ALGUNOS_PROVEEDORES AS
 SELECT NUMERO, LOCALIDAD
 FROM PROVEEDORES
 WHERE LOCALIDAD = 'CAPITAL';
+```
 
 Esto hace que si la VIEW ya existe, entonces el motor entra por el 'REPLACE' y le cambia la sentencia. Es decir, el 'AS'. Pero si no existe, entra por el CREATE y la crea con misma esa sentencia.

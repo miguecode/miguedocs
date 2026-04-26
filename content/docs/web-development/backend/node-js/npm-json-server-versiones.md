@@ -86,7 +86,7 @@ Siempre que instalamos algo, se crea una carpeta 'node_modules'. Ahí va a estar
 
 Por defecto, siempre se va a instalar la última versión. Quedaría así:
 
-```text
+```json
 "dependencies": {
   "json-server": "^0.17.3"
 }
@@ -101,8 +101,8 @@ Cada cosa que no queramos subir a git (como archivos de configuración, contrase
 
 ```text
 /node_modules
+Escribimos eso dentro del archivo llamado '.gitignore', y así nunca le damos bola a la carpeta 'node_modules', que es donde está todo el código de terceros.
 ```
-// Escribimos eso dentro del archivo llamado '.gitignore', y así nunca le damos bola a la carpeta 'node_modules', que es donde está todo el código de terceros.
 
 Ahora si nosotros nos descargamos o clonamos el repo de nuestra aplicación, nos paramos en 'server', abrimos la terminal, y hacemos:
 

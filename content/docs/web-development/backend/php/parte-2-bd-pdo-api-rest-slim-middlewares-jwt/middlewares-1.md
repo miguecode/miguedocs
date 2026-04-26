@@ -4,26 +4,46 @@ description: "Abstrayendonos de las APIS, un Middleware es un asistente para una
 ---
 
 
-Middleware
-Abstrayendonos de las APIS, un Middleware es un asistente para una aplicación que permite interactuar o comunicarse entre dos aplicaciones/programas de software/redes/hardware/SO, etc. Lo que sea. Un Middleware es un mediador entre dos de esos tipos de cosas, el cual permite la interacción/comunicación.
-Un middleware implementa la interface PSR15.
+## 🧱 Middlewares
 
-Requisito para crear un middleware: El middleware DEBE invocar al siguiente middleware y pasarle los objetos Request y Response como argumentos. 
+Un **Middleware** es un mediador o asistente que permite la comunicación e interacción entre dos sistemas (aplicaciones, hardware, SO, etc.). En el contexto de las APIs, actúa como un filtro o interceptor de peticiones.
 
-La respuesta del middleware va a ir a 2 lugares: o hacia alguna de nuestras rutas, o hacia el cliente, o hacia otro middleware. ¿Cómo llega? En caso de que un middleware derive en una de nuestras rutas, lo que el middleware devuelva como respuesta, nuestras rutas lo van a recibir como Request. En vez de recibirlo directamente del cliente, el request pasa por el middleware, el middleware lo procesa y da una respuesta, y esa respuesta, nuestra ruta lo toma como request y sigue el proceso.
+En PHP y Slim 4, los middlewares implementan la interfaz **PSR-15**.
 
-Hubo un cambio en el medio del request del cual no se ocupó nuestro controller, sino que el mediador (el middleware).
+---
 
+### 🚀 ¿Cómo funciona un Middleware?
 
-Middleware en Slim 4
-En Slim podemos ejecutar código antes y después de una llamada a nuestra API REST, es decir, manipular el Request y el Response como queramos en los Middleware, tanto antes de la llegada a la API REST, como después. En los middleware podemos hacer validaciones de que por ejemplo el usuario exista o no en la DB, o que los datos sean correctos, etc.
+El requisito fundamental de un middleware es que **debe invocar al siguiente componente** en la cadena (ya sea otro middleware o la ruta final) pasando los objetos **Request** y **Response**.
 
-Posibles usos: proteger la aplicación de la falsificación de solicitudes cruzadas, autenticar las solicitudes antes de ejecutar su aplicación, etc.
+1. **Intercepción:** La petición del cliente llega al middleware.
+2. **Procesamiento "Antes":** El middleware puede validar datos, autenticar usuarios o modificar el Request.
+3. **Delegación:** Pasa el control al siguiente eslabón.
+4. **Procesamiento "Después":** Una vez que la ruta generó una respuesta, el middleware puede volver a actuar sobre ella antes de enviarla al cliente.
 
-Entonces, basicamente un middleware es como un bloque de código validador, que se puede aplicar a cada una de las peticiones que hacemos al servidor. Cada vez que hacemos una petición, lo que mandamos pasa por el middleware y realiza una acción con eso (ya sea validar u otra cosa). 
+> [!NOTE]
+> Un middleware permite desacoplar la lógica de validación o seguridad del **Controller**. Por ejemplo, el controlador no necesita saber si el usuario está logueado; el middleware se encarga de esa validación antes de que la petición llegue al controlador.
 
-Un middleware lo podemos poner a nivel aplicación, cosa que se ejecute siempre en cualquier momento, o a nivel ruta, entonces sólo aplica a esa ruta específica. 
+---
 
-Slim añade middleware como capas que rodean su aplicación principal. Cada middleware es una capa por la cual tiene que pasar nuestra Request para llegar al centro, que sería nuestra aplicación. Y no solo al llegar, sino también al irse. Es decir, un middleware actúa antes de llegar a la ruta como después de haber entrado. 
+### 🛠️ Middlewares en Slim 4
 
-Entonces la primer capa por la que entra, va a ser la última por la que sale. Es un efecto rebote. Las capas más grandes rodean a las anteriores.
+Slim utiliza un patrón de **Capas de Cebolla (Onion Architecture)**. Los middlewares rodean la aplicación principal:
+
+- **Nivel Aplicación:** El middleware se ejecuta en **todas** las peticiones de la API.
+- **Nivel Ruta:** El middleware solo se ejecuta cuando se accede a una URL específica.
+- **Nivel Grupo:** Se aplica a un conjunto de rutas relacionadas (ej: todas las rutas `/admin`).
+
+#### El efecto rebote (LIFO)
+La primera capa por la que entra la petición es la **última** por la que sale la respuesta. Imagina que vas entrando al centro de una cebolla y luego vuelves a salir hacia la superficie.
+
+| Fase | Orden de ejecución |
+| :--- | :--- |
+| **Entrada (Request)** | Desde el middleware más externo hacia el más interno. |
+| **Salida (Response)** | Desde el middleware más interno hacia el más externo. |
+
+#### Usos comunes:
+- **Autenticación:** Verificar tokens JWT.
+- **CORS:** Permitir peticiones desde otros dominios.
+- **Logging:** Registrar cada petición que llega al servidor.
+- **Parseo de datos:** Preparar los cuerpos de las peticiones (JSON, XML).

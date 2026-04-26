@@ -3,21 +3,26 @@ title: "Clean Architecture"
 description: "Creada por el famoso Uncle Bob, la Clean Architecture es una arquitectura basada en capas, las cuales se encargan de organizar y separar las distintas responsab..."
 ---
 
+
 ## ¿Qué es la Clean Architecture?
 
-- Creada por el famoso Uncle Bob, la Clean Architecture es una arquitectura basada en capas, las cuales se encargan de organizar y separar las distintas responsabilidades de nuestra aplicación.
+Creada por el famoso Uncle Bob, la Clean Architecture es una arquitectura basada en capas, las cuales se encargan de organizar y separar las distintas responsabilidades de nuestra aplicación.
 
-- Gráficamente lo podemos dividir en 4 capas, donde cada una recubre a la otra:
+Gráficamente lo podemos dividir en 4 capas, donde cada una recubre a la otra:
 
-```typescript
+```text
 E > A > U > D
 ```
-| D -> | Domain: Lógica de negocios + Entidades |
+
+| Capa | Descripción |
 | --- | --- |
+| D -> | Domain: Lógica de negocios + Entidades |
 | U -> | Use cases: Lógica de aplicación |
 | A -> | Adapters |
 | E -> | Extern |
-- La idea es que cada capa "ve hacia dentro", es decir, es capaz de ver a lo que está recubriendo. Pero no pueden ver hacia afuera, es decir, no ven lo que pasa por fuera de ellas.
+
+La idea es que cada capa "ve hacia dentro", es decir, es capaz de ver a lo que está recubriendo. Pero no pueden ver hacia afuera, es decir, no ven lo que pasa por fuera de ellas.
+
 - **Domain (dominio)**: Toda lógica de la aplicación que NO DEPENDE de la tecnología, entonces es una lógica de negocio.  El dominio es intocable nada ni nadie lo tiene que afectar. Gráficamente hablando, el dominio NO SABE lo que pasa fuera de él. Es decir, al dominio no le importa y lo que pasa en los Use cases, en los Adapters ni en Extern. El dominio es una capa que no depende de las demás, y todos dependen de ella. Pero no la tocan. Dato: Cuando una misma lógica de negocio se aplica a más de un proyecto, se la puede llamar "Lógica de Organización".
  
 - **Use cases (casos de uso)**: Son los requerimientos que nos pide la lógica de negocios. Se la llama, entonces, Lógica de Aplicación. Esta lógica es la que tiene que hacer que se cumpla la lógica de negocios. Además, también hace que las "Entidades" se acerquen o interactúen con la "Lógica de Negocios".
@@ -42,9 +47,9 @@ E > A > U > D
 
 ## ¿Cuándo sí y cuándo no usar esta arquitectura?
 
-- Clean Architecture es una arquitectura robusta, por ende tiene sentido usarla cuando el proyecto es grande y promete que va a escalar en el tiempo, o que puede sufrir cambios considerables en el tiempo. 
+Clean Architecture es una arquitectura robusta, por ende tiene sentido usarla cuando el proyecto es grande y promete que va a escalar en el tiempo, o que puede sufrir cambios considerables en el tiempo. 
 
-- Pero muchos proyectos no cumplen con esas características, y en ellos la verdad es que no tiene sentido usar Clean Architecture, ya que puede hacer el proyecto más pesado innecesariamente. Esto suele pasar con, por ejemplo, los Adapters. A veces, simplemente no es necesario adaptar nada o la adaptación es mínima entre la API y nuestra app.
+Pero muchos proyectos no cumplen con esas características, y en ellos la verdad es que no tiene sentido usar Clean Architecture, ya que puede hacer el proyecto más pesado innecesariamente. Esto suele pasar con, por ejemplo, los Adapters. A veces, simplemente no es necesario adaptar nada o la adaptación es mínima entre la API y nuestra app.
 
 - Hay que ser pragmático, no hay que decir "la Clean Architecture es lo mejor que existe, así que la voy a aplicar en todo lo que haga". Hay que saber cuándo sí y cuándo no. 
 

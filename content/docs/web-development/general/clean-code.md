@@ -12,7 +12,7 @@ El Clean Code no es solo una metodología; es una filosofía de trabajo. Adoptar
 
 - **Los nombres importan**: "Deben ser precisos, coherentes y centrales." Elegir nombres claros y descriptivos para variables, funciones y clases es crucial. Un buen nombre elimina la necesidad de comentarios y facilita la comprensión del código.
 
-- Por ejemplo, si yo tengo la variable 'prom', me quedo pensando... ¿Qué es prom? Y claro, es sencillo pararme a pensar y sacar la conclusión de que 'prom' es 'promedio' abreviado... pero, si yo le hubiese puesto 'promedio' en vez de 'prom', no tengo que perder tiempo en pensar ¿Qué es prom? Porque ya me lo dice literalmente el nombre de la variable. Entonces, de eso se trata: de que los nombres de las variables, funciones, clases, y cualquier elemento de mi proyecto sea 100% CLARO y SIGNIFICATIVO. No importa que el nombre quede más largo de escribir, cuanto más se entienda y más autodescriptivo sea, mejor.
+Por ejemplo, si yo tengo la variable 'prom', me quedo pensando... ¿Qué es prom? Y claro, es sencillo pararme a pensar y sacar la conclusión de que 'prom' es 'promedio' abreviado... pero, si yo le hubiese puesto 'promedio' en vez de 'prom', no tengo que perder tiempo en pensar ¿Qué es prom? Porque ya me lo dice literalmente el nombre de la variable. Entonces, de eso se trata: de que los nombres de las variables, funciones, clases, y cualquier elemento de mi proyecto sea 100% CLARO y SIGNIFICATIVO. No importa que el nombre quede más largo de escribir, cuanto más se entienda y más autodescriptivo sea, mejor.
 
 - **Autor del código**: "El código limpio se lee como prosa bien escrita." Un código bien escrito debe ser fácil de leer y entender. Como programadores, nuestro trabajo no es solo escribir código que funcione, sino también asegurarnos de que otros programadores puedan leerlo y mantenerlo fácilmente. La idea es que cuando estoy leyendo el desarrollo de una función, todo sea lo más humanizado posible. Lógicamente esto no es sencillo porque un lenguaje de programación no es un lenguaje con el que los humanos nos comunicamos, pero cuanto más nos acerquemos a eso, mucho mejor.
 
@@ -21,7 +21,9 @@ El Clean Code no es solo una metodología; es una filosofía de trabajo. Adoptar
 - **DRY**: Don’t Repeat Yourself: "No te repitas a ti mismo." Este principio significa que cada parte de la funcionalidad del código debe estar implementada en un solo lugar. Hay que evitar la duplicación de código, ya que puede llevar a inconsistencias y errores difíciles de rastrear.
 
 - **Funcionalidad única**: Cada pieza de lógica debe tener un único lugar donde se define. Esto evita confusiones y asegura que cualquier cambio futuro solo necesite hacerse en un lugar.
+
 - **Funcionalidad inequívoca**: El código debe ser claro y permitir una única interpretación. Esto significa que cualquier desarrollador debería poder entender lo que hace sin ambigüedades.
+
 - **Funcionalidad fidedigna**: Confiamos en que el código hace lo que debe hacer, de manera correcta y eficiente.
 
 - **Los comentarios mienten**: "Comentar solo lo necesario." Los comentarios deben usarse con moderación. Si un comentario es necesario, hay que asegurarse de que esté actualizado y refleje exactamente lo que hace el código. Sin embargo, el mejor código es aquel que se explica por sí mismo, sin necesidad de comentarios.
@@ -37,12 +39,11 @@ La documentación se encarga de explicar las intenciones y las formas de funcion
 
 - **La mejor documentación es un código bien escrito**: Si el código es claro y representa bien su intención, no es necesario comentarlo. La claridad en la escritura del código es más importante que una documentación.
 
-
 ## Atomización
 
 Atomizar significa descomponer el código en partes más pequeñas y manejables. Esto se aplica cuando una función puede dividirse en subfunciones más específicas, cada una con una única responsabilidad. Sin embargo, es importante encontrar un balance: si atomizamos demasiado, podríamos complicar innecesariamente la estructura del código.
 
-- **Veamos un ejemplo**: 
+**Veamos un ejemplo**: 
 
 ```typescript
 ValidarNumerico(string datoIngresado, int valorMin, int valorMax)

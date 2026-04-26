@@ -76,7 +76,7 @@ const colores = ["rojo", "amarillo", "verde"] as const;
 colores[0] = "violeta";   // Esto da ERROR
 ```
 
-- **Todo esto nos puede servir para**: 
+**Todo esto nos puede servir para**: 
 
 ```typescript	
 function obtenerConfiguracion() {

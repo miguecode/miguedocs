@@ -6,16 +6,16 @@ description: "¿Qué es el hosting?"
 
 ## ¿Qué es el hosting?
 
-- El término Hosting (o alojamiento web) es un servicio que nos da una especie de "espacio" en donde nosotros podemos almacenar información (imágenes, videos, páginas web, etc.). Lo importante del hosting es que pueda ser accesible a través de la web.
+El término Hosting (o alojamiento web) es un servicio que nos da una especie de "espacio" en donde nosotros podemos almacenar información (imágenes, videos, páginas web, etc.). Lo importante del hosting es que pueda ser accesible a través de la web.
 
-- Ese "espacio" nos lo brinda un servidor, que en este caso sería un proveedor. Entonces, nuestra página web, en vez de convivir en nuestra computadora, va a estar en la computadora de la empresa de hosting.
+Ese "espacio" nos lo brinda un servidor, que en este caso sería un proveedor. Entonces, nuestra página web, en vez de convivir en nuestra computadora, va a estar en la computadora de la empresa de hosting.
 
-- Un buen proveedor de hosting nos ofrece facilidades, tanto para el desarrollo como para la seguridad y la estabilidad de nuestra aplicación. 
+Un buen proveedor de hosting nos ofrece facilidades, tanto para el desarrollo como para la seguridad y la estabilidad de nuestra aplicación. 
 
 
 ## Tipos de hosting
 
-- **Los más comunes son estos primeros 4**: 
+**Los más comunes son estos primeros 4**: 
 
 1. Hosting compartido: Este es el más común de todos, en el que la mayoría de los sitios web están alojados. Es un tipo de hosting en donde UN sólo servidor contiene muchísimos sitios web. Este tipo de hosting suele incluir un sistema de control, y un servicio de "mailing", o sea, de correos. Además, el hosting compartido es gestionado por el proveedor, es decir, nosotros no nos encargamos de nada. 
 

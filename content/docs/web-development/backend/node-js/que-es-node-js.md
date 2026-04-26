@@ -5,6 +5,7 @@ description: "🟢 ¿Qué es Node.js?"
 
 
 ## 🟢 ¿Qué es Node.js?
+
 Node.js es un entorno de ejecución de JavaScript del lado del servidor. A diferencia de JavaScript tradicional, que se ejecuta en navegadores para interactuar con páginas web, Node.js permite ejecutar código JavaScript en el servidor, lo que permite desarrollar aplicaciones del lado del servidor con el mismo lenguaje.
 
 Algunas características clave de Node.js son:

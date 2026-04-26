@@ -133,7 +133,7 @@ type ApiResponse = User | Error;
 type Employee = User & { role: string };
 ```
 
-## Entonces... ¿Cuándo usar cada uno?
+### Entonces... ¿Cuándo usar cada uno?
 
 | Situación | Usar interface	| Usar type
 | --- | --- | --- |

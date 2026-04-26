@@ -6,7 +6,7 @@ description: "Un protocolo es un conjunto de reglas que indican cómo se realiza
 
 ## Protocolo
 
-- Un protocolo es un conjunto de reglas que indican cómo se realiza una comunicación. Es como el idioma en el que se van a comunicar el Cliente y el Servidor. En el caso de la transferencia de datos, Internet utiliza HTTP para transmitir páginas Web.
+Un protocolo es un conjunto de reglas que indican cómo se realiza una comunicación. Es como el idioma en el que se van a comunicar el Cliente y el Servidor. En el caso de la transferencia de datos, Internet utiliza HTTP para transmitir páginas Web.
 
 
 ## HTTP (Hypertext Transfer Protocol) (Protocolo de Transferencia de Hipertexto)
@@ -22,14 +22,14 @@ description: "Un protocolo es un conjunto de reglas que indican cómo se realiza
 
 ## Formato de las Requests y Responses
 
-- En la informática, las comunicaciones se hacen mediante PAQUETES. En el caso de HTTP, cada Request se hace mediante un paquete que va a tener una estructura determinada, cuyas partes más importantes son: Method, URL, Header y Body:
+En la informática, las comunicaciones se hacen mediante PAQUETES. En el caso de HTTP, cada Request se hace mediante un paquete que va a tener una estructura determinada, cuyas partes más importantes son: Method, URL, Header y Body:
 
 1. Method: Establece qué metodo/verbo HTTP se usará.
 2. URL: Especificamos con qué servicio o recurso queremos comunicarnos.
 3. Header: Ciertas especificaciones importantes para poder llevar a cabo la comunicación. Por ejemplo, puede ser un archivo JSON con distinta información que queremos enviar.
 4. Body: Este campo es opcional, pero sirve para incluir algunos objetos, textos u otros datos que queramos enviar en la Request.
 
-- Los paquetes de las Responses tienen una forma muy similar a la de las Request. Estos están conformados por Status Codes, Header y Body:
+Los paquetes de las Responses tienen una forma muy similar a la de las Request. Estos están conformados por Status Codes, Header y Body:
 
 1. Status Code: Le permiten al cliente saber cómo salió su solicitud (si salió bien, mal, más o menos, y el motivo). Por ejemplo, 201, 204, 400, 401, etc.
 2. Header: Lo mismo que en la Request.
@@ -38,9 +38,9 @@ description: "Un protocolo es un conjunto de reglas que indican cómo se realiza
 
 ## Ver la información de las Requests y Responses en una página
 
-- Si abrimos las herramientas del desarrollador en algún sitio web, podemos ir a:
+Si abrimos las herramientas del desarrollador en algún sitio web, podemos ir a:
 
-```
+```text
 DevTools > Network
 ```
 

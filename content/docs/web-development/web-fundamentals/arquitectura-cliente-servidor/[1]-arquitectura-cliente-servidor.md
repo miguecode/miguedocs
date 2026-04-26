@@ -17,12 +17,11 @@ description: "La primera parte de los apuntes de Arquitectura Cliente-Servidor"
 - Normalmente, ambos dispositivos están conectados a Internet (una red de computadoras). 
 
 
-
 ### IP y Dominio
 
-- Un Servidor tiene lo que se conoce como una IP (Internet Protocol). Una IP es una dirección numérica.
+Un Servidor tiene lo que se conoce como una IP (Internet Protocol). Una IP es una dirección numérica.
 
-```
+```text
 Ejemplo de IP:   86.028.045.152
 ```
 
@@ -31,7 +30,7 @@ Como a los humanos nos cuesta recordar esos números de memoria tan largos, las 
 
 - Supongamos que la IP de YouTube es 86.021.486.199. Si esto es así, nosotros podríamos ingresar a:
 
-```
+```text
 https://86.021.486.199/
 https://youtube.com/
 ```
@@ -43,7 +42,7 @@ https://youtube.com/
 
 - **Las URL NO son lo mismo que los dominios. Veamos**: 
 
-```
+```text
 URL = Uniform Resource Locator
 ```
 
@@ -68,7 +67,7 @@ URL = Uniform Resource Locator
 
 ### Ejemplos de URL's
 
-```
+```text
 https://www.youtube.com/feed/history
 ```
 
@@ -80,7 +79,7 @@ https://www.youtube.com/feed/history
 - "/feed/history" es la ruta del recurso al que queremos acceder. Son los archivos del Servidor.
 
 
-```
+```text
 http://127.0.0.1:5500/index.html
 ```
 
@@ -90,7 +89,7 @@ http://127.0.0.1:5500/index.html
 - "5500" es el puerto. Esto es opcional.
 - "index.html" es el recurso al que queremos acceder. Es un archivo del Servidor.
 
-```
+```text
 https://www.ejemplo.com/productos?categoria=ropa&talla=M
 ```
 
@@ -98,7 +97,7 @@ https://www.ejemplo.com/productos?categoria=ropa&talla=M
 
 - **Entonces, la estructura de una URL sería**: 
 
-```
+```text
 [Protocolo] [:] [//] [Subdominio] [Dominio/IP] [:] [TLD] [Puerto] [/] [Ruta al Recurso] [? Parámetros]
 ```
 
@@ -127,12 +126,12 @@ https://www.ejemplo.com/productos?categoria=ropa&talla=M
 
 - Como dijimos, cuando desarrollamos (y usamos Live Server o un derivado) estamos siendo el Servidor y el Cliente a la vez. Por lo tanto, nos queremos comunicar con nosotros mismos. Cuando una máquina quiere hacer esto, lo hace siempre a la dirección IP 127.0.0.1, esa IP sería como decir "Yo mismo". Localhost es el Dominio de esa Dirección IP. Por lo tanto, es su nombre de fantasía. Nosotros podemos escribir "localhost" o podemos escribir "127.0.0.1" y nos estamos refiriendo a lo mismo.
 
-```
+```text
 IP de nuestra máquina: 127.0.0.1
 Dominio de esa IP: localhost
 ```
 
-- El protocolo por excelencia es HTTP, el cual tiene su variación HTTPS, que es exactamente lo mismo, pero con la S de Security, es decir, que es un protocolo más seguro. Por eso siempre lo mejor es HTTPS. De esto se va a hablar en otro apunte.
+El protocolo por excelencia es HTTP, el cual tiene su variación HTTPS, que es exactamente lo mismo, pero con la S de Security, es decir, que es un protocolo más seguro. Por eso siempre lo mejor es HTTPS. De esto se va a hablar en otro apunte.
 
 
 ## Puertos y Live Server como ejemplo

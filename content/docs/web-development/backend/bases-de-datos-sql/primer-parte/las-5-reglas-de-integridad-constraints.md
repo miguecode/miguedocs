@@ -64,20 +64,15 @@ Ejemplos:
 
 ```sql
 CREATE TABLE empleado(
-```
-```text
 Edad_emp INT CONSTRAINT ck_edad_emp
 CHECK (edad_emp > 17 and edad_emp < 65));
-```
 CONSTRAINT ck_est_civil CHECK
 ((est_civil in ('CASADO', 'PAREJA') AND
-```text
 dni_conyuge IS NOT NULL) OR
-```
 (est_civil in ('SOLTERO', 'SEPARADO', 'VIUDO') AND
-```text
 dni_conyuge IS NULL));
 ```
+
 4) Primary Key Constraint
 Esta ya la conocemos. Lo que ahora vamos a variar es que la vamos a nombrar.
 
@@ -100,14 +95,14 @@ CONSTRAINT s_emp_fk_dept_id FOREIGN KEY (id_dept) REFERENCES s_dept(id);
 ```
 
 
-- Borrado en cascada (DELETE CASCADE)
+**- Borrado en cascada (DELETE CASCADE)**
 
 Esto es para las FK. Como sabemos en las FK, no nos deja borrar un elemento de la tabla padre si está siendo usado en alguna tabla hijo. Primero tenemos que borrar las coincidencias en la tabla hijo para poder borrarlo también en la padre. Bueno, el borrado en cascada es una opción que le podemos aplicar a la FK para evitar eso (lo cual no es recomendable ya que podría traer problemas). El borrado en cascada lo que hace es que borra todas las referencias hijo, y también al padre. Todo de una.
 
 Lo que se le agrega a la sentencia de la FK al final es un 'ON DELETE CASCADE'.
 
 
-- Agregando Constraints
+**- Agregando Constraints**
 
 Hasta ahora, todas las constraints que agregamos fueron al momento de crear la tabla. Pero también se pueden agregar una vez que ya estan creadas usando el ALTER TABLE:
 
@@ -121,7 +116,7 @@ CONSTRAINT s_emp_ck_salario CHECK (salario > 500);
 ```
 OJO: Como estas constraints las estamos agregando una vez ya creada la tabla, podría ocurrir que la tabla ya tenía registros. Por lo tanto, quizá alguno no cumple con alguna constraint. Por ejemplo, si ya tengo un registro de un salario, y no es mayor a 500. Eso daría error y no va a permitir agregar la constraint. Se tiene que cumplir todo correctamente o no se crea la constraint.
 
-- Deshabilitando/Habilitando constraints
+**- Deshabilitando/Habilitando constraints**
 
 Si deshabilito una constraint, sigue existiendo, pero deja de funcionar. No va a validar nada. Las pocas veces en las que se deshabilita una constraint, es para cargar grandes volúmenes de filas o para exportar/importar una tabla más rápidamente.
 
@@ -130,7 +125,6 @@ Ejemplo:
 ```sql
 ALTER TABLE tabla DISABLE CONSTRAINT nombre_constraint;
 ```
-
 
 Cuando se la vuelve a habilitar una constraint, primero se va a analizar que todos los registros de la tabla estén cumpliendo con esa constraint. Y si alguno no lo hace, va a dar error y no se va a habilitar la constraint. Mientras se está haciendo ese análisis previo, la tabla se va a bloquear. Para evitar que nadie haga un insert o un update mientras se están revisando los registros actuales.
 

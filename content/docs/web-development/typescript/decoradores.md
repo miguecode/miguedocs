@@ -61,7 +61,7 @@ function logger(value, context) {
 
 ## Otro ejemplo
 
-- Vamos a mantener la misma clase de antes, pero modificando la función logger:
+Vamos a mantener la misma clase de antes, pero modificando la función logger:
 
 ```typescript
 function logger (value, { name, kind }) {

@@ -32,7 +32,6 @@ WHERE NAME = 'LOCALIDAD';
 
 'SYS' viene de System. En Oracle en vez de 'SYS' se usa 'DBA'. Pero la idea es la misma.
 
-
 Entonces, por cada tipo de objeto, en el catálogo vamos a tener una vista distinta.
 
 Hay otra vista muy importante que es SYSOBJECTS, y se usaría por ejemplo así:

@@ -4,70 +4,90 @@ description: "Middleware en código"
 ---
 
 
-Middleware en código
+## 💻 Implementación de Middleware
 
-Todos los middleware tienen que tener en su firma el Request y el RequestHandler. Y devuelven un tipo 'ResponseMW'.
+En Slim 4, un middleware es una función (o clase) que recibe un objeto **Request** y un **RequestHandler**, y debe retornar una respuesta (**Response**).
 
-Ejemplo:
+### Estructura Básica (Closure)
 
-$mwUno = function (Request $request, RequestHandler $handler) : ResponseMW {
 ```php
-//EJECUTO ACCIONES ANTES DE INVOCAR AL VERBO
-$antes = ' en MW_UNO antes del callabe <br>';
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\RequestHandlerInterface as Handler;
+use Slim\Psr7\Response;
 
-//INVOCO AL VERBO
-$response = $handler->handle($request);
-//'handle' lo que hace es llamar a la próxima capa. Le paso el request.
-//La próxima capa puede ser un middleware, o el verbo de la API (el TraerUno, por ej.).
-//Entonces, ese 'handle' es como literalmente invocar a la siguiente acción. Por lo tanto,
-//El código de este middleware se FRENA en esa línea. No va a continuar hasta que 
-//se termine toda la acción del middleware que invocamos/del verbo de la API que invocamos
+$mwUno = function (Request $request, Handler $handler) : Response {
+    // 1. Acciones ANTES de la ruta
+    $antes = "Middleware 1: Antes del proceso...<br>";
 
-//Cuando ya terminó todo, recién ahora continúa este código:
-//Obviamente lo que devuelva el handle quedó guardado en $response
+    // 2. Delegar a la siguiente capa (Invocación)
+    $response = $handler->handle($request);
+    
+    // 3. Obtener el cuerpo de la respuesta generada por la siguiente capa
+    $contenidoAPI = (string) $response->getBody();
 
-//OBTENGO LA RESPUESTA DEL VERBO
-$contenidoAPI = (string) $response->getBody();
-//guardamos lo que guardamos en el $response en $contenidoAPI en forma de string
+    // 4. Acciones DESPUÉS de la ruta
+    $despues = "Middleware 1: Después del proceso...<br>";
 
+    // 5. Generar la respuesta final combinada
+    $nuevaResponse = new Response();
+    $nuevaResponse->getBody()->write("{$antes} {$contenidoAPI} {$despues}");
 
-//GENERO UNA NUEVA RESPUESTA
-$response = new ResponseMW();
-
-//EJECUTO ACCIONES DESPUES DE INVOCAR AL VERBO
-$despues = " en MW_UNO después del callable <br>";
-
-$response->getBody()->write("{$antes} {$contenidoAPI} <br> {$despues}");
-
-return $response;
-```
+    return $nuevaResponse;
 };
-
-Esto es una función Middleware.
-Bien, ahora, para agregarla hay que hacer esto:
-
-$app->add($mwUno);
-//Esto es agregarla a nivel aplicación. Por lo tanto, antes de cada ruta se ejecuta este middleware.
-
-Middlewares de Ruta
-Se ejecuta inmediatamente después de invocar cualquiera de los métodos de enrutamiento de la aplicación Slim (por ej. Get o Post).
-
-$app->put( ...  {
-```text
-...
 ```
-})->add( [middleware]); 
 
-Middlewares para Group y Maps
-Así como podemos crear grupos de rutas, podemos aplicarle Middlewares a esos grupos de rutas.
-Para aplicarlo en el Group, simplemente  ponemos el add después del group.
-Lo mismo podemos hacer en un map. (El map era cuando quiero agrupar 2 verbos HTTP distintos).
+---
 
-Podemos hacer una clase con funciones middleware. Podemos agregarlos así:
+### 📍 Formas de Registro
 
-->add(\MiClase::class . ":MostrarInstancia");
-//'MostrarInstancia' sería un middleware definido en una clase 'MiClase'.
+#### A nivel Aplicación
+Se ejecuta en **todas** las rutas de la aplicación.
+```php
+$app->add($mwUno);
+```
 
-__invoke es un método mágico de PHP que significa que cuando yo instancie esa clase, va a retornar la función __invoke.
+#### A nivel de Ruta
+Solo se ejecuta para una ruta específica.
+```php
+$app->get('/usuarios', function ($request, $response) {
+    // Lógica de la ruta
+})->add($mwUno);
+```
 
-Siempre se aplica primero el último middleware agregado. Y así se van pasando la pelota hasta llegar al controller.
+#### A nivel de Grupo o Map
+Aplica a todas las rutas dentro de un grupo determinado.
+```php
+$app->group('/admin', function ($group) {
+    $group->get('/config', ...);
+    $group->post('/update', ...);
+})->add($mwAdmin);
+```
+
+---
+
+### 📦 Middlewares basados en Clases
+
+Podemos organizar nuestros middlewares en clases para mayor limpieza. Podemos invocar métodos específicos o usar el método mágico `__invoke`.
+
+```php
+// Invocando un método específico
+$app->add(\MiClase::class . ':metodoMiddleware');
+
+// Usando __invoke (ejecuta la clase directamente)
+$app->add(new \MiClase());
+```
+
+---
+
+### ⏳ Orden de Ejecución
+
+Slim añade los middlewares en una **Pila (Stack)**. El último middleware agregado es el **primero** en ejecutarse al entrar la petición.
+
+1. Se lanza la petición.
+2. Se ejecuta el último middleware registrado (`add`).
+3. Este llama al siguiente con `handle()`.
+4. ... así hasta llegar a la lógica de la Ruta (Controller).
+5. Las respuestas regresan en orden inverso.
+
+> [!TIP]
+> Si agregas un middleware de "Logging" y luego uno de "Autenticación", el de Autenticación se ejecutará primero. Si falla, el de Logging (que está por fuera) igual podrá registrar que hubo un intento fallido.

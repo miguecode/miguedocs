@@ -4,6 +4,8 @@ description: "📚 Este apunte explica qué son y cómo se relacionan los siguie
 ---
 
 
+## Introducción
+
 📚 Este apunte explica qué son y cómo se relacionan los siguientes conceptos.
 
 - Linux
@@ -19,15 +21,17 @@ description: "📚 Este apunte explica qué son y cómo se relacionan los siguie
 
 ## Linux
 
-- Linux es un núcleo/kernel. Y un núcleo o kernel, es la parte central de un sistema que se comunica directamente con el hardware y gestiona recursos como la memoria, el CPU y los dispositivos. Es decir, es el corazón de un sistema operativo, y actúa como interfaz entre el hardware y el software. Eso es el núcleo/kernel. Y eso mismo es Linux: un núcleo/kernel.
+Linux es un núcleo/kernel. Y un núcleo o kernel, es la parte central de un sistema que se comunica directamente con el hardware y gestiona recursos como la memoria, el CPU y los dispositivos. Es decir, es el corazón de un sistema operativo, y actúa como interfaz entre el hardware y el software. Eso es el núcleo/kernel. Y eso mismo es Linux: un núcleo/kernel.
 
 (Vale aclarar que, kernel y núcleo significan exactamente lo mismo. Kernel es en inglés y núcleo en español. Pero en el ámbito de la programación, es más común decirle simplemente "kernel" para simplificar).
 
+```text
 Hardware  `<--->` Núcleo/Kernel  `<--->`  Software
+```
 
-- Esto quiere decir, entonces, que Linux NO es un sistema operativo por sí mismo. Ya que necesita otras herramientas para ser útil: como gestores de archivos, entornos gráficos, etc.
+Esto quiere decir, entonces, que Linux NO es un sistema operativo por sí mismo. Ya que necesita otras herramientas para ser útil: como gestores de archivos, entornos gráficos, etc.
 
-- Para hacer una analogía, pensemos en el motor de un auto: Es esencial, es la parte principal. Pero en sí, el motor no es un auto completo. Linux sería el "motor" del auto. Es decir, el "motor" o la parte "esencial" del sistema operativo.
+Para hacer una analogía, pensemos en el motor de un auto: Es esencial, es la parte principal. Pero en sí, el motor no es un auto completo. Linux sería el "motor" del auto. Es decir, el "motor" o la parte "esencial" del sistema operativo.
 
 
 ## GNU/Linux

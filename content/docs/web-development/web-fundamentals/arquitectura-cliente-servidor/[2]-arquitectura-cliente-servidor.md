@@ -34,7 +34,7 @@ description: "Por todo Internet, hay estratégicamente colocados distintos servi
 
 - Entonces, sin mediar palabra, el Servidor nos entrega un menú. Que en este caso, va a ser un index.html. Es lo que nos da de forma predeterminada aunque todavía no le hayamos pedido nada en específico. Index.html es el archivo que por defecto nos entrega un Servidor. En ese index (índice) vamos a ver las opciones que podemos elegir.
  
- - **Aclaración**: el index.html no siempre es obligatorio, depende de la configuración del servidor.
+**Aclaración**: el index.html no siempre es obligatorio, depende de la configuración del servidor.
  
 - En el caso del navegador, el cual es un programa, tiene un montón de módulos dentro. Así como el IDE tiene un editor de código, un compilador, un procesador, es como que es un programa el cual dentro de él, tiene corriendo otros varios programitas. Uno de ellos es un Intérprete de HTML, el cual, se encarga de interpretar el HTML.
 
@@ -54,7 +54,7 @@ description: "Por todo Internet, hay estratégicamente colocados distintos servi
 
 - El disco rígido de la máquina Servidor es en donde nosotros colocamos nuestros archivos en desarrollo. Es decir, nuestros archivos .html, .css, .js, .php, .ico, .mp4, etc. Todo nuestro desarrollo. Ese disco rígido sería nuestra carpeta abierta en el Visual Studio Code, nuestra herramienta de desarrollo. Ese directorio (carpeta) sería el que está hosteado en ese disco rígido del Servidor (mi propia máquina).
 
-- Nosotros, en este caso, vamos a realizar 3 acciones a la vez: 
+Nosotros, en este caso, vamos a realizar 3 acciones a la vez: 
 
 1. Vamos a ser el Cliente (usando nuestro navegador o usando Postman) para probar nuestro código. 
 2. Vamos a ser el desarrollador (porque somos quienes vamos a escribir el código) en el VSCode.
