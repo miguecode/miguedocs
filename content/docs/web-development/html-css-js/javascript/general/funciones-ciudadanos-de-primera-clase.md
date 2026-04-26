@@ -3,76 +3,74 @@ title: "Funciones, ciudadanos de primera clase"
 description: "Funciones en JavaScript"
 ---
 
-
 ## Funciones en JavaScript
 
-- Aunque suene confuso, en JavaScript las funciones -además de ser funciones- también son OBJETOS. Y como también son objetos, pueden tener propiedades y métodos.  Pero no va a ser algo esencial en este apunte, eso tiene que ver más con el tema de los objetos y los prototipos.
+Aunque suene confuso, en JavaScript las funciones, además de ser funciones, también son **OBJETOS**. Y como también son objetos, pueden tener propiedades y métodos. Pero no va a ser algo esencial en este apunte, eso tiene que ver más con el tema de los objetos y los prototipos.
 
-- Algo a saber de entrada, es que en JavaScript todas las funciones sin return retornan undefined.
+Algo a saber de entrada es que en JavaScript todas las funciones sin `return` retornan `undefined`.
 
-- Como dijimos en un apunte anterior, hay dos tipos de funciones, las declaradas y las expresadas:
+Como dijimos en un apunte anterior, hay dos tipos de funciones: las **declaradas** y las **expresadas**.
 
-```typescript
+```javascript
+// Función declarada
 function funcion1() {
     console.log("Soy una función declarada"); 
 }
 
+// Función expresada
 var funcion2 = function() {
-    console.log("Soy una función expresada")
-}
+    console.log("Soy una función expresada");
+};
 ```
-- Por cierto, las funciones expresadas también pueden ser funciones anónimas. De hecho, ese ejemplo de ahí es una función expresada y anónima. Es así porque si bien funcion2 es el nombre de la variable que apunta a la función, esa función que le estamos asignando es una función anónima, ya que esa no tiene nombre.
 
-- **Sería distinto que hiciéramos esto**: 
+Por cierto, las funciones expresadas también pueden ser **funciones anónimas**. De hecho, ese ejemplo de ahí es una función expresada y anónima. Es así porque si bien `funcion2` es el nombre de la variable que apunta a la función, esa función que le estamos asignando es una función anónima, ya que ella no tiene nombre.
 
-```typescript
+Sería distinto que hiciéramos esto: 
+
+```javascript
 function saludar() {
     console.log("Hola!");
 }
 
 var funcion2 = saludar;
 ```
-- En ese caso, funcion2 es una función expresada, como lo era antes. Pero esa función expresada no es una función anónima, ya que saludar es una función declarada en otro lugar en el código. O sea, no es anónima.
 
+En ese caso, `funcion2` es una función expresada, como lo era antes. Pero esa función expresada no es una función anónima, ya que `saludar` es una función declarada en otro lugar en el código. O sea, no es anónima.
 
 ### Arrow Functions
 
-- **Las arrow functions o expresiones lambda**: () => {  }, son funciones expresadas y anónimas. Las vamos a explicar en otro apunte, pero no tienen nada de especial realmente. Sólo son una forma más rápida de escribir funciones, es una diferencia de sintaxis, no de funcionamiento.
-
+Las **arrow functions** o expresiones lambda: `() => { }`, son funciones expresadas y anónimas. Son una forma más rápida de escribir funciones; es una diferencia de sintaxis, no de funcionamiento (aunque tienen particularidades con el scope de `this`).
 
 ## Comportamiento de las funciones en JavaScript
 
-- En JavaScript, las funciones son ciudadanos de primera clase. Es decir:
+En JavaScript, las funciones son **ciudadanos de primera clase**. Esto significa que:
 
-- Se pueden asignar a variables
-- Se pueden pasar como argumentos
-- Se pueden retornar desde otras funciones
+1.  Se pueden asignar a variables.
+2.  Se pueden pasar como argumentos a otras funciones.
+3.  Se pueden retornar desde otras funciones.
 
-```typescript
+```javascript
 function miFuncion() {
 	console.log("Hola, estoy funcionando");
 }
 
-var pepe  = miFuncion;
+var pepe = miFuncion;
 ```
-- En este caso, "pepe" es una variable puntero a función, ya que le estamos asignando la DDM de una función. Es decir, le asignamos "miFuncion" sin los paréntesis. 
 
-- Este sería el primer punto del por qué una función es un ciudadano de primer clase. Porque se pueden asignar a variables.
+En este caso, `pepe` es una variable que apunta a la función, ya que le estamos asignando la referencia de una función. Es decir, le asignamos `miFuncion` sin los paréntesis. Este sería el primer punto de por qué una función es un ciudadano de primera clase.
 
-```text
+```javascript
 miFuncion();  	// Muestra "Hola, estoy funcionando"
 pepe(); 		// Muestra "Hola, estoy funcionando"
 ```
-- Acá, como pepe();  tiene los paréntesis, estamos haciendo que INVOQUE la función a la que está apuntando. Es decir, a la función llamada miFuncion.
 
-- El uso de " () " significa invocación. Cuando ponemos () al final de una variable que apunta a una función, lo que hacemos es directamente invocarla.
+Acá, como `pepe()` tiene los paréntesis, estamos haciendo que **INVOQUE** a la función a la que está apuntando. El uso de `()` significa invocación. Cuando ponemos `()` al final de una variable que apunta a una función, lo que hacemos es directamente invocarla.
 
+## Funciones pasadas como argumentos (Callbacks)
 
-## Funciones pasadas como argumentos [Concepto callback]
+El segundo motivo por el cual son ciudadanos de primera clase es que pueden ser pasadas como argumentos. Veamos:
 
-- Como dijimos, una función un ciudadano de primera clase. Y el segundo motivo de esto es que pueden ser pasadas como argumentos. Veamos:
-
-```typescript
+```javascript
 function operar(funcion, a, b) {
     return funcion(a, b);
 }
@@ -83,14 +81,14 @@ function sumar(x, y) {
 
 console.log(operar(sumar, 5, 10)); // Muestra 15
 ```
-- En este caso, operar recibe como primer argumento una función. Es decir, estamos pasando una función como argumento a otra función. A esto también se lo llama "CALLBACK". Es decir, cuando una función recibe como argumento a otra función, a esa función que recibe como argumento se la llama "callback".
 
+En este caso, `operar` recibe como primer argumento una función. Estamos pasando una función como argumento a otra función. A esto se lo llama **CALLBACK**. Cuando una función recibe como argumento a otra función, esa función recibida es el callback.
 
 ## Funciones que retornan funciones
 
-- Este caso también es posible, y es el tercer motivo de por qué una función es un ciudadano de primera clase. Veamos cómo funcionaría esto:
+Este caso también es posible, y es el tercer motivo. Veamos cómo funcionaría esto:
 
-```typescript
+```javascript
 function funcioncita() {
     console.log("Hola");
 }
@@ -103,61 +101,39 @@ let contenedorFuncion = retornadorDeFuncion(funcioncita);
 
 contenedorFuncion();    // Va a ejecutar: console.log("Hola");
 ```
-- En este caso, creamos una función que muestra un Hola por consola, y otra función la cual recibe una función como argumento, y la retorna.
 
-- Hacemos la prueba, y vemos que el retorno de una función, dentro de otra, funciona correctamente.
+¿Cómo es posible que hayamos hecho `contenedorFuncion()`? Muy fácil: creamos la variable `contenedorFuncion` y le asignamos lo que retornó `retornadorDeFuncion`. Es decir, le retornamos la referencia de la función llamada `funcioncita`.
 
-- ¿Y cómo es posible que hayamos hecho "contenedorFuncion()"? Muy fácil, nosotros creamos la variable contenedorFuncion y le asignamos un valor. Ese valor que le asignamos, fue lo que retornó retornadorDeFuncion. Es decir, le retornamos la referencia de la función llamada funcioncita.
+Y si hacemos esto, nos ahorramos un paso:
 
-- Y después, al hacer uso de " () ", invocamos la función a la cual está apuntando/referenciando. Ya que como dijimos al principio, el uso de " () " significa invocación. 
-
-
-```text
+```javascript
 retornadorDeFuncion(funcioncita)();  // Muestra "Hola"
 ```
-- Y si encima hacemos esto, nos ahorramos un paso. Porque estamos literalmente invocando a la función que está retornando retornadorDeFunción.
 
-- **Quizá es confuso, pero es fácil de ver**: 
+Estamos invocando directamente a la función que está retornando `retornadorDeFuncion`. Cada vez que leemos `retornadorDeFuncion(funcioncita)`, el resultado es la referencia a `funcioncita`. Por eso, si le agregamos el `()` al final, estaríamos haciendo `funcioncita()`.
 
-```text
-retornadorDeFuncion(funcioncita) = funcioncita;
-```
-- Entonces, eso significa que cada vez que leemos retornadorDeFuncion(funcioncita), estamos leyendo "funcioncita". Por eso, si le agregamos el () al final, estaríamos literalmenta haciendo funcioncita();
-
-
-## Callbacks
-
-- Todo esto que vimos recién en este apunte es la clave para entender los callbacks, ya que hay funciones de JavaScript que RECIBEN FUNCIONES COMO PARÁMETROS. Es decir, lo que vimos en el segundo punto. Y esa función que se pasa por parámetro para ser ejecutada, se la suele llamar CALLBACK.
-
-```typescript
-function saludar() {
-    console.log("¡Hola desde el callback!");
-}
-
-function ejecutarCallback(callback) {
-    callback(); // Ejecuta la función pasada como argumento
-}
-
-ejecutarCallback(saludar); // Muestra "¡Hola desde el callback!"
-```
 ## Parámetro rest (...) en funciones
 
-- El parámestro rest permite que una función reciba un número indefinido de argumentos, en forma de array. Es una forma moderna (ES6) de manejar muchos parámetros sin tener que acceder a "arguments", que era una característica más antigua para hacer esto, y que hoy en día no es la opción recomendada.
+El parámetro **rest** permite que una función reciba un número indefinido de argumentos en forma de array. Es la forma moderna (ES6) de manejar múltiples parámetros sin tener que acceder a `arguments`.
 
-```typescript
+```javascript
 function miFuncion(...args) {
   console.log(args); // args es un array
 }
 
 miFuncion(1, 2, 3); // Muestra [1, 2, 3] 
 ```
-- **Ojo**: Solo puede haber un único parámetro rest en una función y debe estar al final de la lista de parámetros.
 
-```typescript
+> [!IMPORTANT]
+> Solo puede haber un único parámetro rest en una función y debe estar al final de la lista de parámetros.
+
+```javascript
 function saludar(saludo, ...nombres) {
   nombres.forEach(nombre => console.log(`${saludo}, ${nombre}!`));
 }
 
-saludar("Hola", "Juan", "Ana", "Luis"); // Va a hacer 3 console logs, saludando a cada nombre
+saludar("Hola", "Juan", "Ana", "Luis"); 
+// Va a hacer 3 console logs: "Hola, Juan!", "Hola, Ana!", "Hola, Luis!"
 ```
-- En este caso, "nombres" va a ser un array que contiene ["Juan", "Ana", "Luis"]. 
+
+En este caso, `nombres` va a ser un array que contiene `["Juan", "Ana", "Luis"]`.

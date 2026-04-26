@@ -4,118 +4,89 @@ description: "Esto significa que el uso actual de las tablas es para cuando quer
 ---
 
 
-## ¿Para qué se usa `<table>`?
+## 📊 Tablas, Acordeones y Modales
 
-- Originalmente, la etiqueta `<table>` fue creada para estructurar el esqueleto de nuestra página. Delimitando dónde está el header, las distintas secciones, el footer, y cuánto espacio ocupa cada parte.
+HTML ofrece elementos especializados para organizar datos complejos y crear componentes interactivos de forma nativa.
 
-- Hoy en día, ya no tiene sentido usar `<table>` para eso, ya que existe Grid CSS (y también Flexbox).
+---
 
-- Esto significa que el uso actual de las tablas es para cuando queremos realmente hacer una tabla, como las que vemos en Excel. O para hacer un calendario, por ejemplo. O sea, lo que antes se usaba como técnica para estructurar la página, ahora sólo se usa para crear tablas.
+## 📑 Etiqueta `<table>`
 
+Originalmente se usaba para maquetar sitios completos, pero hoy en día eso es una **mala práctica**. Las tablas deben usarse exclusivamente para **datos tabulares** (excel, calendarios, estadísticas).
 
-## Etiqueta `<table>`
+### Estructura de una tabla:
+- **`<thead>`**: El encabezado de la tabla.
+- **`<tbody>`**: El contenido principal de los datos.
+- **`<tfoot>`**: Pie de página de la tabla (útil para totales o resúmenes).
+- **`<tr>`** (Table Row): Define una fila.
+- **`<th>`** (Table Header): Celda de título (centrada y negrita por defecto).
+- **`<td>`** (Table Data): Celda de datos estándar.
 
-- La etiqueta `<table>` va a ser la contenedora de toda la tabla. Dentro de ella, vamos a poder colocar los siguientes elementos, para construirla:
-
-- **thead (Table Head) (Fila de Encabezado)**: Contendrá una `<tr>` (Fila), la cual tendrá `<th>` (Encabezados)
-- th (Table Header) (Encabezado)
-- **tbody (Cuerpo de la Tabla)**: Contendrá las `<tr>` (Filas), las cuales también tendrán `<td>` (Celdas)
-- tr (Table Row) (Fila)
-- td (Table Cell) (Celda)
-- **tfoot (pie de tabla)**: Contendrá una `<tr>` (Fila), la cual también tendrá `<td>` (Celdas)
-
-- Hay que entender que las tablas en HTML, son sólo filas. Realmente no estamos trabajando con columnas y filas. Son sólo filas y celdas. 
-
-- Dentro de `<table>`, por lógica siempre vamos a tener un `<thead>`, el cual va a ser el contenedor de una fila (`<tr>`), y que esa fila va a tener encabezados (`<th>`).
-
-- Después del thead, viene el `<tbody>`, el cual va a ser el contenedor de todas las demás filas (`<tr>`), las cuales van a contener distintas celdas (`<td>`).
-
-- Y después del tbody (y este es más opcional), viene el `<tfoot>`. El cual contiene una fila (`<tr>`), que también contiene distintas celdas (`<td>`).
-
-`<table>`
-```text
-<thead>
-	<tr>
-		<th></th>
-		<th></th>
-		<th></th>
-	</tr>
-</thead>
-<tbody>
-	<tr>
-		<td></td>	
-		<td></td>	
-		<td></td>	
-	</tr>
-	<tr>
-		<td></td>	
-		<td></td>	
-		<td></td>	
-	</tr>
-	<tr>
-		<td></td>	
-		<td></td>	
-		<td></td>	
-	</tr>
-</tbody>
-<tfoot>
-	<tr>
-		<td></td>	
-		<td></td>	
-		<td></td>
-	</tr>
-</tfoot>
+```html
+<table>
+  <thead>
+    <tr>
+      <th>Producto</th>
+      <th>Precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Café</td>
+      <td>$2.50</td>
+    </tr>
+  </tbody>
+</table>
 ```
-`</table>`
 
-- Las etiquetas `<td>` tienen dos atributos opcionales que son "rowspan" y "colspan". El primero sirve para indicar cuántas filas queremos que ocupe la celda en la tabla. Entonces, podemos hacer que se vea más alta, ya que ocupa más de una fila. Y colspan es lo mismo pero hacia los costados, ya que ocupan más de una "columna". rowspan="2" colspan="4"
+### Atributos útiles:
+- **`rowspan`**: Permite que una celda ocupe varias filas hacia abajo.
+- **`colspan`**: Permite que una celda se expanda horizontalmente ocupando varias columnas.
 
-- **En CSS, el uso de la propiedad border-collapse**: collapse; sirve para que los bordes no se vean repetidos.
+---
 
+## ↕️ Details y Summary (Acordeones)
 
-## Details y Summary
+Permiten crear menús desplegables o secciones de "Preguntas Frecuentes" sin necesidad de JavaScript.
 
-- Estas dos etiquetas trabajan en conjunto y buscan ocultar y mostrar cierto contenido, de forma interactiva con un botón que despliega el contenido oculto.
+- **`<details>`**: Es el contenedor principal.
+- **`<summary>`**: Es el título visible que, al hacer clic, despliega el resto del contenido.
 
-- Details va a ser el elemento contenedor, y summary el elemento que siempre va a estar visible, y representa al contenido oculto. 
-
-`<details>`
-```text
-<summary>¿Qué necesito llevar?</summary>
-<ul>
-	<li>Short de baño</li>
-	<li>Toalla</li>
-	<li>Bronceador solar</li>
-</ul>
+```html
+<details>
+  <summary>¿Cómo optimizar imágenes?</summary>
+  <p>Puedes usar formatos como WebP y herramientas como Squoosh.</p>
+</details>
 ```
-`</details>`
 
+---
 
-## Dialog
+## 🪟 Etiqueta `<dialog>` (Modales Nativos)
 
-`<dialog open>`¡Holaaaa!`</dialog>`
+El elemento **`<dialog>`** permite crear ventanas modales que se posicionan por encima de todo el contenido.
 
-- El dialog es como un texto modal, ya que cuando aparece, se pone por encima de todo el HTML y te inhabilita el poder interactuar con los demás elementos. Es como un alert, un prompt, o un confirm, entre otros (aunque estos últimos son propios de JS, no de HTML).
+### Atributos y Métodos:
+- **`open`**: Atributo booleano. Si está presente, el diálogo es visible.
+- **`showModal()`**: Método de JavaScript que abre el diálogo eclipsando el fondo (backdrop).
+- **`close()`**: Método para cerrar el diálogo.
 
-- Cuando un atributo se especifica dentro de una etiqueta HTML, es porque va a tener el valor 'true'. Si no aparece, es porque está en false.
+```html
+<dialog id="miModal">
+  <p>¡Este es un mensaje importante!</p>
+  <button id="btnCerrar">Entendido</button>
+</dialog>
 
-- Por eso, se pone simplemente `<dialog open>` en vez de <dialog open=true>
+<button id="btnAbrir">Abrir Modal</button>
 
-- **Para que funcione, hay que usar JS**: 
+<script>
+  const modal = document.querySelector("#miModal");
+  const abrir = document.querySelector("#btnAbrir");
+  const cerrar = document.querySelector("#btnCerrar");
 
-<dialog id="miDialogo">
-```text
-<p>¡Este es un modal nativo de HTML!</p>
-<button id="cerrar">Cerrar</button>
+  abrir.addEventListener("click", () => modal.showModal());
+  cerrar.addEventListener("click", () => modal.close());
+</script>
 ```
-`</dialog>`
 
-<button id="abrir">Abrir diálogo`</button>`
-
-`<script>`
-```typescript
-const dialogo = document.getElementById("miDialogo");
-document.getElementById("abrir").onclick = () => dialogo.showModal();
-document.getElementById("cerrar").onclick = () => dialogo.close();
-```
-`</script>`
+> [!TIP]
+> Usar `<dialog>` es mucho más accesible que crear un modal manualmente con `<div>`, ya que el navegador maneja automáticamente el foco del teclado y el cierre con la tecla `Esc`.

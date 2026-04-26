@@ -1,87 +1,77 @@
 ---
 title: "Objeto Set (colección similar a Array)"
-description: "Set es una colección de valores únicos, sin claves. Es como un array, pero sin valores repetidos. Lógicamente, por debajo, Set no es más que otro objeto de Java..."
+description: "Los objetos Set permiten almacenar colecciones de valores únicos de cualquier tipo, eliminando duplicados de forma automática."
 ---
-
 
 ## Set
 
-- Set es una colección de valores únicos, sin claves. Es como un array, pero sin valores repetidos. Lógicamente, por debajo, Set no es más que otro objeto de JavaScript, como lo puede ser Map.
-
+Un **Set** es una colección de valores únicos que no permite duplicados. Aunque se parece a un array, su propósito principal es representar conjuntos donde la unicidad de los elementos es lo más importante.
 
 ### Características principales
 
-- Guarda solo valores únicos → no permite duplicados
-- La posición o índice no importa, porque no es un array
-- Se puede recorrer con métodos como forEach, o usar for...of
-- Mantiene el orden de inserción
-- Tiene métodos propios como add, delete, has, y clear
+*   **Valores únicos**: Si intentas agregar un valor que ya existe, el Set simplemente lo ignora.
+*   **Sin claves**: A diferencia de un objeto o un `Map`, solo almacena valores directos.
+*   **Iterable**: Puede recorrerse con `forEach` o bucles `for...of`.
+*   **Ordenado**: Mantiene el orden en que los elementos fueron insertados.
+*   **Eficiente**: Ofrece métodos rápidos para añadir, eliminar y verificar la existencia de elementos.
 
-### ¿Para qué se usan los Set?
+### ¿Cuándo usar un Set?
 
-- Para transformar un array en una versión sin elementos repetidos
-- Para verificar la existencia de un valor rápidamente
-- Para hacer búsquedas rápidas sin claves
-- Para representar conjuntos matemáticos
-- Para hacer operaciones como unión, intersección y diferencia
-
+*   Para eliminar duplicados de un array de forma rápida.
+*   Para verificar la existencia de un valor sin preocuparse por su índice.
+*   Para realizar operaciones matemáticas de conjuntos (unión, intersección, diferencia).
 
 ## Ejemplo básico
 
-```sql
+```javascript
 const conjunto = new Set();
 
 conjunto.add("🍎");
 conjunto.add("🍌");
-conjunto.add("🍎"); // Ignorado: ya existía
+conjunto.add("🍎"); // Este se ignora porque ya existe en el conjunto
 
-console.log(conjunto); // Set(2) {"🍎", "🍌"}
-console.log(conjunto.has("🍎")); // true
-console.log(conjunto.size); // 2
+console.log(conjunto);          // Set(2) {"🍎", "🍌"}
+console.log(conjunto.has("🍎")); // true (verificación rápida)
+console.log(conjunto.size);     // 2
 
-conjunto.delete("🍌"); // Elimina "🍌"
-conjunto.clear(); // Elimina todo
+conjunto.delete("🍌");          // Elimina la banana
+conjunto.clear();               // Vacía el conjunto por completo
 ```
-## Sacar repetidos de un array
 
-```typescript
+## Eliminar repetidos de un array
+
+Esta es una de las utilidades más comunes de los `Set`. Al combinarlo con el operador de propagación (*spread operator*), podemos limpiar un array en una sola línea:
+
+```javascript
 const numeros = [1, 2, 3, 2, 4, 1, 5];
 const sinRepetidos = [...new Set(numeros)];
 
 console.log(sinRepetidos); // [1, 2, 3, 4, 5]
 ```
-## Hacer operaciones "Union", "Intersección" y "Diferencia"
 
-- **Basándonos en estos dos Set A y B**: 
+## Operaciones de Conjuntos
 
-```typescript
+Podemos realizar operaciones lógicas entre dos conjuntos `A` y `B`:
+
+```javascript
 const A = new Set([1, 2, 3]);
 const B = new Set([2, 3, 4]);
-```
-- **Podemos hacer una Union**: 
 
-```typescript
-const union = new Set([...A, ...B]);
-console.log(union); // Muestra Set(4) {1, 2, 3, 4}
-```
-- **Podemos hacer una Intersección**: 
+// Unión: Todos los elementos de A y B (sin duplicados)
+const union = new Set([...A, ...B]); // {1, 2, 3, 4}
 
-```typescript
-const interseccion = new Set([...A].filter(x => B.has(x)));
-console.log(interseccion); // Muestra Set(2) {2, 3}
-```
-- **Podemos hacer una Diferencia**: 
+// Intersección: Solo los elementos que están en ambos
+const interseccion = new Set([...A].filter(x => B.has(x))); // {2, 3}
 
-```typescript
-const diferencia = new Set([...A].filter(x => !B.has(x)));
-console.log(diferencia); // Muestra Set(1) {1}
+// Diferencia: Elementos que están en A pero no en B
+const diferencia = new Set([...A].filter(x => !B.has(x))); // {1}
 ```
-## Set vs Map vs Object vs Array
 
-Tipo		Claves			Valores duplicados	  Ordenado	Ideal para...
-_______________________________________________________________________________________________________________
-| Object | 🔑 strings | ✅ Sí | ❌ No | Modelar entidades, estructuras fijas |
-| --- | --- | --- | --- | --- |
-| Map | 🔑 cualquier tipo | ✅ Sí | ✅ Sí | Lookup, eficiencia, claves complejas |
-Array	🚫 (indexado)		✅ Sí			  ✅ Sí		Listas ordenadas con repetidos
-Set		🚫 (solo valores)	❌ No			  ✅ Sí		Conjuntos únicos, eliminar duplicados
+## Comparativa: Object vs. Map vs. Array vs. Set
+
+| Tipo | Claves | Duplicados | Ordenado | Ideal para... |
+| :--- | :--- | :--- | :--- | :--- |
+| **Object** | Strings / Símbolos | Permite duplicados | No fiable | Entidades y modelos de datos fijos. |
+| **Map** | Cualquier tipo | Permite duplicados | Sí | Claves complejas y alta eficiencia. |
+| **Array** | Índices (0, 1, 2...) | Permite duplicados | Sí | Listas ordenadas con posible repetición. |
+| **Set** | Sin claves (solo valor) | **No permite** | Sí | Conjuntos únicos y eliminación de duplicados. |

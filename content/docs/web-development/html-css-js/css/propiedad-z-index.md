@@ -4,26 +4,70 @@ description: "El Z-Index hace referencia al concepto de apilamiento. Cuando noso
 ---
 
 
-## Z-Index
+## 🔳 Propiedad Z-Index
 
-- El Z-Index hace referencia al concepto de apilamiento. Cuando nosotros vemos una página, podemos pensar que es todo plano, un papel en el que dibujamos encima. Pero la verdad es que no es exactamente así. 
+El `z-index` gestiona el **orden de apilamiento** de los elementos en una página web. Aunque solemos ver las webs como superficies planas (ejes X e Y), en realidad tienen una tercera dimensión: el **Eje Z** (profundidad).
 
-- Nosotros nos tenemos que imaginar que, cuando vemos los elementos, podemos ver que algunos están por encima de otros. O sea, si nosotros pudiésemos "rotar" la pantalla y verla de costado, podríamos ver que tiene profundidad. Hay elementos que pueden estar apilados uno encima del otro. O sea que, de ahí nace la "Z". Porque no sólo estamos viendo a los ejes X e Y. Sino que también hay un eje Z, que se refiere a la profundidad de la página.
+---
 
- - Cuanto más alto es el índice Z, más probabilidad tiene de verse un elemento, o sea, tiene más prioridad para quedar arriba en el apilamiento.
- 
- - Cabe aclarar que todos los elementos HTML tienen un orden natural de apilamiento según su posición en el DOM.
- 
- .container {
- 	z-index: 3;
- }
+## 🔝 Orden de Apilamiento Natural
 
-- Lo ideal es poner valores controlables y apropiados, y no poner z-index: 999 solo porque sí.
+Por defecto, los elementos se apilan según su orden en el HTML (el DOM):
+1. Los elementos que aparecen **primero** en el código quedan "debajo".
+2. Los elementos que aparecen **al final** se renderizan "encima" de los anteriores.
 
-- Para hacer una prueba de esto, podemos usar 3 divs de colores, y ponerles un margin-top negativo, para que se muevan para arriba, y se tapen unos con otros. Vamos a notar que, por defecto, el tercer div va a tapar al segundo, y el segundo al primero. Esto es así ya que, por defecto, los elementos que aparecen después en el HTML se renderizan encima de los anteriores.
+---
 
-- Entonces, si quisiéramos cambiar ese comportamiento, uno diría que podemos estilar al primer div poniéndole z-index: 99999; para que aparezca arriba de los otros. Pero no, eso no es suficiente. 
+## 🛠️ ¿Cómo funciona Z-Index?
 
-- Y, ¿Por qué no es suficiente? ¿Por qué ponerle el z-index en 99999 no funcionaría? Esto es así ya que z-index solo funciona en elementos cuya position es DISTINTA A STATIC (es decir, relative, absolute, fixed o sticky). Todo esto hace referencia al Contexto de Apilamiento. Es decir, para que el z-index funcione, tenemos que crear un contexto de apilamiento, que como dijimos, se crea cuando un elemento tiene una position distinta a static, o cuando es un contenedor flex, o cuando uno de sus hijos tiene z-index.
+El valor de `z-index` es un número entero. A mayor número, más "cerca" del usuario aparecerá el elemento.
 
-- Lo ideal es NO abusar del z-index. Poner valores altos puede causar problemas de mantenibilidad, y los navegadores tienen un límite en ese valor.
+```css
+.capa-fondo { z-index: 1; }
+.capa-medio { z-index: 10; }
+.capa-frente { z-index: 100; }
+```
+
+> [!IMPORTANT]
+> **El gran requisito:** `z-index` **SOLO** funciona en elementos que tengan una propiedad `position` distinta a `static` (es decir: `relative`, `absolute`, `fixed` o `sticky`).
+
+### ¿Por qué mi z-index no funciona?
+Si le pones `z-index: 9999` a un elemento y sigue apareciendo detrás de otros, lo más probable es que:
+1. Su posición sea `static` (la que viene por defecto).
+2. Esté en un **Contexto de Apilamiento** diferente.
+
+---
+
+## 🏗️ Contexto de Apilamiento (Stacking Context)
+
+No todos los `z-index` de la página compiten entre sí. Imagina que el `z-index` son los pisos de un edificio:
+- El edificio A tiene 10 pisos.
+- El edificio B tiene 10 pisos.
+- Una persona en el piso 10 del Edificio A **no está más alta** que alguien en el piso 1 del Edificio B si el Edificio B está construido sobre una montaña.
+
+En CSS, ciertos elementos crean un "edificio" nuevo (Contexto de Apilamiento). Un hijo con `z-index: 9999` nunca podrá estar por encima de un vecino si su padre tiene un `z-index: 1` y el vecino tiene un `z-index: 2`.
+
+**¿Qué crea un contexto de apilamiento?**
+- Elementos con `position` no estática y un `z-index` distinto de `auto`.
+- Elementos con `opacity` menor a 1.
+- Elementos con `transform`, `filter` o `flex/grid` containers.
+
+---
+
+## 💡 Buenas Prácticas
+
+1.  **No uses 9999:** Mantén valores controlables. Una buena escala es usar saltos de 10 en 10 (10, 20, 30) para poder insertar elementos en medio si es necesario.
+2.  **Gestiona prioridades:**
+    - Fondos/Decoraciones: 1-10.
+    - Componentes normales: 10-50.
+    - Navegación/Modales: 100+.
+3.  **Usa variables:** Define tus niveles de profundidad en variables CSS para mantener la coherencia.
+    ```css
+    :root {
+      --z-modal: 1000;
+      --z-tooltip: 2000;
+    }
+    ```
+
+> [!TIP]
+> Si necesitas que el `z-index` funcione sin mover el elemento de su sitio, simplemente aplícale `position: relative;` sin mover sus coordenadas `top` o `left`. Esto activará la propiedad sin alterar el diseño.

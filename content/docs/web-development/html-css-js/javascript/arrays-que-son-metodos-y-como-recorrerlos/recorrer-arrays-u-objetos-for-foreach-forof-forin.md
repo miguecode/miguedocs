@@ -1,86 +1,80 @@
 ---
 title: "Recorrer Arrays u Objetos (For, Foreach, Forof, Forin)"
-description: "Formas de recorrer Arrays u Objetos"
+description: "Diferentes formas de iterar estructuras de datos en JavaScript"
 ---
 
+## 🔁 Métodos para recorrer datos
 
-## Formas de recorrer Arrays u Objetos
+En JavaScript, existen varias formas de iterar sobre arrays y objetos. Dependiendo de la estructura y de lo que necesitemos obtener (índices, llaves o valores), elegiremos una u otra.
 
-- En estos ejemplos, vamos a usar el método entries() de la función constructora/clase Object. Este método devuelve un array de arrays. Y esos arrays internos del array entries son arrays de 2 elementos: [key, value]. Sirve para representar a cada propiedad y valor del objeto que le queremos recorrer.
+### Herramientas de extracción (`Object`)
+Antes de recorrer un objeto, a menudo usamos estos métodos para convertir sus partes en arrays:
+- **`Object.keys(obj)`**: Devuelve un array con los nombres de las propiedades.
+- **`Object.values(obj)`**: Devuelve un array con los valores.
+- **`Object.entries(obj)`**: Devuelve un array de pares `[llave, valor]`.
 
-- Recordemos que, así como existe el método "entries()" para obtener las entradas de un objeto, también existen "keys()" y "values()". Sus nombres describen literalmente lo que retornan.
-
-- **Para verlo claro, esto funciona así**: 
-
-```typescript
-const persona = { nombre: "Miguel", edad: 23, vacunado: true };
-
-console.log(Object.entries(persona));  // [["nombre", "Miguel"], ["edad", 23], ["vacunado", true]]
-console.log(Object.keys(persona));      // ["nombre", "edad", "vacunado"]
-console.log(Object.values(persona));   // ["Miguel", 23, true]
+```javascript
+const user = { name: "Migue", age: 25 };
+console.log(Object.entries(user)); // [["name", "Migue"], ["age", 25]]
 ```
-- Las formas más comunes son el FOR y el FOREACH. Pero es bueno conocer las demás sintaxis.
 
-For - Realmente no "recorre" elementos, pero sirve para iterar cualquier cosa y como queramos
-Foreach - Recorre arrays elemento por elemento, pero NO recorre objetos.
-Forin - Recorre arrays elemento por elemento, y SÍ recorre objetos.
-Forof - Recorre arrays elemento por elemento, pero NO recorre objetos.
+---
 
+## 📊 Comparativa de Bucles
 
-## For [Para cualquier cosa]
+| Bucle | Uso principal | ¿Qué obtiene? | ¿Usa Callback? |
+| :--- | :--- | :--- | :--- |
+| **`for` clásica** | Arrays / General | Índice (`i`) | No |
+| **`forEach()`** | Arrays | Elemento y opcionalmente Índice | **Sí** |
+| **`for...of`** | Colecciones (Arrays) | **Valor** de cada elemento | No |
+| **`for...in`** | Objetos | **Llave/Propiedad** (string) | No |
 
-```typescript
-const entradas = Obejct.entries(objeto);
+---
 
-for (let i = 0; i < entradas.length; i++) {
-    let [key, value] = entradas[i];
-    console.log(key, "-", value);  // Muestro el "key - value" de cada entrada
+## 🚀 Ejemplos de Implementación
 
-    // console.log(entradas[i][0], "-", entradas[i][1]);  // Otra forma de mostrar lo mismo
-};
-```
-## Foreach [Sólo para Arrays]
-
-```typescript
-const entradas = Obejct.entries(objeto);
-
-entradas.forEach(entrada => {
-    let [key, value] = entrada;
-    console.log(key, "-", value);  // Muestro el "key - value" de cada entrada
-
-    // console.log(entrada[0], "-", entrada[1]);  // Otra forma de mostrar lo mismo
-});
-```
-- El forEach recorre cada elemento del array entradas. Por cada elemento, ejecuta la función que le pasamos, es decir, ejecuta un callback. El primer parámetro de ese callback es justamente el elemento por el que estamos pasando.
-
-- Además del elemento del array, el callback que recibe forEach también permite recibir un segundo parámetro opcional, el cual sería el índice del array:
-
-```typescript
-entradas.forEach((entrada, indice) => {
-    console.log(indice, entrada[0], "-", entrada[1]);
-});
-```
-## Forof [Sólo para Arrays]
-
-```typescript
-const entradas = Obejct.entries(objeto);
-
-for (const entrada of entradas) {
-    console.log(entrada[0], "-", entrada[1]);  // Muestro el "key - value" de cada entrada
+### 1. `for` clásica
+Es la más flexible pero la más prolija de escribir.
+```javascript
+const numeros = [10, 20, 30];
+for (let i = 0; i < numeros.length; i++) {
+  console.log(`Índice ${i}: ${numeros[i]}`);
 }
 ```
-- Esta forma de recorrer es muy similar al forEach. Es decir, por cada elemento del array entradas, se ejecuta lo que declaramos dentro. Cada elemento se va a representar como "entrada". Ojo: el forof no recibe un callback, sino que directamente ejecuta lo que declaramos en las llaves { }.
 
-
-## Forin [Para Arrays y Objetos]
-
-```typescript
-const objeto = { nombre: "Miguel", edad: 23, vacunado: true };
-
-for (const key in objeto) {
-	console.log(key, "-", objeto[key]);
-};
+### 2. `forEach()`
+Específico para arrays. Automáticamente pasa el elemento y el índice al callback.
+```javascript
+const nombres = ["Ana", "Luis"];
+nombres.forEach((nombre, index) => {
+  console.log(`${index}: ${nombre}`);
+});
 ```
-- Forin está hecho para recorrer objetos. Más precisamente, las keys de los objetos. Es decir, los nombres de las propiedades del objeto. Básicamente, forin hace lo que forof no puede hacer. Su sintaxis es igual pero usando el "in" en vez del "of".
 
-- Y además, con forin también podemos recorrer arrays tal cual como lo haríamos con el forof. Pero el forof no puede recorrer objetos como sí lo hace el forin.
+### 3. `for...of` (Valores)
+La forma más limpia de recorrer los **valores** de un array u objetos convertidos con `entries()`.
+```javascript
+const colores = ["Rojo", "Verde"];
+for (const color of colores) {
+  console.log(color);
+}
+```
+
+### 4. `for...in` (Llaves)
+Diseñado para recorrer las propiedades de un **objeto**.
+```javascript
+const auto = { marca: "Tesla", modelo: "S" };
+for (const propiedad in auto) {
+  console.log(`${propiedad}: ${auto[propiedad]}`); // auto[propiedad] accede al valor
+}
+```
+
+---
+
+> [!CAUTION]
+> Evita usar **`for...in`** para recorrer arrays. Aunque funciona, itera sobre todas las propiedades heredadas y puede ser mucho más lento o devolver resultados inesperados si el prototipo fue modificado. Para arrays, usa siempre **`for...of`** or **`forEach()`**.
+
+---
+
+> [!TIP]
+> Si necesitas recorrer un objeto y usar `await` dentro del bucle, usa **`for...of`** junto con `Object.entries()`. `forEach()` no funciona correctamente con funciones asíncronas de esa manera.

@@ -4,129 +4,118 @@ description: "Animaciones que se activan a través del Scroll"
 ---
 
 
-## Animaciones que se activan a través del Scroll
+## 📜 Animaciones de Scroll (Scroll-driven Animations)
 
-- Con la misma metodología de antes, vamos a ver cómo lograr esto con CSS, sin cargar nada de JS, lo cual ayuda al rendimiento de la aplicación.
+Tradicionalmente, las animaciones que reaccionan al scroll requerían JavaScript para calcular la posición del usuario. Hoy en día, CSS ofrece la **Scroll-driven Animations API**, que permite vincular animaciones a la progresión del scroll de forma nativa y ultra fluida.
 
-- Esto está relacionado al Main Thread, que es el proceso que pasa cuando una página web se carga. El JS se carga en este proceso. Por eso, lo ideal es no cargar el Main Thread de más.
+> [!WARNING]
+> **Compatibilidad:** Esta es una API relativamente nueva. Actualmente funciona principalmente en navegadores basados en Chromium (Chrome, Edge). Considera usar *polyfills* si necesitas soporte en Safari o Firefox.
 
-- Antes no se podían hacer Scroll Animations sólo con CSS, necesitábamos JS sí o sí. Pero ahora, se creó una nueva API llamada scroll-driven Animations. Estas animaciones se reproducen fuera del Main Thread, consiguiendo un rendimiento fluido con un par de líneas de código.
+---
 
-- Para entenderlo desde 0, vamos a hacer una "progress-bar". La típica que aparece en wattpad o en páginas con artículos de lectura. La progress-bar detecta en qué porcentaje de la página nos encontramos actualmente, vinculándose con el scroll.
+## 🛠️ Conceptos Clave
 
-<div id="progress">`</div>`
+Para crear estas animaciones, necesitamos dos propiedades fundamentales:
+1. **`animation-timeline`**: Define la línea de tiempo de la animación. En lugar de basarse en segundos, se basa en el scroll.
+2. **`animation-range`**: Define en qué parte del scroll comienza y termina la animación.
 
-`<main>` ... `</main>`
+---
 
-body {
+## 🚀 Ejemplo 1: Barra de Progreso (`scroll()`)
+
+La función `scroll()` vincula la animación a la progresión de un contenedor (por defecto, toda la página).
+
+### HTML
+```html
+<div id="progress"></div>
+```
+
+### CSS
 ```css
-margin: 0px;
-padding: 0px;
-```
+#progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: red;
+  transform-origin: 0% 50%;
+  
+  /* Vinculamos la animación al scroll */
+  animation: grow-progress auto linear;
+  animation-timeline: scroll(root block);
 }
 
-#progress {
+@keyframes grow-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+```
+
+- **`scroll(root block)`**: `root` busca el scroll principal del documento. `block` indica el eje vertical (Y).
+
+---
+
+## 🖼️ Ejemplo 2: Revelar Imágenes (`view()`)
+
+La función `view()` es ideal para animar elementos individuales a medida que entran o salen del área visible (**viewport**).
+
 ```css
-position: fixed;
-top: 0;
-height: 30px;
-width: 0%
-background: red;
-animation: progress-grow auto linear;
-```
-}
-
-@keyframes progress-grow {
-```typescript
-from { width: 0% }
-to { width: 100% }
-```
-}
-
-
-## Propiedad animation-timeline
-
-- Para poder todo esto con sólo CSS, es indispensable el uso de la propiedad "animation-timeline". Lo malo es que, al ser relativamente nueva, no todos los navegadores la soportan. Si quisiéramos, podríamos hacer un "respaldo de funcionalidad". Estos respaldos son como "el plan b" para cierta funcionalidad no soportada por navegadores. O sea que, con JS, podemos replicar la funcionalidad de animation-timeline, e incluirla en caso de que el navegador usado por el usuario no reconozca esa propiedad. Lógicamente, no va a ser igual de performante, pero sirve.
-
-#progress {
-```text
-animation: progress-grow auto linear;
-animation-timeline: scroll(root block);
-```
-}
-
-- A la propiedad "animation-timeline" hay que indicarle "a partir de qué progresa o no progresa la animación". En este caso, le vamos a dar el valor "scroll()". Scroll recibe 2 valores: el punto de partida, que en nuestro caso es "root" (raíz), y un segundo valor opcional, que indica el eje (X o Y) de scroll. En este caso, le ponemos block (eje Y). Por defecto, viene en "block", así que podríamos no escribirlo.
-
-- Por cierto, en este caso, como trabajamos directamente con el scroll, no necesitamos agregar un valor de duración. Así que le ponemos "auto".
-
-¡Y listo! Ya con esto, nuestra progress-bar funciona perfectamente.
-
-
-## Animación en el nav-bar
-
-- Este es el ejemplo de lo que usé en mi portfolio. La idea de esto es que la animación se realice durante el tiempo en el que estamos haciendo scroll desde el pixel 0 hasta los 100px verticales. Lo vamos a hacer con la propiedad "animation-range", la cual se conecta directamente con la función de scroll.
-
-animation-range: 0 100px;
-
-- La propiedad animation-range toma los valores de forma horizontal y vertical. En este caso, le ponemos 0 de horizontal (porque no nos interesa) y 100px de vertical. Lógicamente, cuantos más pixeles pongamos, más larga se haría la animación, ya que tendríamos que scrollear más hacia abajo para ver toda la animación de inicio a fin.
-
-#desktop-navbar {
-```text
-animation: nav-shadown 2s linear both;
-animation-timeline: scroll(root block);
-animation-range: 0 100px;
-```
-  }
-
-  @keyframes nav-shadown {
-```sql
-0% {
-  background: transparent;
-}
-100% {
-  @apply shadow-lg backdrop-blur;   (TailwindCSS)
-}
-```
-  }
-
-
-## Galería de imágenes
-
-- Supongamos que tenemos una página con distintas imágenes en modo grilla. Vamos a animar su aparición-desaparición usando animaciones de scroll. 
-
-- Vamos a usar view(). Es un valor de la propiedad animation-timeline. Lo que hace view es que la animación solo se realice cuando sea visible el elemento.
-
 section img {
-```text
-animation: reveal linear both;
-animation-timeline: view();
-animation-range: entry 20% cover 30%;
-```
+  animation: reveal linear both;
+  animation-timeline: view();
+  /* Inicia cuando el 20% del elemento entra, termina al 40% */
+  animation-range: entry 20% cover 40%;
 }
-
-- ¿Qué significan los valores "entry" y "cover" en este caso?: Significa que "Cuando haya entrado un 20% de la imagen en el viewport, va a ser el inicio de la animación. Y el final de nuestra animación, va a ser cuando ya estemos cubriendo un 30% del elemento en el viewport". O sea, el rango de animación sería cuando el elemento img está entre un 20% y un 30% de su visión en el viewport.
 
 @keyframes reveal {
-```typescript
-from {
-	opacity: 0;
-	// translate: 0 100px;  // x: 0 - y: 100px
-	// scale: .5;
-}
-
-to {
-	opacity: 1;
-	// translate: 0 0
-	// scale: 1;
+  from {
+    opacity: 0;
+    clip-path: inset(0% 100% 0% 0%);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0% 0% 0% 0%);
+  }
 }
 ```
+
+### Explicación de `animation-range`:
+- **`entry`**: El momento en que el elemento empieza a asomar por debajo del viewport.
+- **`cover`**: El rango mientras el elemento cruza el viewport.
+- **`exit`**: Cuando el elemento empieza a salir por arriba.
+
+---
+
+## 🧭 Ejemplo 3: Efecto en Navbar
+
+Podemos hacer que un menú sea transparente al inicio y gane fondo/sombra tras bajar unos píxeles.
+
+```css
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  animation: adjust-header linear both;
+  animation-timeline: scroll();
+  animation-range: 0 100px; /* La animación ocurre entre los 0 y 100px de scroll */
 }
 
-- Y eso sería todo. Acá hay valores comentados, ya que son opcionales. Queda en la imaginación de uno qué tan loca puede ser la animación o qué tantas cosas podemos variar.
+@keyframes adjust-header {
+  to {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  }
+}
+```
 
-- En resumen, todo se basa en estas dos líneas de CSS:
+---
 
-animation-timeline: scroll();
-animation-timeline: view();
+## 💡 Ventajas de usar CSS para Scroll
+- **Rendimiento:** Las animaciones corren en el hilo de composición, fuera del **Main Thread** de JS. No hay saltos (*jank*).
+- **Legibilidad:** Menos código JS decorativo y más lógica visual en el CSS.
+- **Menos dependencias:** No necesitas librerías como GSAP o ScrollMagic para efectos sencillos.
 
-- **Una página muy buena para ver ejemplos es https**: //scroll-driven-animations.style/
+> [!TIP]
+> Puedes explorar ejemplos increíbles y generar código visualmente en [scroll-driven-animations.style](https://scroll-driven-animations.style/).

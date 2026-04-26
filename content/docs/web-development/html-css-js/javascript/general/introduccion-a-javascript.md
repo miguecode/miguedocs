@@ -1,99 +1,72 @@
 ---
 title: "Introducción a JavaScript"
-description: "JavaScript es un lenguaje de programación interpretado, dinámico, de alto nivel y de tipado débil. Se utiliza principalmente para crear interactividad en las pá..."
+description: "JavaScript es un lenguaje de programación interpretado, dinámico, de alto nivel y de tipado débil."
 ---
 
+JavaScript es un lenguaje de programación interpretado, dinámico, de alto nivel y de tipado débil. Se utiliza principalmente para crear interactividad en las páginas web, ya que permite modificar dinámicamente el contenido, reaccionar a eventos del usuario y realizar operaciones complejas en el navegador.
 
+## Características principales
 
-- JavaScript es un lenguaje de programación interpretado, dinámico, de alto nivel y de tipado débil. Se utiliza principalmente para crear interactividad en las páginas web, ya que permite modificar dinámicamente el contenido, reaccionar a eventos del usuario y realizar operaciones complejas en el navegador.
+### 1. Es interpretado
+Se ejecuta directamente en el navegador sin necesidad de compilación previa, lo que permite cambios y pruebas rápidas en el flujo de desarrollo.
 
-- **Desglosemos sus características**: 
+### 2. Es de tipado dinámico
+Significa que podemos cambiar los tipos de las variables en tiempo de ejecución. No estamos atados a un tipo fijo una vez declarada la variable.
 
-1) Es interpretado. 
-
-- Es interpretado ya que se ejecuta directamente en el navegador sin necesidad de compilación, lo que permite cambios y pruebas rápidas.
-
-
-2) Es de tipado dinámico, o simplemente "es dinámico".
-
-- Que sea un lenguaje dinámico (o sea, no estático) significa que podemos cambiar los tipos de las variables en tiempo de ejecución. 
-
-```typescript
-let string = "Hola Mundo";
-string = 2;
-typeof string; // Muestra "number"
+```javascript
+let dato = "Hola Mundo";
+dato = 2;
+console.log(typeof dato); // Muestra "number"
 ```
-- Esto demuestra que JavaScript es un lenguaje de programación dinámico. Le cambiamos el tipo a la variable "string", ya que pasó de ser un string a ser un number. Esto, en un lenguaje estático, no es posible (como por ejemplo TypeScript o C#).
 
+Esto demuestra la naturaleza dinámica del lenguaje: cambiamos el tipo de la variable `dato` de un string a un number. En lenguajes estáticos (como C# o TypeScript), esto no sería posible sin generar un error.
 
-3) Es de tipado débil.
+### 3. Es de tipado débil
+No es obligatorio indicar el tipo de dato al declarar variables, ya que JavaScript realiza la **coerción de tipos**. El motor convierte automáticamente los tipos cuando lo considera necesario para completar una operación:
 
-- Va de la mano con el punto anterior, pero no es exactamente lo mismo. Que el lenguaje sea de tipado débil significa que no es obligatorio indicar el tipo de dato de las variables a la hora de declararlas, ya que JavaScript lleva a cabo la coerción de tipos. Es decir, convierte automáticamente los tipos de datos cuando lo considera necesario, aunque a veces lo haga de formas inesperadas. Veamos:
-
-```text
-console.log("5" + 2);   // "52" → convierte el number 2 en string, y concatena: "5" + "2" = "52"
-console.log("5" - 2);   // 3 → convierte el string a a number, realizando 5 - 2 = 3
-console.log(true + 1);  // 2 → true se convierte en 1, y realiza "1 + 1". Es decir, queda en number
+```javascript
+console.log("5" + 2);   // "52" (convierte el 2 en string y concatena)
+console.log("5" - 2);   // 3    (convierte el "5" en número y resta)
+console.log(true + 1);  // 2    (true se convierte en 1)
 ```
-- Esto nos demuestra que el lenguaje deduce de qué tipo tiene que ser cada cosa, sin que nosotros necesariamente lo especifiquemos. Esto en lenguajes de tipado fuerte no es posible.
 
+El lenguaje deduce el tipo necesario según el contexto, a diferencia de los lenguajes de tipado fuerte donde las operaciones entre tipos distintos suelen estar restringidas.
 
-4) Es de alto nivel.
+### 4. Es de alto nivel
+Se abstrae de los detalles del hardware (manejo de memoria, punteros, registros, etc.). Nos permite enfocarnos en resolver problemas lógicos con una sintaxis entendible para el ser humano, sin preocuparnos por tareas de bajo nivel (como ocurre en Assembly o C).
 
-- Es un lenguaje de alto nivel porque se abstrae de los detalles del hardware (como el manejo de memoria, punteros, registros, etc.). Permite enfocarnos en resolver problemas lógicos sin preocuparnos por tareas de bajo nivel. Además, tiene una sintaxis generalmente entendible para el ser humano. Lenguajes como C o Assembly son ejemplos de lenguajes de bajo nivel.
+### 5. Es multi-paradigma
+Maneja más de una forma para resolver problemas o estructurar programas:
+*   **Programación Orientada a Objetos (POO)**: Mediante prototipos (y clases en ES6).
+*   **Programación Funcional**: Uso de funciones puras, callbacks, y métodos como `map`, `filter`, `reduce`.
+*   **Programación Basada en Eventos**: Reacción a acciones como clicks o scrolls.
 
+### 6. Es Case Sensitive
+Distingue entre mayúsculas y minúsculas. No es lo mismo una variable llamada `miVariable` que una llamada `mivariable`.
 
-5) Es multi-paradigma (POO, funcional y basada en eventos).
+## Otras características importantes
 
-- Multi-paradigma significa que el lenguaje maneja más de un paradigma, es decir, más de una forma para resolver problemas, o de crear programas. Estos paradigmas pueden ser:
-
-- Programación orientada a objetos (POO) → Con clases, objetos, herencia.
-- Programación funcional → Con funciones puras, funciones como datos, map, filter, reduce, etc.
-- Basada en eventos → Reacciona a acciones del usuario, como clicks, scrolls o teclas presionadas.
-
-
-6) Es Case Sensitive (Upper and Lower Case).
-
-- Esto es sencillo, significa que no es lo mismo una variabe llamada "MiVariable" que una llamada "Mivariable". Lo mismo con las funciones, clases, y demás.
-
-
-## Otras Características importantes:
-
-- A diferencia de lenguajes como Java, JavaScript está basado en prototipos, es decir, utiliza prototipos en lugar de clases tradicionales para la herencia y reutilización de código.
-
-- JavaScript es orientado a eventos, lo que significa que puede responder a interacciones del usuario, como clics o desplazamientos.
-
-- Puede ser ejecutado en cualquier navegador web moderno, sin importar el sistema operativo o dispositivo.
-
-- Con funciones como los callbacks y promesas, JavaScript permite realizar múltiples tareas a la vez, lo que es ideal para aplicaciones en tiempo real. A todo esto se le llama asincronía.
-
-- Es uno de los lenguajes más populares y utilizados en desarrollo web, con una vasta cantidad de librerías y frameworks disponibles.
-
+*   **Basado en Prototipos**: A diferencia de lenguajes como Java, utiliza prototipos para la herencia y reutilización de código (aunque ES6 introdujo la palabra clave `class` para facilitar la sintaxis).
+*   **Orientado a Eventos**: Responde dinámicamente a interacciones del usuario.
+*   **Universal**: Se ejecuta en cualquier navegador moderno, independientemente del sistema operativo.
+*   **Asíncrono**: Gracias a los callbacks, promesas y `async/await`, permite realizar tareas en segundo plano sin bloquear el hilo principal.
 
 ## Usos más comunes
 
-- Creación de páginas web interactivas.
-- Desarrollo de aplicaciones web mediante frameworks como React, Angular, y Vue.js.
-- Creación de APIs del lado del servidor con Node.js.
+*   Creación de páginas web interactivas.
+*   Desarrollo de aplicaciones robustas mediante frameworks (React, Angular, Vue).
+*   Desarrollo del lado del servidor (Backend) con Node.js.
+*   Creación de APIs y microservicios.
 
-- JavaScript es el pilar del desarrollo web moderno, permitiendo experiencias de usuario más interactivas y ricas. Su capacidad para ejecutarse en prácticamente cualquier entorno, junto con su naturaleza dinámica y potente, lo convierte en una herramienta esencial para desarrolladores web.
+## Historia y curiosidades
 
-
-## Detalles adicionales
-
-- JavaScript fue inicialmente conocido como Mocha y luego como LiveScript antes de recibir su nombre actual.
-- A pesar de las similitudes de nombre, Java y JavaScript no están relacionados.
-- Desde su creación, ha evolucionado constantemente, con nuevas versiones (ECMAScript) que han mejorado el lenguaje.
-
-
-## ¿Cuándo y por qué fue creado?
-
-- JavaScript fue creado en 1995 por Brendan Eich mientras trabajaba en Netscape Communications. Fue diseñado para hacer que las páginas web fueran interactivas y ofrecer dinamismo a las páginas estáticas que se usaban en esa época. Inicialmente, su desarrollo fue rápido, tomando solo 10 días, con el objetivo de complementar las funcionalidades de HTML.
-
+*   **Origen**: Creado en 1995 por **Brendan Eich** en Netscape Communications. Fue diseñado inicialmente en solo 10 días para complementar HTML.
+*   **Nombres anteriores**: Originalmente se llamó **Mocha**, luego **LiveScript**, y finalmente JavaScript por una estrategia de marketing (aprovechando la popularidad de Java).
+*   **JavaScript != Java**: A pesar del nombre, son lenguajes completamente distintos con filosofías y usos diferentes.
 
 ## Hola Mundo
 
-```text
+```javascript
 console.log("Hola Mundo!");
 alert("Hola Mundo!");
 ```

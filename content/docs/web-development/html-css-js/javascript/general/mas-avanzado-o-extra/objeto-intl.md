@@ -1,16 +1,15 @@
 ---
 title: "Objeto Intl"
-description: "El objeto Intl (Internationalization) es una API nativa de JavaScript que permite formatear números, textos, fechas, monedas, y más, según el idioma y la región..."
+description: "Aprende a usar la API Intl de JavaScript para formatear números, fechas, monedas y listas de forma nativa según el idioma y región del usuario."
 ---
 
+El objeto **Intl** (*Internationalization*) es una API nativa de JavaScript que permite formatear números, textos, fechas, monedas y más, de manera sensible al idioma y la región del usuario. Es la herramienta estándar para garantizar que nuestras aplicaciones sean amigables en cualquier parte del mundo.
 
+## 1. Intl.NumberFormat (Números y Monedas)
 
-- El objeto Intl (Internationalization) es una API nativa de JavaScript que permite formatear números, textos, fechas, monedas, y más, según el idioma y la región del usuario. 
+Permite convertir números crudos en formatos legibles según la cultura local, incluyendo el símbolo de moneda correcto.
 
-
-1. Intl.NumberFormat (Para formatear números y monedas)
-
-```typescript
+```javascript
 const numero = 1234567.89;
 
 const formatoUSD = new Intl.NumberFormat('en-US', {
@@ -18,36 +17,40 @@ const formatoUSD = new Intl.NumberFormat('en-US', {
   currency: 'USD',
 });
 
-console.log(formatoUSD.format(numero)); // Muestra $1,234,567.89
+console.log(formatoUSD.format(numero)); // "$1,234,567.89"
 ```
-- También sirve para formatear como porcentaje o con separadores de miles:
 
-```typescript
+También es útil para porcentajes o separadores de miles específicos por país:
+
+```javascript
 const porcentaje = new Intl.NumberFormat('es-AR', {
   style: 'percent',
   maximumFractionDigits: 2,
 });
 
-console.log(porcentaje.format(0.7532)); // Muestra '75,32 %'
+console.log(porcentaje.format(0.7532)); // "75,32 %"
 ```
-2. Intl.ListFormat – Para formatear listas
 
-```typescript
+## 2. Intl.ListFormat (Listas)
+
+Da formato a arrays de strings para que se lean como lenguaje natural (añadiendo comas y conjunciones como "y" o "o" según el idioma).
+
+```javascript
 const frutas = ['manzana', 'banana', 'naranja'];
 
 const lista = new Intl.ListFormat('es', {
   style: 'long',
-  type: 'conjunction',
+  type: 'conjunction', // Usa "y"
 });
 
-console.log(lista.format(frutas)); // Muestra 'manzana, banana y naranja'
+console.log(lista.format(frutas)); // "manzana, banana y naranja"
 ```
-- Se adapta automáticamente a las reglas del idioma.
 
+## 3. Intl.DateTimeFormat (Fechas y Horas)
 
-3. Intl.DateTimeFormat – Para formatear fechas y horas
+Es la mejor alternativa nativa para formatear fechas sin recurrir a librerías externas pesadas como Moment.js.
 
-```typescript
+```javascript
 const fecha = new Date();
 
 const formatoAR = new Intl.DateTimeFormat('es-AR', {
@@ -55,55 +58,45 @@ const formatoAR = new Intl.DateTimeFormat('es-AR', {
   timeStyle: 'short',
 });
 
-console.log(formatoAR.format(fecha)); // Muestra 'martes, 9 de abril de 2025 21:36' (por ejemplo)
+console.log(formatoAR.format(fecha)); // Ej: "martes, 9 de abril de 2024, 21:36"
 ```
-- Así como usamos full y short, también existen long y medium.
 
-- También podemos formatear con más precisión, parte por parte:
+Además de `full` y `short`, podemos usar `long` y `medium`, o incluso obtener las partes de la fecha de forma individual con `formatToParts()`.
 
-```typescript
-const partes = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: '2-digit',
-}).formatToParts(new Date());
+## 4. Intl.RelativeTimeFormat (Tiempos Relativos)
 
-console.log(partes); [{ type: 'month', value: 'April' }, { type: 'literal', value: ' ' }, { type: 'day', value: '09' }]
-```
-4. Intl.RelativeTimeFormat – Para tiempos relativos
+Formatea frases que indican cuánto tiempo falta o ha pasado respecto a un punto.
 
-```typescript
+```javascript
 const tiempoRelativo = new Intl.RelativeTimeFormat('es', {
-  numeric: 'auto',
+  numeric: 'auto', // Usa palabras como "ayer" en lugar de "hace 1 día"
 });
 
-console.log(tiempoRelativo.format(-3, 'day')); // Muestra 'hace 3 días'
-console.log(tiempoRelativo.format(1, 'month')); // Muestra 'el próximo mes'
+console.log(tiempoRelativo.format(-3, 'day'));   // "hace 3 días"
+console.log(tiempoRelativo.format(1, 'month'));   // "el próximo mes"
+console.log(tiempoRelativo.format(-1, 'day'));   // "ayer"
 ```
-- Útil para frases relativas al tiempo.
 
+## 5. Intl.Collator (Comparación de Strings)
 
-5. Intl.Collator – Para comparar strings de forma sensible al idioma
+Sirve para ordenar palabras alfabéticamente respetando las reglas de cada idioma (como el orden de la "ñ" o tildes).
 
-- Sirve para ordenar palabras alfabéticamente según el idioma
-
-```typescript
+```javascript
 const palabras = ['ñandú', 'árbol', 'zapato', 'avión'];
+
+// Ordenación alfabética correcta en español
 const ordenadas = palabras.sort(new Intl.Collator('es').compare);
-console.log(ordenadas); // Muestra ['árbol', 'avión', 'ñandú', 'zapato']
-```
-- **También sirve para comparar**: 
 
-```typescript
-const comparador = new Intl.Collator('es', { sensitivity: 'base' });
-console.log(comparador.compare('hola', 'HOLA')); // 0 (considera iguales)
+console.log(ordenadas); // ["árbol", "avión", "ñandú", "zapato"]
 ```
-6. Intl.PluralRules – Para saber el plural correcto
 
-```sql
+## 6. Intl.PluralRules (Reglas de Pluralización)
+
+Ayuda a determinar qué forma gramatical del plural corresponde a una cantidad, lo cual varía enormemente entre idiomas.
+
+```javascript
 const plural = new Intl.PluralRules('en-US');
 
-console.log(plural.select(1)); // 'one'
-console.log(plural.select(3)); // 'other'
+console.log(plural.select(1)); // "one"
+console.log(plural.select(2)); // "other"
 ```
-- Útil para la interpolación de strings en diferentes idiomas.

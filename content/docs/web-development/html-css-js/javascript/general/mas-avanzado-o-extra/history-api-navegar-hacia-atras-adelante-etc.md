@@ -1,117 +1,105 @@
 ---
 title: "History API (Navegar hacia atrás, adelante, etc)"
-description: "La History API nos permite interactuar con el historial del navegador sin recargar la página. Es especialmente útil en Single Page Applications (SPA), donde cam..."
+description: "Aprende a interactuar con el historial del navegador mediante la History API, esencial para la navegación en Single Page Applications (SPA)."
 ---
 
+## History API
 
-##  History API
+La **History API** nos permite interactuar con el historial del navegador sin necesidad de recargar la página. Es la herramienta fundamental sobre la cual se construyen los sistemas de ruteo de frameworks modernos como Angular, React (React Router) o Vue Router.
 
-- La History API nos permite interactuar con el historial del navegador sin recargar la página. Es especialmente útil en Single Page Applications (SPA), donde cambiamos vistas o rutas sin hacer una navegación tradicional. 
-
-- Cuando usamos frameworks como Angular, React (con React Router), o Vue Router, o cualquier sistema de ruteo en frameworks modernos, por debajo están usando la History API del navegador.
-
-- Es decir, cuando estamos en Angular y vamos a hacer ruteo, podemos ver algo así:
-
-```text
+Cuando en un framework como Angular hacemos:
+```javascript
 this.router.navigate(['/perfil']);
 ```
-- Cuando en realidad, por debajo, está ocurriendo esto:
+Por debajo, el framework utiliza métodos de esta API, funcionando como un "azúcar sintáctico" que oculta la complejidad del ruteo nativo.
 
-```text
-history.pushState(...);
+## ¿Qué nos permite hacer esta API?
+
+*   Navegar programáticamente hacia atrás o hacia adelante.
+*   Leer, agregar o reemplazar entradas en el historial de navegación.
+*   Escuchar cambios en el historial para reaccionar a la navegación del usuario.
+
+## Métodos de navegación
+
+### Back, Forward y Go
+
+Permiten mover al usuario por el historial acumulado en la pestaña actual.
+
+```javascript
+history.back();	   // Una página hacia atrás (botón "atrás")
+history.forward(); // Una página hacia adelante (botón "adelante")
+
+history.go(n);     // Navegación relativa
 ```
-- Esto quiere decirnos que el framework nos hace de azúcar sintáctico, ya que "nos esconde" todo el manejo del History API (la API que vamos a aprender ahora).
 
+Para el método `history.go(n)`, el parámetro `n` determina el movimiento:
+*   **`-1`**: Retrocede una página.
+*   **`1`**: Avanza una página.
+*   **`0`**: Recarga la página actual.
 
+### Propiedad `length`
 
-## ¿Qué hace exactamente la API?
-
-- Nos permite movernos hacia atrás o adelante en las páginas web que estamos visitando (literalmente el botón de ir hacia atrás o adelante).
-
-- Nos permite leer, agregar y reemplazar entradas del historial. Y también escuchar cambios en él.
-
-
-## Métodos para navegar por el historial
-
-### Back y Forward
-
-```text
-history.back();	// Va una página hacia atrás (como si el usuario tocara el botón "atrás")
-history.forward(); // Va una página hacia adelante (como si el usuario tocara el botón "adelante")
+```javascript
+console.log(history.length);
 ```
-### Go
+Devuelve la cantidad total de entradas en el historial de la pestaña actual. No indica cuántas veces podemos ir hacia atrás, sino el tamaño total de la pila de navegación.
 
-```text
-history.go(n);  // "n" puede ser -1, 0 o 1.
-```
-- Va a una página en el historial relativa a la posición actual.
-```text
-n = -1 → una atrás
-n = 1 → una adelante
-n = 0 → recarga la página actual
-```
-### La propiedad length
+## Modificar el historial sin recargar
 
-```text
-history.length; // Nos da la cantidad total de entradas en el historial de la pestaña actual
-```
-- Ojo, no nos dice cuántas veces podemos ir hacia atrás o adelante, sino simplemente el total de entradas.
+Los métodos `pushState` y `replaceState` son la clave de las SPAs, ya que permiten cambiar la URL en la barra de direcciones sin provocar una recarga del navegador.
 
+### `pushState(state, title, url)`
 
-## Modificar el historial -sin recargar-
+Agrega una **nueva** entrada al historial.
 
-- Los métodos pushState() y replaceState() nos permiten cambiar la URL del navegador sin hacer una nueva navegación y sin recargar la página. Esto lo podemos checkear con la propiedad "state". Veamos:
-
-### pushState(state, title, url)
-
-```typescript
+```javascript
 history.pushState({ pagina: "perfil" }, "", "/perfil");
 ```
-- Así, agregamos una nueva entrada al historial. Como vemos, recibe 3 parámetros: state, title y url.
-state: objeto con info. opcional que queremos guardar.
-title: hoy en día no se usa, hay que poner "" (string vacío).
-url: la nueva URL que aparecerá en la barra (tiene que ser de mi mismo dominio)
 
-- Esto es ideal para cuando el usuario cambia de vista en un SPA y queremos que la URL cambie, y que pueda volver con el botón de "atrás".
+1.  **`state`**: Un objeto con información opcional que queramos asociar a esta entrada.
+2.  **`title`**: Actualmente la mayoría de navegadores lo ignoran; se suele pasar un string vacío `""`.
+3.  **`url`**: La nueva URL que se mostrará en la barra (debe pertenecer al mismo dominio).
 
+### `replaceState(state, title, url)`
 
-### replaceState(state, title, url)
+Funciona igual que `pushState`, pero **reemplaza** la entrada actual en lugar de añadir una nueva. Es ideal para limpiar URLs (ej: quitar parámetros de búsqueda feos) sin ensuciar la navegación del usuario.
 
-```typescript
-history.replaceState({ pagina: "perfil" }, "", "/perfil");
+```javascript
+history.replaceState({ pagina: "home" }, "", "/home");
 ```
-- Funciona exactamente igual que pushState, pero NO AGREGA una nueva entrada, sino que reemplaza la actual. Se usa para cambiar la URL sin alterar el historial del usuario.
 
-- Es ideal si cargamos una página con un parámetro feo y lo queremos cambiar por una URL más limpia.
+### Propiedad `state`
 
-### Propiedad state
-
-```typescript
-const estado = history.state;
+```javascript
+const estadoActual = history.state;
 ```
-- Esto devuelve el objeto state guardado con pushState o replaceState.
+Devuelve el objeto `state` asociado a la entrada actual del historial (el que hayamos guardado previamente con `pushState` o `replaceState`).
 
+## Evento `popstate`
 
-## Evento popstate
+Este evento se dispara en el objeto `window` cuando el usuario navega a través de su historial mediante los botones del navegador o `history.go()`.
 
-```typescript
+> [!IMPORTANT]
+> El evento `popstate` **no** se dispara al llamar a `pushState()` o `replaceState()`. Solo ocurre ante acciones del usuario o navegación automática relativa.
+
+```javascript
 window.addEventListener("popstate", (event) => {
-  console.log("Volviste a una entrada del historial:", event.state);
+  console.log("Cambiando de ruta en el historial. Estado:", event.state);
 });
 ```
-- El evento popstate se dispara cuando el usuario usa los botones "atrás" o "adelante". Ojo: NO se dispara con los métodos pushState ni replaceState, sólo se dispara con navegación manual del usuario o con history.go().
 
--  Es útil para reaccionar a cambios de URL y actualizar la vista en una SPA.
+## Ejemplo completo de uso
 
-
-## Ejemplo completo
-
-```typescript
-// Cambiar de vista a /perfil
+```javascript
+// Simulamos el cambio de vista a /perfil guardando datos en el estado
 history.pushState({ vista: "perfil" }, "", "/perfil");
 
-// Reaccionar a que el usuario vuelva con el botón "atrás"
+// Preparamos la App para reaccionar si el usuario presiona el botón "atrás"
 window.addEventListener("popstate", (e) => {
-  console.log("Vista anterior:", e.state?.vista);
+  if (e.state?.vista === "perfil") {
+    console.log("Cargando componentes del perfil...");
+  } else {
+    console.log("Volviendo al inicio...");
+  }
 });
 ```

@@ -26,6 +26,7 @@ Si la etiqueta que va a referenciar a un archivo JS, `<script>`, está declarada
 Nosotros en nuestro archivo JS vamos a crear variables ya sea para capturar botones, guardar direcciones de memoria, eventos, lo que sea. Pero en el momento en el que se empieza a ejecutar ese archivo JS (de forma asíncrona), todavía NO existen tales botones o elementos. Es decir: un botón "Saludar" se crea recién en la línea 20 de nuestro JS. Pero el linkeo al archivo JS lo hacemos mucho antes, en el `<head>`. Por lo tanto, cuando vaya a leer línea a línea el archivo JS, el botón Saludar "NO" existirá, porque todavía no se cargó en el DOM. Veamos:
 
 ### HTML
+
 ```html
 <head>
     <script src="script.js"></script>

@@ -4,125 +4,104 @@ description: "Variables CSS (Custom Properties)"
 ---
 
 
-## Variables CSS (Custom Properties)
+## 🎨 Variables CSS (Custom Properties)
 
-- Las variables en CSS permiten almacenar valores reutilizables, como colores, fuentes o tamaños, con el fin de tener un código más modular, escalable y fácil de mantener. 
+Las **Custom Properties**, comúnmente conocidas como **Variables CSS**, permiten almacenar valores reutilizables (colores, fuentes, tamaños) en un solo lugar. Esto hace que el código sea más modular, fácil de mantener y permite realizar cambios globales de manera instantánea.
 
-- Hoy en día, el 97% de los navegadores soportan las variables en CSS. Por ende, usarlas es una práctica recomendada. Antes esto no era así, y era necesario usar preprocesadores CSS como Sass.
+---
 
+## 🏗️ Cómo declarar variables
 
-### Ventajas
+Las variables se definen habitualmente dentro de la pseudoclase `:root`, que representa el elemento raíz del documento (`<html>`). Esto las hace disponibles de forma **global** en todo el sitio.
 
-- **Facilitan los cambios globales**: Modificar una variable afecta a todos los elementos que la usan.
-- **Mejoran la organización**: Separan valores importantes del resto del código.
-- **Son dinámicas**: Pueden cambiar con :hover, @media, JavaScript, etc.
-- **No requieren preprocesadores**: A diferencia de Sass, no necesitan ser compiladas.
-
-
-### Cómo crear y usar variables CSS
-
-- Para crear variables, tenemos que ir al principio de nuestro archivo CSS, y hacer uso de la pseudoclase "root", la cual hace referencia a la raíz del documento (que en HTML, es la etiqueta `<html>`).
-
-:root {
-```text
-...
-```
-}
-
-- En esta pseudoclase, es donde nosotros vamos a crear variables globales CSS. Esto también sirve para aplicar estilos, como por ejemplo ponerle un "font-size: 20px", pero en este caso lo único que vamos a hacer es crear variables.
-
-:root {
-```text
---color-primary: #505EF4;
-```
-}
-
-- Ahora, "--color-primary" es una variable, la cual tiene el valor #505EF4.
-
-- Las variables tienen que tener el prefijo -- de forma obligatoria. Si no lo tienen, el navegador no las va a reconocer y por ende las va a ignorar. Se hizo así para diferenciarlas de las propiedades estándar. También cabe decir que distinguen mayúsculas y minúsculas.
-
-- Ahora, para usar nuestra variable "--color-primary", tenemos que hacer uso de var(), así:
-
-.button {
 ```css
-background-color: var(--primary-color);
-```
-}
-
-
-- **Otro caso común es crear variables para fuentes**: 
-
 :root {
-```text
---color-primary: #505EF4;
---font-primary: 'Lato', sans-serif;
+  /* Toda variable DEBE empezar con doble guion -- */
+  --color-brand: #505EF4;
+  --font-main: 'Inter', sans-serif;
+  --base-padding: 1rem;
+}
 ```
-}
 
-body {
-```typescript
-font-family: var(--font-primary);
-```
-}
+> [!IMPORTANT]
+> Las variables CSS distinguen entre **mayúsculas y minúsculas**. `--Color-Main` no es lo mismo que `--color-main`.
 
+---
 
-## Más ejemplos de uso
+## 🚀 Cómo usar las variables (`var()`)
 
-:root {
-  --color-primary: #505EF4;
-  --color-secondary: #FF5733;
-  --font-primary: 'Lato', sans-serif;
-  --spacing: 8px;
-}
+Para aplicar el valor de una variable, utilizamos la función `var()`.
 
+```css
 .button {
-  background-color: var(--color-primary);
-  padding: var(--spacing);
+  background-color: var(--color-brand);
+  padding: var(--base-padding);
+  font-family: var(--font-main);
 }
+```
 
-body {
-  font-family: var(--font-primary);
+### Valores de respaldo (Fallbacks)
+Puedes definir un valor de seguridad por si la variable no existe o no carga:
+
+```css
+.card {
+  /* Si --card-bg no está definida, usará blanco (#fff) */
+  background-color: var(--card-bg, #fff);
 }
+```
 
+---
 
-### Usando la palabra reservada @media para el responsive design
+## ⚡ Variables Dinámicas
 
+A diferencia de las variables en preprocesadores (Sass), las variables CSS son **dinámicas** y pueden cambiar en tiempo real según el contexto.
+
+### 1. Responsive Design (@media)
+```css
 :root {
-  --font-size: 16px;
+  --container-width: 1200px;
 }
 
 @media (max-width: 768px) {
   :root {
-```text
---font-size: 14px;
-```
+    --container-width: 100%;
   }
 }
-
-body {
-  font-size: var(--font-size);
-}
-
-
-### Usando el prefers-color-scheme para el modo oscuro
-
-:root {
-```text
---color-primary: #777;
---color-secondary: #333;
 ```
+
+### 2. Modo Oscuro (`prefers-color-scheme`)
+```css
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-```text
---color-primary: #333;
---color-secondary: #777;
-```
+    --bg-color: #111111;
+    --text-color: #eeeeee;
   }
 }
+```
 
+### 3. Interacción con JavaScript
+Puedes leer o cambiar variables CSS desde JS, lo que permite crear temas personalizados o controles deslizantes dinámicos.
 
-### Cambiando el valor en JavaScript
+```javascript
+// Cambiar el color de marca dinámicamente
+document.documentElement.style.setProperty('--color-brand', '#FF0000');
 
-document.documentElement.style.setProperty('--color-primary', '#FF0000');
+// Obtener el valor de una variable
+const brandColor = getComputedStyle(document.documentElement).getPropertyValue('--color-brand');
+```
+
+---
+
+## 💡 Mejores Prácticas
+
+1.  **Usa nombres semánticos:** Es mejor `--button-bg` que `--color-blue-dark`. El primero describe la función, el segundo solo el color.
+2.  **Define valores base:** Centraliza tus colores, tipografías y escalas de espaciado al inicio de tu CSS principal.
+3.  **Herencia:** Las variables se heredan. Si defines una variable en `.card`, solo sus elementos hijos podrán usarla.
+
+> [!TIP]
+> El soporte actual para variables CSS es superior al **97%**, por lo que son seguras de usar en prácticamente cualquier proyecto moderno.

@@ -1,51 +1,63 @@
 ---
-title: "Symbol y BigInt, tipos de datos primitivos"
-description: "El tipo de dato Symbol"
+title: "Symbol y BigInt: Tipos de datos primitivos avanzados"
+description: "Explora Symbol y BigInt, dos tipos de datos primitivos de JavaScript diseñados para identificadores únicos y cálculos matemáticos de gran precisión."
 ---
-
 
 ## El tipo de dato Symbol
 
-- Symbol es un tipo de dato primitivo introducido en ES6 (ECMAScript 2015). Se usa para crear valores únicos e inmutables que no pueden ser duplicados.
+**Symbol** es un tipo de dato primitivo introducido en ES6 (ECMAScript 2015). Se utiliza para crear valores **únicos e inmutables** que no pueden ser duplicados.
 
-- Cada Symbol es único (aunque tengan la misma descripción).
-- Se usa para evitar colisiones de nombres en objetos.
-- No se puede convertir automáticamente a string (console.log(symbol + "texto") da error).
+### Características principales:
+*   **Unicidad absoluta**: Cada `Symbol` creado es totalmente distinto a cualquier otro, incluso si tienen la misma descripción descriptiva.
+*   **Propiedades ocultas**: Se usa frecuentemente para añadir claves a objetos evitando colisiones con otras librerías o scripts.
+*   **Inmune a coerción**: No se puede convertir automáticamente a string (por ejemplo, `simbolo + "texto"` lanzará un error).
 
-```typescript
-const simbolo1 = Symbol("identificador");
-const simbolo2 = Symbol("identificador");
+```javascript
+const simbolo1 = Symbol("id");
+const simbolo2 = Symbol("id");
 
-console.log(simbolo1 === simbolo2); // Muestra false
+console.log(simbolo1 === simbolo2); // false
 ```
-- Esto es curioso, porque a pesar de ser del mismo tipo y tener el mismo texto, son dos variables de tono "único". Entonces, simbolo1 nunca va a ser igual a simbolo2 o a otro símbolo.
 
-```typescript
+### Uso en objetos
+
+Los símbolos no aparecen en las iteraciones comunes de los objetos, lo que los hace ideales para metadatos o "propiedades privadas" simuladas.
+
+```javascript
 const user = {
     id: 1,
     nombre: "Juan",
-    [Symbol("claveSecreta")]: "abc123"
+    [Symbol("token")]: "abc123"
 };
 
-console.log(user);
+console.log(Object.keys(user)); // ["id", "nombre"] (El Símbolo se ignora)
+
+// Para acceder a los símbolos, necesitamos métodos específicos
+console.log(Object.getOwnPropertySymbols(user)); 
 ```
-- En este caso, el Symbol no aparece en console.log(), pero sigue existiendo en el objeto.
-```text
-console.log(Object.keys(user)); // ["id", "nombre"] - No muestra los símbolos
-console.log(Object.getOwnPropertySymbols(user)); // Muestra los símbolos
+
+## El tipo de dato BigInt
+
+**BigInt** fue creado para solucionar el límite de precisión de los números tradicionales en JavaScript (`Number`). 
+
+### El problema con `Number`
+El tipo `Number` tiene un límite de precisión segura llamado `MAX_SAFE_INTEGER`. Superado este número, JavaScript pierde precisión y los cálculos dejan de ser fiables.
+
+```javascript
+console.log(Number.MAX_SAFE_INTEGER); // 9,007,199,254,740,991
+
+console.log(9007199254740991 + 1); // 9007199254740992 (Correcto)
+console.log(9007199254740991 + 2); // 9007199254740992 (Incorrecto: Fallo de precisión)
 ```
-## El tipo de dato BigInt y el "problema" con Number
 
-- Lo que pasa con Number, es que tiene límite de precisión. El límite es muy grande, por ende rara vez vamos a tener problemas con eso. Pero bueno, por esto es que existe BigInt. Para tener precisión en numeros que son muchísimo más grandes.
+### La solución con `BigInt`
+Para trabajar con números enteros de cualquier tamaño, podemos usar `BigInt`. Se declara agregando una **`n`** al final del número o usando la función constructora `BigInt()`.
 
-```typescript
-console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991 [Valor más alto]
+```javascript
+const numeroGigante = 9007199254740991n; 
 
-console.log(9007199254740991 + 1); // 9007199254740992 [Correcto]
-console.log(9007199254740991 + 2); // 9007199254740992 [Incorrecto]
-
-const numeroGrande = 9007199254740991n;   // Agregando 'n' al final
-const otroBigInt = BigInt(9007199254740991);  // Usando la función BigInt()
-
-console.log(numeroGrande + 2n); // 9007199254740993n [Correcto]
+console.log(numeroGigante + 2n); // 9007199254740993n (Precisión exacta)
 ```
+
+> [!WARNING]
+> No puedes mezclar `BigInt` con `Number` en la misma operación aritmética. Si necesitas sumarlos, debes convertir explícitamente uno de los dos al tipo del otro.

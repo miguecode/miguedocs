@@ -2,90 +2,101 @@
 title: "Pseudoelementos"
 description: "No son lo mismo que las pseudoclases (como por ejemplo, hover). Las pseudoclases hacen referencia a los estados de los elementos."
 ---
+## 🧩 Pseudoelementos en CSS
 
+Los **pseudoelementos** permiten aplicar estilos a partes específicas de un elemento que no existen como nodos independientes en el HTML. Se identifican por llevar **dos puntos dobles** (`::`) antes del nombre.
 
+> [!NOTE]
+> Aunque los navegadores modernos perdonan el uso de un solo dos puntos (`:`), la norma oficial dicta que se usen dos (`::`) para diferenciarlos de las pseudoclases.
 
-- No son lo mismo que las pseudoclases (como por ejemplo, hover). Las pseudoclases hacen referencia a los estados de los elementos. 
+---
 
-- Son menos comunes de usar que las pseudoclases, y también hay muchos menos.
+## 🎨 Elementos Decorativos (`::before` y `::after`)
 
-- Los pseudoelementos nos permiten acceder, con CSS, a partes de nuestra página a las cuales generalmente no podríamos acceder. Por ejemplo, la selección del texto, o la "first-line" de un elemento con texto, o los elementos de "after" y "before". Estos dos últimos es cuando nosotros queremos agregar un elemento justo antes o justo después de otro elemento.
+Son los más utilizados. Permiten insertar contenido extra antes o después del contenido real de un elemento.
 
-- **Los pseudoelementos se escriben con un "**: :" adelante. A diferencia de las pseudoclases, que es con ":".
+### Reglas de Oro:
+1. **`content` es OBLIGATORIO:** Incluso si está vacío (`content: ""`), debe estar presente para que el elemento se renderice.
+2. **Son `inline` por defecto:** Suelen requerir `display: block` o `display: inline-block` si se les quiere dar dimensiones.
 
-### Pseudoelemento Selection
-
-.dialogo::selection {
 ```css
-background: red;
-color: green;
-```
+/* Añadir una barra decorativa debajo de un título */
+h2 {
+  position: relative;
+  padding-bottom: 10px;
 }
 
-- De esta forma, personalizamos la selección de nuestro elemento con clase "dialogo". Cabe decir que ::selection no permite todas las propiedades de CSS, solo admite: color, background, text-decoration y cursor. Todas las demás, no sirven.
-
-
-### Pseudoelemento After (o Before, da igual)
-
-.dialogo::after {
-```text
-content: "Hola!";
-```
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: #ff4500;
 }
-
-- La propiedad "content" es OBLIGATORIA en los pseudoelementos ::after y ::before, incluso si su valor es vacío (content: ""). Si no ponemos "content", el pseudoelemento no se renderiza.
-
-- De esta forma, en nuestro párrafo de clase "dialogo", va a aparecer un "Hola!" al final. Si el pseudoelemento fuera ::before, aparecería al principio de todo. 
-
-.dialogo {
-```text
-position: relative;
 ```
-}
 
-.dialogo::after {
+---
+
+## 🖱️ Interacción y Selección
+
+### `::selection`
+Personaliza cómo se ve el texto cuando el usuario lo resalta con el mouse.
+- **Propiedades permitidas:** `color`, `background-color`, `text-decoration`, `text-shadow`.
+
 ```css
-content: "";
-display: block;
-position: absolute;
-bottom: 0px;
-right: 50%;
-background: red;
-height: 30px;
-width: 30px;
-```
+::selection {
+  background-color: yellow;
+  color: black;
 }
+```
 
-- Con el content vacío y las demás propiedades, estaríamos creando un cuadrado rojo. La idea de esto es complementar a nuestro elemento original, de alguna forma que se nos ocurra. Por ejemplo, podemos hacer que un párrafo tenga una flechita hacia abajo, por decir algo. Es para poner "adornos" de forma más rápida, sin tener que crear el elemento en HTML de forma tradicional.
+### `::placeholder`
+Estiliza el texto de ayuda dentro de los elementos `<input>` o `<textarea>`.
 
-
-### Pseudoelemento Placeholder
-
-::placeholder → Permite cambiar el estilo del texto de marcador de posición en inputs (<input placeholder="Escribe aquí">).
-
-.input::placeholder {
 ```css
-color: red;
+input::placeholder {
+  color: #ccc;
+  font-style: italic;
+}
 ```
+
+---
+
+## 📝 Tipografía y Listas
+
+| Pseudoelemento | Descripción |
+| :--- | :--- |
+| **`::first-letter`** | Estila la **primera letra** del primer párrafo (efecto letra capitular). |
+| **`::first-line`** | Estila la **primera línea** de un bloque de texto. |
+| **`::marker`** | Estila la viñeta (bullet) o el número de un ítem de lista (`<li>`). |
+
+```css
+/* Cambiar el color de los puntos de una lista */
+li::marker {
+  color: red;
+  font-size: 1.2em;
 }
 
+/* Letra capitular */
+p::first-letter {
+  font-size: 3rem;
+  float: left;
+  margin-right: 8px;
+}
+```
 
-### Todos los demás pseudoelementos
+---
 
-::file-selector-button → Estiliza el botón predeterminado de un <input type="file">, permitiendo personalizarlo.
+## 🚀 Pseudoelementos Avanzados
 
-::first-line → Aplica estilos a la primera línea de un bloque de texto.
+- **`::file-selector-button`**: Para estilar el botón de los `<input type="file">`.
+- **`::backdrop`**: Estila el fondo oscuro que aparece detrás de un `<dialog>` o un elemento en modo pantalla completa.
+- **`::cue`**: Para estilar los subtítulos (VTT) en elementos `<video>`.
 
-::first-letter → Aplica estilos a la primera letra de un bloque de texto (como en revistas o libros donde la primera letra es grande).
+### Web Components
+- **`::part()`**: Permite estilar elementos internos de un **Shadow DOM** desde el CSS global si han sido expuestos con el atributo `part`.
 
-::marker → Estiliza los marcadores de listas (`<ul>` y `<ol>`), es decir, los bullets (•) o números.
-
-::backdrop → Se usa para estilizar el fondo detrás de elementos a pantalla completa, como modales (`<dialog>` con showModal()).
-
-::cue → Sirve para dar estilo a subtítulos en videos (`<track>`), útil para personalizar captions en `<video>`.
-
-::part → Se usa en Web Components para permitir que los estilos de CSS personalizados modifiquen ciertas partes internas del componente.
-
-::slotted → Funciona dentro de Web Components y permite aplicar estilos a los elementos que se "inyectan" dentro de un `<slot>`.
-
-Estos últimos (::part y ::slotted) son más avanzados y específicos de Web Components, pero los demás pueden ser útiles en el día a día.
+> [!TIP]
+> Los pseudoelementos son ideales para mantener el HTML limpio de etiquetas vacías que solo tienen una función estética (como divisores, iconos decorativos o barras de diseño).

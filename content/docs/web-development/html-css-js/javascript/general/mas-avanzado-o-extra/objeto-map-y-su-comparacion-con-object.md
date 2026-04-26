@@ -1,75 +1,71 @@
 ---
 title: "Objeto Map y su comparación con Object"
-description: "Map es un tipo de colección en JavaScript que almacena pares clave/valor, igual que un Object, pero con mejoras importantes en rendimiento, flexibilidad y contr..."
+description: "Map es una colección en JavaScript que almacena pares clave/valor, ofreciendo mejoras en rendimiento y flexibilidad comparado con los objetos tradicionales."
 ---
-
 
 ## Map
 
-- Map es un tipo de colección en JavaScript que almacena pares clave/valor, igual que un Object, pero con mejoras importantes en rendimiento, flexibilidad y control.
+Un **Map** es un tipo de colección en JavaScript que almacena pares clave/valor. Aunque conceptualmente es similar a un objeto (ambos actúan como una tabla hash), el `Map` ofrece mejoras importantes en rendimiento, flexibilidad y control.
 
-- Como sabemos, desde la vista de las estructuras de datos, un objeto en JavaScript es como una Hash Table. Y lo que vamos a ver en este apunte, es que un Map también es como una Hash Table.
+### ¿Cuándo usar Map?
 
+*   Cuando las **claves** no son solo strings (pueden ser números, objetos, funciones, etc.).
+*   Cuando necesitamos mantener el **orden de inserción** de los elementos.
+*   Cuando trabajamos con **volúmenes de datos grandes** y necesitamos eficiencia en operaciones de inserción y borrado.
+*   Cuando queremos iterar directamente sin recurrir a métodos estáticos de `Object`.
 
-## ¿Cuándo usar Map?
+### Ejemplo práctico
 
-- Cuando las claves no son solo strings (pueden ser objetos, funciones, etc)
-- Cuando necesitamos mantener el orden de inserción
-- Cuando trabajamos con mucha cantidad de datos y necesitamos eficiencia
-- Cuando queremos tener un control más claro y métodos más específicos
-
-- **Veamos un ejemplo**: 
-
-```typescript
+```javascript
 const mapa = new Map();
 
 mapa.set('nombre', 'Leo');
 mapa.set(123, 'Número');
-mapa.set({ id: 1 }, 'Objeto');
+mapa.set({ id: 1 }, 'Objeto'); // Clave compleja
 
-console.log(mapa.get('nombre')); // Muestra Leo
-console.log(mapa.size); // Muestra 3
+console.log(mapa.get('nombre')); // "Leo"
+console.log(mapa.size);          // 3
 
 mapa.forEach((valor, clave) => {
   console.log(clave, valor);
 });
 ```
-- Como vemos, creamos un Map llamado mapa, y le ponemos 3 propiedades. A diferencia de un objeto, las "keys" pueden ser de cualquier tipo, y no sólo strings. De hecho, en la tercer propiedad, la key es un objeto literal { id: 1 }. 
 
-- También podemos ver el uso de métodos propios de Map como "set", "get", y la propiedad "size". Esto en los objetos no pasa, ya que no hay métodos dedicados a este tipo de manipulación. Otra diferencia es que pudimos hacer un forEach de forma más directa, cuando en los objetos tendríamos que usar Object.keys() o values().
+A diferencia de un objeto literal, el `Map` nos permite usar cualquier tipo de dato como clave. En un objeto, todas las claves se convierten automáticamente a strings o símbolos.
 
+**Ejemplo del problema con objetos tradicionales:**
 
-- **Veamos esto en un objeto**: 
-
-```typescript
+```javascript
 const obj = {};
 
 obj['nombre'] = 'Leo';
-obj[123] = 'Número';       // El 123 se convierte en string automáticamente, es decir, en "123"
-obj[{ id: 1 }] = 'Objeto'; // La clave se convierte en '[object Object]'
+obj[123] = 'Número';       // El 123 se convierte en string "123"
+obj[{ id: 1 }] = 'Objeto'; // La clave se convierte en "[object Object]"
 
-console.log(obj); // Problemas con claves complejas
+console.log(obj); // Las claves colisionarán si usamos múltiples objetos como llaves
 ```
-### Métodos útiles de Map
-.set(clave, valor)  →	Agrega o actualiza una entrada
-.get(clave)	   →	Obtiene el valor asociado
-values()	   	   →	Devuelve todos los values
-.has(clave)	   →	Verifica si existe la clave
-.delete(clave)	   →	Elimina una entrada
-.clear()		   →	Borra todo el mapa
 
-### Propiedad size
-.size	  →	Devuelve la cantidad de elementos
+## Métodos y Propiedades Útiles
 
+| Elemento | Tipo | Descripción |
+| :--- | :--- | :--- |
+| **`.set(clave, valor)`** | Método | Agrega o actualiza una entrada. |
+| **`.get(clave)`** | Método | Obtiene el valor asociado a la clave. |
+| **`.has(clave)`** | Método | Verifica si existe la clave en el mapa. |
+| **`.delete(clave)`** | Método | Elimina una entrada específica. |
+| **`.clear()`** | Método | Borra todo el contenido del mapa. |
+| **`.values()`** | Método | Devuelve un iterador con todos los valores. |
+| **`.size`** | Propiedad | Devuelve la cantidad de elementos actuales. |
 
-## ¿Cuándo usar Object y cuándo Map?
+## Comparativa: Object vs. Map
 
 ### Usar Object cuando:
-- Tenemos una estructura simple de clave/valor
-- Vamos a usarlo como un "modelo" o una entidad con propiedades fijas
+*   La estructura de datos es simple y las claves son strings fijos.
+*   Necesitamos serializar los datos a JSON directamente.
+*   Trabajamos con "modelos" o entidades de negocio donde las propiedades están bien definidas.
 
 ### Usar Map cuando:
-- Necesitamos claves (keys) más complejas
-- Buscamos más eficiencia
-- Queremos iterar más fácilmente
-- No queremos heredar cosas del prototipo
+*   Necesitamos **claves dinámicas** o de tipos no-string.
+*   Buscamos mayor **eficiencia** en operaciones frecuentes de adición/borrado.
+*   Iteramos habitualmente sobre la colección (Map es iterable nativamente).
+*   Queremos evitar colisiones con propiedades heredadas del prototipo de `Object`.

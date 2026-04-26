@@ -3,103 +3,97 @@ title: "Metatags (Etiquetas Meta)"
 description: "**Ahora sí, veamos ejemplos de metatags**:"
 ---
 
+## 🏷️ Metatags (Etiquetas Meta)
 
-## Metatags
+Los metadatos son fragmentos de información que describen tu sitio web a los navegadores y motores de búsqueda. Aunque el usuario no los ve directamente, son fundamentales para el **SEO** (Search Engine Optimization) y el comportamiento de la página.
 
-- Como dijimos antes, dentro de la etiqueta `<head>`, nosotros vamos a colocar, entre otras cosas, metadatos. Es decir, información de nuestro sitio. Todo lo que va en head es lo que el usuario no ve: Metadatos, configuraciones y llamadas a otros archivos o recursos (como archivos CSS o JS). 
+Todas las etiquetas `<meta>` deben ir dentro del **`<head>`**.
 
-- Estos metadatos describen ciertos aspectos de nuestro sitio, y se escriben con la etiqueta `<meta>`. Son una pieza principal para tener un buen SEO en nuestra página. Como dijimos antes, el SEO (Search Engine Optimization) hace referencia al posicionamiento de nuestro sitio en los motores de búsqueda. Si tenemos un buen posicionamiento, cuando alguien haga una búsqueda en un explorador, nuestro sitio va a aparecerle más arriba, y por ende, vamos a tener más visitas.
+---
 
-- Antes de empezar hay que decir que <html lang="es">, ese atributo "lang", si bien no es una metatag, también influye en el SEO y la accesibilidad.
+## 🏗️ Metatags de Estructura Básica
 
-- **Ahora sí, veamos ejemplos de metatags**: 
+Estas tres etiquetas son indispensables en cualquier proyecto moderno:
 
-1.	<meta charset="UTF-8">
+1.  **`charset`**: Define la codificación de caracteres.
+    ```html
+    <meta charset="UTF-8">
+    ```
+2.  **`viewport`**: Crucial para el diseño responsive. Controla cómo se escala la web en móviles.
+    ```html
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    ```
+3.  **`title`**: (Técnicamente no es `<meta>`, pero es un metadato) Define el nombre que aparece en la pestaña del navegador.
+    ```html
+    <title>Mi Portafolio Profesional</title>
+    ```
 
-- Sirve para decirle al navegador que la codificación permita todo tipo de caracteres, incluyendo tildes y demás. Es muy importante. 
+---
 
+## 🔍 Metatags de SEO Clásico
 
-2.	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+Se definen usando los atributos **`name`** (identificador) y **`content`** (valor).
 
-- Hace referencia al tamaño de la pantalla. Al indicarle "width=device-width", estamos diciéndole que el ancho de nuestra página sea igual al ancho del dispositivo. Es importante ponerlo siempre. Y lo de "initial-scale=1.0" hace referencia al zoom de la página. Es necesario para que, cada vez que ingresemos a la página, el zoom esté adaptado a 100%, independientemente del dispositivo que estemos usando.
+- **Description**: El texto que suele aparecer debajo del título en los resultados de Google.
+  ```html
+  <meta name="description" content="Aprende desarrollo web desde cero con estos apuntes técnicos.">
+  ```
+- **Keywords**: Palabras clave (hoy en día tienen mucha menos importancia, pero se mencionan por historia).
+  ```html
+  <meta name="keywords" content="html, css, javascript, frontend">
+  ```
+- **Author**: Indica quién creó la página.
+  ```html
+  <meta name="author" content="Miguel Ángel Gil">
+  ```
 
-3.	`<title>`Document`</title>`
+---
 
-- Indica cuál va a ser el título que veamos, por ejemplo, en la pestaña del navegador. 
+## 🤖 Robots (Control de Indexación)
 
+Permiten decirle a los buscadores qué hacer con tu contenido. Por defecto están en "si", pero al añadir el prefijo **`no`** los restringes.
 
-### Esas son las 3 metatags propias de la estructura básica de una página. A partir de ahora, vamos a ver que todas las demás etiquetas meta van a usarse con el atributo "name" (para indicar a qué metatag nos referimos) y el atributo "content" (su contenido), nada más.
+- **`noindex`**: No aparecer en resultados de búsqueda.
+- **`nofollow`**: No seguir los enlaces de esta página.
+- **`noimageindex`**: No indexar las imágenes.
 
-
-## Description
-
-<meta name="description" content="Esta es la descripción de la página. Se recomienda que tenga aproximadamente 100 caracteres.">
-
-## Keywords
-
-<meta name="keywords" content="palabras,clave,para,cuando,alguien,busque,en,internet">
-
-## Autor
-
-<meta name="author" content="Miguel Ángel Gil">
-
-## Robots (no se suelen usar)
-
-<meta name="robots" content="noindex">
-<meta name="robots" content="nofollow">
-<meta name="robots" content="nosnippet">
-<meta name="robots" content="noarchive">
-<meta name="robots" content="noimageindex">
-
-- Hay que entender que, por defecto, esos valores están sin el "no" adelante. Es decir, están todos activados. Pero al ponerles el "no", los estamos desactivando.
-
-- Con noindex le decimos a los motores de búsqueda que no muestren la página en los resultados de búsqueda.
-- Con nofollow le decimos a los motores de búsqueda que no sigan los enlaces dentro de la página.
-- Con nosnippet le decimos a los motores de búsqueda que no tomen fragmentos de nuestra página y los muestre en los resultados de búsqueda. Por ejemplo, cuando googleamos una receta y nos salen directamente los pasos en vez de mostrar sólo la página. O cuando buscamos el traductor y nos sale la función del traductor en los resultados en vez de sólo el link a la página.
-- Con noarchive le decimos a los motores de búsqueda que no puedan almacenar información de la página en la memoria caché.
-- Con noimageindex le decimos los motores de búsqueda no muestren imágenes de la página en los resultados de búsqueda. 
-
-- **Podemos combinarlas como nosotros queramos, así**: 
-
-<meta name="robots" content="noindex, nofollow, noimageindex">
-
-- Obviamente, estas etiquetas meta van totalmente en contra del SEO. Pero bueno, son cosas que podemos poner para que el navegador sepa qué hacer con nuestro sitio.
-
-
-## Open Graph metatags
-
-- Estos metatags, cuyos name empiezan con el prefijo "OG:", hacen referencia a lo que se muestra cuando compartimos la URL de nuestra página. Por ejemplo, cuando pasamos el link de una página por mensaje de WhatsApp, o cuando twitteamos el link de una página, o cuando la publicamos por Facebook, o por LinkedIn, básicamente, cuando compartimos el enlace al sitio. 
-
-- Por ejemplo, cuando compartimos un video de YouTube por WhatsApp, no sólo se va a ver la URL en crudo, sino que se va a mostrar una imagen, un título y una descripción, entre otros posibles elementos. Bueno, todo esto es configurable usando los Open Graph metatags.
-
-<meta property="OG:title" content="Portfolio de Miguel Ángel Gil">
-<meta property="OG:image" content="imagen-de-perfil.jpg">
-<meta property="OG:description" content="Portfolio de Miguel Ángel Gil, desarrollador Frontend.">
-<meta property="og:type" content="website" />
-<meta property="OG:url" content="[La URL a la que queremos redirigir al usuario (opcional)]">
-
-- Este último metatag de URL, se suele usar para eliminar el "www". Por ejemplo, si nuestra página se llama miguel.com, cuando alguien tipee "www.miguel.com", lo que nosotros tenemos que hacer es redirigirlo a miguel.com. Para eso usamos el OG:url. 
-
-- Para ver una previsualización de esto, y así poder probar su funcionamiento, podemos ponernos a compartir la URL escribiéndolo en un tweet, o mejor, usar alguna de estas páginas:
-
-```text
-https://www.opengraph.xyz/
-https://www.metatags.io/
+```html
+<!-- Ejemplo: No indexar esta página ni seguir sus links -->
+<meta name="robots" content="noindex, nofollow">
 ```
-- Esto va a mostrar cómo se va a ver nuestro enlace compartido en las redes sociales más comunes.
 
+---
 
-## Theme color
+## 📱 Open Graph (OG Tags)
 
-```text
-<meta name="theme-color" content="#ff6600">
+Son etiquetas que controlan cómo se ve tu página cuando alguien comparte el link en redes sociales (WhatsApp, Twitter, LinkedIn, etc.).
+
+| Propiedad | Función |
+| :--- | :--- |
+| **`og:title`** | El título llamativo de la tarjeta compartida. |
+| **`og:description`** | Breve resumen del contenido. |
+| **`og:image`** | La imagen que acompañará al link (miniatura). |
+| **`og:url`** | La URL canónica preferida. |
+
+### Ejemplo:
+```html
+<meta property="og:title" content="Apuntes de Desarrollo Web">
+<meta property="og:image" content="https://misitio.com/image-social.jpg">
+<meta property="og:description" content="Todo lo que necesitas saber sobre HTML5 y CSS3.">
 ```
-- Algunos navegadores en dispositivos móviles permiten personalizar el color de la barra de búsqueda o de información. Con theme color, podemos elegir ese color.
 
+---
 
-## Format-detection
+## 🎨 Personalización y Otros
 
-```text
-<meta name="format-detection" content="telephone=no">
-```
-- Algunos navegadores como Safari convierten números en enlaces de teléfono automáticamente. Para evitarlo, usamos esa metatag.
+- **Theme Color**: Cambia el color de la barra del navegador en dispositivos móviles.
+  ```html
+  <meta name="theme-color" content="#317EFB">
+  ```
+- **Format Detection**: Evita que dispositivos móviles conviertan números de texto en enlaces telefónicos automáticamente.
+  ```html
+  <meta name="format-detection" content="telephone=no">
+  ```
+
+> [!TIP]
+> Puedes probar cómo se verá tu página en redes sociales usando herramientas gratuitas como [metatags.io](https://metatags.io) o [opengraph.xyz](https://www.opengraph.xyz).

@@ -4,125 +4,103 @@ description: "El Performance en CSS"
 ---
 
 
-## El Performance en CSS
+## ⚡ Performance en CSS
 
-- Como en todo, el performance es importante. Cuanto menos recursos y mejores prácticas usemos, mejor para el rendimiento. Vamos a ver distintas características para conseguir esto.
+El rendimiento (**performance**) es un pilar fundamental del desarrollo web moderno. Un sitio optimizado no solo mejora la experiencia del usuario, sino que también favorece el posicionamiento en buscadores (SEO).
 
+A continuación, veremos las técnicas más efectivas para optimizar la carga y el renderizado.
 
-## Content-visibility: auto
+---
 
-- **"content-visibility**: auto" es una propiedad de optimización de rendimiento en CSS que retrasa el renderizado de un elemento hasta que se vuelve visible en la pantalla. Esto mejora la velocidad de carga de la página, ya que el navegador ignora los elementos fuera del viewport hasta que sean necesarios.
+## 👁️ content-visibility: auto
 
-- **Cuando aplicamos content-visibility**: auto a un elemento...
+Esta propiedad permite al navegador omitir el trabajo de renderizado de un elemento (incluyendo su diseño y pintura) hasta que sea necesario (cuando se acerca al **viewport**).
 
-- No se renderiza inicialmente si está fuera de la pantalla (fuera del viewport).
-- Se renderiza solo cuando es visible en el área de visualización del usuario.
-- Reduce el trabajo del navegador, optimizando la carga y el reflujo de la página.
-
-- **Ejemplo con un elemento `<div>`**: 
-
-.lazy-load-section {
+```css
+.seccion-pesada {
   content-visibility: auto;
+  /* Reservamos un tamaño estimado para evitar el "salto" al cargar */
+  contain-intrinsic-size: 1000px; 
 }
+```
 
-- Si este div está fuera de la pantalla, su contenido no se renderizará hasta que el usuario haga scroll y lo traiga al viewport.
+**Beneficios:**
+- **Carga inicial ultra rápida:** El navegador solo procesa lo que el usuario ve de inmediato.
+- **Ahorro de CPU/RAM:** Ideal para páginas con mucho contenido o listas infinitas.
 
-- Beneficios
-- **Acelera la carga inicial**: El navegador solo procesa lo visible.
-- **Reduce el consumo de memoria y CPU**: No renderiza contenido innecesario.
-- **Optimiza el reflujo y repintado**: Especialmente útil en páginas con muchas imágenes o secciones largas.
+---
 
+## 🖼️ Optimización de Imágenes e Iframes
 
-- **Otro ejemplo**: 
+### 1. Lazy Loading (Carga perezosa)
+El atributo `loading="lazy"` pospone la descarga de recursos que no están visibles inicialmente.
 
-.section {
-  content-visibility: auto;
-  contain-intrinsic-size: 1000px;
-}
+```html
+<!-- Imágenes -->
+<img src="foto.webp" alt="Descripción" loading="lazy">
 
-contain-intrinsic-size: 1000px; evita un "salto" en la página al reservar un espacio estimado para el contenido oculto.
+<!-- Iframes (Videos, Mapas) -->
+<iframe src="https://www.youtube.com/embed/..." loading="lazy"></iframe>
+```
 
+### 2. Imágenes Adaptativas (`srcset`)
+Permite al navegador elegir la imagen que mejor se adapte a la resolución del dispositivo, ahorrando transferencia de datos.
 
-- ¿Cuándo usarlo?
-- En secciones grandes que no se ven de inmediato.
-- En listas largas o contenido dinámico.
-- En páginas con imágenes pesadas.
-
-
-## Lazy Loading en imágenes o iframes [HTML]
-
-- Lazy Loading = Carga perezosa. Es decir, "No cargar cosas que no se están viendo".
-
-- loading="lazy" es un atributo que se usa en imágenes (`<img>`) y iframes (`<iframe>`) para posponer su carga hasta que estén cerca del viewport del usuario. Esto reduce el tiempo de carga inicial de la página y ahorra ancho de banda.
-
-<img src="imagen.webp" alt="Ejemplo" loading="lazy">
-
-- **Sin loading="lazy"**: La imágen se carga de inmediato, afectando la velocidad de la página.
-- **Con loading="lazy"**: La imágen sólo se carga cuando el usuario se desplaza hacia ellas.
-
-- Dónde usar loading="lazy"?
-- En imágenes grandes o en galerías.
-- En imágenes que no sean visibles al inicio (ejemplo: artículos largos).
-- En iframes de videos de YouTube o mapas de Google.
-
-<iframe src="https://www.youtube.com/embed/videoID" loading="lazy">`</iframe>`
-
-
-## Uso de srcset y sizes en imágenes
-
-- Permite servir imágenes optimizadas según la resolución de pantalla.
-
+```html
 <img 
-  src="imagen-600.jpg" 
-  srcset="imagen-300.jpg 300w, imagen-600.jpg 600w, imagen-1200.jpg 1200w" 
+  src="img-600.jpg" 
+  srcset="img-300.jpg 300w, img-600.jpg 600w, img-1200.jpg 1200w" 
   sizes="(max-width: 600px) 300px, (max-width: 1200px) 600px, 1200px"
-  alt="Ejemplo"
+  alt="Ejemplo de imagen adaptable"
   loading="lazy"
 >
+```
 
+### 3. Prioridad de Carga (`fetchpriority`)
+Si una imagen es crítica (como el logo o el banner principal), podemos darle prioridad alta.
 
-## Uso de fetchpriority="high" en imágenes críticas
+```html
+<img src="hero-banner.webp" alt="Banner principal" fetchpriority="high">
+```
 
-- Si una imagen es clave para la estructura de la página (como un logo o una foto de perfil), podemos decirle al navegador que la cargue antes que otras imágenes:
+---
 
-<img src="logo.webp" alt="Logo" fetchpriority="high">
+## 🔡 Optimización de Fuentes
 
+Las fuentes externas pueden bloquear el renderizado del texto. Para evitar el efecto de "texto invisible" (**FOIT**), usamos `font-display: swap`.
 
-## Terser, UglifyJS, esbuild y otros
+```css
+@font-face {
+  font-family: 'MiFuente';
+  src: url('font.woff2') format('woff2');
+  font-display: swap; /* Muestra una fuente del sistema hasta que cargue la propia */
+}
+```
 
-- Estas herramientas sirven para reducir el tamaño de los archivos CSS y/o JS.
+---
 
+## 🛠️ Archivos y Recursos Críticos
 
-## Evitar fuentes externas bloqueantes
+### Preload (Pre-carga)
+Le indica al navegador que debe descargar un recurso con prioridad máxima porque será necesario muy pronto.
 
-- Si cargamos fuentes desde Google Fonts, podemos usar display: swap para evitar que bloqueen el renderizado:
+```html
+<link rel="preload" href="estilos-criticos.css" as="style">
+<link rel="preload" href="hero.webp" as="image">
+```
 
-font-display: swap;
+### Critical CSS Path
+Consiste en extraer el CSS mínimo necesario para renderizar la parte superior de la página (**Above the Fold**) e insertarlo directamente en el `<head>` dentro de una etiqueta `<style>`. El resto del CSS se carga de forma asíncrona.
 
-- Esto muestra una fuente del sistema temporalmente mientras carga la fuente personalizada.
+---
 
+## 📝 Resumen de Mejores Prácticas
 
-## Preload de recursos importantes
+1.  **Prioriza el contenido visual:** Usa `fetchpriority="high"` y evita el `lazy loading` en las imágenes de la cabecera.
+2.  **Optimiza el resto:** Aplica `loading="lazy"` y `content-visibility: auto` a todo lo que esté debajo del primer scroll.
+3.  **Minifica:** Utiliza herramientas como **esbuild**, **Terser** o **PostCSS** para reducir el peso de tus archivos `.css` y `.js`.
+4.  **Formatos Modernos:** Prefiere imágenes en formato **WebP** o **AVIF** en lugar de PNG/JPG.
+5.  **Pre-carga fuentes:** Usa `<link rel="preload">` para tus tipografías principales.
 
-- Si una imagen o archivo CSS/JS es crítico, podemos hacer un preload:
-
-<link rel="preload" href="estilos.css" as="style">
-<link rel="preload" href="imagen-destacada.webp" as="image">
-
-
-## CSS Critical Path
-
-- Extrae el CSS necesario para la parte visible de la página y lo inserta en línea (`<style>` en el `<head>`), después cargamos el resto de forma asíncrona.
-
-
-## Resumen
-
-Para mejorar el rendimiento de un sitio web, deberíamos usar una combinación de:
-
-- loading="lazy" para imágenes e iframes.
-- **content-visibility**: auto para evitar renderizados innecesarios.
-- srcset y sizes para imágenes adaptativas.
-- fetchpriority="high" para imágenes clave.
-- Minificación de CSS y JS.
-- **font-display**: swap para evitar bloqueos con fuentes externas.
-- preload para recursos críticos.
+> [!IMPORTANT]
+> Un buen performance no es solo cargar rápido, sino que el usuario perciba que la página es estable y responda fluidamente (**Core Web Vitals**).

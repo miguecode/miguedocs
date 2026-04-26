@@ -1,57 +1,70 @@
 ---
 title: "Parámetros nombrados"
-description: "Se trata de una técnica muy efectiva donde, en lugar de pasar múltiples argumentos a una función, se le pasa un único objeto, el cual va a ser desestructurado d..."
+description: "Aprende a usar la técnica de parámetros nombrados mediante la desestructuración de objetos para crear funciones más legibles y escalables."
 ---
 
+## Parámetros Nombrados
 
+Los **parámetros nombrados** son una técnica en la que, en lugar de pasar múltiples argumentos individuales a una función, se le pasa un **único objeto** que es desestructurado internamente por la función.
 
-- Se trata de una técnica muy efectiva donde, en lugar de pasar múltiples argumentos a una función, se le pasa un único objeto, el cual va a ser desestructurado dentro de la función
+### ¿Cuándo usar esta técnica?
 
-- ¿Cuándo hacer esto? Cuando tenemos una función que recibe varios parámetros, y nosotros sabemos que en algún futuro esos parámetros pueden ser más. Es decir, esto es una buena práctica que nos brinda escalabilidad, legibilidad y seguridad. Además, es un concepto que se comporta bien con TypeScript (usando types o interfaces).
+Es especialmente recomendable cuando una función recibe más de tres o cuatro parámetros, o cuando sabemos que el número de argumentos podría aumentar en el futuro. Esta práctica nos brinda tres beneficios clave:
 
+1.  **Escalabilidad**: Podemos agregar nuevos parámetros sin romper las llamadas existentes a la función.
+2.  **Legibilidad**: Al invocar la función, queda claro qué significa cada valor (no dependemos solo del orden).
+3.  **Seguridad**: Evitamos errores comunes al confundir el orden de los parámetros (como intercambiar `age` con `sex`).
 
-## Ejemplo
+## Ejemplo: Comparativa
 
-```typescript
+### Forma tradicional (Basada en posición)
+
+En este caso, debemos respetar estrictamente el orden. Si queremos omitir la edad pero pasar el trabajo, nos vemos obligados a enviar un `undefined` intermedio.
+
+```javascript
 function createPerson(name, lastName, sex, age = 18, job) {
-	// ...
+	// lógica...
 }
 
 createPerson("Miguel", "Gil", "Masculino", undefined, "Programador");
 ```
-- Esta sería la forma básica de hacerlo. Si bien esto es correcto, vamos a mejorarlo con los parámetros nombrados. Como dijimos antes, esto lo hacemos ya que esta función tiene varios parámetros, y además, es posible que en algún futuro se escale a más parámetros.
 
-```typescript
-function createPerson2({ name, lastName, sex, age = 18, job }) {
-	// ...
+### Usando parámetros nombrados (Basada en objeto)
+
+Al usar un objeto desestructurado, el orden deja de importar y el código se vuelve mucho más explícito.
+
+```javascript
+function createPerson({ name, lastName, sex, age = 18, job } = {}) {
+	// lógica...
 }
-```
-- En este caso, como vemos, creamos un createPerson2 la cual está desestructurando un objeto a recibir. Es decir, va a crear las variables name, lastName, sex, age y job. En caso de no recibir alguna, le va a cargar undefined (excepto con age, que le va a cargar 18).
 
-```typescript
-createPerson2({
+// Llamada clara y ordenada
+createPerson({
 	name: "Miguel",
 	lastName: "Gil",
 	sex: "Masculino",
-	age: 23,
-	job: "Programador"
+	job: "Programador" 
+    // age se omitió, por defecto será 18
 });
 ```
-- Así es como llamaríamos a la función. Esto es mejor ya que si en un futuro queremos agregar más parámetros a la función, nada se va a romper. Y además, es más visual y fácil hacerlo ya que no es necesario pasarlos en orden, ya que tienen un "contrato" por nombre. Es decir, nos brinda la seguridad de que cada parámetro tiene que tener el mismo nombre esperado por la función, y así nos evitamos errores.
 
+En la definición de la función, cada propiedad se extrae automáticamente del objeto recibido. Si falta alguna propiedad que no tiene valor por defecto, se cargará como `undefined`.
 
-## Aclaración importante
+## Manejo de errores: Objeto opcional
 
-- Como sabemos, si pasamos distintos parámetros en el objeto pero nos faltó alguno, se va a tomar como undefined (o como el valor por defecto, como lo hace "age"). Pero... ¿Y si llamamos a la función y no le pasamos nada? Es decir:
+Un error común al usar esta técnica es llamar a la función sin pasarle ningún argumento:
 
-```text
-createPerson2();
+```javascript
+createPerson(); // Lanzaría un TypeError: Cannot destructure property...
 ```
-- En este caso, nos va a dar TypeError porque se va a intentar desestructurar undefined. Para evitarlo, hacemos esto:
 
-```typescript
-function createPerson2({ name, lastName, sex, age = 18, job } = {}) {
-	// ...
+Esto ocurre porque el motor intenta desestructurar algo que no existe (`undefined`). Para solucionarlo, asignamos un **objeto vacío por defecto** al parámetro de la función:
+
+```javascript
+function createPerson({ name, lastName, age = 18 } = {}) {
+    // Si no se pasa nada, el parámetro es {} por defecto
+    // y la desestructuración no falla.
 }
 ```
-- Así, con ese " = {} ", hacemos que pasar o no un objeto sea opcional. Ya que si no se lo pasamos, por defecto le llega un objeto literal vacío { }. Y en ese caso, todos los valores de la persona van a ser undefined.
+
+Al agregar `= {}`, hacemos que pasar un objeto sea opcional. Si no se envía nada, los valores internos simplemente se evaluarán como `undefined` (o su valor por defecto) sin romper la ejecución del programa.

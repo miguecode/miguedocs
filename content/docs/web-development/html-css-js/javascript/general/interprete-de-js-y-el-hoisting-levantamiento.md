@@ -1,58 +1,82 @@
 ---
 title: "Intérprete de JS y el Hoisting (Levantamiento)"
-description: "Entendiendo el Intérprete de JS y el Hoisting"
+description: "Entendiendo el proceso de Hoisting y cómo el motor de JS procesa el código"
 ---
 
+## 🏗️ ¿Qué es el Hoisting?
 
-## Entendiendo el Intérprete de JS y el Hoisting
+El **Hoisting** (o levantamiento) es un comportamiento del intérprete de JavaScript que consiste en mover virtualmente las declaraciones de variables y funciones a la parte superior de su ámbito (scope) antes de ejecutar el código.
 
-- El intérprete de JS, al interpretar el código línea a línea, lo primero que hace es el hoisting (levantamiento). El hoisting es un proceso que hace dos cosas por separado, pero a la vez:
+Es vital entender que el Hoisting solo levanta las **declaraciones**, no las **asignaciones**.
 
-1. Capta todas las declaraciones de variables, y les reserva sus lugares en memoria.
-2. Capta todas las funciones declaradas que encuentre.
+---
 
-- La gracia de este proceso es que, cada vez que encuentra una declaración de variable o una función declarada, lo cuelga hasta arriba en el código. Es decir, lo levanta para que se ejecute antes.
+## 📦 Hoisting en Variables
 
-- El hoisting lo que hace es captar las DECLARACIONES de variables. Que no es lo mismo que las ASIGNACIONES.
+El comportamiento varía drásticamente según la palabra clave que utilicemos:
 
-- Entonces, vamos a ver cómo funciona eso del Hoisting en la declaración de variables y en las funciones declaradas (que no son lo mismo que las funciones expresadas).
+### 1. Con `var` (El clásico)
+Cuando usamos **`var`**, la declaración se eleva y se inicializa con `undefined`.
 
-
-## Hoisting en la declaración de variables 
-
-```typescript
-console.log(x); // Muestra undefined
-var x = 10;
-console.log(x) // Muestra 10
+```javascript
+console.log(nombre); // undefined (No da error, pero no tiene valor aún)
+var nombre = "Migue";
+console.log(nombre); // "Migue"
 ```
-- En este caso, el primer console.log va a mostar "undefined", ya que RECONOCE la variable "num", pero no reconoce que tenga algún valor. Ya que el barrido "colgó" la declaración de la variable num hasta arriba del código, pero lo que no puede interpretar es la asignación = 10. Por eso, console.log está mostrando 'num' correctamente, pero lo que pasa es que en el momento en el que la está mostrando, su valor es "undefined", porque todavía no se inicializó. Ya después en el segundo, ahí sí muestra 10.
 
-- Ese mismo código, internamente, el interpretador lo trata así:
+### 2. Con `let` y `const` (Moderno)
+También sufren hoisting, pero **no se inicializan**. Esto genera lo que se conoce como **TDZ** (Temporal Dead Zone). Si intentas acceder a ellas antes de la declaración, obtendrás un error.
 
-```typescript
-var x;     		  // La declaración "se cuelga arriba" (hoisting)
-console.log(x);   // Muestra undefined (Porque solo subió la declaración, no la asignación)
-x = 10;    		 // Ahora sí se asigna el valor
-console.log(x);  // Muestra 10
+```javascript
+console.log(puntos); // ❌ Uncaught ReferenceError
+let puntos = 100;
 ```
-## Hoisting en la declaración de variables 
 
-- Primero, vamos a ver que en JavaScript, existen dos tipos de funciones: las declaradas y las expresadas.
+---
 
-```typescript
-saludar(); 		// Funciona porque la función declarada sube completamente
-despedir(); 	// No funciona. despedir is not a function	
+## ⚙️ Hoisting en Funciones
 
-// Función declarada
+Aquí es donde vemos la diferencia real entre los dos tipos de funciones:
+
+### 1. Funciones Declaradas
+Se elevan por completo (definición y cuerpo). Puedes llamarlas antes de haberlas escrito en el archivo.
+
+```javascript
+saludar(); // ✅ "Hola!" (Funciona gracias al hoisting total)
+
 function saludar() {
-    console.log("Hola mundo"); 
-}
-
-// Función expresada
-var despedir = function() {
-    console.log("Chau mundo")
+  console.log("Hola!");
 }
 ```
-- En este caso, la función saludar() va a funcionar correctamente. Pero la función despedir(), no. Esto es así porque "despedir" sólo es una variable sin inicializar. Por lo tanto, no podemos hacerle () como si fuera o como si apuntara a alguna función. Es sólo una variable sin valor, es decir, undefined.
 
-- Y eso es así porque el barrido solo va a colgar la declaración de la variable "despedir". Pero NO capta la asignación. Por lo tanto, la variable "despedir" se va a convertir en un puntero a función recién cuando le ponemos el "=function{...}". Y no antes.
+### 2. Funciones Expresadas (Anonymous / Arrow)
+Se tratan como variables. Si usas `var`, la variable estará "levantada" pero valdrá `undefined`, por lo que al intentar llamarla como función dará un error.
+
+```javascript
+despedir(); // ❌ Uncaught TypeError: despedir is not a function
+
+var despedir = function() {
+  console.log("Chau!");
+};
+```
+
+---
+
+## 📋 Resumen de Comportamientos
+
+| Tipo | ¿Sufre Hoisting? | ¿Se puede usar antes? | Valor inicial |
+| :--- | :--- | :--- | :--- |
+| **`function`** (Declarada) | **Sí** | **Sí** | La función completa |
+| **`var`** | Sí | Sí | `undefined` |
+| **`let` / `const`** | Sí | **No** (TDZ) | Nada (Error) |
+| **Funciones Expresadas** | Depende de la variable | No | `undefined` o Error |
+
+---
+
+> [!IMPORTANT]
+> Para evitar confusiones y bugs difíciles de rastrear, la mejor práctica es **siempre declarar tus variables y funciones al inicio de su scope** y priorizar el uso de `const` y `let`.
+
+---
+
+> [!NOTE]
+> El Hoisting no es algo que realmente "mueva" el código de lugar físicamente; es una forma de entender cómo el motor de JavaScript reserva espacio en memoria durante la fase de compilación/barrido antes de ejecutar la lógica línea por línea.

@@ -4,106 +4,104 @@ description: "Unidades relativas y absolutas"
 ---
 
 
-## Unidades relativas y absolutas
+## 📐 Unidades de Medida en CSS
 
-- La diferencia entre una unidad ABSOLUTA y una RELATIVA, es que a la unidad absoluta "no le importa nada", entonces, dependiendo el valor que tenga, siempre va a tener el mismo tamaño. Y las unidades relativas, van a depender de otro elemento o contenedor. Si su elemento dependiente es más o menos grande, eso va a influir en la medida.
+En CSS, las unidades de medida se dividen en dos grandes grupos: **Absolutas** y **Relativas**. Entender cuándo usar cada una es clave para crear diseños que se adapten a cualquier pantalla.
 
-- **Unidades absolutas**: px, cm, mm, in, pt, y pc.
-- **Unidades relativas**: vh, vw, em, rem y porcentajes %.
+---
 
-### Píxeles (px)
+## 1️⃣ Unidades Absolutas
 
-- La unidad absoluta más utilizada son los PÍXELES (px). Ojo: los píxeles no son unidades 100% absolutas. Antiguamente, sí lo eran. Porque antes, un pixel en CSS era un pixel en la pantalla. Pero ahora, no siempre es así. Porque ahora hay muchas resoluciones distintas. Entonces, una pantalla 4K va a tener más píxeles. Aún así, se la considera una unidad absoluta. Pero hay que entender que no es del todo así.
+Tienen un tamaño fijo y "no les importa" el contexto del dispositivo ni del contenedor. No se recomiendan para layouts responsivos.
 
+- **px (Píxeles):** La unidad más común. Representa un punto en la pantalla.
+- **cm, mm, in:** Centímetros, milímetros y pulgadas.
+- **pt, pc:** Puntos y picas (usados principalmente en impresión).
 
-### Viewport (vh y vw)
+---
 
-- El Viewport es una medida relativa la cual hace referencia a lo que estamos viendo. Es decir, depende del tamaño real de la pantalla que podemos visualizar. Si achicamos o agrandamos nuestra pantalla (como por ejemplo, al rotar un celular), va a cambiar el valor de nuestro Viewport. Las unidades de medida para el viewport son dos: vh (viewport height) (toda la altura del viewport) o vw (viewport width) (toda la anchura del viewport).
+## 2️⃣ Unidades Relativas
 
-- Así como existen vh y vw, también están "vmin" y "vmax". 
+Su tamaño depende de otro factor, como el tamaño de la fuente, el contenedor o la ventana del navegador (**viewport**).
 
-vmin → Elige el menor valor entre vw y vh.
-vmax → Elige el mayor valor entre vw y vh.
-
-- El "vh" en los dispositivos móviles puede llegar a ser problemático, porque algunas barras del navegador (como la URL u otras opciones) pueden afectar a su altura
-
-- **Si nosotros ponemos un container cuyo height sea**: height: 100vh, esto tiene sentido. Ya que le estamos indicando que el contenedor (un div) debe ocupar el 100% de la pantalla todo el tiempo, de arriba hacia abajo. PERO esto puede generarnos scroll, cosa que no tendría sentido... y, ¿Por qué? Esto es por el famoso margin: 8px que viene por defecto en el body. Los navegadores, como dijimos, tienen sus propios estilos por defecto. Y ese pequeño margin se lo pone siempre al body. Por eso, nosotros lo que tendríamos que hacer, es sobreescribírselo a 0px, para que no moleste.
-
-
-### Porcentajes (%)
-
-- Los porcentajes son una unidad RELATIVA del contenedor padre. Es decir, si el ancho del padre son 100px, el 50% del hijo serían 50px de ancho. 
-
-
-### EM y REM
-
-- **Primero, veamos cómo funciona la medida "em"**: Se trata de una medida RELATIVA al tamaño del font-size del elemento padre más cercano que encuentre. Se cree que "em" proviene de la palabra "elemento", pero no es oficial.
-
-- Nosotros sabemos que los navegadores, por defecto, usan 16px para el font-size. Pero esto no significa necesariamente que 1em = 16px. A 1em le corresponde el valor del font-size de algún contenedor o algún elemento padre que tenga. El más cercano. Si no tiene ninguno, va a ser el body o el html. Entonces:
-
-.contenedor {
-```text
-font-size: 20px;
-```
+### Porcentajes (`%`)
+Dependen del tamaño del **contenedor padre**.
+```css
+.hijo {
+  width: 50%; /* Ocupará la mitad del ancho de su padre */
 }
-
-.contenedor h1 {
-```text
-font-size: 1em;
 ```
-}
 
-- De esta forma, 1em equivale a 20px. Esto es porque lo que le estamos diciendo es "queremos que nuestro h1 tenga un font-size de 1em", y ese 1em, va a tomar el valor del font-size del elemento padre más cercano que encuentre. En este caso, su contenedor padre. Así que, en este caso, 1em = 20px. Y si pusiéramos 2em, sería el doble (40px). 3em el triple, y así.
+---
 
-- ¿Entonces, qué hace REM? La medida rem significa "root em", y es RELATIVA al tamaño del font-size del elemento BODY. Es decir que, a diferencia de em, rem no le presta atención al contenedor o elemento padre, sino que le presta atención específicamente al BODY. Entonces:
+## 🅰️ EM vs REM (Tipografía y Escalabilidad)
 
-body {
-```text
-font-size: 16px;  // Este es el valor por defecto que aplican los navegadores
+| Unidad | Referencia | Uso ideal |
+| :--- | :--- | :--- |
+| **`em`** | Al `font-size` del **padre** (o del propio elemento). | Márgenes/Paddings locales, componentes modulares. |
+| **`rem`** | Al `font-size` del **raíz** (`<html>`). | Tamaño de fuente global, layouts consistentes. |
+
+### Ejemplo de EM:
+Si el contenedor tiene `20px`, entonces `1em = 20px`.
+```css
+.padre { font-size: 20px; }
+.hijo { font-size: 2em; } /* Resultará en 40px */
 ```
-}
 
-.contenedor {
-```text
-font-size: 24px;
+### Ejemplo de REM:
+Si el navegador tiene el valor base de `16px`, entonces `1rem = 16px` siempre, sin importar los padres.
+```css
+html { font-size: 16px; }
+.cualquier-lugar { font-size: 1.5rem; } /* Resultará en 24px */
 ```
-}
 
-.contenedor h1 {
-```text
-font-size: 1rem;
+---
+
+## 📱 Viewport (El tamaño de la pantalla)
+
+Hacen referencia al área visible del navegador.
+
+- **`vw` (Viewport Width):** 1vw = 1% del ancho de la pantalla.
+- **`vh` (Viewport Height):** 1vh = 1% del alto de la pantalla.
+- **`vmin` / `vmax`:** El valor mínimo o máximo entre ancho y alto.
+
+### Unidades Dinámicas (Mobile Friendly)
+En móviles, las barras del navegador (URL, herramientas) aparecen y desaparecen. Por eso surgieron estas variantes:
+
+| Unidad | Nombre | Comportamiento |
+| :--- | :--- | :--- |
+| **`svh`** | Small VH | Altura mínima (con barras del navegador visibles). |
+| **`lvh`** | Large VH | Altura máxima (sin barras del navegador). |
+| **`dvh`** | Dynamic VH | Se ajusta automáticamente si las barras aparecen o no. |
+
+```css
+.hero-section {
+  height: 100dvh; /* Siempre ocupará exactamente el alto visible */
+}
 ```
-}
 
-- En este caso, el font-size del h1 va a ser 16px. Ya que, en este caso, 1rem = 16px. Porque 16px es el font-size del body. Si el h1 en vez de tener "1rem", tuviese "1em", el valor sería 24px. Porque tomaría el valor del contenedor. 
+---
 
-- Y lógicamente, esto no significa que siempre 1rem = 16px. Porque nosotros podemos cambiar el font-size del body a nuestro gusto. Y el rem se basaría en ese valor.
+## 💡 Consejos de Buenas Prácticas
 
-- REM es muy útil para crear diseños escalables, ya que mantiene la consistencia incluso si el usuario cambia el tamaño de fuente de su navegador o de su dispositivo.
+1.  **Usa `rem` para fuentes:** Esto permite que si un usuario aumenta el tamaño de fuente en su navegador (por accesibilidad), tu sitio se escale correctamente.
+2.  **Usa `em` para paddings internos:** Si cambias el tamaño de fuente del botón, el espacio interno se ajustará proporcionalmente.
+3.  **Evita los `px` para layouts:** Para anchos de sección, prefiere `%`, `vw` o `max-width`.
+4.  **Reset de margen:** Recuerda quitar el margen por defecto del body para que `100vw` o `100vh` no generen scroll innecesario:
+    ```css
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    ```
 
-- Una forma de calcular cuántos em o rem serían tantos píxeles, es hacer la división por la cantidad de font-size del contenedor padre o body. Es decir: si yo tengo un max-width de 800px y lo quiero pasar a "em", tengo que hacer 800 / [valor del font-size del contenedor padre]. Y el resultado, va a ser la cantidad de "em" que debería colocar para igualar los 800px. Pero si lo quiero pasar a rem, tengo que hacer 800 / [valor del font-size del body].
+---
 
-- En VSC hay una extensión llamada "px to rem". Sirve para hacer el pase de px a rem automáticamente usando ALT + Z. 
+## 🛠️ Herramientas Útiles
 
-
-### Las nuevas medidas svh, lvh y dvh
-
-- Estas tres unidades son variaciones modernas de vh (viewport height), y surgieron para mejorar el comportamiento en diferentes contextos, especialmente en dispositivos móviles.
-
-- El problema que tiene vh es con los dispositivos móviles. No es algo grave, pero como dijimos antes, siempre pasa eso de que la barra de búsqueda del navegador ocupa espacio, y eso puede tapar elementos de la página. Para eso se crearon svh lvh y dvh.
-
-- Comparación rápida
-
-Unidad	Significado	Cuándo usarla
-vh	Altura del viewport (pero no siempre precisa en móviles)	Diseño general en desktop
-| svh | Altura mínima posible del viewport | Evitar que la UI se agrande en móviles |
-| --- | --- | --- |
-| lvh | Altura máxima posible del viewport | Aprovechar toda la pantalla cuando la barra se oculta |
-| dvh | Altura dinámica del viewport | Mantener el diseño adaptado en tiempo real |
-
-
-## Reset CSS y Normalize CSS
-
-- Reset CSS y Normalize CSS fueron dos conceptos que buscaban facilitar la creación de estilos, sin que los estilos por defecto del navegador molesten. Primero apareció el Reset, que lo que hacía era cargarse a la mayoría de estilos del navegador. Si bien en ese momento tenía sentido, con el tiempo dejó de ser buena práctica, ya que se cargaba estilos que podían ser útiles. Así que después apareció Normalize, que es como Reset pero un poco más coherente con qué estilos debe resetear y cuáles no. Tiene sentido usarlo, pero la verdad es que hoy en día la mayoría de frameworks como Tailwind CSS ya tienen incorporado algo similar. Por ejemplo, Tailwind usa preflight.css, que es como Normalize.
+- **Reset CSS / Normalize:** Archivos CSS que limpian las inconsistencias entre navegadores.
+- **Px to Rem (VSC):** Extensión para convertir píxeles a rem automáticamente (`Alt + Z`).
+- **Cálculo rápido:** `valor_en_px / 16 = valor_en_rem`. (Ej: `32px / 16 = 2rem`).ze.
 
 - Hay otros enfoques más modernos, como el CSS Modern Reset. Es más flexible y liviano.

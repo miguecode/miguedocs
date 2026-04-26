@@ -1,54 +1,59 @@
 ---
 title: "Rutas Absolutas y Relativas"
-description: "Las rutas absolutas son siempre iguales, ya que no lo importa desde dónde las accedamos. Es decir, no importa en dónde estemos parados, la ruta absoluta siempre..."
+description: "Comprende la diferencia entre rutas absolutas y relativas para gestionar archivos y URLs correctamente."
 ---
-
 
 ## Rutas Absolutas
 
-- Las rutas absolutas son siempre iguales, ya que no lo importa desde dónde las accedamos. Es decir, no importa en dónde estemos parados, la ruta absoluta siempre se escribe igual, y siempre nos hace llegar correctamente a ella. Siempre comienzan desde un punto fijo, como el dominio en una URL o la raíz de un sistema de archivos.
+Las rutas absolutas son siempre iguales, ya que no importa desde dónde las accedamos. Es decir, sin importar en qué directorio estemos parados, la ruta absoluta siempre se escribe de la misma forma y garantiza que lleguemos al destino. Siempre comienzan desde un punto fijo, como el dominio en una URL o la raíz del sistema de archivos.
 
-- Las rutas absolutas se usan siempre para las URL, por una cuestión lógica. Entonces, una ruta absoluta puede ser la URL a Google:
+Las rutas absolutas se usan típicamente para las URLs externas. Por ejemplo, la URL de Google:
 
 ```text
 https://www.google.com
 ```
-- Otro ejemplo de ruta absoluta puede ser una ruta de nuestro sistema, así:
+
+Otro ejemplo de ruta absoluta puede ser una ruta completa en nuestro sistema de archivos local:
 
 ```text
 C:/Users/JUNIOR/Desktop/Carpeta1/
 ```
-- Eso sería una ruta absoluta. Ya que, accedamos desde donde accedamos, siempre nos va a llevar al mismo lugar. Eso es así porque la ruta es explícita de inicio a fin. Pero manejarnos así con las rutas de nuestro sistema no es lo ideal, se vuelve engorroso. Para esto vamos a usar las rutas relativas.
 
+Manejarse exclusivamente con rutas absolutas en un proyecto de desarrollo no es ideal, ya que si mueves el proyecto de carpeta o de computadora, las rutas dejarán de funcionar. Para resolver esto, utilizamos las rutas relativas.
 
 ## Rutas Relativas
 
-- Estas son las que más se usan. De hecho, cuando estamos programando o moviéndonos por los archivos de nuestro proyecto o de nuestro sistema, SIEMPRE vamos a estar manipulando rutas RELATIVAS. 
+Las rutas relativas son las más utilizadas en programación. Al movernos por los archivos de nuestro proyecto, casi siempre estamos manipulando rutas relativas.
 
-- Las rutas relativas, son a las que SÍ les importa en dónde estamos parados. Estas rutas indican la ubicación de un archivo o carpeta en relación con la posición actual. Es decir, dependen de la carpeta en la que estemos ubicados, y por eso a veces las escribimos de una forma u otra.
+A diferencia de las absolutas, a las rutas relativas **sí les importa en dónde estamos parados**. Estas rutas indican la ubicación de un archivo o carpeta en relación con la posición actual. Dependen de la carpeta en la que estemos ubicados, y por eso cambian según el contexto.
 
-## Ejemplo considerando esta jerarquía de archivos:
+### Símbolos comunes en rutas relativas
 
-Desktop
-```text
-|----  Carpeta1
-|	          |----  MiniCarpeta1  ----  OtraCarpeta  ----  Carpetita
-|	          |----  MiniCarpeta2  ----  Hola.txt
-|
-|----  Carpeta2  ----  MiniCarpeta3
-|
-|----  Carpeta3  ----  Chau.txt
-```
-- Supongamos que estamos parados dentro de "MiniCarpeta3", y queremos acceder al archivo "Hola.txt", el cual está dentro de MiniCarpeta 2. Para eso, vamos a usar la ruta relativa:
+*   `./`: Representa el **directorio actual**. Es útil en editores como VS Code para que nos sugiera archivos en el mismo nivel.
+*   `../`: Representa **un nivel hacia arriba** (subir a la carpeta padre). Se pueden encadenar (ej: `../../`) para subir múltiples niveles.
+
+### Ejemplo práctico
+
+Considerando la siguiente jerarquía de archivos:
 
 ```text
-../Carpeta1/MiniCarpeta2/Hola.txt
+Desktop/
+├── Carpeta1/
+│   ├── MiniCarpeta1/
+│   │   └── OtraCarpeta/
+│   │       └── Carpetita/
+│   └── MiniCarpeta2/
+│       └── Hola.txt
+├── Carpeta2/
+│   └── MiniCarpeta3/
+└── Carpeta3/
+    └── Chau.txt
 ```
-- Ese   "  ../  "  es un paso hacia atrás, o hacia afuera, o hacia arriba. Como queramos verlo. Si nosotros estábamos dentro de MiniCarpeta3, al hacer  "  ../  "  nos movimos hacia Carpeta2. Después, a partir de ahí, nos vamos acercando a donde queremos con   /   .
 
-- Supongamos que estamos parados dentro de "Carpetita", y queremos acceder al archivo "Chau.txt", el cual está dentro de Carpeta3. Para eso, vamos a usar la ruta relativa:
+1.  **Escenario A**: Estamos parados en `MiniCarpeta3` y queremos acceder a `Hola.txt`.
+    *   Ruta relativa: `../../Carpeta1/MiniCarpeta2/Hola.txt`
+    *   *Explicación: Subimos dos niveles (primero a Carpeta2 y luego a Desktop) para después entrar en Carpeta1.*
 
-```text
-../../../Carpeta3/Chau.txt
-```
-- También podemos aclarar que  "  ./  "  , es decir, con un solo puntito, significa "El directorio actual". Es decir, el lugar en el que estamos parados. En VSCode puede escribirse para que nos muestre los otros archivos o carpetas disponibles del lugar en el que estamos parados.
+2.  **Escenario B**: Estamos parados en `Carpetita` y queremos acceder a `Chau.txt`.
+    *   Ruta relativa: `../../../Carpeta3/Chau.txt`
+    *   *Explicación: Subimos tres niveles para llegar a Desktop y luego entrar en Carpeta3.*

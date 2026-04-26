@@ -4,60 +4,83 @@ description: "El eje principal de nuestro contenedor flexbox va a ser el que det
 ---
 
 
-## Posicionamiento
+## 🎯 Posicionamiento y Alineación en Flexbox
 
-- El eje principal de nuestro contenedor flexbox va a ser el que determine "flex-direction". Si flex-direction es row, el eje principal va a ser el X, o sea, el horizontal. Si flex-direction es column, el eje principal va a ser el Y, o sea, el vertical.
+El posicionamiento en Flexbox depende enteramente de los ejes. El **Eje Principal** es el que define `flex-direction`, y el **Eje Secundario** es el perpendicular a este.
 
-- Las dos propiedades más importantes para posicionar elementos van a ser "justify-content" y "align-items". Ambas propiedades dependen del eje principal (X o Y).
+---
 
+## ↕️ Alineación del Eje Principal (`justify-content`)
 
-### Propiedad "justify-content"
+Esta propiedad alinea los elementos a lo largo del eje principal. 
+- Si `flex-direction: row`, alinea horizontalmente.
+- Si `flex-direction: column`, alinea verticalmente.
 
-### La propiedad "justify-content" alinea a los elementos en base al eje principal. Es decir, depende de si el flex-direction es row o column. Si es una row, va a alinear horizontalmente. Si es una column, va a alinear verticalmente. Su valor por defecto, en los contenedores flex, es el flex-start. Si fuese display: grid en vez de display: flex, el valor por defecto sería stretch. El navegador también puede influir.
+| Valor | Descripción |
+| :--- | :--- |
+| **`flex-start`** | (Defecto) Elementos al inicio del contenedor. |
+| **`flex-end`** | Elementos al final del contenedor. |
+| **`center`** | Elementos centrados. |
+| **`space-between`** | Primer y último elemento pegados a los bordes; el resto con espacio igual. |
+| **`space-around`** | Espacio igual alrededor de cada elemento (los bordes tienen mitad de espacio). |
+| **`space-evenly`** | Espacio idéntico entre elementos y bordes. |
 
-justify-content: flex-start; // [Valor por Defecto] - Empiezan desde el inicio
-justify-content: flex-end; // Empiezan desde el final
-justify-content: center; // Se posicionan en el centro
-justify-content: space-around; // Tienen espaciado en ambos lados, pero los bordes externos la mitad
-justify-content: space-between; // Espacio en forma uniforme, el primero y el último tocan los extremos
-justify-content: space-evenly; // Espacio totalmente uniforme incluido los bordes externos
+---
 
+## ↔️ Alineación del Eje Secundario (`align-items`)
 
-### Propiedad "align-items"
+Alinea los elementos a lo largo del eje perpendicular al principal.
 
-### La propiedad "align-items" alinea a los elementos en base al eje perpendicular/secundario. Es decir, también depende de si el flex-direction es row o column. Pero su funcionamiento es el invertido al justify-content, o sea: Si es una row, va a alinear verticalmente. Si es una column, va a alinear horizontalmente. Su valor por defecto es stretch. 
+- **`stretch`** (Defecto): Los elementos se estiran para llenar el contenedor.
+- **`flex-start`** / **`flex-end`**: Alineación al inicio o final del eje secundario.
+- **`center`**: Centrado vertical (si es fila) o horizontal (si es columna).
+- **`baseline`**: Se alinean según la línea base del texto de los elementos.
 
-align-items: flex-start; // - Empiezan desde el inicio
-align-items: flex-end; // Empiezan desde el final
-align-items: center; // Se posicionan en el centro
-align-items: stretch; [Valor por Defecto]  // Se estiran para usar toda la altura o anchura del contenedor
-align-items: baseline; // Se alinean en base al texto más grande
-
-
-### Propiedad "align-content"
-
-- La propiedad "align-content" determina el espacio que hay entre las distintas filas o entre las distintas columnas. Por ende, si sólo tenemos una fila o sólo tenemos una columna, esta propiedad no va a tener efecto alguno. Cabe decir que esta propiedad no se suele utilizar tanto como las dos anteriores.
-
-- Esta propiedad tiene los valores de "flex-start", "flex-end", "center", "space-between", "space-around" y "stretch". Stretch es su valor por defecto.
-
-
-### Propiedad "align-self"
-
-- Esta propiedad NO es del contenedor flex. Es de los elementos. Acepta los mismos valores que align-items (flex-start, end, etc.). No ignora a lo establecido en align-items, sino que lo sobreescribe. Básicamente, sirve para hacer excepciones.
-
-.item:nth-child(4) {
-```text
-align-self: flex-end;
-```
+```css
+.container {
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center;     /* Centrado vertical */
+  height: 100vh;
 }
+```
 
-- Esto hace que, el cuarto elemento de un contenedor flex, se alinee de forma diferente a como lo dicta el contenedor flex padre (suponiendo que el padre lo tiene en flex-start).
+---
 
+## 🏗️ Alineación de Multilíneas (`align-content`)
 
-### Propiedad "gap"
+Esta propiedad solo funciona cuando hay varias líneas de elementos (es decir, cuando usas `flex-wrap: wrap`). Controla el espacio **entre las líneas**.
 
-- La propiedad "gap" define el espacio entre cada elemento dentro del contenedor.
+- **Valores comunes:** `flex-start`, `flex-end`, `center`, `space-between`, `space-around`, `stretch`.
 
-gap: 15px; // Cada elemento va a estar a 15px de distancia del otro
+---
 
-- También existen "row-gap" y "column-gap", por si queremos definir el espaciado en una sola dirección. Otra curiosidad es que antes de que exista "gap", se usaba "margin".
+## 🧩 Alineación Individual (`align-self`)
+
+Permite a un elemento hijo **romper** la regla de `align-items` definida por su padre y posicionarse de forma independiente.
+
+```css
+.hijo-rebelde {
+  align-self: flex-end; /* Este hijo se irá al final mientras los otros siguen al padre */
+}
+```
+
+---
+
+## 📏 Espaciado Moderno (`gap`)
+
+Define la separación mínima entre los elementos sin tener que recurrir a márgenes manuales.
+
+- **`gap`**: Define el espacio en ambas direcciones.
+- **`row-gap`**: Solo espacio entre filas.
+- **`column-gap`**: Solo espacio entre columnas.
+
+```css
+.container {
+  display: flex;
+  gap: 20px; /* Separación de 20px entre cada item */
+}
+```
+
+> [!TIP]
+> Antes de la propiedad `gap`, se usaba `margin` en los hijos, lo cual solía causar problemas en los bordes. `gap` es mucho más limpio y preciso.

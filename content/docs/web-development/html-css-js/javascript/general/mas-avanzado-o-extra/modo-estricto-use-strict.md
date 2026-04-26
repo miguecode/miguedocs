@@ -1,79 +1,59 @@
 ---
 title: "Modo Estricto (Use Strict)"
-description: "&gt; Modo Estricto (Use Strict o Strict Mode)"
+description: "Descubre cómo el Modo Estricto de JavaScript ayuda a escribir un código más seguro, corrigiendo errores silenciosos y evitando malas prácticas."
 ---
 
+## ¿Qué es el Modo Estricto?
 
- > Modo Estricto (Use Strict o Strict Mode)
+El **Modo Estricto** (*Strict Mode* o `use strict`) es una funcionalidad que corrige muchos errores silenciosos de JavaScript. En realidad, más allá de corregirlos, nos avisa de ellos. En lugar de ignorar fallos que podrían ser errores humanos, hace que el motor lance una **excepción** en tiempo de ejecución.
 
-- El modo estricto corrige muchos errores silenciosos de JavaScript. En realidad, más alla de corregirlos, nos avisa de ellos. Es decir, en vez de dejar pasar algo que podría ser un error del programador, hace que se lance una excepción avisando de dicho error (en tiempo de ejecución).
+### Beneficios principales:
+*   Convierte errores silenciosos en excepciones explícitas.
+*   Mejora la optimización del código, logrando mejores tiempos de ejecución en algunos motores.
+*   Evita malas prácticas y sintaxis propensas a errores que no están permitidas en versiones modernas del lenguaje (ES5+).
+*   Hace que el código sea más seguro y predecible.
 
-- Convierte errores de JavaScript en excepciones.
-- Mejora la optimización de los errores y consigue mejores tiempos de ejecución.
-- Evita ciertas malas prácticas y sintaxis propensas a errores, no permitidas en versiones modernas del lenguaje (ES5+). Esto hace un código más seguro y predecible.
+## ¿Por qué no viene activado por defecto?
 
+No es el estándar por defecto simplemente para mantener la **retrocompatibilidad** con millones de sitios web antiguos. Cuando se introdujo en ES5 (2009), ya existía una enorme cantidad de código escrito sin estas reglas. Activarlo por defecto habría roto scripts funcionales de un día para el otro.
 
-## Entonces... ¿Por qué no viene activado por defecto?
+Sin embargo, en el desarrollo profesional moderno, se espera su uso. De hecho:
+*   Los **frameworks modernos** (React, Angular, Vue) y **TypeScript** lo activan automáticamente.
+*   Al usar **módulos de JavaScript** (`import`/`export`), el modo estricto se activa por defecto.
+*   Muchos linters como **ESLint** recomiendan o exigen su activación.
 
-- No viene por defecto simple y llanamente porque rompería compatibilidad con millones de sitios web antiguos. No es más que eso. Cuando se introdujo el Use Strict en ES5 (año 2009-2010), ya había un montón de código viejo escrito sin preocuparse por estas reglas. Entonces, el activarlo por defecto haría que muchos scripts dejen de funcionar de un día para el otro.
+## Cómo activar el Modo Estricto
 
-- Por eso, el modo estricto es opcional y debe activarse manualmente.
+Para activarlo, debemos escribir el literal `"use strict";` en la primera línea de nuestro archivo o de una función.
 
-- Y aunque no lo parezca, SÍ. Es una buena idea usarlo. De hecho, es mucho más usado de lo que parece, y hay un motivo claro: muchas veces no lo vemos. Cuando usamos frameworks de JavaScript modernos (o hasta cuando usamos TypeScript), se usa el Use Strict de forma automática, sin que nosotros lo veamos explícito.
+```javascript
+"use strict"; // Activación global en el archivo
 
-- Aparte, cuando usamos módulos en JS (con import y export), el modo estricto se activa automáticamente, sin tener que agregarlo manualmente. 
-
-- En código moderno o profesional, se estila y se espera usarlo. En especial en librerías y proyectos grandes. De hecho, muchos linters como ESLint lo recomiendan o incluso lo exigen.
-
-
-## Ejemplo de su funcionalidad
-
-- Por ejemplo, en las variables hay que indicar si son var, let o const, SIEMPRE:
-
-```typescript
-nombre = "Juan" // Sin el use strict, nombre va a ser "var" por defecto
-
-nombre = "Juan" // Con el use strict, esto provoca una EXCEPCIÓN, no podemos omitir el tipo de variable
+nombre = "Juan"; // Lanza una excepción: "nombre is not defined"
 ```
-## Cómo activar el modo estricto
 
-- Para hacerlo, tenemos que ir a nuestro scope global (window) del archivo JavaScript, y en la primera línea escribir "use strict", así:
+También puede activarse localmente dentro de una función:
 
-```text
-"use strict";  // Con esta simple línea, activamos el modo estricto
-
-nombre = "Juan"; // Lanza una excepción, nombre is not defined
+```javascript
+function miFunc() {
+  "use strict";
+  // Solo este bloque se rige por las reglas del modo estricto
+}
 ```
-- Ojo, en realidad podemos colocar el "use strict" otras partes de nuestro código, pero siempre tiene que ser en la primer línea de un scope. Y a partir de él es cuando se activa el modo estricto.
 
+## ¿Qué restricciones impone técnicamente?
 
+Si usas el Modo Estricto, JavaScript lanzará una excepción si intentas realizar cualquiera de las siguientes acciones:
 
-## Entonces, ¿Qué hace el Use Strict técnicamente?
-
-👀 Si usamos el Modo Estricto, JavaScript va a lanzar una excepción si...
-
-1. Intentamos declarar variables sin indicar "var", "let", o "const" (lo que ya explicamos).
-
-2. Intentamos modificar propiedades que fueron definidas como no modificables (non-writable) usando el método Object.defineProperty().
-
-3. Intentamos agregar propiedades a un objeto al que se le aplicó Object.preventExtensions().
-
-4. Intentamos agregar propiedades a un string.
-
-5. Intentamos ponerle dos parámetros con el mismo nombre a una misma función.
-
-6. Intentamos eliminar una variable de tipo no primitivo, haciendo "delete miObjeto".
-
-7. Intentamos declarar una variable cuyo nombre es el mismo que el de una palabra reservada.
-
-8. Intentamos usar "this" dentro de una función sin que esté ligada a un objeto (es decir, no forma parte de una propiedad o clase). En modo estricto,"this" será "undefined" en vez de apuntar al objeto global (window).
-
-9.  Intentamos usar números octales sin una "o" adelante, o si intentamos usar "with".
-
-10. Intentamos declarar variables llamadas "arguments" o "eval".
-
-11. Intentamos asignar valores a propiedades de un getter sin setter.
-
-12. Intentamos declarar variables dentro de `eval` y usarlas fuera.
-
-13. Intentamos modificar los parámetros de una función y esperar que arguments se actualice (ya no se sincronizan).
+1.  **Declarar variables sin palabra clave**: No se puede omitir `let`, `const` o `var`.
+2.  **Modificar propiedades no modificables**: Intentar escribir en propiedades definidas como `non-writable` mediante `Object.defineProperty()`.
+3.  **Extender objetos protegidos**: Intentar agregar propiedades a un objeto al que se le aplicó `Object.preventExtensions()`.
+4.  **Eliminar elementos protegidos**: Intentar usar `delete` sobre una variable o un objeto que no permite ser eliminado.
+5.  **Duplicar nombres de parámetros**: Definir una función con dos parámetros que tengan el mismo nombre.
+6.  **Usar palabras reservadas**: Declarar variables con nombres que el lenguaje reserva para el futuro (ej: `interface`, `private`, `protected`).
+7.  **`this` sin contexto**: En modo estricto, si una función no es un método de un objeto, su `this` será `undefined` en lugar de apuntar a `window`.
+8.  **Números octales antiguos**: No permite el uso de literales octales antiguos (ej: `010`).
+9.  **Asignar a getters**: Intentar asignar un valor a una propiedad que solo tiene definido un `get` (sin su correspondiente `set`).
+10. **Scope en `eval`**: Las variables declaradas dentro de un `eval` no se filtran al scope exterior.
+11. **Uso de `with`**: La sentencia `with` está prohibida por ser confusa y poco óptima.
+12. **Arguments**: Ya no se sincronizan los parámetros de la función con el objeto `arguments`.

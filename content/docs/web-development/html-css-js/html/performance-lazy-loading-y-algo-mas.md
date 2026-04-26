@@ -3,89 +3,71 @@ title: "Performance. Lazy Loading y algo más"
 description: "Lazy Loading en imágenes o iframes"
 ---
 
+## ⚡ Performance: Optimización de Carga
 
-## Lazy Loading en imágenes o iframes
+Mejorar el rendimiento de una web no solo se trata de escribir menos código, sino de gestionar **cómo y cuándo** se cargan los recursos.
 
-- Lazy Loading = Carga perezosa. Es decir, "No cargar cosas que no se están viendo".
+---
 
-- loading="lazy" es un atributo que se usa en imágenes (`<img>`) y iframes (`<iframe>`) para posponer su carga hasta que estén cerca del viewport del usuario. Esto reduce el tiempo de carga inicial de la página y ahorra ancho de banda.
+## 💤 Lazy Loading (Carga Perezosa)
 
-<img src="imagen.webp" alt="Ejemplo" loading="lazy">
+El **Lazy Loading** permite posponer la carga de elementos pesados (imágenes e iframes) que no son visibles de inmediato. Esto acelera la carga inicial de la página y ahorra datos al usuario.
 
-- **Sin loading="lazy"**: La imágen se carga de inmediato, afectando la velocidad de la página.
-- **Con loading="lazy"**: La imágen sólo se carga cuando el usuario se desplaza hacia ellas.
+### Atributo `loading="lazy"`
+Se aplica directamente en las etiquetas **`<img>`** y **`<iframe>`**.
 
-- Dónde usar loading="lazy"?
-- En imágenes grandes o en galerías.
-- En imágenes que no sean visibles al inicio (ejemplo: artículos largos).
-- En iframes de videos de YouTube o mapas de Google.
+```html
+<!-- La imagen solo se descarga cuando el usuario hace scroll cerca de ella -->
+<img src="foto-paisaje.webp" alt="Montaña nevada" loading="lazy">
 
-<iframe src="https://www.youtube.com/embed/videoID" loading="lazy">`</iframe>`
+<!-- Ideal para vídeos o mapas integrados pesados -->
+<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" loading="lazy"></iframe>
+```
 
-- Cabe mencionar que para los iframes, hay una mejor forma de optimizar su carga, pero hay que usar un poco de JavaScript, para que el elemento sólo cargue hasta que el usuario interactúe con él. No vamos a verlo en este apunte, por más que sea algo simple de hacer.
+---
 
+## 🏎️ `fetchpriority="high"` (Carga Prioritaria)
 
-## Uso de fetchpriority="high" en imágenes críticas
+Al contrario del Lazy Loading, a veces necesitamos que el navegador descargue algo lo más rápido posible (como el logo superior o la imagen principal del encabezado o **LCP**).
 
-- Si una imagen es clave para la estructura de la página (como un logo o una foto de perfil), podemos decirle al navegador que la cargue antes que otras imágenes:
+```html
+<img src="logo-corporativo.svg" alt="Logotipo" fetchpriority="high">
+```
 
-<img src="logo.webp" alt="Logo" fetchpriority="high">
+> [!TIP]
+> No abuses de `fetchpriority="high"`. Solo úsalo para la imagen más importante que el usuario ve apenas entra al sitio.
 
-- Lógicamente, NO es bueno abusar de esto, y pocas veces es necesario.
+---
 
+## 📱 Imágenes Adaptativas (`srcset` y `sizes`)
 
-## Optimización de imágenes con "srcset" y "sizes" 
+Para evitar enviar una imagen gigante a un celular pequeño, usamos la técnica de **Resolution Switching**.
 
-- Un punto importante en la optimización de imágenes, es la resolución. Si nosotros tenemos una imagen de 1920x1440, no tiene sentido que en nuestra aplicación mostremos esa imagen con un hight y un width de 400, por ejemplo. Es decir, estamos mostrando de forma pequeña, una imagen que en realidad es mucho más grande.
+| Atributo | Propósito |
+| :--- | :--- |
+| **`srcset`** | Lista de imágenes disponibles con su ancho real en píxeles (`w`). |
+| **`sizes`** | Indica al navegador qué ancho ocupará la imagen según el tamaño de la pantalla. |
 
-- Y nosotros sabemos que a veces, queremos mostrar una imagen más grande o más chica, dependiendo de la resolución de la pantalla que esté usando el usuario.
-
-- Por esto, en HTML podemos usar los atributos "srcset" y "sizes", dentro de las etiquetas "img".
-
-- Los atributos srcset y sizes son esenciales para servir imágenes adaptativas, es decir, imágenes que se ajustan a diferentes tamaños de pantalla o resoluciones, lo que mejora el rendimiento y la experiencia del usuario. 
-
-- **Vamos a verlos por partes**: 
-
-### El atributo "srcset"
-
-- Permite especificar mútiples fuentes de la misma imagen en diferentes resoluciones o tamaños. Cada fuente incluye un descriptor que indica cuándo se debe usar esa imagen. Estos descriptores pueden ser de dos tipos: Por resolución (2x, 3x...), o por ancho (480w, 800w...).
-
-Ejemplos:
-
-<img src="small.jpg" srcset="medium.jpg 2x, large.jpg 3x" alt="Imagen">
-
-<img src="small.jpg" srcset="small.jpg 480w, medium.jpg 800w, large.jpg 1200w" alt="Imagen">
-
-- Para que el navegador decida qué imagen debe usar de todas las que le seteamos en "srcset", tenemos que hacer uso del atributo sizes. Por eso es que estos dos atributos se usan en conjunto.
-
-
-### El atributo "sizes"
-
-- El atributo sizes define el ancho del área de visualización en la que se usará la imagen. Se utiliza en combinación con srcset para ayudar al navegador a decidir cuál es la mejor imagen para descargar según el ancho de la ventana.
-
-Ejemplo:
-
+### Ejemplo:
+```html
 <img 
   src="small.jpg" 
   srcset="small.jpg 480w, medium.jpg 800w, large.jpg 1200w" 
   sizes="(max-width: 600px) 480px, (max-width: 1200px) 800px, 1200px" 
-  alt="Imagen"
+  alt="Interfaz de la aplicación"
 >
-
-En este ejemplo, sizes indica que:
-
-- Si el ancho de la ventana es menor o igual a 600px, usa una imagen de 480px.
-- Si es menor o igual a 1200px, usa una imagen de 800px.
-- De lo contrario, usa una imagen de 1200px.
-
-```text
-	Tamaño de la pantalla	|	Imagen que se carga
-	≤ 600px				|	small.jpg (480px)
-	≤ 1200px				|	medium.jpg (800px)
-	> 1200px				|	large.jpg (1200px)
 ```
-- Los valores especificados en sizes se utilizan dinámicamente, y el navegador se ajusta automáticamente al redimensionar la ventana o cambiar la orientación de la pantalla. Internamente, funciona así:
 
-- Cuando la página se carga por primera vez, el navegador evalúa el ancho de la ventana de visualización y el atributo sizes. Con esta información, selecciona la imagen más adecuada desde srcset para cargarla.
+---
 
-- Si se cambia el tamaño de la pantalla (ya sea redimensionándola en el navegador o girando la pantalla), el navegador lo detecta automáticamente, reevaluará el atributo sizes para determinar qué tamaño de imagen se necesita, y listo. Si se necesita una imagen nueva porque es óptima, la descarga y la muestra.
+## 📈 Resumen de Buenas Prácticas
+
+1.  **Imágenes Modernas**: Usa formatos como **WebP** o **AVIF**.
+2.  **Dimensiones Reales**: No cargues una imagen de 2000px si solo se verá de 200px.
+3.  **Lazy Loading**: Actívalo en todo lo que esté "fuera de pantalla" (below the fold).
+4.  **Priorización**: Usa `fetchpriority` solo para elementos críticos.
+
+---
+
+> [!IMPORTANT]
+> Una web rápida no solo mejora la experiencia del usuario, también es un factor determinante para el ranking de Google (**SEO**) y las Core Web Vitals.

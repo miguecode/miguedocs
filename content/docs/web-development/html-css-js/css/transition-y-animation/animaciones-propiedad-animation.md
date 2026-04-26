@@ -4,210 +4,107 @@ description: "En CSS, existen 2 formas de animar elementos y son: Las transicion
 ---
 
 
-## En CSS, existen 2 formas de animar elementos y son: Las transiciones y las animaciones. En este apunte, vamos a hablar sobre las animaciones.
+## 🎬 Animaciones (Property: animation)
 
-- Muchas veces, las transiciones y animaciones mejoran la experiencia de usuario (UX). Esto es así porque estamos ayudándole al usuario a entender "de dónde viene y a dónde va". Estamos como dándole una sugerencia sobre la causa y el efecto de la interacción que ha ocurrido por su acción. Es como cuando le modificamos el estado "active" a un botón. Al hacerlo, estamos como diciéndole al usuario "Sí, estás tocando este botón". O cuando al hacerle hover, el cursor se pone pointer.
+A diferencia de las transiciones (que solo ocurren entre dos estados), las **Animaciones** permiten crear secuencias de movimiento complejas con múltiples etapas, sin necesidad de que el usuario interactúe con el elemento.
 
+---
 
-## Animaciones
+## 🔑 Los Fotogramas Clave (`@keyframes`)
 
-- Con las animaciones, podemos animar elementos sin tener que interactuar con ellos o evaluar sus estados. La clave de todo esto son los "keyframes".
+Para crear una animación, primero debemos definir sus "pasos" usando la regla `@keyframes`.
 
-- Los keyframes son la forma con la que nosotros le vamos a decir cómo se tienen que animar los elementos. Keyframes significa fotogramas clave.
-
-- Vamos a aprender a hacer todo esto con CSS, que es la mejor forma de hacerlo de cara al rendimiento. Todo podría hacerse con JS pero sería peor para el performance. 
-
-- **Así es el cuerpo de una animación**: 
-
-@keyframes [nombre de la animación] {
-```typescript
-[estado inicial -> from / 0% / 0s] {
-	...
-}
-
-[estado intermedio -> 50% / 1.5s] {
-	...
-}
-
-[estado final -> to / 100% / 3s] {
-	...
-}
-```
-}
-
-- **Ahora, veamos un ejemplo**: 
-
-@keyframes move {
-```typescript
-from {
-	transform: translateY(0px);   // Posición exactamente igual
-}
-
-to {
-	transform. translateY(10px);   // Posición desplazada 100px hacia abajo
-}
-```
-}
-
-
-- Ahora, con nuestra animación "move" creada, podemos reutilizarla colocándosela a cualquier elemento que queramos, usando la propiedad "animation".
-
-- **En el "from" pusimos transform**: translateY(0px). Y la verdad es que, ese es el valor por defecto de la propiedad translateY. Por ende, podríamos no poner nada y sería el mismo resultado. Es decir, podríamos sacar lo de "from { ... }". Pero acá lo mostramos porque estamos aprendiendo.
-
-
-### Propiedad animation
-
-.pulser {
-```text
-animation: move; // "move" es literalmente la animación que creamos
-```
-}
-
-- Con eso no es suficiente. Es necesario que le asignemos una duración a la animación, usando la propiedad "animation-duration". Hay que hacerlo porque por defecto empieza con 0.
-
-.pulser {
-```text
-animation: move;
-animation-duration: 3s;
-```
-}
-
-- De esta forma, al hacer F5, los elementos con clase "pulser" van a aparecer en pantalla en su posición normal, y en una animación que dura 3 segundos van a moverse 10px hacia abajo y después vuelven a su posición normal otra vez. La animación sólo ocurre una vez. Si no sabemos cuánto va a durar una animación, le podemos poner "auto" a la propiedad duration.
-
-- **Ahí, nosotros estamos poniendo "animation**: move", pero es porque "animation" es un atajo, como lo era "transition". En realidad lo que estaríamos haciendo ahí es usar la propiedad "animation-name".
-
-### Pseudoelementos ::after y ::before
-
-- Los pseudoelementos (que no son lo mismo que las pseudoclases) son ELEMENTOS HTML que aparecen justo después (after) o justo antes (before) de un elemento. Es como si se incrustara en el HTML para ser hijo o padre del elemento tratado. En este caso, vamos a hacerlo con todos los elementos que tengan la clase .pulser:
-
-.pulser {
 ```css
-position: relative;  // Lo hacemos para que el pseudoelemento sea relativo a él
-background: lightblue;
-```
+@keyframes slide-in {
+  from {
+    /* Estado inicial (0%) */
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    /* Estado final (100%) */
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
+```
 
-.pulser::after {
+También puedes usar porcentajes para mayor precisión:
 ```css
-position: absolute;  // Su posición va a ser relativa al elemento .pulser
-width: 100%
-height: 100%
-top: 0;
-left: 0;
-background: lightblue;
-z-index: -1;  // Va a aparecer por detrás del elemento padre
-```
-}
-
-- Ahora, vamos a crear una nueva animación llamada "pulse"
-
 @keyframes pulse {
-```typescript
-0% {
-	opacity: 0;
-}
-
-50% {
-	scale: 2;
-}
-
-100% {
-	opacity: .5;  // .5 es lo mismo que 0.5 o 50%
+  0%   { scale: 1; }
+  50%  { scale: 1.2; box-shadow: 0 0 20px rgba(0,0,0,0.2); }
+  100% { scale: 1; }
 }
 ```
+
+---
+
+## 🏗️ Propiedades de la Animación
+
+Para que una animación funcione, debemos aplicarla a un elemento usando sus propiedades específicas o el atajo `animation`.
+
+| Propiedad | Descripción | Valor por defecto |
+| :--- | :--- | :--- |
+| **`animation-name`** | El nombre definido en el `@keyframes`. | `none` |
+| **`animation-duration`** | Cuánto dura la animación (s o ms). | `0s` (obligatorio) |
+| **`animation-delay`** | Tiempo de espera antes de empezar. | `0s` |
+| **`animation-iteration-count`** | Veces que se repite (`number` o `infinite`). | `1` |
+| **`animation-direction`** | `normal`, `reverse`, `alternate`. | `normal` |
+| **`animation-play-state`** | `running` o `paused`. | `running` |
+
+---
+
+## ⚖️ Timing Functions (Velocidad)
+
+Determina cómo se distribuye la velocidad a lo largo de la duración.
+
+| Valor | Efecto |
+| :--- | :--- |
+| **`linear`** | Velocidad constante de principio a fin. |
+| **`ease`** | Inicio lento, rápido en el medio, final muy lento. |
+| **`ease-in`** | Empieza lento y acelera al final. |
+| **`ease-out`** | Empieza rápido y frena al final. |
+| **`steps(n)`** | Divide la animación en un número exacto de saltos. |
+
+---
+
+## 🏁 Fill Mode (Estado Final)
+
+Define qué pasa con el elemento antes de empezar o después de terminar la animación.
+
+| Valor | Comportamiento |
+| :--- | :--- |
+| **`none`** | El elemento vuelve a su estado original inicial. |
+| **`forwards`** | El elemento **mantiene** los estilos del último keyframe. |
+| **`backwards`** | El elemento aplica los estilos del primer keyframe antes de iniciar. |
+| **`both`** | Aplica tanto `forwards` como `backwards`. |
+
+---
+
+## 🚀 El atajo `animation` (Shorthand)
+
+Puedes escribirlo todo en una sola línea siguiendo este orden:
+`name` | `duration` | `timing-function` | `delay` | `iteration-count` | `direction` | `fill-mode`
+
+```css
+.boton-pulsante {
+  animation: pulse 2s ease-in-out infinite both;
 }
-
-- Ya creada la animación pulse, se la vamos a colocar al pseudoelemento after, así:
-
-.pulser::after {
-```typescript
-... Todas las propiedades que habíamos puesto ...
-animation-name: pulse;
-animation-duration: 2s;
-animation-timing-function: ease-in-out;
 ```
-}
 
-- Esto es muy similar a transition. Con "animation-name", especificamos el nombre de la animación, que va a ser la que nosotros creamos. La duración es obligatoria y debe ser mayor a 0 para que la veamos, y la "animation-timing-function" es exactamente lo mismo que la "transition-timing-function", es decir, la que sirve para indicar a qué tanta velocidad debe realizarse la animación. ease-in-out significa: "Más rápido al inicio y al final, pero más lento en el medio".
+---
 
-- **Recordemos**: 
+## ⚡ Consejos de Rendimiento
 
-animation-timing-function: linear; // Por defecto. Siempre la misma velocidad
-animation-timing-function: ease-in; // Más lento al inicio y más rápido al final
-animation-timing-function: ease-out; // Más rápido al inicio y más lento al final
-animation-timing-function: ease-in-out; // Al inicio y al final va lento, en el medio va rápido
-animation-timing-function: ease; // Es casi igual al in-out, pero comenzando un poquito más rápido
-animation-timing-function: steps(5) // Va en 5 pasos (puede ir cualquier número)
-animation-timing-function: cubic-bezier(0.5, 1.9, 1.24, 0.67) // Hace la transición a mano
+1.  **Anima solo `transform` y `opacity`:** Estas propiedades son procesadas por la GPU y no obligan al navegador a recalcular el layout de la página, lo que garantiza 60 FPS.
+2.  **Usa `will-change`:** Si una animación es muy pesada, puedes avisar al navegador con `will-change: transform;`.
+3.  **Concatenar:** Puedes poner más de una animación separándolas con comas:
+    ```css
+    img {
+      animation: aparecer 1s ease, flotar 3s infinite ease-in-out 1s;
+    }
+    ```
 
-
-- Bueno, una vez que ya creamos el pseudoelemento, incluyendo su animación, vamos a ver que al hacer F5, se hace la animación, que aumenta el tamaño y cambia la opacidad. Y que, al terminar de agrandarse, va a volver a achicarse. ¿Por qué? Porque por defecto, al terminar la animación, el elemento (en este caso, el pseudoelemento after) va a volver nuevamente a su estado inicial. Que sería, en este caso, del mismo tamaño que el elemento pulser, quedando atrás de él.
-
-- Pero la animación se hace una vez sola. ¿Por qué? Por la propiedad "animation-iteration-count".
-
-| animation-iteration-count: 5; | // Animación que se repite 5 veces |
-| --- | --- |
-| animation-iteration-count: infinite; | // Animación que se repite infinitamente |
-
-
-### Dirección de la animación
-
-img {
-```typescript
-animation: mover;
-animation-duration: 2s;
-animation-iteration-count: infinite;
-animation-timing-function: linear;
-animation-direction: normal; // Valor por defecto
-// animation-direction: reverse; // La animación es totalmente en reversa
-// animation-direction: alternate; // Primero se hace normal, y después en reversa
-// animation-direction: alternate-reverse; // Lo mismo que la anterior, pero al revés
-```
-}
-
-@keyframes mover {
-```typescript
-to {
-	transform: translateX(200px);  // Se mueve en el eje X 200 pixeles
-}
-```
-}
-
-- Las animaciones también se pueden pausar con la propiedad: "animation-play-state"". Le tenemos que poner el valor "paused".
-
-animation-play-state: paused;
-
-
-### El lugar donde quedan los elementos
-
-- Como vimos hasta ahora, cada vez que una animación inicia y termina, el elemento vuelve al estado inicial automáticamente. Eso es porque la animación ya hizo todo su recorrido. Pero nosotros podemos cambiar este comportamiento con la propiedad "animation-fill-mode". Esta propiedad determina qué va a hacer el elemento antes y después de la animación.
-
-animation-fill-mode: none; // Por defecto (ningún estado)
-animation-fill-mode: backwards; // Usa el keyframe inicial 
-animation-fill-mode: forwards; // Una vez termina la animación, se queda en el key-frame final
-animation-fill-mode: both; // La más común. Usa el keyframe inicial al principio, y el final al final
-
-
-- Al igual que con transition, la propiedad animation sirve como atajo para escribir todo en una línea.
-
-animation: mover 2s linear 3s infinite reverse both
-(name - duration - timing-function - delay - iteration-count - direction - fill-mode
-
-- Los obligatorios sólo son "name" y "duration". Los demás se pueden poner o no. Por ejemplo podríamos especificar todas las propiedades menos "delay", y hacerlo en una sola línea.
-
-- Lógicamente, lo ideal es usar el atajo "animation". Pero para aprender y entender cómo funciona por debajo, es bueno saber cuál es cada propiedad.
-
-
-### Concatenar animaciones en un sólo elemento
-
-- Esto es muy sencillo, con la misma propiedad "animation", un elemento puede tener más de una animación separadas por ",", así:
-
-img {
-```text
-animation: 
-	mover 3s steps(10) both,
-	agrandar 1s linear 3s both;
-```
-}
-
-- En este caso, la animación "agrandar" tiene 3 segundos de delay, o sea que se va a notar cómo esta segunda animación se va a realizar después de "mover". De no ser por eso, se harían las dos a la vez.
+> [!TIP]
+> Las animaciones son herramientas poderosas para mejorar el **UX**, ayudando al usuario a entender cambios de estado o flujos de navegación mediante el movimiento.ómo esta segunda animación se va a realizar después de "mover". De no ser por eso, se harían las dos a la vez.

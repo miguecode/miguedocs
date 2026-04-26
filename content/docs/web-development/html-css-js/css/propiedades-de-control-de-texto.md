@@ -4,59 +4,89 @@ description: "Text-wrap: balance"
 ---
 
 
-## Text-wrap: balance
+## 🔠 Propiedades de Control de Texto
 
-- **El text-wrap**: balance está pensado para TÍTULOS (h1, h2, h3...), y su función es evitar que queden palabras colgadas en una última línea. Por ejemplo:
+Ajustar cómo se comporta el texto es vital para la legibilidad y la estética de una web. Aquí veremos propiedades modernas y clásicas para el control tipográfico.
 
-Este es el título que estoy
-escribiendo
+---
 
-- Como el ancho ya estaba delimitado, el h1 no alcanzó a escribir todo el contenido en una línea, entonces "escribiendo" se quedó solito ahí abajo. Y eso no queda muy bien visualmente. En cambio, si a ese h1 le ponemos text-wrap: balance, lo que va a hacer es ajustarlo para que quede así:
+## ⚖️ Modern Text Wrap (Balance y Pretty)
 
-Este es el título que 
-estoy escribiendo
+Estas propiedades permiten que el navegador tome mejores decisiones sobre dónde romper las líneas de texto.
 
-- Esta propiedad también podemos usarla en párrafos, pero no es lo ideal. Ya que para los párrafos, vamos a usar text-wrap: pretty.
+### 1. `text-wrap: balance`
+Ideal para **títulos cortos** (h1, h2, etc.). Su objetivo es evitar que una sola palabra quede sola en la última línea ("viuda"), equilibrando el número de palabras por línea.
 
+```css
+h1 {
+  text-wrap: balance;
+}
+```
 
-## Text-wrap: pretty
+### 2. `text-wrap: pretty`
+Diseñado para **párrafos largos**. Analiza las últimas cuatro líneas para evitar "huérfanas" (palabras sueltas al final de un bloque), pero es menos agresivo que el modo balance.
 
-- **Su función es la misma que text-wrap**: balance, pero está pensada para párrafos, por ende, es menos brusca. El balance es más ajustador, y es capaz de achicar bastante el ancho del texto con tal de que quede bien. El pretty es un poco más imperceptible. 
-
-
-## Text-align: justify
-
-- Justificar un texto va a hacer que siempre quede lo mejor simétrico posible. Literalmente todas las líneas van a usar el mismo espacio (salvo la última si no está completa). Esto es común en libros de la vida real o en otros artículos escritos. Pero la verdad es que es una mala práctica. No hay que hacerlo. ¿Por qué? Porque si bien puede parecer que queda mejor visualmente, la realidad es que crea unos espacios muy inadecuados entre cada palabra, todo con el fin de quedar perfectamente simétrico.
-
-
-## Si bien existen otras propiedades que cumplen funciones similares, como word-break, hyphens u overflow-wrap, no las vamos a explicar acá, ya que no son tan comunes de usar (pero pueden ser útiles dependiendo del contexto del texto a escribir).
-
-
-## Line-height (altura de línea)
-
-- Controla la separación entre las líneas de texto. Muy útil para mejorar la legibilidad de párrafos largos. Por defecto, el valor de line-height es 1.
-
+```css
 p {
-  line-height: 1.5; /* Un 50% más de altura entre líneas */
+  text-wrap: pretty;
+}
+```
+
+---
+
+## 📏 Espaciado y Legibilidad
+
+### Line-height (Interlineado)
+Controla el espacio vertical entre líneas. Un valor adecuado mejora enormemente la lectura.
+
+```css
+p {
+  /* Se recomienda entre 1.5 y 1.6 para párrafos */
+  line-height: 1.5; 
 }
 
-- Para párrafos largos, se recomienda poner el line-height en 1.5 o 1. Y para títulos, un valor más bajo como 1.2 puede ser más adecuado.
-
-
-## Letter-spacing y word-spacing (espaciado entre letras y palabras)
-
-p {
-  word-spacing: 0.1em;
-  letter-spacing: 0.05em;
+h1 {
+  /* Los títulos suelen verse mejor con menos espacio */
+  line-height: 1.2;
 }
+```
 
-- Se puede usar para ocupar más espacio en títulos o botones (usando cualquiera de esas dos propiedades). O también, para ajustar la separación en textos justificados (también usando cualquiera).
+### Letter-spacing y Word-spacing
+- **`letter-spacing`**: Espacio entre letras individuales.
+- **`word-spacing`**: Espacio entre palabras completas.
 
-
-## White-space (manejo de espacios y saltos de línea)
-
-p {
-  white-space: nowrap; /* Evita saltos de línea */
+```css
+.boton-moderno {
+  letter-spacing: 0.05em; /* Un toque de aire entre letras */
+  text-transform: uppercase;
 }
+```
 
-- Otros valores útiles son el nowrap (evita que el texto baje a una siguiente línea), el prewrap (respeta los saltos de línea manuales y permite ajuste automático) y el breakspaces (es como el pre-wrap, pero mantiene los espacios en blanco).
+---
+
+## 🚫 Alineación y Bloqueos
+
+### Text-align: justify
+Aunque hace que los bordes izquierdo y derecho sean rectos, **no se recomienda** en la web. Crea "ríos de espacio" irregulares que dificultan la lectura, especialmente para personas con dislexia.
+
+### White-space
+Controla cómo se manejan los espacios en blanco y los saltos de línea manuales.
+
+- **`nowrap`**: El texto nunca salta de línea, se extiende horizontalmente hasta el infinito.
+- **`pre-wrap`**: Respeta los saltos de línea hechos en el código HTML (como un elemento `<pre>`) pero permite el ajuste automático.
+
+```css
+.codigo-o-nota {
+  white-space: pre-wrap;
+}
+```
+
+---
+
+## 💡 Otras propiedades útiles
+- **`word-break`**: Define si se pueden romper palabras largas al final de la línea.
+- **`hyphens: auto`**: Añade guiones automáticos cuando una palabra se corta (requiere atributo `lang` en el HTML).
+- **`text-transform`**: Permite cambiar a `uppercase` (MAYÚSCULAS), `lowercase` (minúsculas) o `capitalize` (Primera Letra Mayúscula).
+
+> [!TIP]
+> **Accesibilidad:** Mantener un buen contraste de color y un `line-height` de al menos 1.5 en párrafos son reglas básicas para que tu sitio sea inclusivo y fácil de leer.

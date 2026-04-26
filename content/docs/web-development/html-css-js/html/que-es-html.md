@@ -4,35 +4,38 @@ description: "HTML (HyperText Markup Language) (Lenguaje de Marcado de Hipertext
 ---
 
 
-## HTML (HyperText Markup Language) (Lenguaje de Marcado de Hipertexto)
+## 🌐 ¿Qué es HTML?
 
-- HTML es un lenguaje de marcado que define la estructura del contenido en una página web mediante etiquetas. Estas etiquetas le indican al navegador cómo debe mostrarse el contenido, como párrafos, imágenes, enlaces, encabezados, y más. 
+**HTML** (HyperText Markup Language) es el lenguaje estándar utilizado para crear y estructurar páginas web. No es un lenguaje de programación, sino un **lenguaje de marcado** que utiliza etiquetas para indicarle al navegador qué tipo de contenido está procesando (títulos, párrafos, imágenes, etc.).
 
-- El código HTML debe ser interpretado línea por línea por los navegadores. Estos van a procesarlo, y renderizar la página web según su estructura y contenido.
+---
 
+## 🏛️ Historia y Evolución
 
-### ¿Cuándo y por qué fue creado?
+Fue creado en **1990** por **Tim Berners-Lee**. Su propósito original era puramente científico: permitir que investigadores compartieran documentos a través de la gran red llamada **World Wide Web (WWW)**.
 
-- HTML fue desarrollado en 1991 por Tim Berners-Lee como parte del primer sistema de la World Wide Web, permitiendo la creación y compartición de documentos científicos en internet. Su objetivo era facilitar la creación y compartición de documentos científicos en internet mediante un formato sencillo y accesible para todos. Desde entonces, HTML ha evolucionado y ahora es la base de la gran mayoría de los sitios web.
+| Versión | Año | Hito Principal |
+| :--- | :--- | :--- |
+| **HTML 1.0** | 1991 | Primera versión pública con etiquetas muy básicas. |
+| **HTML 4.01** | 1999 | Estandarización global y separación de estilo (CSS). |
+| **HTML5** | 2014 | **Versión actual**. Soporte nativo de audio, video y nuevas etiquetas semánticas. |
 
+---
 
-### Características más importantes
+## 🚀 Características Fundamentales
 
-- HTML no es un lenguaje de programación, sino de marcado, al igual que Markdown.
+1.  **Estructura de Árbol (DOM)**: El navegador lee el código y genera el **Document Object Model**, una representación jerárquica donde cada etiqueta es un "nodo".
+2.  **Semántica**: Las etiquetas actuales (como `<article>` o `<section>`) ayudan a que los motores de búsqueda (**SEO**) y las herramientas de **Accesibilidad** entiendan el significado del contenido.
+3.  **Estándar Abierto**: Es mantenido por la **W3C** y la **WHATWG**, lo que garantiza que funcione igual en todos los navegadores modernos.
+4.  **Interoperabilidad**: Es el "esqueleto" de la web. Se complementa con **CSS** (la piel/diseño) y **JavaScript** (los músculos/interacción).
 
-- Tiene relación directa con el SEO (Search Engine Optimization) de la página. 
+---
 
-- Tiene relación directa con la accesibilidad.
+## 📝 Conceptos Clave
 
-- **Estructura jerárquica**: El contenido se organiza en una estructura jerárquica, con elementos anidados uno dentro del otro, formando un árbol DOM (Document Object Model).
+- **Etiquetas**: Son los bloques de construcción (ej: `<h1>`, `<p>`).
+- **Atributos**: Información extra sobre las etiquetas (ej: `src`, `href`, `class`).
+- **Anidamiento**: La capacidad de poner una etiqueta dentro de otra para crear estructuras complejas.
 
-- Aunque HTML es estático por sí solo, se puede combinar con CSS para diseñar páginas y con JavaScript para añadir interactividad.
-
-- HTML es mantenido por el W3C (World Wide Web Consortium) y es un estándar abierto, lo que significa que cualquiera puede usarlo sin restricciones o licencias.
-
-
-### Versiones importantes
-
-- **HTML5 (2014 - presente)**: La versión más reciente y la que está actualmente en uso. Introdujo muchas características nuevas, como soporte multimedia nativo (audio y video), nuevos elementos semánticos (`<article>`, `<section>`, `<nav>`), y APIs que permiten una mayor interactividad con JavaScript.
-
-- **HTML 4.01 (1999)**: Una de las primeras versiones ampliamente adoptadas, soporta la mayoría de las etiquetas y estructuras básicas.
+> [!NOTE]
+> HTML es el punto de partida obligatorio para cualquier persona que quiera dedicarse al desarrollo web. Sin HTML, no existe la web tal como la conocemos hoy.

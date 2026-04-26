@@ -1,24 +1,25 @@
 ---
 title: "Local Storage y Session Storage"
-description: "-Local Storage (Almacenamiento local)"
+description: "Aprende cómo persistir datos en el navegador usando LocalStorage y SessionStorage."
 ---
 
+## Local Storage (Almacenamiento local)
 
- -Local Storage (Almacenamiento local)
+El Local Storage es un lugar persistente del navegador donde podemos almacenar información de objetos y de arrays en forma de texto. Es decir, con strings en formato "clave": "valor". 
 
-- El Local Storage es un lugar persistente del navegador donde podemos almacenar información de objetos y de arrays, en forma de texto. Es decir, con strings en formato "clave": "valor". 
-
-- Para ver el Local Storage, hay que ir a las herramientas del desarrollador e ir a la sección:
+Para ver el Local Storage, hay que ir a las herramientas del desarrollador e ir a la sección:
 
 ```text
 DevTools > Application > Storage > Local storage
 ```
-- El almacenamiento local es por página, es decir, se queda asociado a la página hasta que nosotros mismos lo borremos. Aunque cerremos la pestaña, cerremos el navegador, o apaguemos nuestra máquina, igualmente la información almacenada en el Local Storage persiste. La única forma de que se vaya es que nosotros mismos la borremos (mediante código, o usando las DevTools, o en los ajustes del navegador).
 
+El almacenamiento local es por página, es decir, se queda asociado a la página hasta que nosotros mismos lo borremos. Aunque cerremos la pestaña, cerremos el navegador, o apaguemos nuestra máquina, la información almacenada en el Local Storage persiste. La única forma de que se vaya es que nosotros mismos la borremos (mediante código, usando las DevTools, o en los ajustes del navegador).
 
-- **Suponiendo que tenemos este objeto en JavaScript**: 
+### Métodos principales
 
-```typescript
+Suponiendo que tenemos este objeto en JavaScript:
+
+```javascript
 const persona = {
 	nombre: "Juan",
 	edad: 20,
@@ -27,103 +28,89 @@ const persona = {
 	vacunado: true,
 };
 ```
-- Vamos a analizar cómo guardar o extraer esto del Local Storage. Los métodos son los siguientes:
 
-localStorage.setItem()		// Guarda en el LS lo que pasemos. Recibe 2 parámetros (Clave y Valor)
-localStorage.getItem()		// Extraemos del LS el elemento que queramos. Recibe la key del elemento
-localStorage.removeItem()	// Elimina un elemento en específico del LS
-localStorage.clear()			// Limpia el LS entero, es decir, elimina todos sus elementos
+Los métodos disponibles para interactuar con el almacenamiento son:
 
+| Método | Descripción |
+| :--- | :--- |
+| `setItem(key, value)` | Guarda un elemento en el almacenamiento. |
+| `getItem(key)` | Extrae el valor asociado a una clave. |
+| `removeItem(key)` | Elimina un elemento específico. |
+| `clear()` | Borra todo el contenido del almacenamiento. |
 
-## Método setItem()
+## Uso del Local Storage
 
-```text
+### Método `setItem()`
+
+```javascript
 localStorage.setItem("persona", JSON.stringify(persona));
 ```
-- SetItem recibe dos strings. El primero va a ser la "key", y el segundo el "value" del elemento que vamos a guardar. En este caso, estamos guardando un elemento con key "persona" y con el valor de nuestro objeto en memoria convertido en un string con notación JSON.
 
+`setItem` recibe dos strings: la "key" (clave) y el "value" (valor). En este caso, estamos guardando un elemento con clave "persona" y con el valor de nuestro objeto convertido en string JSON mediante `JSON.stringify`.
 
-## Método getItem()
+### Método `getItem()`
 
-```text
-localStorage.getItem("persona");
+```javascript
+const personaGuardada = localStorage.getItem("persona");
 ```
-- GetItem recibe un string. Ese string va a ser el nombre (la key) del Item que queremos extraer del LS. Lo que va a devolver es el string en formato JSON del Item almacenado en LS.
 
-- **Con esto, nosotros podemos combinar estos métodos**: 
+`getItem` recibe el nombre de la clave que queremos extraer. Devuelve el string almacenado. Para convertirlo de vuelta a un objeto útil, usamos `JSON.parse`:
 
-```typescript
-const persona2 = JSON.parse(localStorage.getItem("persona"));
+```javascript
+const personaRecuperada = JSON.parse(localStorage.getItem("persona"));
 ```
-- Ahora persona2 es un Object que tiene el objeto guardado en el LS con key "persona", que es lo que habíamos guardado antes.
 
+Ahora `personaRecuperada` es un objeto real de JavaScript con el que podemos trabajar.
 
-## Método removeItem()
+### Método `removeItem()`
 
-```text
+```javascript
 localStorage.removeItem("persona");
 ```
-- RemoveItem recibe un string al igual que getItem. Pero esta vez, en vez de devolverlo, lo elimina.
 
+Elimina el elemento asociado a esa clave del almacenamiento local.
 
-## Método clear()
+### Método `clear()`
 
-```text
+```javascript
 localStorage.clear();
 ```
-- No hay mucha ciencia. Este método elimina todos los elementos del Local Storage.
 
+Elimina absolutamente todos los elementos guardados en el Local Storage de ese sitio web.
 
-## Ahora todo esto, pero con Arrays
+---
 
+## Trabajando con Arrays
 
-```typescript
+La lógica es idéntica para los arrays. 
+
+```javascript
 const listaDePersonas = [
-	{
-		nombre: "Mario",
-		edad: 23,
-        email: "Maritoo@gmail.com",
-        sexo: "M",
-        vacunado: true
-	},
-	{
-		nombre: "Lucia",
-		edad: 26,
-        email: "luli20@gmail.com",
-        sexo: "F",
-        vacunado: false
-	}	
-]
-```
-- La lógica es la misma que con objetos. Podemos guardar y extraer arrays con el LS. 
+	{ nombre: "Mario", edad: 23 },
+	{ nombre: "Lucia", edad: 26 }	
+];
 
-```text
+// Guardar array
 localStorage.setItem("listaDePersonas", JSON.stringify(listaDePersonas));
-```
-- Agregamos el array al LS. Tendrá como "key" listaDePersonas y su "value" será un array con todos los objetos que contenga listaDePersonas. Obviamente, se guarda en forma de string como todo lo que se guarda en el LS.
 
-```typescript
-let listaDePersonas2 = [];  // Creamos otro array, en este caso vacío
+// Recuperar array
+let listaRecuperada = [];
+const dataEnStorage = localStorage.getItem("listaDePersonas");
 
-if (localStorage.getItem("listaDePersonas")) {
-	listaDePersonas2 = [...JSON.parse(localStorage.getItem("listaDePersonas"))];
+if (dataEnStorage) {
+	listaRecuperada = JSON.parse(dataEnStorage);
+    // También se puede usar el spread operator si queremos una copia:
+    // listaRecuperada = [...JSON.parse(dataEnStorage)];
 }
 ```
-- Si lo que devuelve getItem es un string y no es null, va a entrar al if. Eso quiere decir que logró encontrar un elemento con la key "listaDePersonas". Dentro del if, vamos a volcar toda la información del elemento en el LS, en el array en emmoria listaDePersonas2.
-
-- **Para desglosar esa línea, lo que vemos es**: listaDePersonas2 = [...]; Es decir, le asignamos un array a listaDePersonas2, el cual es una copia de otro.
-
-- Ese array que estamos copiando, es el que devuelve JSON.parse. Y JSON.parse lo que está parseando es el array que hallamos con su key listaDePersonas.
-
-
 
 ## Session Storage
 
-- **No hay mucha explicación**: Session Storage es otro lugar donde almacenar información en el navegador. Es lo mismo que Local Storage pero con una diferencia clave: la información almacenada en el Session Storage no persiste por siempre, sino que se borra en el momento en el cual cerramos la pestaña o el navegador, a diferencia del Local Storage que su información persiste hasta que la borremos manualmente.
+El **Session Storage** funciona de forma idéntica al Local Storage (mismos métodos), pero con una diferencia clave: **la información no es persistente**. Los datos en Session Storage se borran automáticamente cuando se cierra la pestaña o el navegador. Es útil para datos temporales que solo importan durante la sesión actual del usuario.
 
-- Los métodos del Session Storage funcionan igual que los del localStorage:
-
-- sessionStorage.setItem();
-- sessionStorage.getItem();
-- sessionStorage.removeItem();
-- sessionStorage.clear();
+| Métodos de Session Storage |
+| :--- |
+| `sessionStorage.setItem()` |
+| `sessionStorage.getItem()` |
+| `sessionStorage.removeItem()` |
+| `sessionStorage.clear()` |
