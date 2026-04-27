@@ -3,6 +3,9 @@ title: "Eventos en React"
 description: "Los eventos son acciones que ocurren en la interfaz del usuario: hacer un clic, mover el mouse, etc."
 ---
 
+
+## Eventos en React
+
 Los eventos son acciones que ocurren en la interfaz del usuario: hacer un clic, mover el mouse, etc. Ejemplos de estos pueden ser los siguientes:
 
 *   `onClick` (para clics)

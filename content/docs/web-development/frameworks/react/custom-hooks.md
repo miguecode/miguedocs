@@ -1,58 +1,60 @@
 ---
 title: "Custom Hooks"
-description: "Como vimos en apuntes pasados, en React podemos crear nuestros propios hooks. La idea de crear hooks es hacer nuestro código más simple y reutilizable."
+description: "Aprende a crear tus propios hooks en React. Desarrollamos paso a paso un custom hook 'useFetch' reutilizable con manejo de estados, errores y AbortController."
 ---
 
+En React podemos crear nuestros propios hooks (Custom Hooks). La idea principal de crear hooks es abstraer la lógica compleja de los componentes para hacer nuestro código más simple, limpio y, sobre todo, reutilizable. 
 
+Vamos a desarrollar un ejemplo completo basado en realizar peticiones HTTP (Fetch). Normalmente, cuando queremos hacer una petición a una API para obtener datos mediante fetch, siempre solemos hacer lo mismo: creamos un `useState` para la *data*, otro para el *loading* y otro para el *error*; luego un `useEffect` para actualizar la data dinámicamente y, por último, los `if()` correspondientes en la interfaz para determinar qué renderizar. Esto es un clásico.
 
-- Como vimos en apuntes pasados, en React podemos crear nuestros propios hooks. La idea de crear hooks es hacer nuestro código más simple y reutilizable. 
+Con este hook que vamos a crear ahora, la idea es hacer todo este proceso mucho más automático. Nuestro hook se va a llamar `useFetch` (agregando la palabra `use` adelante, para respetar el estándar obligatorio de hooks en React) y lo vamos a colocar dentro de una carpeta llamada `hooks`.
 
-- Vamos a hacer un ejemplo basado en FETCH. Es decir, cuando queremos hacer una petición a una API para obtener datos mediante fetch. Como vimos en el archivo del ejemplo base, siempre solemos hacer esto. Crear un useState de loading y otro de error, el useEffect para actualizar la data dinámicamente, y después los if() para determinar qué renderizar en el componente. Esto es un clásico. Con este hook que vamos a crear ahora, la idea es hacer esto más automático.
+---
 
-- Nuestro hook, entonces, se va a llamar useFetch (el 'use' adelante, para respetar el standard de hooks en React'). Y lo vamos a colocar dentro de una carpeta llamada hooks.
+## Creando useFetch
 
-
-## useFetch
-
-- Como dijimos recién, vamos a hacer nuestro propio hook llamado useFetch. Entonces, creamos un archivo llamado useFetch.ts y lo colocamos dentro de una carpeta llamada 'hooks'.
-
-- Primero, vamos a colocarle su receptor de props/params:
+Primero, creamos un archivo llamado `useFetch.ts` y lo colocamos dentro de la carpeta `hooks`. Para que el entorno sea robusto usando TypeScript, vamos a colocarle su interfaz receptora de props/params:
 
 ```typescript
 interface Props<T> {
-	data: T | null;
-	loading: boolean;
-	error: Error | null;
+  data: T | null;
+  loading: boolean;
+  error: Error | null;
 }
 ```
-- **Ahora sí, creamos el hook**: 
+
+Ahora sí, maquetamos nuestro hook base:
 
 ```typescript
 const useFetch<T>(url: string): Props<T> {
-	const [data, setData] = useState<T | null>(null);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState<Error | null>(null);
+  const [data, setData] = useState<T | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
 }
 ```
-- Incluso podemos crear dos types para no tener que andar siempre escribiendo "<algo | null>", así:
+
+Incluso podemos refactorizar esto creando dos `types` personalizados arriba para no tener que andar siempre escribiendo `algo | null` consecutivamente:
 
 ```typescript
 type Data<T> = T | null;
 type ErrorType = Error | null;
 
 const useFetch<T>(url: string): Props<T> {
-	const [data, setData] = useState<Data<T>>(null);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState<ErrorType>(null);
+  const [data, setData] = useState<Data<T>>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<ErrorType>(null);
 }
 ```
-- Siempre que nosotros usemos un custom hook, vamos a manejar un useEffect. En este caos, lo vamos a usar para hacer el fetch. A continuación, voy a pegar el código entero de este archivo useFetch.ts:
+
+Siempre que nosotros construyamos un custom hook que realice operaciones, vamos a manejar un `useEffect`. En este caso, lo vamos a usar explícitamente para abstraer toda la ejecución técnica del fetch. 
+
+A continuación, voy a dejar el código entero bien comentado de este archivo `useFetch.ts`:
 
 ```typescript
-// Importamos los hooks que vamos a usar
+// Importamos los hooks básicos que vamos a usar
 import { useEffect, useState } from "react";
 
-// Creamos Types específicos para usar en este hook
+// Creamos Types específicos para usar en este hook y mejorar legibilidad
 type Data<T> = T | null;
 type ErrorType = Error | null;
 
@@ -68,68 +70,79 @@ interface Params<T> {
 // Va a retornar un valor de tipo Params<T>, la interfaz que creamos al principio
 export const useFetch = <T>(url: string): Params<T> => {
 
-  // Creamos los estados a usar y devolver: data, loading y error
+  // Creamos los estados principales a usar y a devolver
   const [data, setData] = useState<Data<T>>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<ErrorType>(null);
 
   useEffect(() => {
+    // No es obligatorio, pero SÍ es una excelente práctica.
+    // Sirve para cancelar la petición de red abierta en caso de que 
+    // el componente se destruya antes de recibir respuesta.
     const controller = new AbortController();
-    // No es obligatorio, pero es buena práctica.
-    // Sirve para cancelar la petición una vez que el componente se destruye
 
-    // Seteamos en true el estado del loading
+    // Seteamos en true el estado del loading inicial
     setLoading(true);
 
-    // Creamos una función que va a obtener la data mediante el método fetch()
+    // Creamos una función asíncrona que va a obtener la data mediante fetch()
     const fetchData = async () => {
 
-      // Hacemos un try-catch-finally para manejar la petición 
+      // Try-Catch-Finally para poder manejar la petición correcta y los errores
       try {
-        // Obtenemos la respuesta del método fetch (el cual es async), pasándole la url y el controller creado
-        const response = await fetch(url, controller);
+        // Ejecutamos fetch, pasándole la url y nuestro Abort Controller
+        const response = await fetch(url, { signal: controller.signal });
 
-        // Si la respuesta no es OK, lanzamos un error
+        // Si la respuesta no es OK en su status HTTP, forzamos un error manual
         if (!response.ok) {
-          throw new Error("Error en la petición");
+          throw new Error("Error en la petición a la API");
         }
 
-        // Creamos una variable jsonData de tipo T (el tipo recibido en el hook), el cual va a ser la data recibida en JSON
+        // Si es ok, parseamos a JSON estableciendo nuestra data en formato tipo T
         const jsonData: T = await response.json();
 
-        // Una vez que tenemos la data y además en JSON, la vamos a setear en el estado de la data que vamos a devolver
+        // Actualizamos estado exitoso de la Data
         setData(jsonData);
-
-        // Si todo lo anterior funcionó, seteamos el estado de error en null
         setError(null);
+        
       } catch (err) {
-        // Si algo falló, seteamos el error con el valor capturado
-        setError(err as Error);
+        // Si algo en el flujo principal falló (ej: error 500, o se cortó internet), seteamos el error
+        // Omitimos setear el error si el mismo fue provocado por el abort (desmontaje del componente)
+        if ((err as Error).name !== 'AbortError') {
+             setError(err as Error);
+        }
       } finally {
-        // Finalmente, seteamos en false el estado loading
+        // Finalmente, independientemente del éxito o el fracaso, desactivamos el loading
         setLoading(false);
       }
     }
 
-    // Ejecutamos la función que acabamos de crear
+    // Ejecutamos la función interna que acabamos de crear
     fetchData();
 
-    // Ponemos un return que se va a ejecutar una vez que el componente se destruya
+    // El return en useEffect se ejecuta una vez que el componente actualiza o se destruye
     return () => {
-      // Abortamos (cancelamos) la petición fetch, gracias al controller que creamos
+      // Abortamos preventivamente la petición fetch abierta
       controller.abort();
     }
-  }, [url]) // La dependencia va a ser la URL recibida. Cada vez que cambia, se ejecuta el hook
+  }, [url]) // La dependencia es la URL. Si la URL cambia en tiempo real, se re-ejecuta el hook automáticamente.
 
-  // Retornamos un objeto que respeta la interfaz Params<T>
+  // Por último, retornamos nuestro clásico objeto que respeta la interfaz Params<T>
   return { data, loading, error };
 }
 ```
-- **La idea es muy clara**: el hook nos va a devolver 3 valores: data, loading y error. Estos tres valores los obtiene en base al resultado de la petición fetch que realiza a la URL recibida por prop. O sea que el componente que invoque a este hook, tiene que pasarle dicha URL, y recibir esas 3 variables. Veamos cómo quedaría el componente:
 
-```html
+---
+
+## Cómo usar el Custom Hook
+La idea fundamental y el propósito de todo este desarrollo es sumamente clara: el hook nos va a devolver dinámicamente 3 valores empaquetados (`data`, `loading` y `error`) en base al resultado de su petición HTTP con `fetch` a la URL que decidamos mandarle por propiedad. 
+
+O sea que el componente o la página que invoque a este hook, únicamente tiene que concentrarse en pasarle dicha URL y enfocarse netamente en construir los elementos visuales (*UI*) consumiendo esas tres variables devueltas.
+
+Veamos cómo de limpio quedaría un componente (`App.tsx`):
+
+```tsx
 import './App.css';
-import { useFetch } from './hooks';
+import { useFetch } from './hooks/useFetch';
 
 const url = "https://api.example.com/data";
 
@@ -143,15 +156,19 @@ function App() {
   const { data, loading, error } = useFetch<Data>(url);
 
   if (loading) {
-    return <div>Cargando...</div>
+    return <div>Cargando la información...</div>
   }
 
   if (error) {
-    return <div>UPS! Hay un error: {error.message}</div>
+    return <div>¡UPS! Se detectó un problema en la carga: {error.message}</div>
   }
 
+  // Si no está cargando ni hay error, significa que la Data es segura:
   return (
-    <div>{JSON.stringify(data)}</div>
+    <div>
+      <h2>Usuario Recibido:</h2>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
   )
 }
 

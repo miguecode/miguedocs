@@ -6,26 +6,26 @@ description: "React es una biblioteca código abierto de JavaScript creada para 
 
 ## ¿Qué es React?
 
-- React es una biblioteca código abierto de JavaScript creada para crear interfaces de usuario, independientemente en dónde se use. Es agnóstico de la plataforma. Lo más importante a tener en cuenta es que React está hecho para construir interfaces de usuario, ya sea un sitio web, una aplicación móvil, una aplicación de consola, etc.
+React es una biblioteca código abierto de JavaScript creada para crear interfaces de usuario, independientemente en dónde se use. Es agnóstico de la plataforma. Lo más importante a tener en cuenta es que React está hecho para construir interfaces de usuario, ya sea un sitio web, una aplicación móvil, una aplicación de consola, etc.
 
-- Es declarativo y está basado en componentes.
+Es declarativo y está basado en componentes.
 
-- **Además, React es "isomórfico"**: se puede usar en cliente y servidor.
+**Además, React es "isomórfico"**: se puede usar en cliente y servidor.
 
-- Como dijimos, es una biblioteca de JavaScript. Esto quiere decir que no es necesario más nada para usar React: simplemente el lenguaje JavaScript, e importar la biblioteca React.  Aunque en la práctica, como vamos a ver más adelante, vamos a necesitar algunas herramientas más (como la sintaxis JSX, esencialmente).
+Como dijimos, es una biblioteca de JavaScript. Esto quiere decir que no es necesario más nada para usar React: simplemente el lenguaje JavaScript, e importar la biblioteca React.  Aunque en la práctica, como vamos a ver más adelante, vamos a necesitar algunas herramientas más (como la sintaxis JSX, esencialmente).
 
 
 ## Componentes en React
 
-- Particularmente, en React los componentes son funciones de JavaScript. 
+Particularmente, en React los componentes son funciones de JavaScript. 
 
-- Como en Angular o Astro, los componentes se escriben en mayúscula inicial, y van colocados embebidos en el código HTML, como si fuesen una etiqueta más. Pueden recibir propiedades en su declaración.
+Como en Angular o Astro, los componentes se escriben en mayúscula inicial, y van colocados embebidos en el código HTML, como si fuesen una etiqueta más. Pueden recibir propiedades en su declaración.
 
-- Esta combinación entre HTML y JavaScript, se llama JSX. Que en realidad, significa JS + XML. Entonces, JSX es la sintaxis que usa React para definir código HTML combinado con código JS, y así mostrar componentes. Es como cuando escribimos en un archivo .astro, y combinamos JS en el HTML.
+Esta combinación entre HTML y JavaScript, se llama JSX. Que en realidad, significa JS + XML. Entonces, JSX es la sintaxis que usa React para definir código HTML combinado con código JS, y así mostrar componentes. Es como cuando escribimos en un archivo .astro, y combinamos JS en el HTML.
 
-- Ejemplo
+Ejemplo
 
-```html
+```typescript
 function Video({ video }) {
   return (
     <div>
@@ -39,7 +39,8 @@ function Video({ video }) {
   );
 }
 ```
-- Ejemplo con una lista de estos componentes
+
+Ejemplo con una lista de estos componentes
 
 ```typescript
 function VideoList({ videos, emptyHeading }) {
@@ -59,9 +60,10 @@ function VideoList({ videos, emptyHeading }) {
   );
 }
 ```
+
 ## ¿Por qué se elige React, en qué casos es ideal y en cuáles no?
 
-- ✅ Ventajas e ideales
+✅ Ventajas e ideales
 
 - Cuando se necesita construir interfaces de usuario interactivas y dinámicas, que cambian mucho en tiempo real (ej: dashboards, redes sociales, apps con formularios complejos).
 - Es eficiente gracias a su Virtual DOM, que minimiza los cambios en el DOM real.
@@ -69,7 +71,7 @@ function VideoList({ videos, emptyHeading }) {
 - Tiene un ecosistema enorme (librerías, herramientas, comunidad gigante).
 - **Es muy flexible**: no impone estructura rígida como Angular. Se puede usar solo o con lo que quieras.
 
-- ❌ Cuándo quizás no es la mejor opción
+❌ Cuándo quizás no es la mejor opción
 
 - **Proyectos muy pequeños y estáticos (ej**: landing pages simples sin mucha interacción). En esos casos puede ser “demasiado” y hasta innecesario. -> Acá es mejor un micro-framework como Astro.
 - Si buscás un framework todo en uno (routing, estado global, data fetching, SSR incluidos de fábrica), quizás Next.js (un framework de React) o Angular sean mejores opciones. React puro requiere elegir y configurar librerías externas.
@@ -86,4 +88,4 @@ function VideoList({ videos, emptyHeading }) {
 - **Integraciones backend y datos**: REST APIs, GraphQL (Apollo, Relay), Firebase, Supabase.
 - **Mobile y multiplataforma**: React Native (apps móviles nativas), Expo, incluso frameworks como Electron para escritorio.
 
-- En resumen React no está “solo”, sino que se suele armar un stack a medida según el tipo de proyecto.
+En resumen React no está “solo”, sino que se suele armar un stack a medida según el tipo de proyecto.

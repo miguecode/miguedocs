@@ -1,74 +1,80 @@
 ---
-title: "Variables y lógica en HTML"
-description: "Uso de variables en el HTML"
+title: "Variables y Lógica en el Template"
+description: "Aprende a integrar JavaScript en el HTML de Astro para crear plantillas dinámicas, utilizar mapeo de arrays y aplicar renderizado condicional mediante JSX-like syntax."
 ---
 
+## Uso de Variables en el HTML
 
-## Uso de variables en el HTML
+En Astro, la parte lógica del archivo (el **Frontmatter** entre `---`) permite definir variables de JavaScript o TypeScript que luego pueden inyectarse directamente en el HTML. Esto evita el "hardcodeo" y facilita la reutilización de datos.
 
-- Como vimos anteriormente, en la parte lógica de nuestro archivo astro (--- ---), podemos crear variables normalmente, ya que es código JS/TS. Y esas variables pueden usarse 'en vivo' en la estructura HTML. Esto es muy útil para una mejor reutilización en el código. 
+Si necesitas cambiar un valor, solo lo haces en una línea del Frontmatter y se actualizará en todos los lugares del HTML donde se llame a esa variable.
 
-- Esto es así ya que podemos reutilizar la misma variable en distintos lugares del HTML. Por ende, si quisiéramos modificar su valor, lo hacemos sólo en la asignación de la variable, y no en todas las partes del HTML donde la hayamos usado. Esa es la idea principal; que el HTML no tenga valores hardcodeados, sino que use variables. Y que esas variables tengan el valor a usar.
+### Ejemplo de Datos y Atributos:
 
-- Para mejorar eso, también podríamos usar objetos para organizarlo, por ejemplo así:
-
-
+```astro
 ---
-const pageTitle = "About Me";
+const pageTitle = "Sobre Mí";
 
 const identity = {
-```text
-firstName: "Miguel",
-country: "Argentina",
-occupation: "Web Developer",
-hobbies: ["movies", "soccer", "coding"],
-```
-}
+  firstName: "Miguel",
+  country: "Argentina",
+  occupation: "Desarrollador Web",
+  hobbies: ["cine", "fútbol", "programación"],
+};
 
 const skills = ["HTML", "JavaScript", "CSS", "Astro"];
 ---
 
-`<h1>`{pageTitle}`</h1>`
+<h1>{pageTitle}</h1>
 
-`<ul>`
-```typescript
-<li> Mi nombre es: {identity.firstName} </il>
-<li> Mi país es: {identity.country} </il>
-<li> Mi ocupación es: {identity.occupation} </il>
+<ul>
+  <li>Mi nombre es: {identity.firstName}</li>
+  <li>Mi país es: {identity.country}</li>
+  <li>Mi ocupación es: {identity.occupation}</li>
+</ul>
+
+<p>Mis habilidades son:</p>
+<ul>
+  <!-- Usamos .map() para generar elementos dinámicamente -->
+  {skills.map((skill) => <li>{skill}</li>)}
+</ul>
 ```
-`</ul>`
 
-`<p>`Mis Skills son:`</p>`
+---
 
-`<ul>`
-```typescript
-{skills.map((skill) => <li>{skill}</li>)}
-```
-`</ul>`
+## Renderizado Condicional
 
+Astro utiliza una sintaxis muy similar a JSX (React) para mostrar u ocultar elementos basándose en condiciones lógicas.
 
-## Renderizando con condiciones en HTML
+### Operador Lógico `&&`
+Se utiliza cuando queremos mostrar algo solo si una condición es verdadera. Si es falsa, no se renderizará nada.
 
-- Para mostrar esto, vamos a crear 2 variables booleanas:
-
+```astro
 ---
 const happy = true;
 const finished = false;
+---
+
+{happy && <p>¡Estoy feliz aprendiendo Astro!</p>}
+{finished && <p>He terminado este tutorial.</p>}
+```
+
+En este ejemplo, solo se verá el primer párrafo porque la variable `finished` es falsa.
+
+### Operador Ternario
+Se utiliza cuando queremos mostrar una opción u otra dependiendo de la condición.
+
+```astro
+---
 const goal = 3;
 ---
 
-Y en el HTML, hacemos esto:
+{goal === 3 ? (
+  <p>Mi objetivo es terminar en 3 días.</p>
+) : (
+  <p>Mi objetivo no es de 3 días.</p>
+)}
+```
 
-{happy && `<p>`¡Estoy feliz!`</p>`}
-
-- En este caso, la tag 'p' siempre va a ser verdadera. Ya que es un elemento HTML que está ahí, que nosotros creamos. Pero la variable 'happy' podría no ser verdadera. En este caso sí lo es porque lo pusimos en 'true'. 
-
-- De esa forma, se va a renderizar ese párrafo. Si 'happy' es false, no se va a renderizar.
-
-{finished && `<p>`Tutorial terminado.`</p>`}
-
-- Como finished es false, no se va a mostrar ese párrafo.
-
-{goal === 3 ? `<p>`Terminé el tutorial en 3 días`</p>` : `<p>`No terminé el tutorial en 3 días`</p>`}
-
-- Acá estamos usando un operador ternario. Si goal es igual a 3, se renderiza lo que esté antes del ':'. Si no es igual a 3, se renderiza lo que está después del ':'.
+> [!TIP]
+> Recuerda que toda esta lógica se ejecuta en **tiempo de construcción (Build Time)**. El navegador recibirá el HTML final ya procesado, sin la lógica de JavaScript necesaria para calcular estas condiciones, lo que garantiza una velocidad de carga superior.

@@ -1,52 +1,68 @@
 ---
-title: "Rutas y navegación"
-description: "En Astro, las rutas se definen a través de la estructura de archivos del proyecto, específicamente en en la carpeta 'pages', la cual está en 'src'."
+title: "Enrutamiento y Navegación"
+description: "Aprende cómo funciona el enrutamiento basado en archivos de Astro, cómo crear sub-rutas dinámicas y cómo gestionar la navegación entre páginas."
 ---
 
+## Enrutamiento basado en Archivos
 
-## Rutas
+En Astro, las rutas se definen automáticamente según la estructura de archivos dentro de la carpeta `src/pages/`. Cada archivo `.astro` (o Markdown) que coloques allí se convierte en una URL pública de tu sitio.
 
-- En Astro, las rutas se definen a través de la estructura de archivos del proyecto, específicamente en en la carpeta "pages", la cual está en "src".
+*   **Página Principal**: El archivo `index.astro` es la raíz (`/`).
+*   **Sub-rutas**: Puedes organizar tus páginas en carpetas para crear rutas anidadas.
 
-- Entonces, cada archivo dentro de "pages" será una ruta en nuestro sitio. index.astro va a ser nuestra primer página, y la principal. Esto es así porque el servidor lo primero que va a ir a buscar es ese archivo index.astro.
+### Ejemplo de Estructura:
 
-- Dentro de "pages" podemos tener más carpetas, es decir, crear sub-rutas. Esto, lógicamente de modulizar la estructura y facilitar la navegación. La idea sería dividirlo por secciones. Este es el mismo enfoque de Angular con los archivos de rutas.
-
-src
-|---> pages
 ```text
-|---> blog
-|	|---> index.astro
-|	|---> otra-pagina-de-blog.astro
-|---> chat
-	|---> index.astro
-	|---> otra-pagina-de-chat.astro
+src/
+└── pages/
+    ├── index.astro        ->  /
+    ├── sobre-mi.astro     ->  /sobre-mi
+    └── blog/
+        ├── index.astro    ->  /blog
+        └── post-1.astro   ->  /blog/post-1
 ```
-- **En la URL, se vería así**: 
 
-src/pages/index.astro = /
-src/pages/about.astro = /about
-src/pages/blog/index.astro = /blog/
-src/pages/blog/otra-pagina-de-blog.astro = /blog/otra-pagina-de-blog
+---
 
+## Navegación entre Páginas
 
-## Navegación entre páginas (rutas)
+Para navegar entre las diferentes secciones de tu sitio, Astro utiliza enlaces HTML estándar (`<a>`). No necesitas componentes especiales de enrutamiento como en Angular o React, ya que Astro se basa en la navegación nativa del navegador.
 
-- En Astro, esto se puede resolver con la etiqueta `<a>` de HTML.
-
-`<nav>`
-```text
-<a href="/">Inicio</a>
-<a href="my-page">Mi Página</a>
-<a href="second-page">Mi Segunda Página</a>
+```html
+<nav>
+  <a href="/">Inicio</a>
+  <a href="/sobre-mi">Sobre Mí</a>
+  <a href="/blog">Blog</a>
+</nav>
 ```
-`</nav>`    
 
+---
 
-### Rutas dinámicas
+## Rutas Dinámicas
 
-- Las rutas dinámicas son otra forma de realizar la navegación en Astro. Se hacen mediante scripts.
+Astro permite crear múltiples páginas desde un solo archivo utilizando parámetros dinámicos en el nombre del archivo. Estos se identifican rodeando el nombre con corchetes: `[parametro].astro`.
 
-src/pages/blog/[slug].astro   pagina1   pagina2
+### Ejemplo: `src/pages/blog/[slug].astro`
+Si tienes cientos de artículos de blog, no creas cien archivos. Creas un solo archivo dinámico.
 
-Dependiendo de lo que vayamos a hacer, [slug] va a ser reemplazado por la página que queramos. Si una condición se cumple, será reemplazado por pagina1 y sino, por pagina2.
+```astro
+---
+// src/pages/blog/[slug].astro
+
+// En modo estático (SSG), debemos definir qué rutas existen
+export async function getStaticPaths() {
+  return [
+    { params: { slug: 'introduccion-a-astro' } },
+    { params: { slug: 'conceptos-basicos' } },
+    { params: { slug: 'guia-de-estilos' } },
+  ];
+}
+
+const { slug } = Astro.params;
+---
+<h1>Post: {slug}</h1>
+<p>Contenido del artículo...</p>
+```
+
+> [!NOTE]
+> Al usar rutas dinámicas en el modo por defecto de Astro (Estático), es obligatorio exportar la función **`getStaticPaths()`**. Esta función le indica a Astro qué páginas debe generar durante el proceso de construcción (*build*).

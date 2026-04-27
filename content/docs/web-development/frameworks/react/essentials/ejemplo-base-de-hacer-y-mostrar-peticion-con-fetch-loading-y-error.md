@@ -3,12 +3,13 @@ title: "Ejemplo base de hacer y mostrar petición con fetch, loading y error"
 description: "import { useEffect, useState } from 'react'"
 ---
 
+## Ejemplo base de hacer y mostrar petición con fetch, loading y error
 
+```typescript
 import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
-```html
 const [data, setData] = useState([]);
 const [loading, setLoading] = useState(false);
 const [error, setError] = useState("");
@@ -45,5 +46,5 @@ if (error) {
 }
 
 return <div>Data recibida: { JSON.stringify(data) }</div>
-```
 }
+```

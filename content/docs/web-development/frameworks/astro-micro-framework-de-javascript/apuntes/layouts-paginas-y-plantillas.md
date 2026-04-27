@@ -1,53 +1,89 @@
 ---
-title: "Layouts, páginas y plantillas"
-description: "Los layouts son herramientas fundamentales para crear y organizar el contenido de nuestro sitio web de manera más eficiente y consistente."
+title: "Layouts, Páginas y Plantillas"
+description: "Aprende a estructurar tu sitio mediante Layouts reutilizables, gestionar el contenido dinámico con slots y entender la diferencia entre páginas y plantillas."
 ---
 
+## Layouts: La Estructura Base
 
-## Layouts
+En Astro, los **Layouts** son componentes especiales destinados a proporcionar una estructura común a varias páginas. Suelen contener elementos que se repiten en todo el sitio, como el `<head>`, la barra de navegación (`Navbar`) y el pie de página (`Footer`).
 
-- Los layouts son herramientas fundamentales para crear y organizar el contenido de nuestro sitio web de manera más eficiente y consistente.
+### Características de los Layouts:
+*   **Coherencia Visual**: Aseguran que todas las páginas tengan el mismo aspecto base y tipografías.
+*   **Mantenimiento**: Si cambias el logo en el Layout, se actualiza en todas las páginas asociadas.
+*   **Organización**: Se guardan por convención en la carpeta `src/layouts/`.
 
-- En Astro, los layouts son COMPONENTES. Es decir, se construyen, importan, y funcionan igual que cualquier otro componente de nuestro proyecto.
+---
 
-- Un layout suele incluir elementos como headers, footers, sidebars, y cualquier otro componente que se repita múltiples veces en las páginas de nuestro sitio.
+## El marcador `<slot />`
 
-- Sirven para mantener la coherencia visual. Eso significa que si nuestro sitio tiene 10 páginas, las 10 páginas tienen que tener un parentezco, una coherencia visual entre ellas. Que el usuario se dé cuenta de en qué sitio está independientemente del contenido de la página que está viendo.
+La etiqueta `<slot />` es fundamental en los layouts. Actúa como un **espacio reservado** donde se inyectará el contenido específico de cada página. 
 
+```astro
+---
+// src/layouts/BaseLayout.astro
+const { title } = Astro.props;
+---
+<html>
+  <head>
+    <title>{title}</title>
+  </head>
+  <body>
+    <nav>Navegación Global</nav>
+    <main>
+      <!-- Aquí se insertará el contenido de la página que use este layout -->
+      <slot />
+    </main>
+    <footer>© 2024 Mi Sitio</footer>
+  </body>
+</html>
+```
 
-## Creando un layout
+---
 
-- Para respetar una correcta estructura de proyecto, los layouts van a estar dentro de una carpeta llamada layouts. 
+## Páginas (Pages)
 
-layouts > MiLayout.astro
+Las páginas viven en `src/pages/` y representan las rutas accesibles de tu web. Para usar un layout, simplemente lo importas y envuelves el contenido de la página con él.
 
-- **Una etiqueta de Astro muy común de los layouts es**: `<slot />`
+```astro
+---
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Página de Inicio">
+  <h1>Bienvenido a mi web</h1>
+  <p>Este contenido se inyectará en el slot del layout.</p>
+</BaseLayout>
+```
 
-`<slot />`  nos permite definir espacios reservados en los componentes, en los cuales se puede insertar contenido dinámico. Esto es útil para la creación de componentes o layouts reutilizables que necesitan personalización en diferentes contextos. Entonces, `<slot />` actúa como un marcador de posición, el cual será reemplazado por contenido creado por fuera del componente. Es una forma de traer contenido exterior a este componente actual. Es como el app-root de Angular.
+---
 
+## Plantillas vs. Layouts
 
-## Páginas
+Aunque son conceptos similares, podemos diferenciarlos por su alcance:
 
-- Las distintas páginas o pantallas de nuestra web van a estar en la carpeta pages. Para probar estos últimos conceptos, vamos a crear una nueva página llamada main.astro, y en ella vamos a importar el layout propio que creamos. Y lo vamos a usar ahí.
+1.  **Layouts (Generales)**: Son maquetas globales para toda la página (estructura HTML completa).
+2.  **Plantillas (Específicas)**: Son maquetas para contenidos repetitivos dentro de una página, como el diseño de un artículo de blog o una ficha de producto.
 
-- Las páginas, al igual que los layouts, son componentes Astro y por ende tienen la misma estructura (lógica, estructura visual, estilos).
-
-- Astro siempre va a mostrar "index.astro" como su primer página. 
-
-- Para cambiar de página en página, simplemente en la URL especificamos el archivo con /mi-pagina.
-
-- Con esta lógica, cada 'page' que creamos puede tener su propio layout, y sus propios componentes.
-
-
-## Plantillas
-
-- Las plantillas funcionan de manera similar a los layouts, pero están mas enfocadas a proporcionar una estructura -específica- para partes de contenido que pueden repetirse en diferentes páginas. Por ejemplo, una plantilla puede ser un diseño específico para mostrar el artículo de un blog.
-
-- Entonces, 'layout' y 'plantilla' son conceptos MUY similares. Para diferenciarlos podríamos decir que los Layout son más generales y globales, son maquetas para cada página de la web. Y una plantilla, son maquetas no tan generales, sino que servirían de maquetas para distintas partes más específicas de una página. Por ejemplo, la plantilla de un artículo, la plantilla de una sección, la plantilla de un contenedor de botones.
-
+---
 
 ## Herencia de Layouts
 
-- La herencia de layouts se refiere a crear un layout dentro de otro layout. Esto es útil cuando tenemos distintas secciones en nuestro sitio que comparten algunas pero no todas las características del layout principal. 
+Astro permite anidar layouts (un layout dentro de otro). Esto es extremadamente útil para secciones que comparten la estructura global pero tienen elementos adicionales propios.
 
-- Para hacerlo, simplemente creamos otro layout llamado "SecondLayout". Y en la estructura de este layout secundario, vamos a invocar al layout que creamos antes, el "MyLayout". De esa forma, estaríamos haciendo que este segundo layout sea hijo del primero.
+### Ejemplo de Anidación:
+Podemos tener un `BlogLayout.astro` que hereda de `BaseLayout.astro` para añadir una barra lateral de categorías exclusivamente en las páginas del blog.
+
+```astro
+---
+// src/layouts/BlogLayout.astro
+import BaseLayout from './BaseLayout.astro';
+---
+<BaseLayout title="Sección de Blog">
+  <div class="container-with-sidebar">
+    <aside>Categorías del Blog</aside>
+    <article>
+      <slot /> <!-- Slot para el contenido del post -->
+    </article>
+  </div>
+</BaseLayout>
+```

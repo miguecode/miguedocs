@@ -1,27 +1,44 @@
 ---
-title: "Instalar y crear un proyecto"
-description: "Instalar y crear proyecto"
+title: "Instalación y Creación de Proyectos"
+description: "Guía rápida para iniciar tu primer proyecto con Astro 5. Requisitos mínimos, comandos de instalación y ejecución del servidor de desarrollo."
 ---
 
+## Requisitos Previos
 
-### Instalar y crear proyecto
+Antes de comenzar, asegúrate de tener instalado **Node.js** (se recomienda la versión 18.17.1 o superior) en tu sistema.
 
-Astro no necesariamente se instala, directamente se usa el comando para crear un proyecto, y se encarga de instalar las dependencias necesarias para que funcione.
+---
 
-Cable aclarar que mi primera vez en Astro fue con Astro 5, en diciembre de 2024. Y estos apuntes corresponden a esa versión.
+## Creando tu primer proyecto
 
+Astro no requiere una instalación global previa. Puedes generar la estructura de tu proyecto directamente utilizando el comando `create-astro`:
+
+```bash
 npm create astro@latest
+```
 
-En el proceso de creación, hay que responder distintas preguntas. La primera, es dónde ubicar y cómo nombrar el proyecto. Así que ahí se completa con la ruta donde queremos que aparezca el proyecto.
+> [!NOTE]
+> Estos apuntes corresponden a la versión **Astro 5**, lanzada a finales de 2024.
 
-Después, te pregunta cómo querés que inicie el proyecto. La opción recomendada es lo más sencillo.
+### El asistente de instalación
+Durante el proceso, el CLI de Astro te guiará con una serie de preguntas:
 
-Por último, pregunta si queremos o no instalar las dependencias. Le vamos a dar que sí. Y lo de inicializar un nuevo repositorio git es opcional. Una vez hecho todo esto, ya tenemos la carpeta creada con el nombre que indicamos.
+1.  **Directorio**: Indica la ruta y el nombre que tendrá la carpeta de tu proyecto.
+2.  **Plantilla inicial**: Te preguntará cómo quieres iniciar. La opción recomendada es "Include sample files" (Incluir archivos de ejemplo) para tener una base sobre la cual trabajar.
+3.  **Dependencias**: Te preguntará si deseas instalar las dependencias de `npm`. Se recomienda seleccionar **Sí**.
+4.  **TypeScript**: Te preguntará si deseas usar TypeScript. Puedes elegir el nivel de "estricticidad" que prefieras.
+5.  **Git**: Preguntará si deseas inicializar un repositorio Git. Esto es opcional pero recomendado.
 
-Para correr el servidor, usamos este comando:
+---
 
+## Ejecución del Proyecto
+
+Una vez finalizada la creación, entra en la carpeta de tu proyecto y levanta el servidor de desarrollo local:
+
+```bash
+cd nombre-de-tu-proyecto
 npm run dev
+```
 
-Esto iniciará el servidor en el puerto 4321:
-
-http://localhost:4321/
+Por defecto, Astro utiliza el puerto **4321**. Podrás ver tu aplicación funcionando en:
+[http://localhost:4321/](http://localhost:4321/)

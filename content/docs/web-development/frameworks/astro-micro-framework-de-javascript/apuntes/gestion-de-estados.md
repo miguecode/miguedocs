@@ -1,41 +1,78 @@
 ---
-title: "Gestión de estados"
-description: "La gestión de estados en Astro sirven para darle interactividad dinámica a la aplicación. Y si bien eso es posible usando bibliotecas externas, NO es lo ideal. ..."
+title: "Gestión de Estados e Islas de Interactividad"
+description: "Descubre cómo Astro maneja la interactividad dinámica mediante la Arquitectura de Islas, integrando componentes de React, Vue o Svelte solo cuando es necesario."
 ---
 
+## Filosofía de Estados en Astro
 
+Astro es, por naturaleza, un generador de sitios estáticos (SSG). Esto significa que la mayor parte de tu código se convierte en HTML puro sin JavaScript antes de llegar al navegador. Por lo tanto, el concepto de "estado" (variables que cambian y actualizan la UI) no existe en los archivos `.astro` estándar.
 
-- **Aclaración antes de leer este apunte**: La gestión de estados en Astro sirven para darle interactividad dinámica a la aplicación. Y si bien eso es posible usando bibliotecas externas, NO es lo ideal. Es decir, no es el propósito real de Astro. Lo ideal es minimizar la interactividad dinámica y aprovechar el enfoque en generar HTML estático, rápido y eficiente. Cuando se necesita interactividad, Astro permite usar bibliotecas como React, Vue, Svelte, o incluso Solid, pero estas deberían usarse solo para las partes específicas que realmente requieren interacción en el cliente.
+Sin embargo, Astro permite añadir interactividad dinámica mediante la **Arquitectura de Islas**. Esto consiste en incrustar componentes de frameworks que sí manejan estado (como React, Vue, Svelte o Solid) dentro de tus páginas estáticas.
 
-- En Astro, el concepto de estados NO se aplica de la misma manera que en las bibliotecas como Angular, React o Vue. Astro es un generador de sitios estáticos, o sea que su enfoque principal es la generación de HTML estático en tiempos de construcción. Sin embargo, Astro permite integrar componentes de otras bibliotecas que sí manejan estados, y eso vamos a ver en este apunte.
+### Tipos de Estados
+*   **Estados Locales**: Información que solo afecta a un componente (ej: un contador, un menú desplegable). Se gestionan dentro del framework elegido (ej: `useState` en React).
+*   **Estados Globales**: Información compartida entre múltiples componentes o islas (ej: un carrito de compras). Se suelen gestionar con librerías ligeras como **Nano Stores**, que funcionan perfectamente entre diferentes frameworks.
 
-- Los estados pueden ser locales o globales. 
+---
 
-- **Estados locales**: Estados que afectan solo a un componente específico o una pequeña parte de la página. Por ejemplo, un contador de clics.
+## Integración de Frameworks (React como ejemplo)
 
-- **Estados globales**: Estados compartidos entre múltiples componentes o páginas. Para esto, necesitaríamos herramientas externas como React Context, Zustand o incluso Redux.
+Para manejar estados dinámicos, primero debemos añadir la integración correspondiente.
 
-
-## Gestión de estados usando componentes React
-
-- Para usar React en Astro, hay que instalarlo en nuestro proyecto con el comando:
-
-npm install @astrojs/react
-
-- Dentro de components, vamos a crear un archivo llamado Counter.jsx. Ese va a ser nuestro componente React. En él, hicimos una función que cuenta la cantidad de clics que damos. 
-
-- Creamos una nueva página llamada index-react.astro. En ella, vamos a importar el componente Counter.jsx para poder usar la función que le creamos. Así que simplemente lo invocamos en el HTML. 
-
-- **Esto dará un error porque todavía falta una cosa**: importar el renderizador de React en nuestra configuración de Astro. Para eso hay que ir al archivo astro.config.mjs, y agregar esta línea: 
-
-import react from '@astrojs/react';
-
-También hay que agregarlo en defineConfig:
-
-export default defineConfig({
-```text
-integrations: [
-	react()
-]
+### Paso 1: Instalación
+Ejecutamos el comando de integración automática:
+```bash
+npx astro add react
 ```
-});
+
+### Paso 2: Crear el componente interactivo
+Creamos un componente de React convencional:
+
+```jsx
+// src/components/Counter.jsx
+import { useState } from 'react';
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      Clics: {count}
+    </button>
+  );
+}
+```
+
+---
+
+## Directivas de Hidratación (Client Directives)
+
+Este es el punto más importante. Si simplemente importas el componente de React en una página de Astro, este se renderizará como **HTML estático** y no funcionará el botón. Para "activar" el JavaScript en el navegador, debemos usar una **directiva de cliente**:
+
+```astro
+---
+// src/pages/index.astro
+import Counter from '../components/Counter.jsx';
+---
+
+<!-- No será interactivo (solo HTML) -->
+<Counter />
+
+<!-- SE CARGA Y ACTIVA INMEDIATAMENTE -->
+<Counter client:load />
+
+<!-- SE ACTIVA SOLO CUANDO EL USUARIO LO VE (Scrollear hasta él) -->
+<Counter client:visible />
+
+<!-- SE ACTIVA SOLO SI EL NAVEGADOR ESTÁ LIBRE -->
+<Counter client:idle />
+```
+
+### ¿Cuándo usar cada una?
+1.  **`client:load`**: Para elementos críticos de la UI que deben ser interactivos al instante (ej: navbars, buscadores).
+2.  **`client:visible`**: Para elementos que están "al final de la página" (ej: un feed de comentarios o un gráfico pesado). Ahorra recursos al no cargar el JS hasta que sea necesario.
+3.  **`client:only`**: Salta el renderizado en el servidor y solo carga en el cliente (útil para componentes que usan APIs exclusivas del navegador como `window`).
+
+---
+
+## Resumen
+La gestión de estados en Astro no busca "controlar toda la app", sino energizar pequeñas **islas** de interactividad. Lo ideal es mantener la mayor parte de la web estática y solo usar componentes con estado (`client:visible`) donde la experiencia de usuario lo requiera realmente.
