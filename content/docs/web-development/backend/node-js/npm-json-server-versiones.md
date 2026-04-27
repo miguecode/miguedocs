@@ -97,7 +97,7 @@ Hay que entender que nosotros, cuando queremos subir nuestro proyecto a GIT, só
 
 Cada cosa que no queramos subir a git (como archivos de configuración, contraseñas, etc), lo ponemos en el `.gitignore`.
 
-```gitignore
+```text
 /node_modules
 ```
 
