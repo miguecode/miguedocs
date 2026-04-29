@@ -1,0 +1,9 @@
+{
+  "title": "DOM (Document Object Model)",
+  "pages": [
+    "dom-intro-y-selectores",
+    "elementos-atributos-como-crearlos-y-colgarlos-al-dom",
+    "mas-de-manejo-de-elementos-tipos-de-nodos-classlist",
+    "atributos-personalizados-insercion-de-arrays"
+  ]
+}

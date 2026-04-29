@@ -1,0 +1,14 @@
+{
+  "title": "Objetos, Prototipos, Fun. Constructoras, This, Herencia",
+  "pages": [
+    "objetos-como-se-crean-y-que-son-los-keys-values",
+    "funcion-constructora-y-clases-son-lo-mismo",
+    "wrapper-objects-proto-prototype-object-y-demas",
+    "this-scopes-window-document-call-apply-y-bind",
+    "herencia-prototipica-herencia-en-fun-constructoras",
+    "herencia-y-propiedades-en-clases",
+    "extracto-de-conversacion-con-chatgpt",
+    "mas-metodos-o-propiedades-de-window",
+    "recorrer-arrays-u-objetos-for-foreach-forof-forin"
+  ]
+}

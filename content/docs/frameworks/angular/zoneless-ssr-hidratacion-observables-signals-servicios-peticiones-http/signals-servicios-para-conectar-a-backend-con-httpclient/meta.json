@@ -1,0 +1,9 @@
+{
+  "title": "Signals, Servicios para conectar a Backend (con HttpClient)",
+  "pages": [
+    "signal-y-writablesignal-vs-observables",
+    "conexion-con-servicios-pipe-async-y-signals",
+    "single-source-of-truth-architecture-parte-1",
+    "single-source-of-truth-architecture-parte-2"
+  ]
+}

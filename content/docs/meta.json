@@ -1,0 +1,14 @@
+{
+  "title": "miguedocs",
+  "pages": [
+    "index",
+    "web-fundamentals",
+    "html-css-js",
+    "typescript",
+    "frameworks",
+    "design",
+    "backend",
+    "general",
+    "other-new"
+  ]
+}

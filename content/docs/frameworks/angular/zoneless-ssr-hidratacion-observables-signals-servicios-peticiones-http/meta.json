@@ -1,0 +1,9 @@
+{
+  "title": "Zoneless, SSR, Hidratación, Observables, Signals, Servicios, Peticiones HTTP",
+  "pages": [
+    "servicios-en-angular",
+    "zoneless-ssr-hidratacion-y-mas-cambios-de-angular-19",
+    "observable-subject-behaviorsubject-operadores-rxjs",
+    "signals-servicios-para-conectar-a-backend-con-httpclient"
+  ]
+}

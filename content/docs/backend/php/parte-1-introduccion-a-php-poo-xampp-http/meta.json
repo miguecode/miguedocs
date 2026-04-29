@@ -1,0 +1,14 @@
+{
+  "title": "Parte 1 (Introducción a PHP, POO, XAMPP, HTTP)",
+  "pages": [
+    "introduccion-a-php",
+    "sintaxis-basica-de-php",
+    "todo-sobre-xampp",
+    "poo-en-php",
+    "importar-archivos-include-y-require",
+    "manejo-de-archivos",
+    "http-peticiones-respuestas",
+    "verbos-http-en-php",
+    "subir-archivos-al-servidor"
+  ]
+}

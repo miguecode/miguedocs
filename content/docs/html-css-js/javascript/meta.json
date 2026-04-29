@@ -1,0 +1,12 @@
+{
+  "title": "JavaScript",
+  "pages": [
+    "general",
+    "arrays-que-son-metodos-y-como-recorrerlos",
+    "objetos-prototipos-fun-constructoras-this-herencia",
+    "dom-document-object-model",
+    "asincronia-promesas-funciones-async-await",
+    "peticiones-ajax-fetch-axios-npm-y-json-server",
+    "otros"
+  ]
+}

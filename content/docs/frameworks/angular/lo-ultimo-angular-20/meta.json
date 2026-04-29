@@ -1,0 +1,9 @@
+{
+  "title": "Lo último, Angular 20",
+  "pages": [
+    "resumen-de-las-novedades-de-angular-20",
+    "configuracion-de-zoneless-e-incremental-hydration",
+    "hybrid-rendering-y-los-distintos-modos-de-renderizado",
+    "nueva-guia-de-estilos-sin-sufijos"
+  ]
+}

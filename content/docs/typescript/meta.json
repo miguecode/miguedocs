@@ -1,0 +1,17 @@
+{
+  "title": "TypeScript",
+  "pages": [
+    "introduccion-a-typescript",
+    "tipos-de-datos-y-como-tipar-union-e-intersection",
+    "arrays-aclaraciones-y-as-const",
+    "poo-clases-y-modificadores-de-acceso",
+    "interfaces-y-comparacion-con-clases-y-shapes",
+    "type-comparacion-con-interfaces",
+    "tipos-genericos",
+    "archivo-de-configuracion-tsconfig-json",
+    "decoradores",
+    "diferencia-entre-unknow-y-any",
+    "narrowing-y-type-guards-typeof-instanceof-in",
+    "parametros-nombrados-usando-type-o-interface"
+  ]
+}

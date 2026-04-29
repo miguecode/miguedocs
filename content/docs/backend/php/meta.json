@@ -1,0 +1,8 @@
+{
+  "title": "PHP",
+  "pages": [
+    "parte-1-introduccion-a-php-poo-xampp-http",
+    "parte-2-bd-pdo-api-rest-slim-middlewares-jwt",
+    "introduccion-y-sintaxis"
+  ] 
+}

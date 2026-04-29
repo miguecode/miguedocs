@@ -1,0 +1,16 @@
+{
+  "title": "Astro",
+  "pages": [
+    "que-es-astro",
+    "instalar-y-crear-un-proyecto",
+    "componentes-y-primeros-pasos",
+    "layouts-paginas-y-plantillas",
+    "rutas-y-navegacion",
+    "estilos-y-css",
+    "gestion-de-estados",
+    "comunicacion-entre-componentes",
+    "aclaracion-sobre-angular-en-astro",
+    "paginas-markdown",
+    "variables-y-logica-en-html"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "React",
+  "pages": [
+    "essentials",
+    "custom-hooks",
+    "ejemplo-base-de-hacer-y-mostrar-peticion-con-fetch-loading-y-error",
+    "extensiones-de-chrome-para-react"
+  ]
+}

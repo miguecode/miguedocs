@@ -1,0 +1,15 @@
+{
+  "title": "Primer parte",
+  "pages": [
+    "definicion-de-bd-motor-tipos-de-operaciones",
+    "componentes-de-una-bd-que-es-un-dba",
+    "vistas-y-caracteristicas-de-una-bd",
+    "aclaraciones-pk-nomenclatura-relaciones",
+    "foreign-key-sintaxis-de-ddl-e-indices",
+    "dml-select-parte-1",
+    "dml-select-parte-2",
+    "dml-update-delete-insert-y-rollback",
+    "catalogo-del-sistema",
+    "las-5-reglas-de-integridad-constraints"
+  ]
+}

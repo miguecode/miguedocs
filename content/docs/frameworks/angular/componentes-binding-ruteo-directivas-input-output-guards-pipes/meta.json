@@ -1,0 +1,14 @@
+{
+  "title": "Componentes, Binding, Ruteo, Directivas, Input-Output, Guards, Pipes",
+  "pages": [
+    "primeros-pasos-y-binding-en-angular",
+    "componentes-difrencia-entre-standalone-y-modulos",
+    "ciclo-de-vida-de-un-componente-y-sus-hooks",
+    "ruteo-basico-router-outler-y-lazy-loading",
+    "grupos-de-rutas-rutas-hijas-y-navegacion-entre-rutas",
+    "directivas-estructurales-y-directivas-de-atributo",
+    "input-y-output-comunicacion-entre-componentes",
+    "guards-para-el-ruteo",
+    "pipes-para-mostrar-datos-modificados"
+  ]
+}

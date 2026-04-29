@@ -1,0 +1,25 @@
+{
+  "title": "CSS",
+  "pages": [
+    "flexbox-y-grid",
+    "transition-y-animation",
+    "que-es-css-y-selectores",
+    "box-model",
+    "position-static-relative-absolute-fixed-sticky",
+    "colores-fuentes-y-herencia",
+    "unidades-de-medida-px-vw-vh-em-rem-y-otras",
+    "la-cascada-y-la-especificidad",
+    "pseudoclases",
+    "pseudoelementos",
+    "diseno-responsive-y-media-queries",
+    "variables-css",
+    "performance-en-css",
+    "la-metodologia-bem",
+    "el-prefijo-webkit",
+    "gradientes-o-degradados",
+    "propiedad-box-shadow",
+    "propiedad-overflow-desbordamiento",
+    "propiedad-z-index",
+    "propiedades-de-control-de-texto"
+  ]
+}

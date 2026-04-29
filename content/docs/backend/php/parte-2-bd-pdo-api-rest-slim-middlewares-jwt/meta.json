@@ -1,0 +1,15 @@
+{
+  "title": "Parte 2 (BD, PDO, API REST, Slim, Middlewares, JWT)",
+  "pages": [
+    "variables-de-sesion-y-cookies",
+    "json-y-stdclass",
+    "base-de-datos-mysql",
+    "explicacion-de-pdo",
+    "ejemplo-usando-pdo",
+    "api-rest-framework-slim",
+    "middlewares-1",
+    "middlewares-2",
+    "json-web-tokens-1",
+    "json-web-tokens-2"
+  ]
+}

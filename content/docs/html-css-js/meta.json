@@ -1,0 +1,11 @@
+{
+  "title": "HTML, CSS y JavaScript",
+  "pages": [
+    "html",
+    "css",
+    "javascript",
+    "conexion-entre-html-css-y-js-defer-y-load",
+    "diferencia-entre-comillas-dobles-y-simples",
+    "live-server"
+  ]
+}

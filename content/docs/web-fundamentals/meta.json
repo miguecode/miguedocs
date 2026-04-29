@@ -1,0 +1,11 @@
+{
+  "title": "La Web (Arquitectura, APIs, JSON, Endpoints, Hosting)",
+  "pages": [
+    "arquitectura-cliente-servidor",
+    "hosting",
+    "introduction",
+    "apis-que-son-y-que-es-api-rest",
+    "que-es-un-endpoint",
+    "json-javascript-object-notation"
+  ]
+}

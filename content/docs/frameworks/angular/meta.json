@@ -1,0 +1,13 @@
+{
+  "title": "Angular",
+  "pages": [
+    "que-es-angular-historia-frameworks-cambios-builds",
+    "componentes-binding-ruteo-directivas-input-output-guards-pipes",
+    "control-flow-syntax",
+    "zoneless-ssr-hidratacion-observables-signals-servicios-peticiones-http",
+    "formularios-interceptores",
+    "lo-ultimo-angular-20",
+    "todo-sobre-firebase",
+    "otros"
+  ]
+}

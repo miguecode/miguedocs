@@ -1,0 +1,11 @@
+{
+  "title": "Tailwind CSS",
+  "pages": [
+    "que-es-tailwind-y-comparacion-con-bootstrap",
+    "instalacion",
+    "colores-tamanos-y-otras-utilidades",
+    "estados-y-diseno-responsive",
+    "dark-mode-tailwind-3",
+    "leer-paso-de-tailwind-3-a-4-y-aclaraciones"
+  ]
+}

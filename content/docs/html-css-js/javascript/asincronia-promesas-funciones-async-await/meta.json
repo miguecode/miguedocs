@@ -1,0 +1,8 @@
+{
+  "title": "Asincronía, Promesas, Funciones Async Await",
+  "pages": [
+    "interprete-de-js-la-asincronia-call-stack-callback-queue-y-mas",
+    "promesas-callback-hell-como-se-crean-y-retornan-promesas",
+    "promise-hell-funciones-asincronas-async-y-await"
+  ]
+}

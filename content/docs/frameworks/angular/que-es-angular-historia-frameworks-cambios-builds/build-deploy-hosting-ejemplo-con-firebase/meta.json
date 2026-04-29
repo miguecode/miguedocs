@@ -1,0 +1,8 @@
+{
+  "title": "Build, Deploy, Hosting. Ejemplo con Firebase",
+  "pages": [
+    "configurar-firebase-cli-e-inicializar-proyecto",
+    "build-deploy-y-hosting-con-ejemplo-de-firebase",
+    "bundlers-transpilation-uglify-minification-tree-shaking"
+  ]
+}

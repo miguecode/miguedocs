@@ -1,0 +1,30 @@
+{
+  "title": "General",
+  "pages": [
+    "mas-avanzado-o-extra",
+    "introduccion-a-javascript",
+    "variables-y-direcciones-de-memoria-js",
+    "interprete-de-js-y-el-hoisting-levantamiento",
+    "tipos-de-datos-y-var-let-y-const",
+    "funciones-ciudadanos-de-primera-clase",
+    "desestructuracion-modulos-import-y-export",
+    "type-guards-typeof-instanceof-operador-in",
+    "op-ternario-eval-por-cortocircuito-y-asign-logica",
+    "thruty-falsy-y-nullish",
+    "flujos-try-catch-y-error",
+    "eventos",
+    "arrow-functions-expresiones-lambda",
+    "metodos-de-numbers-y-objeto-math",
+    "metodos-de-strings",
+    "null-undefined-y-nan",
+    "operadores-op-aritmeticos-logicos-concatenacion",
+    "json-sintaxis-y-sus-metodos-en-javascript",
+    "date-api-objeto-date",
+    "diferencia-entre-y",
+    "ecmascript",
+    "emojis-en-los-strings-y-que-es-unicode",
+    "local-storage-y-session-storage",
+    "rutas-absolutas-y-relativas",
+    "template-string-string-interpolado"
+  ]
+}

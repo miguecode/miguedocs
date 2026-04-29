@@ -8,10 +8,10 @@ export default function HomePage() {
           miguedocs
         </h1>
         <p className="text-xl text-fd-muted-foreground mb-8 max-w-2xl mx-auto">
-          Un repositorio personal de conocimientos y apuntes sobre desarrollo web, arquitectura, backend y diseño.
+          Mi repositorio personal de conocimientos y apuntes sobre el mundo del desarrollo y la tecnología.
         </p>
-        <Link 
-          href="/docs" 
+        <Link
+          href="/docs"
           className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-fd-primary text-fd-primary-foreground font-semibold hover:opacity-90 transition-opacity"
         >
           Explorar Documentación
@@ -31,13 +31,12 @@ export default function HomePage() {
 }
 
 const categories = [
-  { name: 'General', href: '/docs/web-development/general', desc: 'Conceptos generales como código limpio y estructuras de datos.' },
-  { name: 'La Web', href: '/docs/web-development/web-fundamentals', desc: 'Arquitectura, APIs, JSON, Endpoints y bases de la web.' },
-  { name: 'HTML, CSS y JS', href: '/docs/web-development/html-css-js', desc: 'Las tecnologías base del desarrollo Frontend moderno.' },
-  { name: 'TypeScript', href: '/docs/web-development/typescript', desc: 'Implementando tipado estático robusto en JavaScript.' },
-  { name: 'Frameworks', href: '/docs/web-development/frameworks', desc: 'Apuntes de Angular, Astro, Tailwind CSS, y reactividad.' },
-  { name: 'Backend', href: '/docs/web-development/backend', desc: 'Desarrollo del lado del servidor: PHP, Bases de Datos, y Node.js.' },
-  { name: 'Diseño', href: '/docs/web-development/design', desc: 'Apuntes sobre diseño web, accesibilidad, y maquetado.' },
-  { name: 'Nuevos Apuntes', href: '/docs/new-notes', desc: 'Apuntes recientes sueltos sin clasificar.' },
+  { name: 'La Web', href: '/docs/web-fundamentals', desc: 'Arquitectura, APIs, JSON, Endpoints y bases de la web.' },
+  { name: 'HTML, CSS y JavaScript', href: '/docs/html-css-js', desc: 'Las tecnologías base del desarrollo Frontend moderno.' },
+  { name: 'TypeScript', href: '/docs/typescript', desc: 'Implementando tipado estático robusto en JavaScript.' },
+  { name: 'Frameworks', href: '/docs/frameworks', desc: 'Apuntes de Angular, Astro, Tailwind CSS, y reactividad.' },
+  { name: 'Backend', href: '/docs/backend', desc: 'Desarrollo del lado del servidor: PHP, Bases de Datos, y Node.js.' },
+  { name: 'Diseño', href: '/docs/design', desc: 'Apuntes sobre diseño web, accesibilidad, y maquetado.' },
+  { name: 'General', href: '/docs/general', desc: 'Conceptos generales como código limpio y estructuras de datos.' },
+  { name: 'Otros y Nuevos Apuntes', href: '/docs/other-new', desc: 'Apuntes recientes sueltos sin clasificar.' },
 ];
-

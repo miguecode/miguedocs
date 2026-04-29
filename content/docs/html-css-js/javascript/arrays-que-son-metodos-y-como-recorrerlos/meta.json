@@ -1,0 +1,9 @@
+{
+  "title": "Arrays. Qué son, métodos y cómo recorrerlos",
+  "pages": [
+    "arrays-intro-metodos-y-spread-operator",
+    "metodos-con-callbacks-map-filter-reduce-splice-sort-find-some",
+    "metodos-includes-indexof-reverse-flat-flatmap-groupby-y-otros",
+    "recorrer-arrays-u-objetos-for-foreach-forof-forin"
+  ]
+}

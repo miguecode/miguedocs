@@ -1,0 +1,20 @@
+{
+  "title": "Más avanzado o Extra",
+  "pages": [
+    "objeto-map-y-su-comparacion-con-object",
+    "funciones-generadoras",
+    "usar-un-objeto-como-reemplazo-de-switch",
+    "errores-manejo-y-creacion-de-errores-personalizados",
+    "parametros-nombrados",
+    "recursividad-y-la-sucesion-de-fibonacci",
+    "modo-estricto-use-strict",
+    "memoization-optimizacion-en-valores-repetidos",
+    "objeto-intl",
+    "objeto-set-coleccion-similar-a-array",
+    "symbol-y-bigint-tipos-de-datos-primitivos",
+    "polyfill",
+    "closure-practica-no-recomendada",
+    "history-api-navegar-hacia-atras-adelante-etc",
+    "decoradores-no-nativos-de-js-si-nativos-en-ts"
+  ]
+}

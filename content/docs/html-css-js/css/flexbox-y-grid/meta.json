@@ -1,0 +1,10 @@
+{
+  "title": "Flexbox y Grid",
+  "pages": [
+    "flexbox-parte-1-intro",
+    "flexbox-parte-2-posicionamiento",
+    "grid-parte-1",
+    "grid-parte-2",
+    "grid-parte-3"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Todo sobre Firebase",
+  "pages": [
+    "configurar-firebase-cli-e-inicializar-proyecto",
+    "build-deploy-y-hosting-con-ejemplo-de-firebase",
+    "configurar-los-demas-servicios"
+  ]
+}

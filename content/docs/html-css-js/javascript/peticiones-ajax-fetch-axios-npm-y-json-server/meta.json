@@ -1,0 +1,10 @@
+{
+  "title": "Peticiones (AJAX, FETCH, AXIOS). NPM y JSON Server",
+  "pages": [
+    "npm-json-server-versiones",
+    "crear-una-api-rest-usando-json-server",
+    "peticiones-en-general-get-en-ajax",
+    "peticiones-get-en-fetch-y-axios",
+    "ajax-fetch-y-axios-verbos-post-update-y-delete"
+  ]
+}

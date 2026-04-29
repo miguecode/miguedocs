@@ -1,0 +1,9 @@
+{
+  "title": "Observable, Subject, BehaviorSubject, operadores RxJS",
+  "pages": [
+    "observables",
+    "operadores-rxjs-en-los-observables-pipe-y-demas",
+    "subject-y-behaviorsubject-comparacion-con-observable",
+    "conex-a-backend-con-servicios-pipe-async-y-adaptadores"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Arquitectura Cliente Servidor",
+  "pages": [
+    "arquitectura-cliente-servidor-1",
+    "arquitectura-cliente-servidor-2",
+    "protocolo-http-y-peticiones-respuestas",
+    "verbos-http-y-uso-de-postman"
+  ]
+}

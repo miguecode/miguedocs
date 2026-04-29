@@ -1,0 +1,23 @@
+{
+  "title": "HTML",
+  "pages": [
+    "que-es-html",
+    "sintaxis-atributos-la-semantica-en-html-y-el-seo",
+    "estructura-basica-y-favicon-doctype-html-head-y-body",
+    "metatags-etiquetas-meta",
+    "parrafos-encabezados-listas-enlaces-e-imagenes",
+    "formularios-parte-1-inputs-y-controles-de-form",
+    "formularios-parte-2-submit-y-el-envio-de-datos",
+    "tablas-details-y-summary-y-dialog",
+    "archivos-multimedia-video-audio-y-iframe",
+    "performance-lazy-loading-y-algo-mas",
+    "etiquetas-obsoletas-y-etiquetas-no-recomendadas",
+    "etiquetas-semanticas-main-section-footer-etc",
+    "accesibilidad-web-aria-label-alt-y-mas",
+    "flujo-de-creacion-de-una-pagina-html-y-dom",
+    "diferencia-entre-picture-source-y-srcset-sizes",
+    "html-web-components",
+    "microdatos-y-la-diferencia-con-los-metadatos",
+    "optimizar-imagenes-y-tipos-de-imagenes"
+  ]
+}

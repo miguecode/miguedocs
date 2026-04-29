@@ -1,0 +1,21 @@
+{
+  "title": "Essentials",
+  "pages": [
+    "dom-y-virtual-dom-deteccion-de-cambios-en-react",
+    "1-1-que-es-react-por-que-se-elige-y-con-que-se-combina",
+    "1-2-react-primitivo-es-decir-react-sin-jsx",
+    "1-3-codigo-jsx-javascript-xml-o-tsx",
+    "2-1-configuracion-de-react-con-vite-y-que-es-vite",
+    "2-2-nuevo-proyecto-de-0-y-como-nace-un-componente",
+    "componentes-en-react",
+    "4-1-props-en-componentes",
+    "4-2-mas-props-funciones-elementos-y-componentes",
+    "renderizado-de-listas-dinamicas",
+    "eventos",
+    "intro-a-estados-y-hooks-en-react-hook-usestate",
+    "hook-useeffect",
+    "hook-useref",
+    "ejemplo-base-de-hacer-y-mostrar-peticion-con-fetch-loading-y-error",
+    "strictmode"
+  ]
+}
