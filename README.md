@@ -1,20 +1,20 @@
-# miguedocs
+# 📚 miguedocs
 
-**miguedocs** es mi repositorio personal de apuntes sobre desarrollo web y tecnología. Empecé a escribirlos durante la **Tecnicatura Universitaria en Programación (UTN)** y los fui ampliando con cursos, proyectos y experiencia propia.
+Este proyecto es mi repositorio personal de apuntes sobre desarrollo web y tecnología en general. Sus apuntes empecé a escribirlos mientras cursaba la **Tecnicatura Universitaria en Programación (UTN)** y los fui ampliando con cursos, proyectos y experiencia propia. Estilo "docs" hecho con Fumadocs y Next.js.
 
-Todos los apuntes están escritos 100% por mí. Originalmente eran archivos `.txt`, y los migré a Markdown para organizarlos en este sitio.
+👉 Link: [miguedocs](https://miguedocs.vercel.app)
 
-🌐 **[miguedocs.vercel.app](https://miguedocs.vercel.app)**
-
-### Tecnologías
-
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white)
-![Fumadocs](https://img.shields.io/badge/Fumadocs-7C3AED?style=flat&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38BDF8?style=flat&logo=tailwindcss&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)
+| Categoría | Tecnología   |
+|-----------|--------------|
+| Base      | Fumadocs     |
+| Frontend  | Next.js      |
+| Lenguaje  | TypeScript   |
+| Estilos   | Tailwind CSS |
+| Deploy    | Vercel       |
 
 ---
+
+## 🤓 Descripción Técnica generada
 
 This is a Next.js application generated with
 [Create Fumadocs](https://github.com/fuma-nama/fumadocs).
@@ -49,13 +49,3 @@ In the project, you can see:
 A `source.config.ts` config file has been included, you can customise different options like frontmatter schema.
 
 Read the [Introduction](https://fumadocs.dev/docs/mdx) for further details.
-
-## Learn More
-
-To learn more about Next.js and Fumadocs, take a look at the following
-resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Fumadocs](https://fumadocs.dev) - learn about Fumadocs
