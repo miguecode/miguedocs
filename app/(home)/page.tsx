@@ -37,6 +37,10 @@ const categories = [
   { name: 'Frameworks', href: '/docs/frameworks', desc: 'Apuntes de Angular, Astro, Tailwind CSS, y reactividad.' },
   { name: 'Backend', href: '/docs/backend', desc: 'Desarrollo del lado del servidor: PHP, Bases de Datos, y Node.js.' },
   { name: 'Diseño', href: '/docs/design', desc: 'Apuntes sobre diseño web, accesibilidad, y maquetado.' },
+
+
+
+  
   { name: 'General', href: '/docs/general', desc: 'Conceptos generales como código limpio y estructuras de datos.' },
   { name: 'Otros y Nuevos Apuntes', href: '/docs/other-new', desc: 'Apuntes recientes sueltos sin clasificar.' },
 ];
