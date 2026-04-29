@@ -1,4 +1,20 @@
-# .
+# miguedocs
+
+**miguedocs** es mi repositorio personal de apuntes sobre desarrollo web y tecnología. Empecé a escribirlos durante la **Tecnicatura Universitaria en Programación (UTN)** y los fui ampliando con cursos, proyectos y experiencia propia.
+
+Todos los apuntes están escritos 100% por mí. Originalmente eran archivos `.txt`, y los migré a Markdown para organizarlos en este sitio.
+
+🌐 **[miguedocs.vercel.app](https://miguedocs.vercel.app)**
+
+### Tecnologías
+
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white)
+![Fumadocs](https://img.shields.io/badge/Fumadocs-7C3AED?style=flat&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38BDF8?style=flat&logo=tailwindcss&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)
+
+---
 
 This is a Next.js application generated with
 [Create Fumadocs](https://github.com/fuma-nama/fumadocs).
