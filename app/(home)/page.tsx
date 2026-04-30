@@ -1,10 +1,35 @@
 import Link from 'next/link';
 
+function LogoIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      strokeWidth="2.7"
+      stroke="currentColor"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+      <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+      <path d="M3 6l0 13" />
+      <path d="M12 6l0 13" />
+      <path d="M21 6l0 13" />
+    </svg>
+  );
+}
+
 export default function HomePage() {
   return (
     <div className="flex flex-col items-center flex-1 w-full max-w-5xl mx-auto px-6 py-20 mt-10">
       <div className="text-center mb-16">
-        <h1 className="text-5xl font-extrabold tracking-tight mb-4 text-fd-foreground">
+        <h1 className="text-5xl font-extrabold tracking-tight mb-4 text-fd-foreground inline-flex items-center gap-3">
+          <LogoIcon className="size-10" />
           miguedocs
         </h1>
         <p className="text-xl text-fd-muted-foreground mb-8 max-w-2xl mx-auto">
