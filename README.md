@@ -4,13 +4,18 @@ Este proyecto es mi repositorio personal de apuntes sobre desarrollo web y tecno
 
 👉 Link: [miguedocs](https://miguedocs.vercel.app)
 
-| Categoría | Tecnología   |
-|-----------|--------------|
-| Base      | Fumadocs     |
-| Frontend  | Next.js      |
-| Lenguaje  | TypeScript   |
-| Estilos   | Tailwind CSS |
-| Deploy    | Vercel       |
+<img width="1529" height="892" alt="image" src="https://github.com/user-attachments/assets/3b3cfba6-ad2b-4d45-b93e-ca86c725c076" />
+
+
+### 🛠 Stack
+
+| Categoría    | Tecnología   |
+|--------------|--------------|
+| 📚 Base      | Fumadocs     |
+| ✨ Frontend  | Next.js      |
+| ✍ Lenguaje  | TypeScript   |
+| 🎨 Estilos   | Tailwind CSS |
+| 🚀 Deploy    | Vercel       |
 
 ---
 
