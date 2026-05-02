@@ -1,6 +1,6 @@
 ---
 title: "Qué es Node.js"
-description: "🟢 ¿Qué es Node.js?"
+description: "Node.js es un entorno de ejecución de JavaScript del lado del servidor."
 ---
 
 

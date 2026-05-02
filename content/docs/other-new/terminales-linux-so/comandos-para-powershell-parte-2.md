@@ -1,10 +1,10 @@
 ---
 title: "Comandos para PowerShell parte 2"
-description: "📜 Comandos de la Terminal PowerShell, parte 2 📜"
+description: "Windows PowerShell es una interfaz de línea de comandos (CLI) y un lenguaje de scripts diseñado principalmente para la administración de sistemas y la automatización de tareas."
 ---
 
 
-## 📜 Comandos de la Terminal PowerShell, parte 2 📜
+## 📜 Comandos de la Terminal PowerShell, parte 2
 
 ### 📂 Creando directorios 📂
 

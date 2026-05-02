@@ -1,6 +1,6 @@
 ---
 title: "Clean Code"
-description: "El Clean Code no es solo una metodología; es una filosofía de trabajo. Adoptar estos principios ayuda a escribir código que no solo funcione, sino que sea fácil..."
+description: "Clean Code es una filosofía de programación que se enfoca en escribir código limpio, organizado y optimizado."
 ---
 
 

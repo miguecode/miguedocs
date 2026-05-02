@@ -1,5 +1,5 @@
 ---
-title: "2-1. Configuración de React con Vite, y qué es Vite"
+title: "Configuración de React con Vite, y qué es Vite"
 description: "Configuración de un proyecto de React con Vite"
 ---
 

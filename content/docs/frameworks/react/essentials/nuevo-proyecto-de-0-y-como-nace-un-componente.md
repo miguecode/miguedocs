@@ -1,5 +1,5 @@
 ---
-title: "2-2. Nuevo proyecto de 0 y cómo nace un Componente"
+title: "Nuevo proyecto de 0 y cómo nace un Componente"
 description: "¿Cómo se genera un proyecto con React desde 0?"
 ---
 

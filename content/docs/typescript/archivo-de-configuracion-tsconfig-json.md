@@ -1,6 +1,6 @@
 ---
 title: "Archivo de configuración tsconfig.json"
-description: "Archivo 'tsconfig.json'"
+description: "Explicación sobre el archivo de configuración ts.config.json."
 ---
 
 

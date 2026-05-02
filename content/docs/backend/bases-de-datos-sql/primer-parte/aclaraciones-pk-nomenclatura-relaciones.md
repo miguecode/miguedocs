@@ -1,7 +1,8 @@
 ---
 title: "Aclaraciones, PK, nomenclatura, relaciones"
-description: "Veamos un ejemplo de una BD. Tiene 3 tablas: proveedores, productos y prov-prod. Las 2 primeras tablas son ENTIDADES."
+description: "Aclaraciones sobre Primary Key, nomenclatura y relaciones en bases de datos relacionales"
 ---
+
 
 ## Introducción
 

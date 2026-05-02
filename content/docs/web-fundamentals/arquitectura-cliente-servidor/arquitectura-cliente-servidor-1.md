@@ -1,6 +1,6 @@
 ---
 title: "Arquitectura Cliente-Servidor - Parte 1"
-description: "La primera parte de los apuntes de Arquitectura Cliente-Servidor"
+description: "La primera parte de los apuntes de Arquitectura Cliente-Servidor."
 ---
 
 

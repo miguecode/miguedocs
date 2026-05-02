@@ -1,6 +1,6 @@
 ---
 title: "JSON Web Tokens 2"
-description: "Ejemplo de Código -"
+description: "Implementación de JWT en Slim"
 ---
 
 

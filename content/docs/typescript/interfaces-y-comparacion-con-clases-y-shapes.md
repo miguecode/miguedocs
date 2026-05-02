@@ -1,6 +1,6 @@
 ---
 title: "Interfaces y comparación con Clases. Y Shapes"
-description: "Una interface en TypeScript sirve para definir la forma (estructura) que debe tener un objeto. Es como un contrato: si un objeto 'implementa' una interface, est..."
+description: "Una interface en TypeScript sirve para definir la forma (estructura) que debe tener un objeto. Es como un contrato: si un objeto 'implementa' una interface, está obligado a tener exactamente las propiedades y tipos definidos en ella. Pero es sólo eso. Es decir, no tienen lógica interna, es sólo marcar una estructura a respetar."
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 title: "Introducción y sintaxis"
-description: "💻 PHP (Hypertext Pre Processor)"
+description: "PHP es un lenguaje de código abierto muy popular en el ámbito del desarrollo web el cual se puede incrustar fácilmente en código HTML."
 ---
+
 
 ## 💻 PHP (Hypertext Pre Processor)
 

@@ -1,7 +1,9 @@
 ---
 title: "Variables de Sesión y Cookies"
-description: "Variables de Sesión"
+description: "Las variables de sesión y las cookies son mecanismos que permiten mantener el estado entre diferentes peticiones HTTP."
 ---
+
+
 ## 🔐 Variables de Sesión y Cookies
 
 PHP permite mantener el estado entre diferentes peticiones mediante dos mecanismos principales: las **Sesiones** (lado del servidor) y las **Cookies** (lado del cliente).

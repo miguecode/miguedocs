@@ -1,5 +1,5 @@
 ---
-title: "1-1. Qué es React, por qué se elige y con qué se combina"
+title: "Qué es React, por qué se elige y con qué se combina"
 description: "React es una biblioteca código abierto de JavaScript creada para crear interfaces de usuario, independientemente en dónde se use. Es agnóstico de la plataforma...."
 ---
 

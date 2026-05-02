@@ -1,6 +1,6 @@
 ---
 title: "Normalización y sus 3 formas"
-description: "En toda esta segunda parte vamos a ver el DISEÑO de una Base de Datos."
+description: "La normalización es el proceso de organizar los datos en una base de datos para reducir la redundancia y mejorar la integridad de los datos. Las 3 formas normales son: 1FN, 2FN y 3FN."
 ---
 
 ## Normalización y sus 3 formas

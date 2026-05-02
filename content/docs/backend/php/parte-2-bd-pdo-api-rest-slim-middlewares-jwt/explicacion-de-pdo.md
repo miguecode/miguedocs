@@ -1,7 +1,8 @@
 ---
 title: "Explicación de PDO"
-description: "PDO (PHP Data Object)"
+description: "PDO es una capa de abstracción para acceder a bases de datos en PHP."
 ---
+
 
 ## 🔌 PDO (PHP Data Object)
 

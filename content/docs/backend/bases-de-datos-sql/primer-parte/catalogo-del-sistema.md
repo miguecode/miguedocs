@@ -1,7 +1,8 @@
 ---
 title: "Catálogo del Sistema"
-description: "Es un conjunto de objetos de tipo Vista. Actúa como un diccionario de la BD. En él podemos consultar qué objetos tengo en mi BD."
+description: "El catálogo del sistema es un conjunto de objetos de tipo Vista que actúa como un diccionario de la BD, permitiendo consultar qué objetos existen en ella."
 ---
+
 
 ## Catálogo del Sistema
 

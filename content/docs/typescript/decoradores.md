@@ -1,6 +1,6 @@
 ---
 title: "Decoradores"
-description: "Los decoradores son funciones que nos permiten extender la funcionalidad de una clase, incluyendo a cualquiera de sus elementos. Entonces, los decoradores afect..."
+description: "Los decoradores son funciones que nos permiten extender la funcionalidad de una clase, incluyendo a cualquiera de sus elementos. Entonces, los decoradores afectan a las clases y también a sus métodos y propiedades."
 ---
 
 ## Decoradores

@@ -1,5 +1,6 @@
 ---
-title: "9-2. DER"
+title: "DER"
+description: "El Diagrama de Entidad/Relación (DER) es una herramienta gráfica que permite representar las entidades, atributos y relaciones de una base de datos."
 ---
 
 

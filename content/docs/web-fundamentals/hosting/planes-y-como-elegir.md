@@ -1,6 +1,6 @@
 ---
 title: "Planes y cómo elegir"
-description: "Distintos planes de Hosting"
+description: "Dentro de los distintos tipos de Hosting, tenemos distintas categorías, es decir, distintos planes. Y se diferencian en los niveles de capacidad o potencia."
 ---
 
 

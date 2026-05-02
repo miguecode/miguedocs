@@ -1,6 +1,6 @@
 ---
 title: "Parámetros nombrados usando Type o Interface"
-description: "Parámetros nombrados (En TypeScript)"
+description: "Es una técnica que consiste en pasar un único objeto como argumento a una función, y después desestructurarlo internamente. Esto mejora la legibilidad, escalabilidad y seguridad del código, especialmente en funciones con muchos parámetros."
 ---
 
 

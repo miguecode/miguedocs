@@ -1,6 +1,6 @@
 ---
 title: "Lenguajes Interpretados, No Interpretados y Compilados"
-description: "Lenguaje Interpretado"
+description: "Un lenguaje interpretado es aquel en el que el código fuente es ejecutado línea por línea directamente por un intérprete en tiempo de ejecución..."
 ---
 
 

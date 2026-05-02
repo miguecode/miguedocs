@@ -1,7 +1,8 @@
 ---
 title: "Vistas y características de una BD"
-description: "Objeto Vista y Cortes de Vista"
+description: "Las vistas son objetos que permiten mostrar porciones de tablas, y las características de una BD son propiedades que la definen."
 ---
+
 
 ## Objeto Vista y Cortes de Vista
 

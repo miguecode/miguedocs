@@ -1,6 +1,6 @@
 ---
 title: "DML (UPDATE, DELETE, INSERT) y ROLLBACK"
-description: "SET CAMPO = valor"
+description: "Sentencias DML para manipular datos: UPDATE, DELETE e INSERT, junto con el manejo de transacciones con ROLLBACK."
 ---
 
 

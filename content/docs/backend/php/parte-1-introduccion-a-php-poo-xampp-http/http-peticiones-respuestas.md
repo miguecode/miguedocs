@@ -1,6 +1,6 @@
 ---
 title: "HTTP, peticiones, respuestas"
-description: "Un protocolo es un conjunto de reglas que indican cómo se realiza una comunicación. Es como el idioma en el que se van a comunicar el Cliente y el Servidor. En ..."
+description: "HTTP es un protocolo el cual está diseñado para permitir comunicaciones entre Clientes y Servidores. Es decir, funciona como un protocolo de pedido-respuesta entre Cliente y Servidor y es el más utilizado de todos."
 ---
 
 

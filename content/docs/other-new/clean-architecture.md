@@ -1,6 +1,6 @@
 ---
 title: "Clean Architecture"
-description: "Creada por el famoso Uncle Bob, la Clean Architecture es una arquitectura basada en capas, las cuales se encargan de organizar y separar las distintas responsab..."
+description: "La Clean Architecture es una arquitectura basada en capas, las cuales se encargan de organizar y separar las distintas responsabilidades de nuestra aplicación."
 ---
 
 

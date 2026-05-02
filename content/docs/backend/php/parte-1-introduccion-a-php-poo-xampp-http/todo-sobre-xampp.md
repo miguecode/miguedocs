@@ -1,6 +1,6 @@
 ---
 title: "Todo sobre XAMPP"
-description: "La 'X' significa que es multiplataforma (es decir, para cualquier SO)."
+description: "XAMPP es un paquete de software que facilita la instalación de un entorno de desarrollo local."
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 title: "Verbos HTTP y uso de Postman"
-description: "Métodos o Verbos HTTP"
+description: "Los verbos HTTP definen la acción que se desea realizar sobre un recurso. Los más comunes son: GET, POST, PUT, PATCH y DELETE."
 ---
 
 

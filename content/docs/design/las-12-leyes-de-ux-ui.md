@@ -1,7 +1,8 @@
 ---
 title: "Las 12 Leyes de UX & UI"
-description: "La mayoría de estas leyes tienen una base en principios psicológicos, pero no sólo eso. Provinen de diferentes áreas de estudio como la psicología cognitiva, la..."
+description: "Las leyes de UX/UI son principios psicológicos y de diseño que ayudan a mejorar la experiencia del usuario."
 ---
+
 
 ## Introduccíón
 

@@ -1,6 +1,6 @@
 ---
 title: "Introducción a TypeScript"
-description: "TypeScript es un lenguaje de programación creado por Microsoft en 2012. Su principal objetivo es mejorar el desarrollo en JavaScript al añadir un tipado más est..."
+description: "TypeScript es un lenguaje de programación creado por Microsoft en 2012. Su principal objetivo es mejorar el desarrollo en JavaScript."
 ---
 
 

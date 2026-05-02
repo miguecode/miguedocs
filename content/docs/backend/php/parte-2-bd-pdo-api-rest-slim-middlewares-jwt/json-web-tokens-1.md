@@ -1,7 +1,8 @@
 ---
 title: "JSON Web Tokens 1"
-description: "Consiste en una firma digital la cual va a certificar que la persona que está tratando de acceder tiene acceso y que ya ingresó. Sirve para no estar pasando cad..."
+description: "JWT es un estándar abierto que define un formato compacto y seguro para transmitir información entre partes como un objeto JSON, firmado digitalmente."
 ---
+
 
 ## 🔑 JSON Web Tokens (JWT)
 

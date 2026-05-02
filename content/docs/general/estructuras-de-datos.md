@@ -1,7 +1,8 @@
 ---
 title: "Estructuras de Datos"
-description: "Las estructuras de datos son formas de organizar y almacenar información para poder acceder a ella de forma eficiente. Dependiendo del uso que le vayamos a dar ..."
+description: "Las estructuras de datos son formas de organizar y almacenar información para poder acceder a ella de forma eficiente."
 ---
+
 
 ## Estructuras de Datos
 

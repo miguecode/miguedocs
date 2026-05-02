@@ -1,6 +1,6 @@
 ---
 title: "Subir archivos al Servidor"
-description: "Persistir Información"
+description: "Para poder subir archivos al Servidor, es necesario crear un formulario en HTML que le permita a los usuarios seleccionar un archivo, utilizando el `input type="file"`."
 ---
 
 

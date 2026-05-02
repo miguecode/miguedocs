@@ -1,6 +1,6 @@
 ---
 title: "Qué es UX & UI"
-description: "UX: User Experience. O también, 'Diseño de Experiencia de Usuario' (UX Design)."
+description: "UX (User Experience) se enfoca en cómo se siente el usuario al interactuar con un producto digital, mientras que UI (User Interface) se enfoca en cómo se ve ese producto."
 ---
 
 

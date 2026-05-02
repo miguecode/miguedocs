@@ -1,6 +1,6 @@
 ---
 title: "Verbos HTTP en PHP"
-description: "HTTP - Método GET"
+description: "HTTP es un protocolo el cual está diseñado para permitir comunicaciones entre Clientes y Servidores. Es decir, funciona como un protocolo de pedido-respuesta entre Cliente y Servidor y es el más utilizado de todos."
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 title: "Linux y su explicación"
-description: "📚 Este apunte explica qué son y cómo se relacionan los siguientes conceptos."
+description: "Linux es un núcleo (kernel), el corazón de un sistema operativo que gestiona el hardware y permite que el software funcione. Es la base sobre la que se construyen sistemas operativos completos como GNU/Linux, Android y ChromeOS."
 ---
 
 

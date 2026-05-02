@@ -1,6 +1,6 @@
 ---
 title: "Tipos de datos y cómo tipar. Union e Intersection"
-description: "Como sabemos, en JavaScript tenemos 10 tipos los cuales se dividen en primitivos y no primitivos. Los primitivos son: String, Number, Boolean, Null, Undefined, ..."
+description: "En JavaScript tenemos 10 tipos los cuales se dividen en primitivos y no primitivos."
 ---
 
 

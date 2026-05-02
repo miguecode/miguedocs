@@ -1,7 +1,8 @@
 ---
 title: "Las 5 Reglas de Integridad (Constraints)"
-description: "Reglas de Integridad (Constraints)"
+description: "Las reglas de integridad son validaciones que se aplican a las tablas para asegurar la calidad y consistencia de los datos. Las 5 reglas son: Primary Key, Foreign Key, Not Null, Unique y Check."
 ---
+
 
 ## Las 5 reglas Reglas de Integridad (Constraints)
 

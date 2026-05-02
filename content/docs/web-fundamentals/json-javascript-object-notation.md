@@ -1,6 +1,6 @@
 ---
 title: "JSON (JavaScript Object Notation)"
-description: "JSON - JavaScript Object Notation (notación de objetos de JavaScript)"
+description: "JSON es un lenguaje intermediario que podemos usar mayormente en el desarrollo web para intercomunicar API's entre sí, o distintas partes de nuestra aplicación (Frontend - Backend) (Cliente - Servidor)."
 ---
 
 

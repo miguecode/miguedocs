@@ -1,6 +1,6 @@
 ---
 title: "Arquitectura Cliente-Servidor - Parte 2"
-description: "Por todo Internet, hay estratégicamente colocados distintos servidores DNS (Domain Name Server)."
+description: "La segunda parte de los apuntes de Arquitectura Cliente-Servidor."
 ---
 
 ## DNS

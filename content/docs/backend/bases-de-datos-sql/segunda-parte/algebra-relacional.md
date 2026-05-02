@@ -1,6 +1,6 @@
 ---
 title: "Álgebra Relacional"
-description: "Álgebra Relacional"
+description: "La Álgebra Relacional es un conjunto de operaciones de alto nivel que sirven para manipular relaciones."
 ---
 
 

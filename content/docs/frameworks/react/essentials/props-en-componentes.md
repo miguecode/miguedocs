@@ -1,5 +1,5 @@
 ---
-title: "4-1. Props en Componentes "
+title: "Props en Componentes "
 description: "Props en Componentes"
 ---
 

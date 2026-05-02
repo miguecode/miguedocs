@@ -1,5 +1,5 @@
 ---
-title: "4-2. Más props (Funciones, Elementos y Componentes)"
+title: "Más props (Funciones, Elementos y Componentes)"
 description: "Pasar funciones como props"
 ---
 

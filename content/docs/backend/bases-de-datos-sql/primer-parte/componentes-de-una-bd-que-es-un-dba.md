@@ -1,11 +1,12 @@
 ---
 title: "Componentes de una BD, qué es un DBA"
-description: "Aclaración: Todos los objetos de una BD pertenecen a un usuario. No estan tirados por ahí. A los usuarios también se los llama 'propietarios' u 'owners'."
+description: "Los componentes de una base de datos son 4: Información, Equipos, Programas y Usuarios. El DBA es el administrador de la base de datos."
 ---
+
 
 ## Introducción
 
-Aclaración: Todos los objetos de una BD pertenecen a un usuario. No estan tirados por ahí. A los usuarios también se los llama 'propietarios' u 'owners'. 
+Todos los objetos de una BD pertenecen a un usuario. No estan tirados por ahí. A los usuarios también se los llama 'propietarios' u 'owners'. 
 
 Catálogo. El catálogo son las vistas que genera la BD. Como dijimos, todas las BD tienen que tener mínimo un usuario, todos los objetos pertenecen a algún usuario. Cuando creamos una BD, el motor va a crear un usuario admin por defecto. Este usuario admin por defecto que crea la BD va a ser el propietario de las vistas del catálogo.
 

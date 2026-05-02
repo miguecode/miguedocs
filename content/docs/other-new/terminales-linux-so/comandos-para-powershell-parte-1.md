@@ -1,10 +1,10 @@
 ---
 title: "Comandos para PowerShell parte 1"
-description: "Windows PowerShell es una interfaz de línea de comandos (CLI) y un lenguaje de scripts diseñado principalmente para la administración de sistemas y la automatiz..."
+description: "Windows PowerShell es una interfaz de línea de comandos (CLI) y un lenguaje de scripts diseñado principalmente para la administración de sistemas y la automatización de tareas."
 ---
 
 
-## Comandos para PowerShell (parte 1)
+## 📜 Comandos para PowerShell (parte 1)
 
 ### ⚡ PowerShell ⚡
 

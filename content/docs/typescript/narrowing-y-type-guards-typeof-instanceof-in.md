@@ -1,6 +1,6 @@
 ---
 title: "Narrowing y Type Guards (typeof, instanceof, in)"
-description: "[Los Type Guards son características de JavaScript. No es algo propio de TypeScript. Eso sí, TS se encarga de potenciarlos gracias al uso de tipado, lo que los ..."
+description: "Los Type Guards son características de JavaScript. No es algo propio de TypeScript. Eso sí, TS se encarga de potenciarlos gracias al uso de tipado, lo que los hace mas útiles."
 ---
 
 

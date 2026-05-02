@@ -1,6 +1,6 @@
 ---
 title: "Material Design, Material Web y otras librerías"
-description: "Material Design es un sistema de diseño creado por Google en 2014 que proporciona un conjunto de principios, pautas y especificaciones para crear interfaces de ..."
+description: "Material Design es un sistema de diseño creado por Google en 2014 que proporciona un conjunto de principios, pautas y especificaciones para crear interfaces de usuario (UI) consistentes, accesibles y modernas."
 ---
 
 

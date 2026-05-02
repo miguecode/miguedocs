@@ -1,6 +1,6 @@
 ---
 title: "Ejemplo usando PDO"
-description: "Vamos a ver un ejemplo de uso de PDO en PHP con un ABM con de una entidad, en este caso, de CD's."
+description: "Cómo implementar un ABM (Altas, Bajas y Modificaciones) de una entidad utilizando PDO."
 ---
 
 

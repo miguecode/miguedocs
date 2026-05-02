@@ -1,6 +1,6 @@
 ---
 title: "Base de datos MySQL"
-description: "Base de datos MySQL"
+description: "MySQL es el motor de base de datos que utilizaremos para la persistencia de nuestras APIs. Es prácticamente idéntico a MariaDB."
 ---
 
 

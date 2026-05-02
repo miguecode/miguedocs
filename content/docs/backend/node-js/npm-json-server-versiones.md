@@ -1,6 +1,6 @@
 ---
 title: "NPM, Json Server, versiones"
-description: "Es un paquete de JS que nos permite, sin utilizar DB, levantar un servidor que guarda un archivo JSON como fuente de datos, es decir, la data. Y a esta data, le..."
+description: "Es un paquete de JS que nos permite, sin utilizar DB, levantar un servidor que guarda un archivo JSON como fuente de datos, es decir, la data."
 ---
 
 ## JSON Server

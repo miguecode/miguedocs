@@ -1,6 +1,6 @@
 ---
 title: "Tipos Genéricos"
-description: "Tipo Genérico (Generics)"
+description: "El tipo genérico <T> en TypeScript es una poderosa característica que permite escribir funciones, clases e interfaces de una manera que funciona con múltiples tipos de datos, manteniendo el código seguro y reutilizable."
 ---
 
 

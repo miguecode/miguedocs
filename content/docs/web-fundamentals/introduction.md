@@ -1,7 +1,8 @@
 ---
 title: "Desarrollo Web, Front y Back"
-description: "Desarrollo Web y cómo sub-divide"
+description: "El desarrollo web es un concepto general y amplio que incluye tanto el desarrollo frontend como el backend. Más adelante vamos a desglosarlos."
 ---
+
 
 ## Desarrollo Web y cómo sub-divide
 

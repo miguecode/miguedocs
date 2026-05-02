@@ -1,5 +1,5 @@
 ---
-title: "1-2. React Primitivo (Es decir, React sin JSX)"
+title: "React Primitivo (Es decir, React sin JSX)"
 description: "Al usar JSX, nosotros nos ahorramos de usar React de forma primitiva, es decir, un React 'cavernícola'. Esto que vamos a ver en este apunte no se hace ni tiene ..."
 ---
 

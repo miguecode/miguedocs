@@ -1,6 +1,6 @@
 ---
 title: "Naming Conventions"
-description: "Naming Conventions (Casos de escritura)"
+description: "En programación, usamos distintos 'naming cases' o estilos para nombrar variables, funciones, clases, archivos, constantes, etc. Cada uno tiene un propósito y se usa en contextos específicos."
 ---
 
 

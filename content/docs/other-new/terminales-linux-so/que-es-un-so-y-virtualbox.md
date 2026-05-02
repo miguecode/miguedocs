@@ -1,6 +1,6 @@
 ---
 title: "Qué es un SO y VirtualBox"
-description: "📜 ¿Qué es un SO (Sistema Operativo)? 📜"
+description: "Un sistema operativo (SO) es un software que actúa como intermediario entre los usuarios y el hardware de una computadora."
 ---
 
 

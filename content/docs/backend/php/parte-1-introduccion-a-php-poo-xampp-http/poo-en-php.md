@@ -1,6 +1,6 @@
 ---
 title: "POO en PHP"
-description: "Programación Orientada a Objetos en PHP"
+description: "La Programación Orientada a Objetos (POO) es un paradigma de programación que utiliza objetos para diseñar aplicaciones. En PHP, la POO se implementa a través de clases, atributos, métodos, herencia, polimorfismo e interfaces."
 ---
 
 

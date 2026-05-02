@@ -1,6 +1,6 @@
 ---
 title: "Terminales y sus conceptos"
-description: "📚 Este apunte explica qué son y cómo se relacionan los siguientes conceptos."
+description: "Un sistema operativo (SO) es un software que actúa como intermediario entre los usuarios y el hardware de una computadora."
 ---
 
 

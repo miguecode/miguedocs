@@ -1,6 +1,6 @@
 ---
 title: "Qué es npm"
-description: "NPM (Node Package Manager) es el gestor de paquetes de Node.js, utilizado para instalar, gestionar y compartir módulos o bibliotecas de JavaScript. NPM facilita..."
+description: "NPM es el gestor de paquetes de Node.js."
 ---
 
 

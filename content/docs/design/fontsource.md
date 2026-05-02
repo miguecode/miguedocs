@@ -1,7 +1,8 @@
 ---
 title: "Fontsource"
-description: "Fuentes en Fontsource"
+description: "Fontsource es una biblioteca de fuentes de código abierto que proporciona acceso a una amplia colección de fuentes de Google Fonts y otras fuentes de código abierto, optimizadas para su uso en la web."
 ---
+
 
 ## Fuentes en Fontsource
 

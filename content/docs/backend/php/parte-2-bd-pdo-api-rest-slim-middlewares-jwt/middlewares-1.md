@@ -1,6 +1,6 @@
 ---
 title: "Middlewares 1"
-description: "Abstrayendonos de las APIS, un Middleware es un asistente para una aplicación que permite interactuar o comunicarse entre dos aplicaciones/programas de software..."
+description: "Un Middleware es un mediador o asistente que permite la comunicación e interacción entre dos sistemas (aplicaciones, hardware, SO, etc.)."
 ---
 
 

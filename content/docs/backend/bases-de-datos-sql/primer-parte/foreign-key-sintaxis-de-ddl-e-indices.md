@@ -1,6 +1,6 @@
 ---
 title: "Foreign Key, Sintaxis de DDL e Índices"
-description: "Una foreign key, o clave ajena, o clave foránea, es para relacionar tablas. La FK actua sobre una columna de la tabla. La FK va en la tabla hijo. La tabla que v..."
+description: "La foreign key es para relacionar tablas. La FK actúa sobre una columna de la tabla y va en la tabla hija, es decir, la que utiliza información de la tabla padre."
 ---
 
 

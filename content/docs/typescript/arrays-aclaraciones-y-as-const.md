@@ -1,6 +1,6 @@
 ---
 title: "Arrays. Aclaraciones y 'as const'"
-description: "Arrays en TypeScript"
+description: "Explicación sobre los arrays y el 'as const' en TypeScript."
 ---
 
 

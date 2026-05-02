@@ -1,6 +1,6 @@
 ---
 title: "Definición de BD, Motor, tipos de operaciones"
-description: "Definición de Base de Datos"
+description: "Una base de datos es un sistema que almacena información de forma centralizada y la pone a disposición cuando se la solicita. Para crearla, se necesita un Motor de Base de Datos."
 ---
 
 

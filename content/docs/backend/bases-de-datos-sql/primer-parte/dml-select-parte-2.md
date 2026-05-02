@@ -1,7 +1,8 @@
 ---
 title: "DML (SELECT parte 2)"
-description: "Siguiendo con SELECT..."
+description: "Continuamos con SELECT, viendo operaciones más avanzadas como UNION, INNER JOIN y OUTER JOIN."
 ---
+
 
 ## DML - DATA MANIPULATION LANGUAGE - LENGUAJE DE MANIPULACIÓN DE DATOS (parte 2)
 

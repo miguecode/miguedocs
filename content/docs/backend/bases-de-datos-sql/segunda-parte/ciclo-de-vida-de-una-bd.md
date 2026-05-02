@@ -1,10 +1,10 @@
 ---
-title: "9-1. Ciclo de Vida de una BD"
-description: "CICLO DE VIDA DE UNA BASE DE DATOS"
+title: "Ciclo de Vida de una BD"
+description: "El ciclo de vida de una base de datos es el conjunto de etapas por las que pasa una base de datos desde su creación hasta su mantenimiento."
 ---
 
 
-## CICLO DE VIDA DE UNA BASE DE DATOS
+## Ciclo de Vida de una Base de Datos
 
 1) Definición del Sistema. Se define el alcance del sistema de la BD, los usuarios que la utilizarán y sus aplicaciones generales y específicas. Es la etapa de relevamiento.
 
@@ -14,7 +14,7 @@ description: "CICLO DE VIDA DE UNA BASE DE DATOS"
 
 Cuando yo empiezo con el diseño físico, es decir, al momento real de empezar a hacer los CREATE (DDL), yo no puedo ponerme a analizar o a pensar si lo que estoy haciendo está normalizado o no. O sea, no puedo ponerme a pensar si las tablas que estoy creando están normalizadas o no, eso yo ya lo tengo que saber desde antes cuando hice el diseño lógico (Los grupos de tablas normalizadas y el DER). El DER es lo que vamos a ver hoy mismo.
 
-Por lo tanto, queda claro que el orden es    **Diseño lógico   ->   Diseño físico**
+Por lo tanto, queda claro que el orden es **Diseño lógico   ->   Diseño físico**
 
 3) Implementación. Se escriben las definiciones correspondientes al esquema conceptual externo e interno de la BD. Se crean archivos y se implementan las apps del software.
 

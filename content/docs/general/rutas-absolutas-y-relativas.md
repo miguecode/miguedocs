@@ -1,6 +1,6 @@
 ---
 title: "Rutas Absolutas y Relativas"
-description: "Las rutas absolutas son siempre iguales, ya que no lo importa desde dónde las accedamos. Es decir, no importa en dónde estemos parados, la ruta absoluta siempre..."
+description: "Las rutas absolutas son siempre iguales, ya que no importa desde dónde las accedamos. En cambio, las rutas relativas dependen de la carpeta en la que estemos ubicados."
 ---
 
 

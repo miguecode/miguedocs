@@ -1,6 +1,6 @@
 ---
 title: "POO. Clases y modificadores de acceso"
-description: "Programación Orientada a Objetos en TypeScript"
+description: "Explicación sobre las clases y los modificadores de acceso en TypeScript."
 ---
 
 

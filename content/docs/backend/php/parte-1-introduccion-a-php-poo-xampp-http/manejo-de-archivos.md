@@ -1,6 +1,6 @@
 ---
 title: "Manejo de archivos"
-description: "Todo el manejo de archivos en PHP es muy parecido a C."
+description: "El manejo de archivos en PHP es muy parecido a C."
 ---
 
 

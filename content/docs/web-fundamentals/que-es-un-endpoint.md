@@ -1,7 +1,8 @@
 ---
 title: "Qué es un Endpoint"
-description: "Endpoint (punto final)"
+description: "Un endpoint es una URL a la que tiene acceso una API."
 ---
+
 
 ## Endpoint (punto final)
 

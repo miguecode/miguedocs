@@ -14,23 +14,14 @@ Claude Code es una herramienta de inteligencia artificial que se puede ejecutar 
 - JetBrains
 - Slack
 
-
-
 Al estar en la terminal, no tiene interfaz gráfica. Opera en nuestros repositorios sin ninguna interfaz gráfica. Está todo el tiempo en la terminal. Esa es la gracia de Claude Code y es el motivo de por qué es tan popular a día de hoy (marzo 2026)
-
-
 
 A diferencia de lo que muchos creen, no es obligatorio tener una subscripción "Pro" en Claude para poder usar Claude Code. Se puede usar sin suscripción -> hay que ir al sitio web de Claude Code, y copiar el comando que tenemos que ejecutar en nuestra terminal. Eso lo va a instalar y ya lo vamos a poder usar.
 
 
-
-OpenCode
+## OpenCode
 
 Es una alternativa Open Source de Claude Code. Se puede instalar en una línea en la terminal, y es gratis. Si nos autenticamos en distintas plataformas, vamos a tener acceso a sus modelos (a sus LLM). Por ejemplo, si iniciamos sesión con GitHub, vamos a tener los modelos que tiene GitHub Copilot. O si iniciamo sesión en Anthropic, lo mismo. Es todo en la terminal como Claude Code.
-
-
-
-
 
 Usar Claude Code de forma gratuita con Ollama
 

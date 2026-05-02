@@ -1,5 +1,5 @@
 ---
-title: "1-3. Código JSX (JavaScript XML) (o TSX)"
+title: "Código JSX (JavaScript XML) (o TSX)"
 description: "Su nombre viene de JavaScript XML (pero no XML real, sino una sintaxis similar). Si en vez de JSX nos referimos a TSX, es exactamente lo mismo pero en TypeScrip..."
 ---
 

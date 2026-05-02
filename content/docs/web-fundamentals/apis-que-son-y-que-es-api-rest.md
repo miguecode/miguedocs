@@ -1,6 +1,6 @@
 ---
 title: "APIs. Qué son y qué es API REST"
-description: "API (Application Programming Intercae)"
+description: "Una API (Application Programming Interface) es un conjunto de reglas, protocolos y herramientas que permiten que diferentes aplicaciones de software se comuniquen entre sí, intercambiando datos y funcionalidades de manera estandarizada."
 ---
 
 

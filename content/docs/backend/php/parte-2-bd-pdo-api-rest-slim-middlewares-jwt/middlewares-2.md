@@ -1,6 +1,6 @@
 ---
 title: "Middlewares 2"
-description: "Middleware en código"
+description: "En Slim 4, un middleware es una función (o clase) que recibe un objeto Request y un RequestHandler, y debe retornar una respuesta (Response)."
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 title: "Diferencia entre unknow y any"
-description: "En TypeScript, unknown y any son tipos especiales, pero cada uno se usa en situaciones distintas y con un propósito diferente.  Any se usa cuando realmente quer..."
+description: "En TypeScript, unknown y any son tipos especiales, pero cada uno se usa en situaciones distintas y con un propósito diferente."
 ---
 
 

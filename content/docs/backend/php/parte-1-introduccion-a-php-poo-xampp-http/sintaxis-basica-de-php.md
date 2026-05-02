@@ -1,6 +1,6 @@
 ---
 title: "Sintaxis básica de PHP"
-description: "Sintaxis básica del lenguaje PHP"
+description: "PHP es un lenguaje de código abierto muy popular en el ámbito del desarrollo web el cual se puede incrustar fácilmente en código HTML."
 ---
 
 

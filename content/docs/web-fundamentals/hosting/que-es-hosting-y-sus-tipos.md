@@ -1,6 +1,6 @@
 ---
 title: "Qué es Hosting y sus tipos"
-description: "¿Qué es el hosting?"
+description: "El término Hosting (o alojamiento web) es un servicio que nos da una especie de 'espacio' en donde nosotros podemos almacenar información (imágenes, videos, páginas web, etc.). Lo importante del hosting es que pueda ser accesible a través de la web."
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 title: "API REST, Framework Slim"
-description: "REST: Representational State Transfer"
+description: "REST es un estilo arquitectónico para diseñar servicios web que se basa en el protocolo HTTP."
 ---
 
 
