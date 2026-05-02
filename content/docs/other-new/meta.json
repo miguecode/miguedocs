@@ -1,3 +1,8 @@
 {
-  "title": "Otros - Nuevos"
+  "title": "Otros - Nuevos",
+  "pages": [
+    "terminales-linux-so",
+    "clean-architecture",
+    "plataformas-como-firebase-supabase-vercel-netlify-y-mas"
+  ]
 }
