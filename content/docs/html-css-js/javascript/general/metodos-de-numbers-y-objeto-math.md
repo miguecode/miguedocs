@@ -1,7 +1,8 @@
 ---
 title: "Métodos de Numbers y objeto Math"
-description: "Descubre los métodos de los números y las utilidades del objeto Math en JavaScript."
+description: "Cómo usar los métodos de los números y las utilidades del objeto Math en JavaScript."
 ---
+
 
 ## Métodos de los numbers en JavaScript
 

@@ -1,6 +1,6 @@
 ---
 title: "Archivos Multimedia (Video, Audio y Iframe)"
-description: "¡Tu navegador no soporta el video!"
+description: "La etiqueta <video> permite reproducir archivos de video directamente en el navegador."
 ---
 
 

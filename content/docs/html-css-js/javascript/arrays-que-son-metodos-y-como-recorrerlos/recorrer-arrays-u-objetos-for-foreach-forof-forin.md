@@ -1,7 +1,8 @@
 ---
 title: "Recorrer Arrays u Objetos (For, Foreach, Forof, Forin)"
-description: "Diferentes formas de iterar estructuras de datos en JavaScript"
+description: "Estas son las diferentes formas de iterar estructuras de datos en JavaScript."
 ---
+
 
 ## 🔁 Métodos para recorrer datos
 

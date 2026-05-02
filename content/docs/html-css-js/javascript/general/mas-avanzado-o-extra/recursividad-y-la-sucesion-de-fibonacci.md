@@ -1,7 +1,8 @@
 ---
 title: "Recursividad y la Sucesión de Fibonacci"
-description: "Aprende el concepto de recursividad en JavaScript y cómo aplicarlo para resolver la Sucesión de Fibonacci mediante funciones que se llaman a sí mismas."
+description: "El concepto de recursividad en JavaScript y cómo aplicarlo para resolver la Sucesión de Fibonacci mediante funciones que se llaman a sí mismas."
 ---
+
 
 ## La Recursividad
 

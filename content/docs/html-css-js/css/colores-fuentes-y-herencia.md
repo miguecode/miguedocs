@@ -1,6 +1,6 @@
 ---
 title: "Colores, Fuentes y Herencia"
-description: "'green' es una palabra clave. Existen más, para usar colores estándar. Esta es la forma más rápida e intuitiva de indicar colores, pero también es la más limita..."
+description: "Indicar colores es fundamental en el diseño web. Existen múltiples formas de hacerlo, desde las más simples hasta modelos avanzados."
 ---
 
 

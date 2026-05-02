@@ -1,7 +1,8 @@
 ---
 title: "Truthy, Falsy y Nullish"
-description: "Descubre cómo JavaScript evalúa diferentes valores como verdaderos o falsos en contextos lógicos."
+description: "Cómo JavaScript evalúa diferentes valores como verdaderos o falsos en contextos lógicos."
 ---
+
 
 ## Truthy, Falsy y Nullish
 

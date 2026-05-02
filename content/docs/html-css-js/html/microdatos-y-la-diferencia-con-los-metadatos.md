@@ -1,6 +1,6 @@
 ---
 title: "Microdatos y la diferencia con los Metadatos"
-description: "Diferencia entre microdatos y metadatos"
+description: "Los microdatos son datos semánticos que se utilizan para que los motores de búsqueda entiendan exactamente qué representa un fragmento de tu HTML."
 ---
 
 

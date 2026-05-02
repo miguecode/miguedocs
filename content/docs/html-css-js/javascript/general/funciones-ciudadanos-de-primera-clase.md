@@ -1,7 +1,8 @@
 ---
 title: "Funciones, ciudadanos de primera clase"
-description: "Funciones en JavaScript"
+description: "En JavaScript, las funciones son ciudadanos de primera clase, lo que significa que pueden ser tratadas como cualquier otro valor: asignadas a variables, pasadas como argumentos y retornadas desde otras funciones."
 ---
+
 
 ## Funciones en JavaScript
 

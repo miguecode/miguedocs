@@ -1,6 +1,6 @@
 ---
 title: "DOM. Intro y Selectores"
-description: "El DOM (Document Object Model)"
+description: "El DOM (Document Object Model) es una estructura de árbol basado en nodos, los cuales, van a representar a cada etiqueta de nuestro código HTML."
 ---
 
 

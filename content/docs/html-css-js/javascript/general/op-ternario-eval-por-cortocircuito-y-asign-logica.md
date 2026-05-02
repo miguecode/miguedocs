@@ -3,6 +3,7 @@ title: "Op. Ternario, Eval. por Cortocircuito y Asign. Lógica"
 description: "Optimiza tu código JavaScript usando el operador ternario, evaluaciones por cortocircuito y asignaciones lógicas."
 ---
 
+
 ## Operador Ternario (If-Else resumido)
 
 El operador ternario es una forma de escribir un `if-else` de forma más rápida. La idea es que, al escribir menos código, podamos resumir la lógica en una sola línea.

@@ -3,6 +3,7 @@ title: "Rutas Absolutas y Relativas"
 description: "Comprende la diferencia entre rutas absolutas y relativas para gestionar archivos y URLs correctamente."
 ---
 
+
 ## Rutas Absolutas
 
 Las rutas absolutas son siempre iguales, ya que no importa desde dónde las accedamos. Es decir, sin importar en qué directorio estemos parados, la ruta absoluta siempre se escribe de la misma forma y garantiza que lleguemos al destino. Siempre comienzan desde un punto fijo, como el dominio en una URL o la raíz del sistema de archivos.

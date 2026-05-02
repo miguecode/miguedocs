@@ -1,11 +1,8 @@
 ---
 title: "Ajax, Fetch y Axios - Verbos POST, UPDATE y DELETE"
-description: "Ahora, vamos a ver cómo se hacen peticiones POST, UPDATE y DELETE en AJAX, FETCH y AXIOS."
+description: "Vamos a ver cómo se hacen peticiones POST, UPDATE y DELETE en AJAX, FETCH y AXIOS."
 ---
 
-## Más peticiones
-
-Ahora vamos a ver cómo se hacen peticiones POST, UPDATE y DELETE en AJAX, FETCH y AXIOS.
 
 ## 1. AJAX - Verbo POST
 

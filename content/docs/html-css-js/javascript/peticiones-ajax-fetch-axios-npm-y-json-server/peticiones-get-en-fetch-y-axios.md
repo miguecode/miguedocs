@@ -1,7 +1,8 @@
 ---
 title: "Peticiones GET en FETCH y AXIOS"
-description: "Vamos a probar la forma de hacer peticiones usando el método FETCH. La idea va a ser la misma que con AJAX, vamos a trabajar bajo los mismo archivos, funciones, servidor y datos de Personas."
+description: "Vamos a probar la forma de hacer peticiones usando el método FETCH y AXIOS."
 ---
+
 
 ## FETCH
 

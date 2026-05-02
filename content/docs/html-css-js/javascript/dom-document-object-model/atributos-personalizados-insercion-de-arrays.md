@@ -1,7 +1,8 @@
 ---
 title: "Atributos personalizados. Inserción de arrays"
-description: "Atributos personalizados"
+description: "Los atributos personalizados son una forma de almacenar datos en elementos HTML."
 ---
+
 
 ## Atributos personalizados
 

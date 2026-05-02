@@ -1,6 +1,6 @@
 ---
 title: "Performance en CSS"
-description: "El Performance en CSS"
+description: "El rendimiento en CSS es fundamental para el desarrollo web moderno. Un sitio optimizado no solo mejora la experiencia del usuario, sino que también favorece el posicionamiento en buscadores (SEO)."
 ---
 
 

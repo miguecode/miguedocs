@@ -1,6 +1,6 @@
 ---
 title: "Tablas, Details y Summary, y Dialog"
-description: "Esto significa que el uso actual de las tablas es para cuando queremos realmente hacer una tabla, como las que vemos en Excel. O para hacer un calendario, por e..."
+description: "Las tablas, los details y summary, y los dialog son elementos de HTML que nos permiten organizar datos complejos y crear componentes interactivos de forma nativa."
 ---
 
 

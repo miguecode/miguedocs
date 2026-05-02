@@ -1,7 +1,8 @@
 ---
 title: "Flujo de creación de una página. HTML y DOM"
-description: "Flujo de creación de una página"
+description: "El navegador interpreta el código HTML línea por línea para transformar ese texto en la página visual que vemos."
 ---
+
 
 ## 🚀 Flujo de creación de una página: HTML y DOM
 

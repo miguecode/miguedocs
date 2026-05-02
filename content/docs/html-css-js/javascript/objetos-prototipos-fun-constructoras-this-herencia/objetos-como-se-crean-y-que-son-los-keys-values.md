@@ -1,6 +1,6 @@
 ---
 title: "Objetos. Cómo se crean, y qué son los Keys-Values"
-description: "Objetos en JavaScript"
+description: "Los objetos en JavaScript son contenedores de propiedades y valores (key-value)."
 ---
 
 ## Objetos en JavaScript

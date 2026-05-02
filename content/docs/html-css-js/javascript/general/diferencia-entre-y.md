@@ -1,7 +1,8 @@
 ---
 title: "Diferencia entre == y ==="
-description: "Diferencia entre '==' y '===' en JavaScript"
+description: "Explicación de la diferencia entre '==' y '===' en JavaScript."
 ---
+
 
 ## Diferencia entre "==" y "===" en JavaScript
 

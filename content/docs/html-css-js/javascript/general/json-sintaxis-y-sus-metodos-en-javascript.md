@@ -1,7 +1,8 @@
 ---
 title: "JSON. Sintaxis y sus métodos en JavaScript"
-description: "JSON - JavaScript Object Notation (notación de objetos de JavaScript)"
+description: "JSON es un lenguaje intermediario que podemos usar mayormente en el desarrollo web para intercomunicar APIs entre sí."
 ---
+
 
 ## JSON - JavaScript Object Notation
 

@@ -1,7 +1,8 @@
 ---
 title: "Más métodos o propiedades de Window"
-description: "Como dijimos antes, window es el scope global en JavaScript, y también es un objeto. Y es el objeto contenedor de todo en JavaScript."
+description: "El objeto Window es el scope global en JavaScript, y también es un objeto. Y es el objeto contenedor de todo en JavaScript."
 ---
+
 
 ## Objeto Window
 

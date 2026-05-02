@@ -1,6 +1,6 @@
 ---
 title: "Propiedad Z-Index"
-description: "El Z-Index hace referencia al concepto de apilamiento. Cuando nosotros vemos una página, podemos pensar que es todo plano, un papel en el que dibujamos encima. ..."
+description: "El z-index gestiona el orden de apilamiento de los elementos en una página web. Aunque solemos ver las webs como superficies planas (ejes X e Y), en realidad tienen una tercera dimensión: el Eje Z (profundidad)."
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 title: "Funciones Generadoras"
-description: "Descubre las funciones generadoras, un tipo especial de función que puede pausar y reanudar su ejecución, permitiendo crear flujos iterables complejos."
+description: "Las funciones generadoras son un tipo especial de función que puede pausar y reanudar su ejecución, permitiendo crear flujos iterables complejos."
 ---
+
 
 ## ¿Qué es una Función Generadora?
 

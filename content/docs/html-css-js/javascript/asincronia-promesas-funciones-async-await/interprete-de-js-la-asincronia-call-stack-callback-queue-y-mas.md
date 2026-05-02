@@ -1,6 +1,6 @@
 ---
 title: "Intérprete de JS. La Asincronía. Call Stack, Callback Queue y más"
-description: "Intérprete de JavaScript y la Asincronía"
+description: "El intérprete de JavaScript es el encargado de leer y ejecutar el código JavaScript."
 ---
 
 

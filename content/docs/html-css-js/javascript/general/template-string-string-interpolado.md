@@ -1,6 +1,6 @@
 ---
 title: "Template String (String interpolado)"
-description: "String interpolado"
+description: "Explicación de lo que es el String interpolado."
 ---
 
 

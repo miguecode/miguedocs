@@ -1,7 +1,8 @@
 ---
 title: "Closure, práctica no recomendada"
-description: "Aprende qué es un Closure y cómo se utilizaba el patrón IIFE para manejar la privacidad en JavaScript antes de los módulos modernos."
+description: "Qué es un Closure y cómo se utilizaba el patrón IIFE para manejar la privacidad en JavaScript antes de los módulos modernos."
 ---
+
 
 ## Closure
 

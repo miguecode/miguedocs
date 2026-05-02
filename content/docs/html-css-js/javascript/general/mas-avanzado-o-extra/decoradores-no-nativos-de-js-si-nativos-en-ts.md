@@ -3,10 +3,10 @@ title: "Decoradores (No nativos de JS, sí nativos en TS)"
 description: "Los decoradores son una propuesta avanzada de JavaScript (Stage 3 en TC39) que permite extender las clases, métodos y propiedades."
 ---
 
-> [!WARNING]
-> Los decoradores son una propuesta avanzada de JavaScript (Stage 3 en TC39). Para usarlos, necesitamos configurar nuestro entorno con herramientas como **Babel** o usando **TypeScript**. No están disponibles en entornos JS "puros" como navegadores sin configuración especial.
 
 ## Decoradores
+
+Los decoradores son una propuesta avanzada de JavaScript (Stage 3 en TC39). Para usarlos, necesitamos configurar nuestro entorno con herramientas como **Babel** o usando **TypeScript**. No están disponibles en entornos JS "puros" como navegadores sin configuración especial.
 
 Los decoradores son funciones que nos permiten extender las clases añadiendo, modificando o incluso reemplazando sus funcionalidades. Los decoradores afectan a las clases y también a sus métodos y propiedades.
 

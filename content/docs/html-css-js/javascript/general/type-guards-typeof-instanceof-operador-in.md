@@ -1,7 +1,8 @@
 ---
 title: "Type Guards (typeof, instanceof, operador in)"
-description: "Identifica el tipo de una variable en tiempo de ejecución para aplicar lógica específica mediante Narrowing."
+description: "Cómo identificar el tipo de una variable en tiempo de ejecución para aplicar lógica específica mediante Narrowing."
 ---
+
 
 ## Type Guards
 

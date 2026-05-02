@@ -1,7 +1,8 @@
 ---
 title: "Polyfill"
-description: "Aprende qué es un Polyfill y cómo garantizan la compatibilidad de funciones modernas en navegadores antiguos."
+description: "Qué es un Polyfill y cómo garantizan la compatibilidad de funciones modernas en navegadores antiguos."
 ---
+
 
 ## ¿Qué es un Polyfill?
 

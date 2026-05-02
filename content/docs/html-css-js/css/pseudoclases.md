@@ -1,7 +1,10 @@
 ---
 title: "Pseudoclases"
 description: "Una pseudoclase es una situación especial en la que se encuentra un elemento. Hacen referencia a los distintos estados que pueden tener los elementos."
----## ✨ Pseudoclases en CSS
+---
+
+
+## ✨ Pseudoclases en CSS
 
 Una **pseudoclase** define un estado especial de un elemento. Se utilizan para aplicar estilos dinámicos sin necesidad de JavaScript, basándose en la interacción del usuario o en la posición del elemento en el documento.
 

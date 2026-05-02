@@ -3,6 +3,7 @@ title: "Objeto Set (colección similar a Array)"
 description: "Los objetos Set permiten almacenar colecciones de valores únicos de cualquier tipo, eliminando duplicados de forma automática."
 ---
 
+
 ## Set
 
 Un **Set** es una colección de valores únicos que no permite duplicados. Aunque se parece a un array, su propósito principal es representar conjuntos donde la unicidad de los elementos es lo más importante.

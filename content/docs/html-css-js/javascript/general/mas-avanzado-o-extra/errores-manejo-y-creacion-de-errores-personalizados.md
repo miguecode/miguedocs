@@ -1,7 +1,8 @@
 ---
 title: "Errores. Manejo y Creación de errores personalizados"
-description: "Aprende a gestionar excepciones de forma profesional en JavaScript mediante el objeto Error y la creación de clases de error personalizadas."
+description: "Cómo gestionar excepciones de forma profesional en JavaScript mediante el objeto Error y la creación de clases de error personalizadas."
 ---
+
 
 ## Errores y cómo manejarlos
 

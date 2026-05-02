@@ -1,7 +1,8 @@
 ---
 title: "Desestructuración, Módulos, import y export"
-description: "Desestructuración de objetos y arrays"
+description: "Desestructuración de objetos y arrays, y cómo usar módulos con import y export."
 ---
+
 
 ## Desestructuración de objetos y arrays
 

@@ -3,6 +3,7 @@ title: "Flexbox - Parte 1 (Intro)"
 description: "Flex es un posible valor en la propidad display. (display: flex). Sirve para posicionar a los elementos de forma mucho más sencilla y coherente."
 ---
 
+
 ## 📦 Flexbox (Flexible Box Layout)
 
 **Flexbox** es un modelo de diseño unidimensional que permite posicionar elementos de forma sencilla, coherente y flexible. Se basa en la relación entre un **Contenedor** (Flex Container) y sus **Hijos** (Flex Items).

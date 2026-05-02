@@ -1,7 +1,10 @@
 ---
 title: "Actualizar tabla y Manejadores del ABM"
-description: "Vamos a necesitar una función actualizarTabla por cada cambio que hagamos."
+description: "Vamos a seguir con el ABM de personas, y vamos a ver cómo actualizar la tabla y los manejadores del ABM."
 ---
+
+
+## Función actualizarTabla
 
 Vamos a necesitar una función `actualizarTabla` por cada cambio que hagamos.
 

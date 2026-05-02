@@ -1,7 +1,8 @@
 ---
 title: "Performance. Lazy Loading y algo más"
-description: "Lazy Loading en imágenes o iframes"
+description: "El Lazy Loading permite posponer la carga de elementos pesados (imágenes e iframes) que no son visibles de inmediato."
 ---
+
 
 ## ⚡ Performance: Optimización de Carga
 

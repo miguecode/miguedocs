@@ -3,6 +3,7 @@ title: "Operadores. Op. aritméticos, lógicos, concatenación"
 description: "Guía completa sobre los operadores aritméticos, lógicos, de comparación y asignación en JavaScript."
 ---
 
+
 ## Operadores en JavaScript
 
 ### Operadores Aritméticos

@@ -1,6 +1,6 @@
 ---
 title: "El prefijo webkit"
-description: "En CSS; webkit es un prefijo de proveedor (vendor prefix). Se usa para propiedades específicas del motor de renderizado WebKit, que es el motor que usan navegad..."
+description: "Los prefijos de proveedor son cadenas de texto que se anteponen a las propiedades de CSS para indicar que son específicas de un motor de renderizado en particular."
 ---
 
 

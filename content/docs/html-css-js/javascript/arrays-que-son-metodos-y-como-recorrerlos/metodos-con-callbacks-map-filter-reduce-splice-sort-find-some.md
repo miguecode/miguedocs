@@ -1,7 +1,8 @@
 ---
 title: "Métodos con callbacks (Map, Filter, Reduce, Splice, Sort, Find, Some)"
-description: "Métodos de Arrays con callbacks"
+description: "Los métodos con callbacks son funciones que se ejecutan por cada elemento del array."
 ---
+
 
 ## 🔄 Métodos de Iteración con Callbacks
 

@@ -1,7 +1,8 @@
 ---
 title: "Peticiones en general. GET en AJAX"
-description: "Para el ejemplo de todo esto, vamos a crearnos un proyecto con 2 carpetas: client y server. En server, vamos a levantar un JSON server usando un archivo 'db.json'..."
+description: "Vamos a ver cómo hacer peticiones en general, y en particular, peticiones GET en AJAX."
 ---
+
 
 ## Peticiones
 

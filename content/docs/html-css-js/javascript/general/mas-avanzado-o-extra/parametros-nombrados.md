@@ -1,7 +1,8 @@
 ---
 title: "Parámetros nombrados"
-description: "Aprende a usar la técnica de parámetros nombrados mediante la desestructuración de objetos para crear funciones más legibles y escalables."
+description: "Cómo usar la técnica de parámetros nombrados mediante la desestructuración de objetos para crear funciones más legibles y escalables."
 ---
+
 
 ## Parámetros Nombrados
 

@@ -3,6 +3,9 @@ title: "ECMAScript"
 description: "ECMAScript, abreviado como ES, es el estándar en el que se basa JavaScript y otros lenguajes de scripting similares."
 ---
 
+
+## ¿Qué es ECMAScript?
+
 ECMAScript, abreviado como ES, es el estándar en el que se basa JavaScript y otros lenguajes de scripting similares (como JScript de Microsoft o ActionScript de Adobe). Es un conjunto de especificaciones desarrollado y mantenido por ECMA International, una organización/convención de estándares. Este estándar define cómo debe funcionar el lenguaje para que diferentes implementaciones de JavaScript sean compatibles entre sí. Le dice a los browsers cómo interpretar JS.
 
 ## ¿Cómo surgió?

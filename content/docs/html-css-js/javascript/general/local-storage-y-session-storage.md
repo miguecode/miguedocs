@@ -1,7 +1,8 @@
 ---
 title: "Local Storage y Session Storage"
-description: "Aprende cómo persistir datos en el navegador usando LocalStorage y SessionStorage."
+description: "Cómo persistir datos en el navegador usando LocalStorage y SessionStorage."
 ---
+
 
 ## Local Storage (Almacenamiento local)
 

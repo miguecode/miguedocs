@@ -3,6 +3,7 @@ title: "Tipos de Datos y Var, Let y Const"
 description: "Guía sobre los tipos de datos primitivos y no primitivos, y las diferencias entre var, let y const en JavaScript."
 ---
 
+
 ## Tipos de datos
 
 En JavaScript, existen dos categorías principales de tipos de datos:

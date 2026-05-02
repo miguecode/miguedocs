@@ -1,7 +1,8 @@
 ---
 title: "Date API (Objeto Date)"
-description: "La API Date de JavaScript nos permite trabajar con fechas y horas: crear fechas, obtener partes específicas (año, mes, día, hora, etc.), compararlas o modificarlas."
+description: "Qué es y cómo funciona el objeto Date de JavaScript."
 ---
+
 
 ## Date
 

@@ -1,7 +1,8 @@
 ---
 title: "Flujos, Try Catch y Error"
-description: "En nuestro código, podemos abrir bloques con llaves { }, y es completamente válido."
+description: "En JavaScript, los bloques son secciones de código delimitadas por llaves { } que crean su propio ámbito (scope). Dentro de un bloque, podemos declarar variables que solo existen en ese contexto."
 ---
+
 
 ## Bloques
 

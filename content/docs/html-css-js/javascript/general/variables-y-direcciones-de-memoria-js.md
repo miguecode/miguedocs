@@ -1,7 +1,8 @@
 ---
 title: "Variables y Direcciones de Memoria (JS)"
-description: "Entiende cómo JavaScript gestiona la memoria, las referencias y el pasaje de variables por valor y por referencia."
+description: "Cómo JavaScript gestiona la memoria, las referencias y el pasaje de variables por valor y por referencia."
 ---
+
 
 ## Variables, Direcciones de Memoria y Punteros
 

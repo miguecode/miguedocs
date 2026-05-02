@@ -1,6 +1,6 @@
 ---
 title: "La metodología BEM"
-description: "La Metodología BEM (Block, Element, Modifier)"
+description: "BEM es una convención de nomenclatura para clases en HTML y CSS que ayuda a mantener el código organizado, legible y escalable."
 ---
 
 

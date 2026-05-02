@@ -1,7 +1,8 @@
 ---
 title: "Optimizar imágenes y tipos de imágenes"
-description: "Optimización de imágenes"
+description: "Optimizar las imágenes es crucial para mejorar la velocidad de carga y la experiencia del usuario."
 ---
+
 
 ## 🖼️ Optimización de Imágenes
 

@@ -1,7 +1,8 @@
 ---
 title: "Formularios Parte 2. Submit y el Envío de Datos"
-description: "Como sabemos, nosotros usamos la etiqueta Form para contener a los controles de formulario (Inputs, Labels, Selects, Input de tipo Submit...). El fin de esto es..."
+description: "En el desarrollo web, los formularios son una pieza clave. Es una forma de pedirle todo tipo de datos al usuario. Para esto, HTML tiene distintas etiquetas."
 ---
+
 
 ## 📤 Formularios - Parte 2: Envío de Datos
 

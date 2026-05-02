@@ -1,6 +1,6 @@
 ---
 title: "Grid - Parte 1"
-description: "La diferencia clave de Grid con Flexbox, es que Grid no trabaja sobre un contenedor en modo fila o columna como lo hace flex, sino que trabaja sobre un contened..."
+description: "Grid es un sistema de maquetación bidimensional que permite manejar filas y columnas al mismo tiempo."
 ---
 
 

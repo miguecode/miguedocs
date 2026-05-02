@@ -1,6 +1,6 @@
 ---
 title: "Position (Static, Relative, Absolute, Fixed, Sticky)"
-description: "Los elementos de CSS se posicionan, por defecto, de forma ESTÁTICA (static). Esto quiere decir que los elementos se quedan donde están, definidos en el HTML. Y ..."
+description: "La propiedad position en CSS determina cómo se ubica un elemento en el documento. Por defecto, todos los elementos tienen un comportamiento de flujo normal, pero podemos alterarlo para crear layouts complejos."
 ---
 
 

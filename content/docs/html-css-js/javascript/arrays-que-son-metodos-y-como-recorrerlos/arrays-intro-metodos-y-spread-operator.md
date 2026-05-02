@@ -1,7 +1,8 @@
 ---
 title: "Arrays. Intro, métodos y Spread Operator [ ...]"
-description: "Los arrays en JavaScript son un tipo de dato no primitivo. Eso quiere decir que apuntan a direcciones de memoria. Lo ideal, entonces, es declararlos con 'const'..."
+description: "Los arrays en JavaScript son objetos especiales que permiten almacenar una colección de datos."
 ---
+
 
 ## 📦 Introducción a los Arrays
 

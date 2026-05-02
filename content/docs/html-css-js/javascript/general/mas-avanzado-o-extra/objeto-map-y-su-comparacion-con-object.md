@@ -3,6 +3,7 @@ title: "Objeto Map y su comparación con Object"
 description: "Map es una colección en JavaScript que almacena pares clave/valor, ofreciendo mejoras en rendimiento y flexibilidad comparado con los objetos tradicionales."
 ---
 
+
 ## Map
 
 Un **Map** es un tipo de colección en JavaScript que almacena pares clave/valor. Aunque conceptualmente es similar a un objeto (ambos actúan como una tabla hash), el `Map` ofrece mejoras importantes en rendimiento, flexibilidad y control.

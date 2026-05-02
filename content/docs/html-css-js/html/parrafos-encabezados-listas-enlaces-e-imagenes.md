@@ -1,7 +1,9 @@
 ---
 title: "Párrafos, Encabezados, Listas, Enlaces e Imágenes"
-description: "Comentarios en HTML"
+description: "Los elementos básicos de HTML son los bloques de construcción de cualquier página web."
 ---
+
+
 ## 📝 Elementos Básicos: Texto, Listas, Enlaces e Imágenes
 
 El HTML se compone de diversos elementos que permiten estructurar el contenido de forma lógica y accesible.

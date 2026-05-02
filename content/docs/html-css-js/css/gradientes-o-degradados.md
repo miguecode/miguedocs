@@ -1,7 +1,9 @@
 ---
 title: "Gradientes o degradados"
-description: "Son colores que van de un color a otro."
+description: "Los gradientes son transiciones suaves entre dos o más colores."
 ---
+
+
 ## 🌈 Gradientes (Degradados)
 
 Los **gradientes** son transiciones suaves entre dos o más colores. En CSS, se aplican mediante la propiedad `background-image` (o el atajo `background`), ya que el navegador los trata técnicamente como imágenes generadas dinámicamente.

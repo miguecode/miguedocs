@@ -1,6 +1,6 @@
 ---
 title: "Diferencia entre comillas dobles y simples"
-description: "Diferencia entre comillas dobles ' ' y simples ' '"
+description: "En JavaScript y TypeScript podemos usar comillas dobles, simples y backticks ."
 ---
 
 

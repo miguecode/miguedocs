@@ -1,6 +1,6 @@
 ---
 title: "Estructura Básica y Favicon. DOCTYPE, html, head y body"
-description: "Estructura HTML básica"
+description: "La estructura básica de una página HTML es la base de cualquier desarrollo web."
 ---
 
 ## 🏗️ Estructura HTML básica

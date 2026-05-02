@@ -1,7 +1,8 @@
 ---
 title: "Sintaxis, Atributos, la Semántica en HTML y el SEO"
-description: "Sintaxis básica HTML"
+description: "La sintaxis de HTML se basa en el uso de etiquetas para estructurar el contenido de una página web."
 ---
+
 
 ## 🏗️ Sintaxis y Estructura Básica
 

@@ -1,6 +1,6 @@
 ---
 title: "Etiquetas obsoletas y etiquetas no recomendadas"
-description: "Etiquetas Obsoletas en HTML"
+description: "Existen etiquetas obsoletas y etiquetas no recomendadas en HTML. Veamos cuáles son y por qué no debemos usarlas."
 ---
 
 

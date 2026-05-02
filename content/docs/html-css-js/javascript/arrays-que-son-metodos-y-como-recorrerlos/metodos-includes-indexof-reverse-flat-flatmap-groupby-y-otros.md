@@ -1,7 +1,8 @@
 ---
 title: "Métodos (Includes, IndexOf, Reverse, Flat, FlatMap, GroupBy, y otros)"
-description: "Vamos a ver otros métodos útiles de los arrays en JavaScript"
+description: "Vamos a ver otros métodos útiles de los arrays en JavaScript."
 ---
+
 
 ## 🔍 Métodos de Búsqueda y Posición
 

@@ -3,6 +3,9 @@ title: "Introducción a JavaScript"
 description: "JavaScript es un lenguaje de programación interpretado, dinámico, de alto nivel y de tipado débil."
 ---
 
+
+## Introducción
+
 JavaScript es un lenguaje de programación interpretado, dinámico, de alto nivel y de tipado débil. Se utiliza principalmente para crear interactividad en las páginas web, ya que permite modificar dinámicamente el contenido, reaccionar a eventos del usuario y realizar operaciones complejas en el navegador.
 
 ## Características principales

@@ -1,7 +1,8 @@
 ---
 title: "Objeto Intl"
-description: "Aprende a usar la API Intl de JavaScript para formatear números, fechas, monedas y listas de forma nativa según el idioma y región del usuario."
+description: "La API Intl de JavaScript sirve para formatear números, fechas, monedas y listas de forma nativa según el idioma y región del usuario."
 ---
+
 
 El objeto **Intl** (*Internationalization*) es una API nativa de JavaScript que permite formatear números, textos, fechas, monedas y más, de manera sensible al idioma y la región del usuario. Es la herramienta estándar para garantizar que nuestras aplicaciones sean amigables en cualquier parte del mundo.
 

@@ -1,6 +1,6 @@
 ---
 title: "Diferencia entre Picture+Source y Srcset+Sizes"
-description: "Ambos métodos sirven para optimizar imágenes en diferentes dispositivos y mejorar el rendimiento de nuestra web. La diferencia clave está en cómo y cuándo el na..."
+description: "Ambos métodos sirven para optimizar imágenes en diferentes dispositivos y mejorar el rendimiento de nuestra web."
 ---
 
 

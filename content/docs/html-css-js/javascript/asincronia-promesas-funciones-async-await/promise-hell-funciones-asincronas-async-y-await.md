@@ -1,7 +1,8 @@
 ---
 title: "Promise Hell. Funciones Asíncronas (Async y Await)"
-description: "Así como vimos el Callback hell, el cual fue recubierto por azúcar sintáctico en forma de Promesas, ahora vamos a ver el Promise Hell, el cual va a ser recubierto por azúcar sintáctico en forma de funciones Async."
+description: "El Promise Hell es una situación en la que se produce un anidamiento de promesas, lo que dificulta la lectura y el mantenimiento del código."
 ---
+
 
 ## Promise Hell
 

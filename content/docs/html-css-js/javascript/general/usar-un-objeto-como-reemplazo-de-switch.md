@@ -1,7 +1,10 @@
 ---
 title: "Usar un objeto como reemplazo de Switch"
-description: "Aprende el patrón de diseño Object Lookup en JavaScript para sustituir bloques Switch complejos por objetos más limpios y escalables."
+description: "Cómo es el patrón de diseño Object Lookup en JavaScript para sustituir bloques Switch complejos por objetos más limpios y escalables."
 ---
+
+
+## Introducción
 
 En programación, estamos acostumbrados a reemplazar múltiples bloques `if-else` por un `switch`. Es una mejora lógica, pero existe una alternativa aún más limpia, profesional y escalable: utilizar un **Objeto Literal** como mapa de búsqueda (*Object Lookup*).
 

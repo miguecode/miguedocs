@@ -1,9 +1,8 @@
 ---
 title: "Arrow Functions (Expresiones Lambda)"
-description: "*** Antes de ver Arrow Functions... ***"
+description: "Las Arrow Functions (también llamadas funciones flecha o expresiones lambda) son una forma más corta y moderna de escribir funciones en JavaScript."
 ---
 
-*** Antes de ver Arrow Functions... ***
 
 ## Explicación previa entre funciones declaradas y expresadas
 

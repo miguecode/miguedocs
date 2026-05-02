@@ -1,7 +1,8 @@
 ---
 title: "Más de manejo de elementos. Tipos de Nodos. Classlist"
-description: "Siguiendo con el manejo de Elementos del DOM"
+description: "Vamos a seguir profundizando en el manejo de elementos del DOM."
 ---
+
 
 ## Siguiendo con el manejo de Elementos del DOM
 

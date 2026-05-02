@@ -1,6 +1,6 @@
 ---
 title: "Grid - Parte 2"
-description: "Propiedad repeat()"
+description: "Grid es un sistema de maquetación bidimensional que permite manejar filas y columnas al mismo tiempo."
 ---
 
 

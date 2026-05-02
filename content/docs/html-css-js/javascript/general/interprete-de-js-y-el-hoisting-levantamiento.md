@@ -1,7 +1,8 @@
 ---
 title: "Intérprete de JS y el Hoisting (Levantamiento)"
-description: "Entendiendo el proceso de Hoisting y cómo el motor de JS procesa el código"
+description: "El Hoisting es un comportamiento del intérprete de JavaScript que consiste en mover virtualmente las declaraciones de variables y funciones a la parte superior de su ámbito (scope) antes de ejecutar el código."
 ---
+
 
 ## 🏗️ ¿Qué es el Hoisting?
 

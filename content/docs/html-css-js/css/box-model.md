@@ -1,6 +1,6 @@
 ---
 title: "Box Model"
-description: "Box Model (Modelo de la caja)"
+description: "El Box Model es la base de CSS. Todos los elementos HTML son cajas, y entender cómo funcionan es fundamental para maquetar páginas web."
 ---
 
 

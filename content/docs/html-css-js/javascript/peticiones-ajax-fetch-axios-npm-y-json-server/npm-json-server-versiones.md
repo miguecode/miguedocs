@@ -1,6 +1,6 @@
 ---
 title: "NPM, JSON Server, versiones"
-description: "JSON Server es un paquete de JavaScript que nos permite, sin utilizar una base de datos, levantar un servidor que guarda un archivo JSON como fuente de datos, e..."
+description: "JSON Server es un paquete de JavaScript que nos permite, sin utilizar una base de datos, levantar un servidor que guarda un archivo JSON como fuente de datos, es decir, la data."
 ---
 
 

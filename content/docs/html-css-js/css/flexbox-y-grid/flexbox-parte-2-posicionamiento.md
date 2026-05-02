@@ -1,6 +1,6 @@
 ---
 title: "Flexbox - Parte 2 (Posicionamiento)"
-description: "El eje principal de nuestro contenedor flexbox va a ser el que determine 'flex-direction'. Si flex-direction es row, el eje principal va a ser el X, o sea, el h..."
+description: "Flex es un posible valor en la propidad display. (display: flex). Sirve para posicionar a los elementos de forma mucho más sencilla y coherente."
 ---
 
 

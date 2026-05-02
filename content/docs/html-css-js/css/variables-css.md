@@ -1,6 +1,6 @@
 ---
 title: "Variables CSS"
-description: "Variables CSS (Custom Properties)"
+description: "Las variables CSS (Custom Properties) son valores reutilizables que puedes definir y usar en todo tu código CSS."
 ---
 
 

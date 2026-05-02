@@ -1,7 +1,9 @@
 ---
 title: "Etiquetas semánticas (Main, Section, Footer, etc.)"
-description: "Etiquetas semánticas"
+description: "Las etiquetas semánticas existen para expresar el significado de las distintas secciones o elementos de nuestra página."
 ---
+
+
 ## 🏗️ Etiquetas Semánticas
 
 Las etiquetas semánticas existen para expresar el significado de las distintas secciones o elementos de nuestra página. Son esenciales para construir un HTML robusto, mejorar el **SEO** y garantizar la **Accesibilidad**.

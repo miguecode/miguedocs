@@ -1,6 +1,6 @@
 ---
 title: "Emojis en los Strings y qué es Unicode"
-description: "Usar Emojis en Strings"
+description: "Los emojis son caracteres Unicode, y JavaScript puede manejarlos como cualquier otro carácter."
 ---
 
 ## Usar Emojis en Strings

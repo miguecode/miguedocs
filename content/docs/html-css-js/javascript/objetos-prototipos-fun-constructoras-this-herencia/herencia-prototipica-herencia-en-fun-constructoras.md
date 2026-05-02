@@ -1,7 +1,8 @@
 ---
 title: "Herencia Prototípica (Herencia en Fun. Constructoras)"
-description: "Herencia Prototípica"
+description: "La herencia prototípica es una forma de herencia en JavaScript que se basa en prototipos."
 ---
+
 
 ## Herencia Prototípica
 

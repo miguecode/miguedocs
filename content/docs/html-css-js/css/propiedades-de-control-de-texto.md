@@ -1,6 +1,6 @@
 ---
 title: "Propiedades de control de texto"
-description: "Text-wrap: balance"
+description: "Las propiedades de control de texto en CSS permiten ajustar el espaciado, la alineación y el comportamiento de los saltos de línea en el texto."
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 title: "Wrapper Objects, __proto__, prototype, Object, y demás"
-description: "Tipos de dato con Mayúscula (Wrapper Objects)"
+description: "Los Wrapper Objects, es decir, objetos envoltorio, son funciones constructoras."
 ---
+
 
 ## Tipos de dato con Mayúscula (Wrapper Objects)
 

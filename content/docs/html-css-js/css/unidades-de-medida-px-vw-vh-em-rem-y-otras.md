@@ -1,6 +1,6 @@
 ---
 title: "Unidades de medida (px, vw, vh, em, rem, y otras)"
-description: "Unidades relativas y absolutas"
+description: "En CSS, las unidades de medida se dividen en dos grandes grupos: Absolutas y Relativas. Entender cuándo usar cada una es clave para crear diseños que se adapten a cualquier pantalla."
 ---
 
 

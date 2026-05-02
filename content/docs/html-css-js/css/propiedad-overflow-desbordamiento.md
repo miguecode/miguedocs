@@ -1,6 +1,6 @@
 ---
 title: "Propiedad Overflow (desbordamiento)"
-description: "Overflow (desbordamiento)"
+description: "El overflow ocurre cuando el contenido de un elemento es más grande que el contenedor que lo aloja."
 ---
 
 

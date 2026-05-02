@@ -1,7 +1,10 @@
 ---
 title: "Evento Click y capturar ID"
-description: "Ahora, en el archivo 'tabla.js' vamos a crear otras funciones."
+description: "Vamos a ver cómo capturar el ID de un elemento cuando hacemos click en él."
 ---
+
+
+## Evento Click
 
 Ahora, en el archivo `tabla.js` vamos a crear otras funciones.
 

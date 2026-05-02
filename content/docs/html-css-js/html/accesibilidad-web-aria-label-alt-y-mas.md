@@ -1,6 +1,6 @@
 ---
 title: "Accesibilidad Web. Aria-label, alt y más"
-description: "Accesibilidad Web: ¿Qué es y por qué es importante?"
+description: "La accesibilidad web se refiere a la práctica de hacer sitios web que sean adaptables para todos."
 ---
 
 ## ♿ Accesibilidad Web: ¿Qué es y por qué es importante?

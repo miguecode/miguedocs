@@ -3,6 +3,8 @@ title: "Null, Undefined y NaN"
 description: "En JavaScript, existen varios valores que representan la ausencia o invalidez de un dato. Entre ellos, los más comunes son null, undefined y NaN."
 ---
 
+## Introducción
+
 En JavaScript, existen varios valores que representan la ausencia o invalidez de un dato. Entre ellos, los más comunes son `null`, `undefined` y `NaN`.
 
 Tanto `null` como `undefined` son tipos de dato primitivos, pero `NaN` no es un tipo de dato por sí solo; simplemente es un valor especial dentro del tipo `Number`.

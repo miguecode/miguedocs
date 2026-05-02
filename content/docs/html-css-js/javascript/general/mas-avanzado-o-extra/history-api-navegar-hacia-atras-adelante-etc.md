@@ -1,7 +1,8 @@
 ---
 title: "History API (Navegar hacia atrás, adelante, etc)"
-description: "Aprende a interactuar con el historial del navegador mediante la History API, esencial para la navegación en Single Page Applications (SPA)."
+description: "Cómo interactuar con el historial del navegador mediante la History API, esencial para la navegación en Single Page Applications (SPA)."
 ---
+
 
 ## History API
 

@@ -1,6 +1,6 @@
 ---
 title: "Propiedad Box-Shadow"
-description: "La propiedad box-shadow se creó para añadir efectos de sombra a nuestra caja/elemento. En esencia, lo que hace es crear un clon de de la caja respetando su box-..."
+description: "La propiedad box-shadow se utiliza para aplicar una o varias sombras a un elemento. Puede simular sombras proyectadas, bordes difuminados o efectos de relieve."
 ---
 
 

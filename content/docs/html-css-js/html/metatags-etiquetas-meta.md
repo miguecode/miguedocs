@@ -1,7 +1,8 @@
 ---
 title: "Metatags (Etiquetas Meta)"
-description: "**Ahora sí, veamos ejemplos de metatags**:"
+description: "Los metadatos son fragmentos de información que describen tu sitio web a los navegadores y motores de búsqueda."
 ---
+
 
 ## 🏷️ Metatags (Etiquetas Meta)
 

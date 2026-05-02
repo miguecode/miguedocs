@@ -1,7 +1,8 @@
 ---
 title: "Modo Estricto (Use Strict)"
-description: "Descubre cómo el Modo Estricto de JavaScript ayuda a escribir un código más seguro, corrigiendo errores silenciosos y evitando malas prácticas."
+description: "Cómo el Modo Estricto de JavaScript ayuda a escribir un código más seguro, corrigiendo errores silenciosos y evitando malas prácticas."
 ---
+
 
 ## ¿Qué es el Modo Estricto?
 

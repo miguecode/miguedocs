@@ -1,6 +1,6 @@
 ---
 title: "Transiciones (Propiedad transition)"
-description: "En CSS, existen 2 formas de animar elementos y son: Las transiciones y las animaciones. En este apunte, vamos a hablar sobre las transiciones."
+description: "Las transiciones en CSS permiten cambiar el valor de una propiedad CSS de forma gradual durante un período de tiempo determinado."
 ---
 
 

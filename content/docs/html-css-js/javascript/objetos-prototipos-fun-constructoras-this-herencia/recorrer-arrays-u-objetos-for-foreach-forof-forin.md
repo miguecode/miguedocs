@@ -1,6 +1,6 @@
 ---
 title: "Recorrer Arrays u Objetos (For, Foreach, Forof, Forin)"
-description: "Formas de recorrer Arrays u Objetos"
+description: "Estas son las distintas formas de recorrer Arrays u Objetos."
 ---
 
 

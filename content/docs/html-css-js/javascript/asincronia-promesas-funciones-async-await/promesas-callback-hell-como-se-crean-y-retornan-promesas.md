@@ -1,7 +1,8 @@
 ---
 title: "Promesas. Callback hell, cómo se crean y retornan promesas"
-description: "Callback Hell (Infierno de callbacks)"
+description: "Las promesas son una herramienta fundamental en JavaScript para manejar operaciones asíncronas de manera más limpia y estructurada."
 ---
+
 
 ## Callback Hell (Infierno de callbacks)
 

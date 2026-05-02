@@ -1,6 +1,6 @@
 ---
 title: "Qué es HTML"
-description: "HTML (HyperText Markup Language) (Lenguaje de Marcado de Hipertexto)"
+description: "HTML son las siglas de HyperText Markup Language (Lenguaje de Marcado de Hipertexto)."
 ---
 
 

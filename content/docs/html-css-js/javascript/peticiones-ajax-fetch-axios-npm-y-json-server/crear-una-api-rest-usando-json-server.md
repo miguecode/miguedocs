@@ -1,7 +1,8 @@
 ---
 title: "Crear una API REST usando JSON Server"
-description: "Crear una 'base de datos' con JSON Server"
+description: "Vamos a crear una 'base de datos' usando JSON Server."
 ---
+
 
 ## Crear una "base de datos" con JSON Server
 

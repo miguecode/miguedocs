@@ -1,7 +1,8 @@
 ---
 title: "Memoization (Optimización en valores repetidos)"
-description: "Aprende qué es la Memoization y cómo optimizar el rendimiento de funciones pesadas almacenando sus resultados previos."
+description: "Qué es la Memoization y cómo optimizar el rendimiento de funciones pesadas almacenando sus resultados previos."
 ---
+
 
 ## Memoization (Memorización)
 

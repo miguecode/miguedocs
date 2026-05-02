@@ -1,6 +1,6 @@
 ---
 title: "Animaciones de Scroll"
-description: "Animaciones que se activan a través del Scroll"
+description: "Las animaciones de scroll son efectos visuales que se activan o modifican según el movimiento del scroll en una página web."
 ---
 
 

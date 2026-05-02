@@ -1,7 +1,8 @@
 ---
 title: "Elementos, atributos, cómo crearlos y colgarlos al DOM"
-description: "Elementos del DOM y sus Atributos"
+description: "Los elementos del DOM son los nodos que representan a las etiquetas HTML."
 ---
+
 
 ## Elementos del DOM y sus Atributos
 

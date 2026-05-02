@@ -1,7 +1,8 @@
 ---
 title: "This, Scopes, Window, Document, Call, Apply y Bind"
-description: "El 'this', es decir el 'esto', es en sentido literal. Si dentro de un objeto/función constructora/clase nosotros colocamos una función como esta...:"
+description: "Vamos a ver qué es el 'this', los scopes, el objeto window, el objeto document, y los métodos call, apply y bind."
 ---
+
 
 ## This
 

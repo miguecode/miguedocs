@@ -1,6 +1,6 @@
 ---
 title: "Grid - Parte 3"
-description: "Suponiendo que queremos hacer un template entero para la página. Podemos hacer que el header sea una fila que ocupe todas las columnas (de la línea 1 a la -1), ..."
+description: "Grid es un sistema de maquetación bidimensional que permite manejar filas y columnas al mismo tiempo."
 ---
 
 

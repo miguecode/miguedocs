@@ -3,6 +3,7 @@ title: "Métodos de Strings"
 description: "Guía rápida de los métodos de strings en JavaScript."
 ---
 
+
 ## Métodos de los strings en JavaScript
 
 A continuación, se detallan los métodos más comunes para manipular cadenas de texto en JavaScript:

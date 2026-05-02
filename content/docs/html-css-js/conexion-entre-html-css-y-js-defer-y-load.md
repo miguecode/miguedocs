@@ -1,6 +1,6 @@
 ---
 title: "Conexión entre HTML, CSS y JS (Defer y Load)"
-description: "El navegador, que en la arquitectura Cliente-Servidor sería el cliente, lo primero que va a hacer es solicitar un archivo HTML. O sea, cuando vamos a Google.com..."
+description: "La conexión entre HTML, CSS y JS es fundamental para el desarrollo web. En este artículo veremos cómo se conectan y cómo podemos optimizar esta conexión."
 ---
 
 

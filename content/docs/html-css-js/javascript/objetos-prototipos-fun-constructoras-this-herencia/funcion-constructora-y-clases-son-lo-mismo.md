@@ -1,7 +1,8 @@
 ---
 title: "Función Constructora y Clases. Son lo mismo"
-description: "Funciones constructoras y Clases"
+description: "Las funciones constructoras y las clases son lo mismo en JavaScript."
 ---
+
 
 ## Funciones constructoras y Clases
 

@@ -1,6 +1,6 @@
 ---
 title: "Diseño Responsive y Media Queries"
-description: "Diseño responsive"
+description: "Un diseño responsive es aquel que adapta su interfaz de forma automática a distintos tamaños de pantalla (móvil, tablet, escritorio)."
 ---
 
 

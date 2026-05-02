@@ -1,7 +1,8 @@
 ---
 title: "Herencia y Propiedades en Clases"
-description: "Herencia con clases"
+description: "La herencia en clases es una forma de herencia en JavaScript que se basa en prototipos."
 ---
+
 
 ## Herencia con clases
 

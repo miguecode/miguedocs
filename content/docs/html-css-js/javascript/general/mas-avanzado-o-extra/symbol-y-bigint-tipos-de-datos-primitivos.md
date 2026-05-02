@@ -1,7 +1,8 @@
 ---
 title: "Symbol y BigInt: Tipos de datos primitivos avanzados"
-description: "Explora Symbol y BigInt, dos tipos de datos primitivos de JavaScript diseñados para identificadores únicos y cálculos matemáticos de gran precisión."
+description: "Symbol y BigInt, dos tipos de datos primitivos de JavaScript diseñados para identificadores únicos y cálculos matemáticos de gran precisión."
 ---
+
 
 ## El tipo de dato Symbol
 

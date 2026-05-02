@@ -1,6 +1,6 @@
 ---
 title: "Animaciones (Propiedad animation)"
-description: "En CSS, existen 2 formas de animar elementos y son: Las transiciones y las animaciones. En este apunte, vamos a hablar sobre las animaciones."
+description: "Las animaciones en CSS permiten crear secuencias de movimiento complejas con múltiples etapas, sin necesidad de que el usuario interactúe con el elemento."
 ---
 
 

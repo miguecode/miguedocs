@@ -1,11 +1,12 @@
 ---
 title: "Usar un objeto como reemplazo de Switch"
-description: "Algo a lo que estamos acostumbrados al programar es a que, cuando vemos muchos 'if else', cambiarlos por un switch. Es lógico, porque para eso fue creado el swi..."
+description: "Veamos cómo usar objetos como reemplazo de sentencias switch, una técnica útil para mejorar la legibilidad y escalabilidad del código."
 ---
 
 
+## Introducción
 
-- Algo a lo que estamos acostumbrados al programar es a que, cuando vemos muchos "if else", cambiarlos por un switch. Es lógico, porque para eso fue creado el switch. Pero hay veces en las que es mejor simplemente dejar los if else, o sino, usar un OBJETO. Esto último es algo similar a un enumerado. Vamos a verlo.
+Algo a lo que estamos acostumbrados al programar es a que, cuando vemos muchos "if else", cambiarlos por un switch. Es lógico, porque para eso fue creado el switch. Pero hay veces en las que es mejor simplemente dejar los if else, o sino, usar un OBJETO. Esto último es algo similar a un enumerado. Vamos a verlo.
 
 
 ## Supongamos que tenemos esta situación, hecha con distintos IF-ELSE:

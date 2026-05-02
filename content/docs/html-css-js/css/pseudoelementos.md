@@ -1,7 +1,9 @@
 ---
 title: "Pseudoelementos"
-description: "No son lo mismo que las pseudoclases (como por ejemplo, hover). Las pseudoclases hacen referencia a los estados de los elementos."
+description: "Los pseudoelementos permiten aplicar estilos a partes específicas de un elemento que no existen como nodos independientes en el HTML."
 ---
+
+
 ## 🧩 Pseudoelementos en CSS
 
 Los **pseudoelementos** permiten aplicar estilos a partes específicas de un elemento que no existen como nodos independientes en el HTML. Se identifican por llevar **dos puntos dobles** (`::`) antes del nombre.

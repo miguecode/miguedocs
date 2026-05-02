@@ -1,6 +1,6 @@
 ---
 title: "La Cascada y la Especificidad"
-description: "¿Qué pasa cuando dos estilos apuntan al mismo elemento? ¿Cuál se aplica y cuál no? Esto lo vamos a ver acá."
+description: "La cascada es el orden en el que el navegador aplica los estilos. Define qué regla sobreescribe a otra basándose principalmente en el orden de aparición (lo que se escribe al final tiene más peso) y el origen del estilo."
 ---
 
 
