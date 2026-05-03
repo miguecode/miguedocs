@@ -94,7 +94,7 @@ export function baseOptions(): BaseLayoutProps {
         label: 'Portfolio',
         icon: <CodeIcon className="size-5" />,
         text: 'Portfolio',
-        url: 'https://miguelangelgil.netlify.app/',
+        url: 'https://miguecode.vercel.app/',
         external: true,
       },
     ],
