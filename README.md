@@ -7,6 +7,10 @@ Este proyecto es mi repositorio personal de apuntes sobre desarrollo web y tecno
 <img width="1529" height="892" alt="image" src="https://github.com/user-attachments/assets/3b3cfba6-ad2b-4d45-b93e-ca86c725c076" />
 
 
+### ✍ Nota
+
+El 95% del contenido de los apuntes fue escrito puramente por mi, SIN uso de inteligencia artificial. El otro 5%  sí; son apuntes generados por IA, aunque obviamente fueron revisados y corregidos por mi.
+
 ### 🛠 Stack
 
 | Categoría    | Tecnología   |
