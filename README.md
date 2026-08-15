@@ -9,7 +9,7 @@ Este proyecto es mi repositorio personal de apuntes sobre desarrollo web y tecno
 
 ### ✍ Nota
 
-El 95% del contenido de los apuntes fue escrito puramente por mi, SIN uso de inteligencia artificial. El otro 5%  sí; son apuntes generados por IA, aunque obviamente fueron revisados y corregidos por mi.
+El **95%** del contenido de los apuntes fue escrito puramente por mi, **SIN** uso de inteligencia artificial. El otro **5%** sí; son apuntes generados por IA, aunque obviamente fueron revisados y corregidos por mi.
 
 ### 🛠 Stack
 
