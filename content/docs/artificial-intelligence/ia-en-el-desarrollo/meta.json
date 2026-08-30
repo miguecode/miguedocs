@@ -1,0 +1,13 @@
+{
+  "title": "IA en el desarrollo",
+  "pages": [
+    "conceptos-fundamentales",
+    "modelos-de-lenguaje",
+    "tokens-y-embeddings",
+    "contexto-y-inferencia",
+    "agentes-y-editores",
+    "chatbots-y-rag",
+    "mcp-y-fine-tuning",
+    "apis-y-comparativa"
+  ]
+}
