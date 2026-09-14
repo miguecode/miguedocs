@@ -64,3 +64,21 @@ a,
   background-color: var(--color-fd-primary);
   color: var(--color-fd-primary-foreground);
 }
+
+/* Realce visual para negritas */
+b,
+strong,
+.prose strong,
+.fd-prose strong {
+  font-weight: 750 !important;
+  color: hsl(234 35% 12%) !important;
+}
+
+.dark b,
+.dark strong,
+.dark .prose strong,
+.dark .fd-prose strong {
+  font-weight: 750 !important;
+  color: hsl(0 0% 100%) !important;
+}
+
