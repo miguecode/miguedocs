@@ -1,5 +1,5 @@
 ---
-title: "Agentes y editores"
+title: "7. Agentes y editores"
 description: "Agentes de IA, frameworks y cómo se integra la IA en los editores de código."
 ---
 
@@ -50,11 +50,11 @@ Respuesta final al usuario
 
 Para optimizar el rendimiento y reducir el ruido, la implementación de agentes ha evolucionado en tres etapas:
 
-1. **Origen (`AGENTS.md`):** Un archivo único y gigante con todas las reglas, que se vuelve inmanejable por el ruido acumulado.
+1. **El  Origen (`AGENTS.md`):** Un archivo único y gigante con todas las reglas, que se vuelve inmanejable por el ruido acumulado.
 
-2. **Skills (Lazy Loading):** Fragmentar el conocimiento en archivos específicos que solo se cargan bajo demanda mediante un disparador o *trigger*.
+2. **La aparición de las Skills (Lazy Loading):** Fragmentar el conocimiento en archivos específicos que solo se cargan bajo demanda mediante un disparador o *trigger*.
 
-3. **Subagentes (Orquestación):** Un agente "orquestador" delega tareas a subagentes que nacen con un **Contexto Limpio (Fresh Context)**. Al terminar la tarea, el subagente entrega un reporte y se cierra, evitando que el ruido de la ejecución contamine la sesión principal.
+3. **Los Subagentes (Orquestación):** Un agente "orquestador" delega tareas a subagentes que nacen con un **Contexto Limpio (Fresh Context)**. Al terminar la tarea, el subagente entrega un reporte y se cierra, evitando que el ruido de la ejecución contamine la sesión principal.
 
 ---
 ## IA en los Editores de Código

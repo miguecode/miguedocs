@@ -1,12 +1,17 @@
 ---
-title: "Contexto e inferencia"
+title: "5. Contexto e inferencia"
 description: "Ventana de contexto, ruido, temperatura y cómo el modelo genera respuestas."
 ---
 
 
 ## Contexto y Ventana de Contexto
 
-La **ventana de contexto** (*context window*) es la cantidad máxima de tokens que el modelo puede "ver" a la vez — incluye el historial de conversación, el sistema prompt y la respuesta generada.
+## Ventana de contexto
+
+La **ventana de contexto** (*context window*) es la cpacidad que tiene un modelo de IA de recordar, es decir, la cantidad máxima de tokens que el modelo puede "ver" a la vez. La ventana de contxto es la sesión (el chat actual) en el que estamos teniendo una conversación con el asistente. Si nosotros hablamos y hablamos y hablamos y no paramos de hablar, va a llegar un punto en el que la ventanta de contexto se va a llenar, y en ese punto la sesión va a empezar a olvidar cosas. 
+
+La ventana de contexto se compone por el historial de conversación, el System Prompt y la respuesta generada del agente.
+
 
 | Modelo            | Ventana de contexto |
 | ----------------- | ------------------- |
@@ -23,7 +28,7 @@ La **ventana de contexto** (*context window*) es la cantidad máxima de tokens q
 
 ### **Gestión del Ruido y Calidad**
 
-* **El problema del ruido:** Existe la creencia falsa de que "a más contexto, mejor". En realidad, el exceso de información irrelevante genera ruido, lo que degrada la calidad de la respuesta y provoca que el modelo ignore instrucciones críticas.
+* **El problema del ruido:** Existe la creencia falsa de que "a más contexto, siempre mejor". En realidad, NO SIEMPRE es así. El exceso de información irrelevante puede generar ruido, lo que degrada la calidad de la respuesta y provoca que el modelo ignore instrucciones críticas.
 
 * **Compactación (Amnesia Forzada):** Cuando la ventana se llena, el modelo realiza un resumen de la sesión para liberar espacio. Si este resumen es vago, el agente pierde detalles críticos de decisiones previas (efecto "lobotomía").
 

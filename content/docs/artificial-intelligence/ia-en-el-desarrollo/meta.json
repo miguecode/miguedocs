@@ -3,11 +3,15 @@
   "pages": [
     "conceptos-fundamentales",
     "modelos-de-lenguaje",
-    "tokens-y-embeddings",
+    "prompts",
+    "tokens-embeddings-rag",
     "contexto-y-inferencia",
+    "artifacts-proyectos-y-otros.md",
     "agentes-y-editores",
-    "chatbots-y-rag",
-    "mcp-y-fine-tuning",
+    "skills",
+    "conectores-mcp-plugins",
+    "claude-code-terminal",
+    "subagentes",
     "apis-y-comparativa"
   ]
 }

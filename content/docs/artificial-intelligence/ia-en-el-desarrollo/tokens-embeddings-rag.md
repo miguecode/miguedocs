@@ -1,5 +1,5 @@
 ---
-title: "Tokens y embeddings"
+title: "4. Tokens, Embeddings y RAG"
 description: "Unidades de texto que procesa el modelo y representaciones vectoriales del significado."
 ---
 
@@ -46,4 +46,34 @@ Un **embedding** es una representación vectorial (lista de números) de un text
 * **Clasificación de texto**: spam, sentimiento, categorías.
 * **Bases de datos vectoriales**: Pinecone, Weaviate, Chroma, pgvector.
 
----
+### RAG — Retrieval-Augmented Generation
+
+**RAG** es una técnica que combina recuperación de información con generación de texto.
+
+### El problema que resuelve
+
+Los LLMs tienen conocimiento estático (hasta su fecha de corte de entrenamiento). RAG les permite **consultar información actualizada y específica** antes de responder.
+
+### Flujo RAG
+
+```
+1. INDEXACIÓN (offline)
+   Documentos → dividir en chunks → embeddings → base de datos vectorial
+
+2. CONSULTA (online)
+   Pregunta del usuario
+       ↓
+   Embedding de la pregunta
+       ↓
+   Búsqueda por similitud en la base de datos vectorial
+       ↓
+   Top-K chunks relevantes recuperados
+       ↓
+   [pregunta + chunks] → LLM → respuesta
+```
+
+### Cuándo usar RAG
+
+* Documentación interna de la empresa
+* Bases de conocimiento que cambian frecuentemente
+* Cuando el contexto del modelo no es suficiente para incluir todos los datos

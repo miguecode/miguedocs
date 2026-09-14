@@ -1,16 +1,17 @@
 ---
-title: "Claude Code"
-description: "Claude Code es una herramienta de inteligencia artificial que se puede ejecutar en distintos entornos en nuestras máquinas"
+title: "OpenCode"
+description: "OpenCode es una alternativa open source a Claude Code"
 ---
 
 
 ## Claude Code
 
-Claude Code es una herramienta de inteligencia artificial que se puede ejecutar en distintos entornos en nuestras máquinas:
+Antes de ver qué es OpenCode, veamos qué es Claude Code. Claude Code es una herramienta de inteligencia artificial que se puede ejecutar en distintos entornos en nuestras máquinas:
 
 - La terminal (el más usado)
-- VS Code
+- Desktop
 - Web 
+- VS Code
 - JetBrains
 - Slack
 
