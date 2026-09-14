@@ -35,7 +35,24 @@ export default function Layout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="es" className={inter.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen" suppressHydrationWarning>
-        <RootProvider>{children}</RootProvider>
+        <RootProvider
+          i18n={{
+            translations: {
+              search: 'Buscar',
+              searchNoResult: 'No se encontraron resultados',
+              toc: 'En esta página',
+              tocNoHeadings: 'Sin encabezados',
+              lastUpdate: 'Última actualización el',
+              chooseLanguage: 'Elegir idioma',
+              nextPage: 'Página siguiente',
+              previousPage: 'Página anterior',
+              chooseTheme: 'Tema',
+              editOnGithub: 'Editar en GitHub',
+            },
+          }}
+        >
+          {children}
+        </RootProvider>
       </body>
     </html>
   );
