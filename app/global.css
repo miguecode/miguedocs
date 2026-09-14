@@ -70,15 +70,15 @@ b,
 strong,
 .prose strong,
 .fd-prose strong {
-  font-weight: 750 !important;
-  color: hsl(234 35% 12%) !important;
+  font-weight: 800 !important;
+  color: hsl(273, 80%, 30%) !important;
 }
 
 .dark b,
 .dark strong,
 .dark .prose strong,
 .dark .fd-prose strong {
-  font-weight: 750 !important;
-  color: hsl(0 0% 100%) !important;
+  font-weight: 800 !important;
+  color: hsl(256, 100%, 90%) !important;
 }
 
